@@ -19,7 +19,8 @@
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "node-fetch": "^2.1.2"
+    "node-fetch": "^2.1.2",
+    "wellknown": "^0.5.0"
   },
   "devDependencies": {
     "dotenv": "^5.0.1",

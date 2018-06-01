@@ -14,21 +14,19 @@ exports.detailPage = function (req, res, next) {
 		fetch(host)
 		.then((resp) => resp.json()) // transform the data into json
 			.then(function(data) {
-
-			rows = data.results.bindings; // get the results
-			res.render('detail', {
-				posters: rows,
-				id: id,
+				res.render('detail', {
+					posters: data,
+					id: id
+				});
+			}).catch(function(error) {
+				// if there is any error you will catch them here
+				console.log(error);
 			});
-		}).catch(function(error) {
-			// if there is any error you will catch them here
-			console.log(error);
-		});
 
 	} else {
 	 res.render('detail', {
 		 posters: rows,
-		 id: id,
+		 id: id
 	 });
 	}
 }
