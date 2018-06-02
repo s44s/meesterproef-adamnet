@@ -17,7 +17,7 @@
 			}).addTo(this.map);
 
 			L.control.zoom({
-				position: 'topright'
+				position: 'bottomright'
 			})
 			.addTo(this.map);
 
@@ -42,8 +42,6 @@
 				    var points = pointsAsString.map(function (d) {
 				      return d.split(' ');
 				    });
-						// console.log(points);
-						// console.log(typeof points[0]);
 				    return points;
 				}
 
@@ -57,34 +55,57 @@
 					'geometry': wellknown(geo)
 				};
 			});
-			this.radius();
-			this.renderStreets(streets);
+			this.createLayers(streets);
 		},
-		radius: function() {
+		createLayers: function(data) {
 			var self = this;
 			var selectRadius = document.querySelector("#radius-selected");
 
+			//create circle
 			var circle = L.circle([52.370216, 4.895168], {
 					color: 'red',
 					fillColor: '#f03',
-					fillOpacity: 0.1,
-					clickable: false
+					fillOpacity: 0.4,
+					clickable: false,
+					radius: 100
 			}).addTo(self.map);
 
-			circle.setRadius(5);
-
 			selectRadius.addEventListener("change", function(el){
-				var radius = this.value;
-				circle.setRadius(radius * 1000);
+				changeRadius(el);
 			})
 
+			function changeRadius(el) {
+				var meters = el.target.value * 100;
+				circle.setRadius(meters);
+				map.creategeoJSON(data, circle, meters);
+			}
+
+			map.creategeoJSON(data, circle);
 		},
-		renderStreets: function (data) {
+		creategeoJSON: function(data, circle, userInput) {
+			var circle_lat_long = circle.getLatLng();
+			var counter_points_in_circle = 0;
+			var meters_user_set = userInput;
+			if(meters_user_set == undefined){
+				meters_user_set = 100;
+			}
 			var geojsonMarkerOptions = {
 				radius: 1
 			};
 
+			//create geoJSON layer
 			L.geoJSON(data, {
+				onEachFeature: function(feature, layer) {
+					if(layer.feature.geometry.type !== "Point"){
+						var bounds = layer.getBounds();
+						var center = bounds.getCenter()
+						var distance_from_layer_circle = center.distanceTo(circle_lat_long);
+
+						if (distance_from_layer_circle <= meters_user_set) {
+							counter_points_in_circle += 1;
+						}
+					}
+				},
 				style: function (feature) {
 					return {
 						weight: 1,
@@ -100,10 +121,8 @@
 			.on('click', function (e) {
 				events.handleClickOnStreet(e.layer.feature);
 			});
-
-		},
-		setCurrentView: function (lat, lng) {
-			this.map.setView([lat, lng], 17);
+			var number_of_streets = document.querySelector('.count-streets');
+			number_of_streets.innerHTML = counter_points_in_circle + " straten";
 		},
 		handleHoverOverStreet: function (e) {
 			var point = L.point(0, -5);
@@ -115,14 +134,6 @@
 				.setLatLng(e.latlng)
 				.setContent(e.layer.feature.properties.streetName)
 				.openOn(map.map);
-		},
-		highlightStreet: function (slug) {
-			var path = document.querySelectorAll('path');
-
-			path.forEach(function (item) {
-				if (item.classList.contains('active')) item.classList.remove('active');
-				if (item.classList.contains(slug)) item.classList.add('active');
-			});
 		}
 	};
 
