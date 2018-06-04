@@ -11,3 +11,13 @@
 .mapboxgl-ctrl-bottom-right {
 	display: none;
 }
+
+input[type="range"] {
+	width: 90vw;
+	margin-left: 10vw;
+}
+
+output {
+	display: inline-block;
+	width: 50vw;
+}
