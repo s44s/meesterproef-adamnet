@@ -123,7 +123,7 @@
 						var distance_from_layer_circle = center.distanceTo(circle_lat_long);
 
 						if (distance_from_layer_circle <= meters_user_set) {
-							// console.log('straatnaam: ' + feature.properties.streetName);
+							console.log('uri: ' + feature.properties.link);
 							counter_points_in_circle += 1;
 						}
 					}
