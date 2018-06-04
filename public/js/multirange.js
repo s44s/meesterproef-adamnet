@@ -24,12 +24,12 @@ self.multirange = function(input) {
 
 	input.addEventListener('change', function(){
 		var min = document.getElementById('rangevalueMin');
-		min.innerHTML = input.value.substr(0, 4);
+		min.textContent = input.value.substr(0, 4);
 	});
 
 	ghost.addEventListener('change', function(){
 		var max = document.getElementById('rangevalueMax');
-		max.innerHTML = ghost.value;
+		max.textContent = ghost.value;
 		console.log(ghost.value);
 	});
 
