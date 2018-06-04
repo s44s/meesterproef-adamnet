@@ -13,6 +13,9 @@
 		</select>
 		<p class="count-streets">0 straten</p>
 		<div id='map'></div>
+		<input type="range" min="1900" max="2000" multiple value="1940,1980" />
+		<output id="rangevalueMin">1940</output>
+		<output id="rangevalueMax">1980</output>
 	</main>
 	<script>window.data = <%- JSON.stringify(posters || null) %>;</script>
 <%- include('partials/foot.ejs') %>

@@ -33,19 +33,6 @@
 				var slug = link.slice((link.indexOf('street/') + 7), link.lastIndexOf('/'));
 				var geo = item.wkt.value;
 
-				// Parse the multiline string geometry into a readable array for Leaflet JS:
-				var parseMultiLineString = function (str) {
-				    str = str.replace('MULTILINESTRING((', '');
-				    str = str.replace('LINESTRING(', '');
-				    str = str.replace(')', '');
-				    var pointsAsString = str.split(',');
-						console.log(pointsAsString);
-				    var points = pointsAsString.map(function (d) {
-				      return d.split(' ');
-				    });
-				    return points;
-				}
-
 				return {
 					'type': 'Feature',
 					'properties': {
