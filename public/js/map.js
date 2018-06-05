@@ -1,3 +1,16 @@
+var selectedStreets = [];
+
+//Count number of streets
+function removeDuplicates(arr){
+	let unique_array = []
+	for(var i = 0;i < arr.length; i++){
+		if(unique_array.indexOf(arr[i]) == -1){
+			unique_array.push(arr[i])
+		 }
+	}
+	return unique_array;
+}
+
 (function(){
 
 	"use strict"
@@ -98,7 +111,6 @@
 			map.createStreets(data, circle);
 		},
 		createStreets: function(data, circle, userInput) {
-			var selectedStreets = [];
 			var circle_lat_long = circle.getLatLng();
 			var counter_points_in_circle = 0;
 			var meters_user_set = userInput;
@@ -144,19 +156,8 @@
 			//Bring to back
 			streets.bringToBack();
 
-			//Count number of streets
-			function removeDuplicates(arr){
-		    let unique_array = []
-		    for(var i = 0;i < arr.length; i++){
-		    	if(unique_array.indexOf(arr[i]) == -1){
-		      	unique_array.push(arr[i])
-		       }
-		    }
-				console.log(unique_array);
-		    return unique_array.length
-			}
 			var number_of_streets = document.querySelector('.count-streets');
-			number_of_streets.innerHTML = removeDuplicates(selectedStreets) + " straten";
+			number_of_streets.innerHTML = removeDuplicates(selectedStreets).length + " straten";
 		},
 		handleHoverOverStreet: function (e) {
 			// var point = L.point(0, -5);
@@ -171,6 +172,7 @@
 		}
 	};
 
-
 	map.init()
 })()
+
+module.exports = removeDuplicates(selectedStreets);
