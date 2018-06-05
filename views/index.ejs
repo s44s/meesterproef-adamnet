@@ -1,5 +1,27 @@
 <%- include('partials/head.ejs') %>
 	<main>
-		<h1>Homepage</h1>
+		<h1>Maak jouw eigen Amsterdamse verhaal</h1>
+		<a href="/login">Of ga verder met je al eerder gemaakte verhaal</a>
+		<form>
+		  <div>
+		    <input type="radio" id="choice1"
+		     name="story" value="person">
+		    <label for="choice1">Persoon</label>
+				<p>Een verhaal over één persoon. Bijvoorbeeld een verhaal over jouzelf, jouw oma of Anne Frank.</p>
+			</div>
+			<div>
+		    <input type="radio" id="choice2"
+		     name="story" value="building">
+		    <label for="choice2">Gebouw</label>
+				<p>Een plaats gevonden verhaal. Bijvoorbeeld een verhaal over het Centraal Station, Amsterdam Oost of jouw lokale sportvereniging.</p>
+			</div>
+			<div>
+		    <input type="radio" id="choice3"
+		     name="story" value="blanco">
+		    <label for="choice3">Blanko</label>
+				<p>Een nog niet ingevuld verhaal. Voor wanneer je een eigen onderzoek wilt uitwerken of wanneer jij jouw eigen verhaal wilt creeëren.</p>
+			</div>
+	    <button type="submit">Maak mijn verhaal</button>
+		</form>
 	</main>
 <%- include('partials/foot.ejs') %>
