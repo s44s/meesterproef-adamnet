@@ -4,7 +4,7 @@
   "description": "application that will tell the story of the Amsterdammer",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "dev": "watch 'npm run build'",
     "watch-js": "watchify public/js/*.js -o public/dist/bundle.js -dv",
     "watch": "npm run build | npm run watch-js",
@@ -17,6 +17,7 @@
   "author": "suustenvoorde",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "node-fetch": "^2.1.2",
