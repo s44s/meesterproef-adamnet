@@ -15,46 +15,35 @@ console.log(selectedStreets);
         var valMin = Number(self.timestampMin.value);
         var valMax = Number(self.timestampMax.value);
 
-        var xhr = new XMLHttpRequest();
-        var fd = new FormData();
+        var data = {
+          'valMin': valMin,
+          'valMax': valMax,
+          'selectedStreets': selectedStreets
+        };
 
-        fd.append('valMin', valMin);
-        fd.append('valMax', valMax);
-        fd.append('selectedStreets', selectedStreets);
+        var config = {
+          method: 'POST',
+          body: JSON.stringify(data),
+          redirect: 'follow',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        };
 
-        xhr.open('post', '/create-story');
-        xhr.send(fd);
+        console.log(config);
+
+        fetch('/create-story', config)
+          .then(function (data) {
+            console.log(data);
+            window.location.replace('/create-story');
+          })
+          .catch(function (err) {
+            throw err;
+          });
       });
     }
   };
 
   newStory.init();
 })();
-
-
-
-
-// function sendData(data) {
-//   var xhr = new XMLHttpRequest();
-//
-//   var fd = new FormData();
-//
-//   console.log(fd);
-//
-//   xhr.addEventListener('error', function (e) {
-//     console.log('error');
-//   });
-//
-//   xhr.open('POST', '/create-story');
-//
-//   xhr.send(fd);
-// }
-//
-// var form = document.querySelector('.location-and-timestamp');
-//
-// form.addEventListener('submit', function (e) {
-//   e.preventDefault();
-//   sendData();
-// });
-
-module.exports = selectedStreets;
