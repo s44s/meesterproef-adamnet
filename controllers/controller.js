@@ -29,11 +29,17 @@ exports.newStoryPage = function (req, res, next) {
 	}
 }
 
-exports.createStoryPage = function (req, res, next) {
+var newStoryData = {};
+
+exports.postCreateStoryPage = function (req, res, next) {
   // Use bodyParser to get the submitted params
+  // console.log(req.body);
+  newStoryData = req.body;
+  res.redirect('/create-story');
+}
 
-  console.log(req.body);
-
+exports.getCreateStoryPage = function (req, res, next) {
+  console.log(newStoryData);
   res.render('create-story');
 }
 
