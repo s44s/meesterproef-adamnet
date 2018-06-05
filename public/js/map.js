@@ -147,15 +147,14 @@
 			//Count number of streets
 			function removeDuplicates(arr){
 		    let unique_array = []
-		    for(let i = 0;i < arr.length; i++){
+		    for(var i = 0;i < arr.length; i++){
 		    	if(unique_array.indexOf(arr[i]) == -1){
 		      	unique_array.push(arr[i])
 		       }
 		    }
+				console.log(unique_array);
 		    return unique_array.length
 			}
-
-			console.log(removeDuplicates(selectedStreets));
 			var number_of_streets = document.querySelector('.count-streets');
 			number_of_streets.innerHTML = removeDuplicates(selectedStreets) + " straten";
 		},
