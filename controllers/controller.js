@@ -31,6 +31,9 @@ exports.newStoryPage = function (req, res, next) {
 
 exports.createStoryPage = function (req, res, next) {
   // Use bodyParser to get the submitted params
+
+  console.log(req.body);
+
   res.render('create-story');
 }
 
