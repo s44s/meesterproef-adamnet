@@ -7,7 +7,7 @@ var controller = require('../controllers/controller.js');
 /* GET home page. */
 router.get('/', controller.homePage);
 
-// GET detail page:
-router.get('/detail/:id', controller.detailPage);
+// GET story page:
+router.get('/story', controller.storyPage);
 
 module.exports = router;
