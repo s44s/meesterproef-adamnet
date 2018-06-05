@@ -5,8 +5,7 @@
 	var map = {
 		mapboxAccessToken: 'pk.eyJ1IjoibWF4ZGV2cmllczk1IiwiYSI6ImNqZWZydWkyNjF3NXoyd28zcXFqdDJvbjEifQ.Dl3DvuFEqHVAxfajg0ESWg',
 		map: L.map('map', {
-			zoomControl: false,
-			dragging: false
+			zoomControl: false
 		}),
 		init: function () {
 			// Set the original view of the map:
@@ -56,16 +55,26 @@
 					fillColor: '#f03',
 					fillOpacity: 0.4,
 					clickable: false,
-					radius: 100,
+					radius: 1000/2,
 					zIndexOffset: 1000
 			}).addTo(self.map);
 
 			//draggable
+			circle.addEventListener('mousedown', function () {
+				console.log('down');
+				self.map.dragging.disable();
+			});
+
+			circle.addEventListener('mouseup', function () {
+				console.log('up');
+				self.map.dragging.enable();
+			});
+
 			circle.on({
 				 mousedown: function () {
 					 self.map.on('mousemove', function (e) {
-						 centerPoint.lat = e.latlng.lat
-						 centerPoint.lng = e.latlng.lng
+						 centerPoint.lat = e.latlng.lat;
+						 centerPoint.lng = e.latlng.lng;
 						 circle.setLatLng(e.latlng);
 					 });
 				 }
@@ -83,7 +92,7 @@
 			})
 
 			function changeRadius(el) {
-				var meters = el.target.value * 100;
+				var meters = el.target.value / 2 * 1000;
 				circle.setRadius(meters);
 				map.createStreets(data, circle, meters);
 			}
@@ -95,7 +104,7 @@
 			var counter_points_in_circle = 0;
 			var meters_user_set = userInput;
 			if(meters_user_set == undefined){
-				meters_user_set = 100;
+				meters_user_set = 1000/2;
 			}
 			var geojsonMarkerOptions = {
 				radius: 1
@@ -134,8 +143,6 @@
 
 			//Bring to back
 			streets.bringToBack();
-			console.log(circle.getLatLng(), userInput);
-
 
 			//Count number of streets
 			var number_of_streets = document.querySelector('.count-streets');

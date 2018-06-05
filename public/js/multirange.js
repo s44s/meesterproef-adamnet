@@ -30,7 +30,6 @@ self.multirange = function(input) {
 	ghost.addEventListener('change', function(){
 		var max = document.getElementById('rangevalueMax');
 		max.textContent = ghost.value;
-		console.log(ghost.value);
 	});
 
 	input.parentNode.insertBefore(ghost, input.nextSibling);
