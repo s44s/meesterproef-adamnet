@@ -1,3 +1,44 @@
+/* HOMEPAGE: INTRO */
+/* radio buttons */
+.home h1 {
+	text-align: center;
+}
+
+.home a {
+	display: block;
+	text-align: center;
+}
+
+form {
+	display: flex;
+	width: 80vw;
+	margin-left: 10vw;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+form div {
+	text-align: center;
+	flex-basis: 25%;
+	margin-top: 10%;
+}
+
+
+form img {
+	display: block;
+	width: 3em;
+	margin-left: calc(50% - 1.5em);
+}
+
+form button {
+	margin-left: 25%;
+	flex-basis: 50%;
+}
+
+/* NEW-STORY */
+/* leaflet map */
 #map {
 	width: 80vw;
 	height: 50vh;
@@ -12,6 +53,7 @@
 	display: none;
 }
 
+/* multiple rangeslider */
 input[type="range"] {
 	margin-top: 5% !important;
 	width: 80vw;
