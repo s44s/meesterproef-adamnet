@@ -1,6 +1,6 @@
 <%- include('partials/head.ejs') %>
 	<main>
-		<h1>Detail page</h1>
+		<h1>Story page</h1>
 		<select id="radius-selected" name="radius">
 			<option value="1">1 km</option>
 			<option value="2">2 km</option>
@@ -17,5 +17,5 @@
 		<output id="rangevalueMin">1940</output>
 		<output id="rangevalueMax">1980</output>
 	</main>
-	<script>window.data = <%- JSON.stringify(posters || null) %>;</script>
+	<script>window.data = <%- JSON.stringify(streets || null) %>;</script>
 <%- include('partials/foot.ejs') %>
