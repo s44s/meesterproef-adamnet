@@ -1,5 +1,4 @@
 var fetch = require('node-fetch');
-var bodyParser = require('body-parser');
 var sparqlFile = require('./sparql');
 
 var rows = [];
