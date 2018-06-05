@@ -61,12 +61,10 @@
 
 			//draggable
 			circle.addEventListener('mousedown', function () {
-				console.log('down');
 				self.map.dragging.disable();
 			});
 
 			circle.addEventListener('mouseup', function () {
-				console.log('up');
 				self.map.dragging.enable();
 			});
 
