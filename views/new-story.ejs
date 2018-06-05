@@ -13,15 +13,9 @@
 		</select>
 		<p class="count-streets">0 straten</p>
 		<div id='map'></div>
-
-		<form action="/create-story" method="post">
-			<input type="range" name="timestamp" min="1900" max="2000" multiple value="1940,1980" />
-			<output id="rangevalueMin">1940</output>
-			<output id="rangevalueMax">1980</output>
-			<button type="submit">Maak een verhaal</button>
-		</form>
-
-
+		<input type="range" min="1900" max="2000" multiple value="1940,1980" />
+		<output id="rangevalueMin">1940</output>
+		<output id="rangevalueMax">1980</output>
 	</main>
 	<script>window.data = <%- JSON.stringify(streets || null) %>;</script>
 <%- include('partials/foot.ejs') %>
