@@ -110,10 +110,18 @@
 
 /* CREATE-STORY */
 /* form */
+.create-story h1 {
+	margin-left: 5vw;
+}
+
 .create-story form {
 	width: 20vw;
   float: right;
-  margin-right: 5%;
+  margin: 0 5vw;
+}
+
+.create-story section {
+	width: 65vw;
 }
 
 .create-story label {
@@ -123,4 +131,20 @@
 .create-story input {
 	display: block;
 	margin-bottom: 2%;
+}
+
+.create-story div.data {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-left: 5vw;
+}
+
+.create-story div div {
+	flex-basis: 18vw;
+}
+
+.create-story div img {
+	width: 100%;
 }

@@ -1,8 +1,11 @@
 <section>
-	<% console.log(dataFirstQuery.results.bindings[0].title.value) %>
+	<h1>We zijn in jaartal $1971 en we bevinden ons op de $spuistraat </h1>
+	<div class="data">
 	<% for(var i = 0; i < dataFirstQuery.results.bindings.length; i++) { %>
-		<p>	<%- dataFirstQuery.results.bindings[i].title.value %></p>
-		<img src="<%- dataFirstQuery.results.bindings[i].img.value %>" alt="dataFirstQuery.results.bindings[i].title.value"/>
-
+		<div>
+			<img src="<%- dataFirstQuery.results.bindings[i].img.value %>" alt="dataFirstQuery.results.bindings[i].title.value"/>
+			<p>	<%- dataFirstQuery.results.bindings[i].title.value %></p>
+		</div>
 	<% } %>
+	</div>
 </section>

@@ -13,4 +13,9 @@
 		<%- include('partials/section.ejs') %>
 
 	</main>
+	<script>
+		window.data = <%- JSON.stringify(dataFirstQuery || null) %>;
+		console.log(window.data.results.bindings)
+	</script>
+
 <%- include('partials/foot.ejs') %>
