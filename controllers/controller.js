@@ -32,7 +32,6 @@ var newStoryData = {};
 
 exports.postCreateStoryPage = function (req, res, next) {
   newStoryData = req.body;
-  console.log(newStoryData);
   res.redirect('/');
 }
 
@@ -44,7 +43,7 @@ exports.getCreateStoryPage = function (req, res, next) {
     var url = sparqlqueries.url(sparqlqueries.getLocationAndTimestamp(newStoryData));
 
     fetch(url)
-      .then((res) => res.json())
+		.then((resp) => resp.json()) // transform the data into json
       .then(function (data) {
         res.render('create-story', {
           dataFirstQuery: data
