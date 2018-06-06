@@ -28,26 +28,11 @@ var selectedStreets = [];
 		data: function() {
 			var data = window.data;
 
-			// data.geometry = wellknown(data.geo);
+			// Add geometry to data:
+			data.forEach(function (street) {
+				street.geometry = wellknown(street.geo);
+			});
 
-			console.log(data.geo);
-			// var rows = data.results.bindings;
-			// var streets = rows.map(function (item) {
-			// 	var streetName = item.name.value;
-			// 	var link = item.street.value;
-			// 	var slug = link.slice((link.indexOf('street/') + 7), link.lastIndexOf('/'));
-			// 	var geo = item.wkt.value;
-			//
-			// 	return {
-			// 		'type': 'Feature',
-			// 		'properties': {
-			// 			'streetName': streetName,
-			// 			'slug': slug,
-			// 			'link': link
-			// 		},
-			// 		'geometry': wellknown(geo)
-			// 	};
-			// });
 			this.createCircle(data);
 		},
 		createCircle: function(data) {
@@ -136,7 +121,7 @@ var selectedStreets = [];
 						var distance_from_layer_circle = center.distanceTo(circle_lat_long);
 
 						if (distance_from_layer_circle <= meters_user_set) {
-							var uri = feature.properties.link;
+							var uri = feature.properties.uri;
 							selectedStreets.push(uri);
 							counter_points_in_circle += 1;
 						}
@@ -152,11 +137,6 @@ var selectedStreets = [];
 					}
 				},
 				pointToLayer: function (feature, latlng) { return L.circleMarker(latlng, geojsonMarkerOptions); }
-			})
-			// .addTo(this.map)
-			.on('mouseover', this.handleHoverOverStreet)
-			.on('click', function (e) {
-				events.handleClickOnStreet(e.layer.feature);
 			});
 
 			//Bring to back
