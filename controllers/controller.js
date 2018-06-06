@@ -32,6 +32,7 @@ var newStoryData = {};
 
 exports.postCreateStoryPage = function (req, res, next) {
   newStoryData = req.body;
+  console.log(newStoryData);
   res.redirect('/');
 }
 
@@ -40,7 +41,8 @@ exports.getCreateStoryPage = function (req, res, next) {
 
   // Fetch the images for selected location and timestamp:
   if (Object.keys(rows).length === 0) {
-    var url = sparqlqueries.url(sparqlqueries.getLocationAndTimestamp);
+    var url = sparqlqueries.url(sparqlqueries.getLocationAndTimestamp(newStoryData));
+
     fetch(url)
       .then((res) => res.json())
       .then(function (data) {
