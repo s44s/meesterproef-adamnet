@@ -1,9 +1,10 @@
 <%- include('partials/head.ejs') %>
 	<main>
 		<h1>New story page</h1>
+
 		<select id="radius-selected" name="radius">
-			<option value="0.5">500 m</option>
-			<option value="1" selected>1 km</option>
+			<option value="0.5" selected>500 m</option>
+			<option value="1">1 km</option>
 			<option value="2">2 km</option>
 			<option value="3">3 km</option>
 			<option value="4">4 km</option>
@@ -12,11 +13,19 @@
 			<option value="25">25 km</option>
 			<option value="50">50 km</option>
 		</select>
+
 		<p class="count-streets">0 straten</p>
+
 		<div id='map'></div>
-		<input type="range" min="1900" max="2000" multiple value="1940,1980" />
-		<output id="rangevalueMin">1940</output>
-		<output id="rangevalueMax">1980</output>
+
+		<form class="location-and-timestamp" action="/create-story" method="post">
+			<input type="range" min="1900" max="2000" multiple value="1940,1980" />
+			<output id="rangevalueMin" name="timestamp-min">1940</output>
+			<output id="rangevalueMax" name="timestamp-max">1980</output>
+
+			<button type="submit">Maak een verhaal</button>
+		</form>
+
 	</main>
 	<script>window.data = <%- JSON.stringify(streets || null) %>;</script>
 <%- include('partials/foot.ejs') %>

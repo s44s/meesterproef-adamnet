@@ -1,17 +1,16 @@
 var fetch = require('node-fetch');
-var sparqlFile = require('./sparql');
-
-var rows = [];
+var sparqlqueries = require('./sparql');
 
 exports.homePage = function (req, res, next) {
   res.render('index');
 }
 
 exports.newStoryPage = function (req, res, next) {
-	var host = sparqlFile.data;
+  var rows = [];
 
 	if(Object.keys(rows).length === 0) {
-		fetch(host)
+    var url = sparqlqueries.url(sparqlqueries.getAllStreets);
+		fetch(url)
 		.then((resp) => resp.json()) // transform the data into json
 			.then(function(data) {
 				res.render('new-story', {
@@ -29,9 +28,36 @@ exports.newStoryPage = function (req, res, next) {
 	}
 }
 
-exports.createStoryPage = function (req, res, next) {
-  // Use bodyParser to get the submitted params
-  res.render('create-story');
+var newStoryData = {};
+
+exports.postCreateStoryPage = function (req, res, next) {
+  newStoryData = req.body;
+  console.log(newStoryData);
+  res.redirect('/');
+}
+
+exports.getCreateStoryPage = function (req, res, next) {
+  var rows = [];
+
+  // Fetch the images for selected location and timestamp:
+  if (Object.keys(rows).length === 0) {
+    var url = sparqlqueries.url(sparqlqueries.getLocationAndTimestamp(newStoryData));
+
+    fetch(url)
+      .then((res) => res.json())
+      .then(function (data) {
+        res.render('create-story', {
+          dataFirstQuery: data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  } else {
+    res.render('create-story', {
+      dataFirstQuery: rows
+    });
+  }
 }
 
 exports.saveStoryPage = function (req, res, next) {

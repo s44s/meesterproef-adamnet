@@ -2,4 +2,7 @@
 	<main>
 		<h1>Create Story Page</h1>
 	</main>
+	<script>window.data = <%- JSON.stringify(dataFirstQuery || null) %>;
+	console.log(window.data.results.bindings);
+	</script>
 <%- include('partials/foot.ejs') %>
