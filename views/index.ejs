@@ -1,5 +1,36 @@
 <%- include('partials/head.ejs') %>
-	<main>
-		<h1>Homepage</h1>
+	<main class="home">
+		<h1>Maak jouw eigen Amsterdamse verhaal</h1>
+		<a href="/login">Of ga verder met je al eerder gemaakte verhaal</a>
+		<form action="/new-story">
+		  <div>
+				<label for="choice1">
+					<img src="/images/person.png" alt="iconPerson"/>
+			    <input checked type="radio" id="choice1" name="story" value="person">
+			    Persoon
+					<p>Een verhaal over één persoon. Bijvoorbeeld een verhaal over jouzelf, jouw oma of Anne Frank.</p>
+					<section></section>
+				</label>
+			</div>
+			<div>
+				<label for="choice2">
+					<img src="/images/building.png" alt="iconBuilding"/>
+			    <input type="radio" id="choice2" name="story" value="building">
+			    Gebouw
+					<p>Een plaats gevonden verhaal. Bijvoorbeeld een verhaal over het Centraal Station, Amsterdam Oost of jouw lokale sportvereniging.</p>
+					<section></section>
+				</label>
+			</div>
+			<div>
+				<label for="choice3">
+					<img src="/images/blanco.png" alt="iconBlanco"/>
+			    <input type="radio" id="choice3" name="story" value="blanco">
+			    Blanko
+					<p>Een nog niet ingevuld verhaal. Voor wanneer je een eigen onderzoek wilt uitwerken of wanneer jij jouw eigen verhaal wilt creeëren.</p>
+					<section></section>
+				</label>
+			</div>
+	    <button type="submit">Maak mijn verhaal</button>
+		</form>
 	</main>
 <%- include('partials/foot.ejs') %>

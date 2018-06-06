@@ -1,3 +1,76 @@
+/* HOMEPAGE: INTRO */
+/* radio buttons */
+.home h1 {
+	text-align: center;
+	height: 5%;
+}
+
+.home a {
+	display: block;
+	text-align: center;
+	height: 2%;
+}
+
+form {
+	display: flex;
+	width: 80vw;
+	margin-left: 10vw;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+form div {
+	text-align: center;
+	flex-basis: 25%;
+	height: 40vh;
+	margin-top: 10%;
+	z-index: 100;
+}
+
+form input[type="radio"] {
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+form input[type="radio"]:checked ~ section {
+	position: absolute;
+	width: 20%;
+	height: 37.5vh;
+	z-index: -100;
+	top: 17%;
+	background-color: lightgrey;
+}
+
+form input[type="radio"]:checked ~ section::after {
+	background-image: url('/images/checked.png');
+	background-size: 20px 20px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	content:"";
+	margin-left: 95%;
+	margin-top: -2%;
+}
+
+form img {
+	z-index: 100;
+	display: block;
+	width: 3em;
+	margin-left: calc(50% - 1.5em);
+}
+
+form button {
+	margin-left: 25%;
+	flex-basis: 50%;
+}
+
+/* NEW-STORY */
+/* leaflet map */
 #map {
 	width: 80vw;
 	height: 50vh;
@@ -12,6 +85,7 @@
 	display: none;
 }
 
+/* multiple rangeslider */
 input[type="range"] {
 	margin-top: 5% !important;
 	width: 80vw;
