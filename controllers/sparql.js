@@ -21,31 +21,38 @@ var sparqlqueries = {
       ?geo geo:asWKT ?wkt .
     }
   `,
-  getLocationAndTimestamp: `
-    PREFIX dc: <http://purl.org/dc/elements/1.1/>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-    PREFIX dct: <http://purl.org/dc/terms/>
-    PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    SELECT * WHERE {
-      VALUES ?street {
-        <https://adamlink.nl/geo/street/rokin/3867>
-        <https://adamlink.nl/geo/street/dam/880>
+  getLocationAndTimestamp: function (data) {
+    var beginTimestamp = data.valMin;
+    var endTimestamp = data.valMax;
+    var uris = data.selectedStreets.map(function (street) {
+      return `<${street}>`;
+    });
+
+    return `
+      PREFIX dc: <http://purl.org/dc/elements/1.1/>
+      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+      PREFIX dct: <http://purl.org/dc/terms/>
+      PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      SELECT * WHERE {
+        VALUES ?street {
+          ${uris.join('')}
+        }
+        ?cho dc:title ?title .
+        ?cho foaf:depiction ?img .
+        ?cho dct:spatial ?street .
+
+        ?cho sem:hasBeginTimeStamp ?start .
+        ?cho sem:hasEndTimeStamp ?end .
+
+        FILTER (datatype(?start) = xsd:date)
+        FILTER (datatype(?end) = xsd:date)
+
+        FILTER (?start > xsd:date("${beginTimestamp}") && ?end < xsd:date("${endTimestamp}") )
       }
-      ?cho dc:title ?title .
-      ?cho foaf:depiction ?img .
-      ?cho dct:spatial ?street .
-
-      ?cho sem:hasBeginTimeStamp ?start .
-      ?cho sem:hasEndTimeStamp ?end .
-
-      FILTER (datatype(?start) = xsd:date)
-      FILTER (datatype(?end) = xsd:date)
-
-      FILTER (?start > xsd:date("1917") && ?end < xsd:date("1940") )
-    }
-  `
+    `;
+  }
 };
 
 module.exports = sparqlqueries;
