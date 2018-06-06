@@ -46,6 +46,10 @@ form input[type="radio"]:checked ~ section {
 	background-color: lightgrey;
 }
 
+form input[type="radio"]:focus ~ section {
+	border: 1px solid black;
+}
+
 form input[type="radio"]:checked ~ section::after {
 	background-image: url('/images/checked.png');
 	background-size: 20px 20px;
