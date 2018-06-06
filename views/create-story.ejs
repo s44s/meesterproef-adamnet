@@ -1,8 +1,15 @@
 <%- include('partials/head.ejs') %>
-	<main>
-		<h1>Create Story Page</h1>
+	<main class="create-story">
+		<h1>Maak jouw eigen verhaal</h1>
+
+		<form action="/" method="post">
+			<label for="name">Vul hier jouw naam in</label>
+			<input id="name" name="name" type="text" placeholder="Jan Jansen.." />
+			<label for="year">Vul hier jouw naam in</label>
+			<input id="year" name="year" type="number" placeholder="1969" min="1900" max="2017" />
+			<button type="submit">Maak een verhaal</button>
+		</form>
+
 	</main>
-	<script>window.data = <%- JSON.stringify(dataFirstQuery || null) %>;
-	console.log(window.data.results.bindings);
-	</script>
+	<% console.log(dataFirstQuery.results.bindings) %>
 <%- include('partials/foot.ejs') %>
