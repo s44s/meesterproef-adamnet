@@ -107,3 +107,20 @@
 .new-story output:last-of-type {
 	text-align: right;
 }
+
+/* CREATE-STORY */
+/* form */
+.create-story form {
+	width: 20vw;
+  float: right;
+  margin-right: 5%;
+}
+
+.create-story label {
+	display: block;
+}
+
+.create-story input {
+	display: block;
+	margin-bottom: 2%;
+}
