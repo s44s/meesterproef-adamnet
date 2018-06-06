@@ -2,11 +2,13 @@
 /* radio buttons */
 .home h1 {
 	text-align: center;
+	height: 5%;
 }
 
 .home a {
 	display: block;
 	text-align: center;
+	height: 2%;
 }
 
 form {
@@ -22,11 +24,41 @@ form {
 form div {
 	text-align: center;
 	flex-basis: 25%;
+	height: 40vh;
 	margin-top: 10%;
+	z-index: 100;
 }
 
+form input[type="radio"] {
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+form input[type="radio"]:checked ~ section {
+	position: absolute;
+	width: 20%;
+	height: 37.5vh;
+	z-index: -100;
+	top: 17%;
+	background-color: lightgrey;
+}
+
+form input[type="radio"]:checked ~ section::after {
+	background-image: url('/images/checked.png');
+	background-size: 20px 20px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	content:"";
+	margin-left: 95%;
+	margin-top: -2%;
+}
 
 form img {
+	z-index: 100;
 	display: block;
 	width: 3em;
 	margin-left: calc(50% - 1.5em);
