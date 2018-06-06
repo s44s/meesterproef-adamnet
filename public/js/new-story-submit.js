@@ -1,7 +1,5 @@
 var selectedStreets = require('./map.js');
 
-console.log(selectedStreets);
-
 (function () {
   var newStory = {
     form: document.querySelector('.location-and-timestamp'),
@@ -12,8 +10,8 @@ console.log(selectedStreets);
       self.form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        var valMin = Number(self.timestampMin.value);
-        var valMax = Number(self.timestampMax.value);
+        var valMin = self.timestampMin.value;
+        var valMax = self.timestampMax.value;
 
         var data = {
           'valMin': valMin,
