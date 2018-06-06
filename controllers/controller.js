@@ -47,7 +47,7 @@ exports.getCreateStoryPage = function (req, res, next) {
       .then((res) => res.json())
       .then(function (data) {
         res.render('create-story', {
-          locationAndTimestamp: data
+          dataFirstQuery: data
         });
       })
       .catch(function (error) {
@@ -55,7 +55,7 @@ exports.getCreateStoryPage = function (req, res, next) {
       });
   } else {
     res.render('create-story', {
-      locationAndTimestamp: rows
+      dataFirstQuery: rows
     });
   }
 }
