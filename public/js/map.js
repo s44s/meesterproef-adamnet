@@ -1,16 +1,5 @@
 var selectedStreets = [];
 
-//Count number of streets
-function removeDuplicates(arr){
-	let unique_array = []
-	for(var i = 0;i < arr.length; i++){
-		if(unique_array.indexOf(arr[i]) == -1){
-			unique_array.push(arr[i])
-		 }
-	}
-	return unique_array;
-}
-
 (function(){
 
 	"use strict"
@@ -22,7 +11,7 @@ function removeDuplicates(arr){
 		}),
 		init: function () {
 			// Set the original view of the map:
-			this.map.setView([52.370216, 4.895168], 13);
+			this.map.setView([52.370216, 4.895168], 14);
 
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + this.mapboxAccessToken, {
 				maxZoom: 20,
@@ -68,7 +57,7 @@ function removeDuplicates(arr){
 					fillColor: '#f03',
 					fillOpacity: 0.4,
 					clickable: false,
-					radius: 1000/2,
+					radius: 500/2,
 					zIndexOffset: 1000
 			}).addTo(self.map);
 
@@ -115,11 +104,24 @@ function removeDuplicates(arr){
 			var counter_points_in_circle = 0;
 			var meters_user_set = userInput;
 			if(meters_user_set == undefined){
-				meters_user_set = 1000/2;
+				meters_user_set = 500/2;
 			}
 			var geojsonMarkerOptions = {
 				radius: 1
 			};
+
+			selectedStreets.splice(0, selectedStreets.length);
+
+			//Count number of streets
+			function removeDuplicates(arr){
+				let unique_array = []
+				for(var i = 0;i < arr.length; i++){
+					if(unique_array.indexOf(arr[i]) == -1){
+						unique_array.push(arr[i]);
+					 }
+				}
+				return unique_array;
+			}
 
 			//create geoJSON layer
 			var streets = L.geoJSON(data, {
@@ -157,7 +159,7 @@ function removeDuplicates(arr){
 			streets.bringToBack();
 
 			var number_of_streets = document.querySelector('.count-streets');
-			number_of_streets.innerHTML = removeDuplicates(selectedStreets).length + " straten";
+			number_of_streets.innerHTML = selectedStreets.length + " straten";
 		},
 		handleHoverOverStreet: function (e) {
 			// var point = L.point(0, -5);
@@ -175,4 +177,4 @@ function removeDuplicates(arr){
 	map.init()
 })()
 
-module.exports = removeDuplicates(selectedStreets);
+module.exports = selectedStreets;
