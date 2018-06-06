@@ -1,0 +1,8 @@
+<section>
+	<% console.log(dataFirstQuery.results.bindings[0].title.value) %>
+	<% for(var i = 0; i < dataFirstQuery.results.bindings.length; i++) { %>
+		<p>	<%- dataFirstQuery.results.bindings[i].title.value %></p>
+		<img src="<%- dataFirstQuery.results.bindings[i].img.value %>" alt="dataFirstQuery.results.bindings[i].title.value"/>
+
+	<% } %>
+</section>
