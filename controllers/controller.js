@@ -1,5 +1,5 @@
 var fetch = require('node-fetch');
-var sparqlFile = require('./sparql');
+var sparqlqueries = require('./sparql');
 
 var rows = [];
 
@@ -8,10 +8,8 @@ exports.homePage = function (req, res, next) {
 }
 
 exports.newStoryPage = function (req, res, next) {
-	var host = sparqlFile.data;
-
 	if(Object.keys(rows).length === 0) {
-		fetch(host)
+		fetch(sparqlqueries.url(sparqlqueries.getAllStreets))
 		.then((resp) => resp.json()) // transform the data into json
 			.then(function(data) {
 				res.render('new-story', {
@@ -35,7 +33,7 @@ exports.postCreateStoryPage = function (req, res, next) {
   // Use bodyParser to get the submitted params
   // console.log(req.body);
   newStoryData = req.body;
-  res.redirect('/create-story');
+  res.redirect('/');
 }
 
 exports.getCreateStoryPage = function (req, res, next) {
