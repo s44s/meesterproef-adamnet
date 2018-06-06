@@ -27,24 +27,28 @@ var selectedStreets = [];
 		},
 		data: function() {
 			var data = window.data;
-			var rows = data.results.bindings;
-			var streets = rows.map(function (item) {
-				var streetName = item.name.value;
-				var link = item.street.value;
-				var slug = link.slice((link.indexOf('street/') + 7), link.lastIndexOf('/'));
-				var geo = item.wkt.value;
 
-				return {
-					'type': 'Feature',
-					'properties': {
-						'streetName': streetName,
-						'slug': slug,
-						'link': link
-					},
-					'geometry': wellknown(geo)
-				};
-			});
-			this.createCircle(streets);
+			// data.geometry = wellknown(data.geo);
+
+			console.log(data.geo);
+			// var rows = data.results.bindings;
+			// var streets = rows.map(function (item) {
+			// 	var streetName = item.name.value;
+			// 	var link = item.street.value;
+			// 	var slug = link.slice((link.indexOf('street/') + 7), link.lastIndexOf('/'));
+			// 	var geo = item.wkt.value;
+			//
+			// 	return {
+			// 		'type': 'Feature',
+			// 		'properties': {
+			// 			'streetName': streetName,
+			// 			'slug': slug,
+			// 			'link': link
+			// 		},
+			// 		'geometry': wellknown(geo)
+			// 	};
+			// });
+			this.createCircle(data);
 		},
 		createCircle: function(data) {
 			var self = this;
@@ -160,17 +164,6 @@ var selectedStreets = [];
 
 			var number_of_streets = document.querySelector('.count-streets');
 			number_of_streets.innerHTML = selectedStreets.length + " straten";
-		},
-		handleHoverOverStreet: function (e) {
-			// var point = L.point(0, -5);
-			//
-			// L.popup({
-			// 	closeButton: false,
-			// 	offset: point
-			// })
-			// 	.setLatLng(e.latlng)
-			// 	.setContent(e.layer.feature.properties.streetName)
-			// 	.openOn(map.map);
 		}
 	};
 
