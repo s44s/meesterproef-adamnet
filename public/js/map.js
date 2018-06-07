@@ -149,9 +149,6 @@ var selectedStreets = [];
 				pointToLayer: function (feature, latlng) { return L.circleMarker(latlng, geojsonMarkerOptions); }
 			});
 
-			//Bring to back
-			streets.bringToBack();
-
 			var number_of_streets = document.querySelector('.count-streets');
 			number_of_streets.innerHTML = selectedStreets.length + " straten";
 		}
