@@ -25,7 +25,7 @@ var sparqlqueries = {
     var beginTimestamp = data.valMin;
     var endTimestamp = data.valMax;
     var uris = data.selectedStreets.map(function (street) {
-      return `<${street}>`;
+      return `<${street.uri}>`;
     });
 
     return `
@@ -35,22 +35,24 @@ var sparqlqueries = {
       PREFIX dct: <http://purl.org/dc/terms/>
       PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
       PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-      SELECT * WHERE {
+      SELECT ?title ?img ?street ?type ?beginTimestamp WHERE {
         VALUES ?street {
           ${uris.join('')}
         }
         ?cho dc:title ?title .
         ?cho foaf:depiction ?img .
         ?cho dct:spatial ?street .
+        ?cho dc:type ?type .
 
-        ?cho sem:hasBeginTimeStamp ?start .
+        ?cho sem:hasBeginTimeStamp ?beginTimestamp .
         ?cho sem:hasEndTimeStamp ?end .
 
-        FILTER (datatype(?start) = xsd:date)
+        FILTER (datatype(?beginTimestamp) = xsd:date)
         FILTER (datatype(?end) = xsd:date)
 
-        FILTER (?start > xsd:date("${beginTimestamp}") && ?end < xsd:date("${endTimestamp}") )
+        FILTER (?beginTimestamp > xsd:date("${beginTimestamp}") && ?end < xsd:date("${endTimestamp}") )
       }
+      ORDER BY ?beginTimestamp
     `;
   }
 };
