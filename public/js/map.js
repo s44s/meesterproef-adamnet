@@ -9,9 +9,13 @@ var selectedStreets = [];
 		map: L.map('map', {
 			zoomControl: false
 		}),
+		centerPoint: {
+			lat: 52.370216,
+			lng: 4.895168
+		},
 		init: function () {
 			// Set the original view of the map:
-			this.map.setView([52.370216, 4.895168], 14);
+			this.map.setView([this.centerPoint.lat, this.centerPoint.lng], 14);
 
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + this.mapboxAccessToken, {
 				maxZoom: 20,
@@ -23,7 +27,7 @@ var selectedStreets = [];
 			})
 			.addTo(this.map);
 
-			this.data();
+			this.createCircle(this.data());
 		},
 		data: function() {
 			var data = window.data;
@@ -33,21 +37,22 @@ var selectedStreets = [];
 				street.geometry = wellknown(street.geo);
 			});
 
-			this.createCircle(data);
+			return data;
 		},
 		createCircle: function(data) {
 			var self = this;
 			var selectRadius = document.querySelector("#radius-selected");
-			var centerPoint = {lat: 52.370216, lng: 4.895168};
+			// var centerPoint = {lat: 52.370216, lng: 4.895168};
+			var centerPoint = this.centerPoint;
 
 			//create circle
 			var circle = L.circle([centerPoint.lat, centerPoint.lng], {
-					color: 'red',
-					fillColor: '#f03',
-					fillOpacity: 0.4,
-					clickable: false,
-					radius: 500/2,
-					zIndexOffset: 1000
+				color: 'red',
+				fillColor: '#f03',
+				fillOpacity: 0.4,
+				clickable: false,
+				radius: 500/2,
+				zIndexOffset: 1000
 			}).addTo(self.map);
 
 			//draggable
