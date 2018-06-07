@@ -110,17 +110,85 @@
 
 /* CREATE-STORY */
 /* form */
-.create-story form {
+.create-story h1 {
+	margin-left: 5vw;
+	height: 5vh;
+}
+
+.create-story .user-data {
 	width: 20vw;
   float: right;
-  margin-right: 5%;
+  margin: 0 5vw;
 }
 
-.create-story label {
+.create-story form + section {
+	width: 65vw;
+}
+
+.create-story label .user-data {
 	display: block;
 }
 
-.create-story input {
+.create-story .user-data input[type="text"], .create-story .user-data input[type="number"] {
 	display: block;
 	margin-bottom: 2%;
+}
+
+.create-story .data {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-left: 5vw;
+}
+
+.create-story .data a {
+	flex-basis: 18vw;
+	/* height: 35vh; */
+}
+
+.create-story .data label {
+	cursor: pointer;
+}
+
+.create-story div img {
+	width: 100%;
+}
+
+.create-story h2 {
+	margin-left: 5vw;
+	height: 5vh;
+}
+
+
+.create-story form input[type="checkbox"] {
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.create-story form input[type="checkbox"]:checked ~ section {
+	position: absolute;
+	display: block;
+	width: 18vw;
+	height: auto;
+	opacity: 1;
+	z-index: 100;
+}
+
+.create-story form input[type="checkbox"]:checked ~ img {
+	opacity: 0.5;
+}
+
+.create-story form input[type="checkbox"]:checked ~ section::after {
+	background-image: url('/images/checked.png');
+	background-size: 20px 20px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	content:"";
+	margin-left: 95%;
+	margin-top: -2%;
 }

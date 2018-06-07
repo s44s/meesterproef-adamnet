@@ -2,14 +2,20 @@
 	<main class="create-story">
 		<h1>Maak jouw eigen verhaal</h1>
 
-		<form action="/" method="post">
+		<form class="user-data" action="/" method="post">
 			<label for="name">Vul hier jouw naam in</label>
 			<input id="name" name="name" type="text" placeholder="Jan Jansen.." />
-			<label for="year">Vul hier jouw naam in</label>
+			<label for="year">Vul hier jouw geboortejaar in</label>
 			<input id="year" name="year" type="number" placeholder="1969" min="1900" max="2017" />
 			<button type="submit">Maak een verhaal</button>
 		</form>
 
+		<%- include('partials/chapter.ejs') %>
+
 	</main>
-	<% console.log(dataFirstQuery.results.bindings) %>
+	<script>
+		window.data = <%- JSON.stringify(dataFirstQuery || null) %>;
+		console.log(window.data.results.bindings)
+	</script>
+
 <%- include('partials/foot.ejs') %>

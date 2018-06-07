@@ -1,0 +1,18 @@
+<section>
+	<h2>We zijn in jaartal $1971 en we bevinden ons op de $spuistraat </h2>
+	<form class="data" action="" method="post">
+	<% for(var i = 0; i < dataFirstQuery.results.bindings.length; i++) { %>
+		<a href="">
+			<div>
+				<label>
+					<input id="checkBox" type="checkbox">
+					<section></section>
+					<img src="<%- dataFirstQuery.results.bindings[i].img.value %>" alt="dataFirstQuery.results.bindings[i].title.value"/>
+					<p>	<%- dataFirstQuery.results.bindings[i].title.value %></p>
+				</label>
+			</div>
+		</a>
+	<% } %>
+	<button type="submit">Bewaar deze items</button>
+	</form>
+</section>
