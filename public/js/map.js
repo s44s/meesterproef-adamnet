@@ -49,10 +49,7 @@ var selectedStreets = [];
 				color: 'red',
 				fillColor: '#f03',
 				fillOpacity: 0.4,
-				// clickable: false,
-				interactive: true,
-				radius: 500/2,
-				zIndexOffset: 1000
+				radius: 500/2
 			}).addTo(this.map);
 
 			// Change the map's draggable function when you drag the radius:
@@ -79,7 +76,7 @@ var selectedStreets = [];
 				self.distanceFromCenterPoint(data, circle, userInput);
 				self.map.removeEventListener('mousemove');
 			});
-			
+
 			selectRadius.addEventListener("change", function(el){
 				changeRadius(el);
 			})
