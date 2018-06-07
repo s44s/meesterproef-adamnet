@@ -107,9 +107,19 @@ var uniqueStreets = [];
 						var bounds = layer.getBounds();
 						var center = bounds.getCenter();
 						var distanceFromRadius = center.distanceTo(latlng);
+						var percentageFromCenterPoint = Math.round((distanceFromRadius / radius) * 100);
 
 						if (distanceFromRadius <= radius) {
-							selectedStreets.push(feature.properties.uri);
+							console.log(feature.properties.streetName);
+							console.log('distance from radius: ', distanceFromRadius);
+							console.log(percentageFromCenterPoint);
+
+							var street = {
+								'uri': feature.properties.uri,
+								'disToCenter': percentageFromCenterPoint
+							};
+
+							selectedStreets.push(street);
 							removeDuplicates(selectedStreets);
 							counterStreetsInCircle++;
 						}
