@@ -76,16 +76,10 @@ var selectedStreets = [];
 			circle.on('mouseup', function () {
 				var userInput = circle.getRadius();
 				console.log(userInput);
-				self.createStreets(data, circle, userInput);
+				self.distanceFromCenterPoint(data, circle, userInput);
 				self.map.removeEventListener('mousemove');
 			});
-
-			// self.map.on('mouseup',function(e){
-			// 	var userInput = circle.getRadius();
-			// 	map.createStreets(data, circle, userInput);
-			// 	self.map.removeEventListener('mousemove');
-			// })
-
+			
 			selectRadius.addEventListener("change", function(el){
 				changeRadius(el);
 			})
@@ -93,12 +87,12 @@ var selectedStreets = [];
 			function changeRadius(el) {
 				var meters = el.target.value / 2 * 1000;
 				circle.setRadius(meters);
-				map.createStreets(data, circle, meters);
+				map.distanceFromCenterPoint(data, circle, meters);
 			}
 
-			map.createStreets(data, circle);
+			map.distanceFromCenterPoint(data, circle);
 		},
-		createStreets: function(data, circle, userInput) {
+		distanceFromCenterPoint: function(data, circle, userInput) {
 			var circle_lat_long = circle.getLatLng();
 			var counter_points_in_circle = 0;
 			var meters_user_set = userInput;
