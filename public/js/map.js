@@ -42,7 +42,6 @@ var selectedStreets = [];
 		createCircle: function(data) {
 			var self = this;
 			var selectRadius = document.querySelector("#radius-selected");
-			// var centerPoint = {lat: 52.370216, lng: 4.895168};
 			var centerPoint = this.centerPoint;
 
 			//create circle
@@ -50,36 +49,42 @@ var selectedStreets = [];
 				color: 'red',
 				fillColor: '#f03',
 				fillOpacity: 0.4,
-				clickable: false,
+				// clickable: false,
+				interactive: true,
 				radius: 500/2,
 				zIndexOffset: 1000
-			}).addTo(self.map);
+			}).addTo(this.map);
 
-			//draggable
+			// Change the map's draggable function when you drag the radius:
 			circle.addEventListener('mousedown', function () {
 				self.map.dragging.disable();
 			});
-
 			circle.addEventListener('mouseup', function () {
 				self.map.dragging.enable();
 			});
 
-			circle.on({
-				 mousedown: function () {
-					 self.map.on('mousemove', function (e) {
-						 centerPoint.lat = e.latlng.lat;
-						 centerPoint.lng = e.latlng.lng;
-						 circle.setLatLng(e.latlng);
-					 });
-				 }
+			// Dragging the circle:
+			circle.on('mousedown', function () {
+				self.map.on('mousemove', function (e) {
+					centerPoint.lat = e.latlng.lat;
+					centerPoint.lng = e.latlng.lng;
+					circle.setLatLng(e.latlng);
+				});
 			});
-			self.map.on('mouseup',function(e){
-				var userInput = circle.getRadius();
-				map.createStreets(data, circle, userInput);
-				self.map.removeEventListener('mousemove');
-			})
 
-			circle.bringToFront();
+			//
+			circle.on('mouseup', function () {
+				var userInput = circle.getRadius();
+				console.log(userInput);
+				self.createStreets(data, circle, userInput);
+				self.map.removeEventListener('mousemove');
+			});
+
+			// self.map.on('mouseup',function(e){
+			// 	var userInput = circle.getRadius();
+			// 	map.createStreets(data, circle, userInput);
+			// 	self.map.removeEventListener('mousemove');
+			// })
 
 			selectRadius.addEventListener("change", function(el){
 				changeRadius(el);
