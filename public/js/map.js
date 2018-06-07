@@ -24,8 +24,7 @@ var selectedStreets = [];
 
 			L.control.zoom({
 				position: 'bottomright'
-			})
-			.addTo(this.map);
+			}).addTo(this.map);
 
 			this.createCircle(this.data());
 		},
@@ -42,10 +41,9 @@ var selectedStreets = [];
 		createCircle: function(data) {
 			var self = this;
 			var selectRadius = document.querySelector("#radius-selected");
-			var centerPoint = this.centerPoint;
 
 			//create circle
-			var circle = L.circle([centerPoint.lat, centerPoint.lng], {
+			var circle = L.circle([this.centerPoint.lat, this.centerPoint.lng], {
 				color: 'red',
 				fillColor: '#f03',
 				fillOpacity: 0.4,
@@ -63,17 +61,17 @@ var selectedStreets = [];
 			// Dragging the circle:
 			circle.on('mousedown', function () {
 				self.map.on('mousemove', function (e) {
-					centerPoint.lat = e.latlng.lat;
-					centerPoint.lng = e.latlng.lng;
 					circle.setLatLng(e.latlng);
 				});
 			});
 
+			var latlng = circle.getLatLng();
+
 			//
 			circle.on('mouseup', function () {
-				var userInput = circle.getRadius();
-				console.log(userInput);
-				self.distanceFromCenterPoint(data, circle, userInput);
+				latlng = circle.getLatLng();
+				var radius = circle.getRadius();
+				self.distanceFromCenterPoint(data, latlng, radius);
 				self.map.removeEventListener('mousemove');
 			});
 
@@ -84,21 +82,13 @@ var selectedStreets = [];
 			function changeRadius(el) {
 				var meters = el.target.value / 2 * 1000;
 				circle.setRadius(meters);
-				map.distanceFromCenterPoint(data, circle, meters);
+				self.distanceFromCenterPoint(data, latlng, meters);
 			}
 
-			map.distanceFromCenterPoint(data, circle);
+			this.distanceFromCenterPoint(data, latlng);
 		},
-		distanceFromCenterPoint: function(data, circle, userInput) {
-			var circle_lat_long = circle.getLatLng();
-			var counter_points_in_circle = 0;
-			var meters_user_set = userInput;
-			if(meters_user_set == undefined){
-				meters_user_set = 500/2;
-			}
-			var geojsonMarkerOptions = {
-				radius: 1
-			};
+		distanceFromCenterPoint: function(data, latlng, radius = 250) {
+			var counterStreetsInCircle = 0;
 
 			selectedStreets.splice(0, selectedStreets.length);
 
@@ -119,12 +109,11 @@ var selectedStreets = [];
 					if(layer.feature.geometry.type !== "Point"){
 						var bounds = layer.getBounds();
 						var center = bounds.getCenter();
-						var distance_from_layer_circle = center.distanceTo(circle_lat_long);
+						var distanceFromRadius = center.distanceTo(latlng);
 
-						if (distance_from_layer_circle <= meters_user_set) {
-							var uri = feature.properties.uri;
-							selectedStreets.push(uri);
-							counter_points_in_circle += 1;
+						if (distanceFromRadius <= radius) {
+							selectedStreets.push(feature.properties.uri);
+							counterStreetsInCircle++;
 						}
 					}
 				},
@@ -136,12 +125,11 @@ var selectedStreets = [];
 						lineJoin: 'square',
 						className: feature.properties.slug
 					}
-				},
-				pointToLayer: function (feature, latlng) { return L.circleMarker(latlng, geojsonMarkerOptions); }
+				}
 			});
 
-			var number_of_streets = document.querySelector('.count-streets');
-			number_of_streets.innerHTML = selectedStreets.length + " straten";
+			var countStreets = document.querySelector('.count-streets');
+			countStreets.textContent = selectedStreets.length + " straten";
 		}
 	};
 
