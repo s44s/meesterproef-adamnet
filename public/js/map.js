@@ -65,27 +65,25 @@ var selectedStreets = [];
 				});
 			});
 
-			var latlng = circle.getLatLng();
-
 			//
 			circle.on('mouseup', function () {
-				latlng = circle.getLatLng();
+				var latlng = circle.getLatLng();
 				var radius = circle.getRadius();
 				self.distanceFromCenterPoint(data, latlng, radius);
 				self.map.removeEventListener('mousemove');
 			});
 
-			selectRadius.addEventListener("change", function(el){
-				changeRadius(el);
+			selectRadius.addEventListener("change", function(e){
+				changeRadius(e);
 			})
 
-			function changeRadius(el) {
-				var meters = el.target.value / 2 * 1000;
+			function changeRadius(e) {
+				var meters = e.target.value / 2 * 1000;
 				circle.setRadius(meters);
-				self.distanceFromCenterPoint(data, latlng, meters);
+				self.distanceFromCenterPoint(data, self.centerPoint, meters);
 			}
 
-			this.distanceFromCenterPoint(data, latlng);
+			this.distanceFromCenterPoint(data, this.centerPoint);
 		},
 		distanceFromCenterPoint: function(data, latlng, radius = 250) {
 			var counterStreetsInCircle = 0;
