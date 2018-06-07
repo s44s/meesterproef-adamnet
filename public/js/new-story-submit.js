@@ -10,8 +10,6 @@ var uniqueStreets = require('./map.js');
       self.form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        console.log(uniqueStreets);
-
         var valMin = self.timestampMin.value;
         var valMax = self.timestampMax.value;
 
@@ -36,7 +34,7 @@ var uniqueStreets = require('./map.js');
         fetch('/create-story', config)
           .then(function (data) {
             console.log(data);
-            // window.location.replace('/create-story');
+            window.location.replace('/create-story');
           })
           .catch(function (err) {
             throw err;
