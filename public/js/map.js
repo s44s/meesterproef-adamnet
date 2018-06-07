@@ -1,4 +1,4 @@
-var selectedStreets = [];
+var uniqueStreets = [];
 
 (function(){
 
@@ -65,7 +65,7 @@ var selectedStreets = [];
 				});
 			});
 
-			//
+			// Calculate the new center:
 			circle.on('mouseup', function () {
 				var latlng = circle.getLatLng();
 				var radius = circle.getRadius();
@@ -88,17 +88,16 @@ var selectedStreets = [];
 		distanceFromCenterPoint: function(data, latlng, radius = 250) {
 			var counterStreetsInCircle = 0;
 
-			selectedStreets.splice(0, selectedStreets.length);
+			var selectedStreets = [];
+			uniqueStreets.splice(0, uniqueStreets.length);
 
-			//Count number of streets
+			// Count number of streets
 			function removeDuplicates(arr){
-				let unique_array = []
 				for(var i = 0;i < arr.length; i++){
-					if(unique_array.indexOf(arr[i]) == -1){
-						unique_array.push(arr[i]);
+					if(uniqueStreets.indexOf(arr[i]) == -1){
+						uniqueStreets.push(arr[i]);
 					 }
 				}
-				return unique_array;
 			}
 
 			//create geoJSON layer
@@ -111,6 +110,7 @@ var selectedStreets = [];
 
 						if (distanceFromRadius <= radius) {
 							selectedStreets.push(feature.properties.uri);
+							removeDuplicates(selectedStreets);
 							counterStreetsInCircle++;
 						}
 					}
@@ -127,11 +127,11 @@ var selectedStreets = [];
 			});
 
 			var countStreets = document.querySelector('.count-streets');
-			countStreets.textContent = selectedStreets.length + " straten";
+			countStreets.textContent = uniqueStreets.length + " straten";
 		}
 	};
 
 	map.init()
 })()
 
-module.exports = selectedStreets;
+module.exports = uniqueStreets;
