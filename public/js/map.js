@@ -110,16 +110,13 @@ var uniqueStreets = [];
 						var percentageFromCenterPoint = Math.round((distanceFromRadius / radius) * 100);
 
 						if (distanceFromRadius <= radius) {
-							console.log(feature.properties.streetName);
-							console.log('distance from radius: ', distanceFromRadius);
-							console.log(percentageFromCenterPoint);
-
 							var street = {
 								'uri': feature.properties.uri,
 								'disToCenter': percentageFromCenterPoint
 							};
 
 							selectedStreets.push(street);
+							console.log('selectedStreets: ', selectedStreets);
 							removeDuplicates(selectedStreets);
 							counterStreetsInCircle++;
 						}
