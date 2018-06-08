@@ -1,8 +1,12 @@
 var uniqueStreets = [];
+// var circleToPolygon = require('./circletopolygon.js');
 
 (function(){
 
 	"use strict"
+
+	var circleToPolygon = require('./circletopolygon.js');
+
 
 	var map = {
 		mapboxAccessToken: 'pk.eyJ1IjoibWF4ZGV2cmllczk1IiwiYSI6ImNqZWZydWkyNjF3NXoyd28zcXFqdDJvbjEifQ.Dl3DvuFEqHVAxfajg0ESWg',
@@ -49,6 +53,49 @@ var uniqueStreets = [];
 				fillOpacity: 0.4,
 				radius: 500/2
 			}).addTo(this.map);
+
+			// const circleToPolygon = require('circle-to-polygon');
+			const coordinates = [52.370216,4.895168];
+			const radius = 250;                           // in meters
+			const numberOfEdges = 200;                     //optional that defaults to 32
+			let polygon = circleToPolygon(coordinates, radius, numberOfEdges);
+
+			console.log(polygon);
+			var polygonLeaflet = L.polygon(polygon.coordinates[0], {color: 'red'});
+
+			function toWKT (layer) {
+			    var lng, lat, coords = [];
+					if (layer instanceof L.Polygon || layer instanceof L.Polyline) {
+						var latlngs = layer.getLatLngs();
+					for (var i = 0; i < latlngs.length; i++) {
+							var latlngs1 = latlngs[i];
+							if (latlngs1.length){
+							for (var j = 0; j < latlngs1.length; j++) {
+								coords.push(latlngs1[j].lng + " " + latlngs1[j].lat);
+								if (j === 0) {
+									lng = latlngs1[j].lng;
+									lat = latlngs1[j].lat;
+								}
+							}}
+							else
+							{
+								coords.push(latlngs[i].lng + " " + latlngs[i].lat);
+								if (i === 0) {
+									lng = latlngs[i].lng;
+									lat = latlngs[i].lat;
+								}}
+					};
+						if (layer instanceof L.Polygon) {
+							return "POLYGON((" + coords.join(",") + "," + lng + " " + lat + "))";
+						} else if (layer instanceof L.Polyline) {
+							return "LINESTRING(" + coords.join(",") + ")";
+						}
+					} else if (layer instanceof L.Marker) {
+						return "POINT(" + layer.getLatLng().lng + " " + layer.getLatLng().lat + ")";
+					}
+				};
+
+			console.log(toWKT(polygonLeaflet));
 
 			// Change the map's draggable function when you drag the radius:
 			circle.addEventListener('mousedown', function () {
@@ -116,7 +163,7 @@ var uniqueStreets = [];
 							};
 
 							selectedStreets.push(street);
-							console.log('selectedStreets: ', selectedStreets);
+							// console.log('selectedStreets: ', selectedStreets);
 							removeDuplicates(selectedStreets);
 							counterStreetsInCircle++;
 						}
