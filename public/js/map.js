@@ -1,5 +1,4 @@
 var uniqueStreets = [];
-// var circleToPolygon = require('./circletopolygon.js');
 
 (function(){
 
@@ -54,7 +53,6 @@ var uniqueStreets = [];
 				radius: 500/2
 			}).addTo(this.map);
 
-			// const circleToPolygon = require('circle-to-polygon');
 			const coordinates = [52.370216,4.895168];
 			const radius = 250;                           // in meters
 			const numberOfEdges = 200;                     //optional that defaults to 32
