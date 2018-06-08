@@ -97,9 +97,7 @@ exports.getCreateStoryPage = function (req, res, next) {
         */
 
         res.render('create-story', {
-          // dataFirstQuery: data
-          chapter1: data.chapter1,
-          chapter2: data.chapter2,
+          dataFirstQuery: data
         });
       })
       .catch(function (error) {
