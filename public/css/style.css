@@ -135,16 +135,20 @@
 }
 
 .create-story .data {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
+	-webkit-columns: 18vw 4;
+	-moz-columns: 18vw 4; /* Firefox */
+	columns: 18vw 4;
+
+	-webkit-column-gap: 1.5rem; /* Chrome, Safari, Opera */
+	-moz-column-gap: 1.5rem; /* Firefox */
+	column-gap: 1.5rem;
+
 	margin-left: 5vw;
+column-fill: auto;
 }
 
-.create-story .data a {
-	flex-basis: 18vw;
-	/* height: 35vh; */
+.create-story .data div {
+	break-inside: avoid;
 }
 
 .create-story .data label {
