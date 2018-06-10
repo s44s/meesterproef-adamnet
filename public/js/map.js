@@ -54,11 +54,10 @@ var uniqueStreets = [];
 			}).addTo(this.map);
 
 			const coordinates = [52.370216,4.895168];
-			const radius = 250;                           // in meters
-			const numberOfEdges = 200;                     //optional that defaults to 32
+			const radius = 250; // in meters
+			const numberOfEdges = 200; //optional that defaults to 32
 			let polygon = circleToPolygon(coordinates, radius, numberOfEdges);
 
-			console.log(polygon);
 			var polygonLeaflet = L.polygon(polygon.coordinates[0], {color: 'red'});
 
 			console.log(toWKT(polygonLeaflet));
