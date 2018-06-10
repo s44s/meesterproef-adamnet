@@ -7,7 +7,6 @@ function toDegrees(angleInRadians) {
   return angleInRadians * 180 / Math.PI;
 }
 
-
 function offset(c1, distance, bearing) {
   var lat1 = toRadians(c1[1]);
   var lon1 = toRadians(c1[0]);
