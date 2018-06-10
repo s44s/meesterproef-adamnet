@@ -53,13 +53,14 @@ var uniqueStreets = [];
 				radius: 500/2
 			}).addTo(this.map);
 
-			const coordinates = [52.370216,4.895168];
-			const radius = 250; // in meters
-			const numberOfEdges = 200; //optional that defaults to 32
-			let polygon = circleToPolygon(coordinates, radius, numberOfEdges);
-
+			//circle to polygon
+			var coordinates = [52.370216,4.895168];
+			var radius = 250; // in meters
+			var numberOfEdges = 200; //optional that defaults to 32
+			var polygon = circleToPolygon(coordinates, radius, numberOfEdges);
+			//create polygon in leaflet
 			var polygonLeaflet = L.polygon(polygon.coordinates[0], {color: 'red'});
-
+			//leaflet polygon to wkt
 			console.log(toWKT(polygonLeaflet));
 
 			// Change the map's draggable function when you drag the radius:
