@@ -11,9 +11,7 @@ var wkt;
 
 	var map = {
 		mapboxAccessToken: 'pk.eyJ1IjoibWF4ZGV2cmllczk1IiwiYSI6ImNqZWZydWkyNjF3NXoyd28zcXFqdDJvbjEifQ.Dl3DvuFEqHVAxfajg0ESWg',
-		map: L.map('map', {
-			minZoom: 11
-		}),
+		map: L.map('map'),
 		circle: L.circle({
 			color: 'red',
 			fillColor: '#f03',
@@ -29,10 +27,12 @@ var wkt;
 		],
 		init: function () {
 			var self = this;
+
 			// Set the original view of the map:
 			this.map.setView(this.centerPoint, 14);
 
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + this.mapboxAccessToken, {
+				minZoom: 11,
 				maxZoom: 20,
 				id: 'mapbox.streets'
 			}).addTo(this.map);
