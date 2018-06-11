@@ -14,8 +14,6 @@
 			<option value="50">50 km</option>
 		</select>
 
-		<p class="count-streets">0 straten</p>
-
 		<div id='map'></div>
 
 		<form class="location-and-timestamp" action="/create-story" method="post">
@@ -27,5 +25,4 @@
 		</form>
 
 	</main>
-	<script>window.data = <%- JSON.stringify(streets || null) %>;</script>
 <%- include('partials/foot.ejs') %>
