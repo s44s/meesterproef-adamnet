@@ -62,37 +62,6 @@ var sparqlqueries = {
       }
       ORDER BY ?start
     `;
-
-    // FILTER ((?end > xsd:date("${beginTimestamp}") && ?end < xsd:date("${endTimestamp}")) || (?start > xsd:date("${beginTimestamp}") && ?start < xsd:date("${endTimestamp}")))
-
-
-
-    // return `
-    //   PREFIX dc: <http://purl.org/dc/elements/1.1/>
-    //   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    //   PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-    //   PREFIX dct: <http://purl.org/dc/terms/>
-    //   PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
-    //   PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    //   SELECT ?title ?img ?street ?type ?beginTimestamp WHERE {
-    //     VALUES ?street {
-    //       ${uris.join('')}
-    //     }
-    //     ?cho dc:title ?title .
-    //     ?cho foaf:depiction ?img .
-    //     ?cho dct:spatial ?street .
-    //     ?cho dc:type ?type .
-    //
-    //     ?cho sem:hasBeginTimeStamp ?beginTimestamp .
-    //     ?cho sem:hasEndTimeStamp ?end .
-    //
-    //     FILTER (datatype(?beginTimestamp) = xsd:date)
-    //     FILTER (datatype(?end) = xsd:date)
-    //
-    //     FILTER (?beginTimestamp > xsd:date("${beginTimestamp}") && ?end < xsd:date("${endTimestamp}") )
-    //   }
-    //   ORDER BY ?beginTimestamp
-    // `;
   }
 };
 
