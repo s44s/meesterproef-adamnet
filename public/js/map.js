@@ -12,6 +12,12 @@ var uniqueStreets = [];
 		map: L.map('map', {
 			zoomControl: false
 		}),
+		circle: L.circle({
+			color: 'red',
+			fillColor: '#f03',
+			fillOpacity: 0.4,
+			radius: 500/2
+		}),
 		polygon: L.polygon({
 			color: 'blue'
 		}),
@@ -22,7 +28,7 @@ var uniqueStreets = [];
 		init: function () {
 			var self = this;
 			// Set the original view of the map:
-			this.map.setView([this.centerPoint.lat, this.centerPoint.lng], 14);
+			this.map.setView(Object.values(this.centerPoint), 14);
 
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + this.mapboxAccessToken, {
 				maxZoom: 20,
@@ -35,8 +41,14 @@ var uniqueStreets = [];
 
 			this.createCircle(this.data());
 
+			this.circle
+				.setLatLng(Object.values(this.centerPoint))
+				.setRadius(250)
+				.addTo(this.map)
+				.bringToFront();
+
 			// Create the first polygon:
-			var polygonCoords = circleToPolygon([self.centerPoint.lat, self.centerPoint.lng], 250, 10);
+			var polygonCoords = circleToPolygon(Object.values(this.centerPoint), 250, 10);
 
 			this.polygon
 				.setLatLngs(polygonCoords.coordinates[0])
@@ -57,33 +69,25 @@ var uniqueStreets = [];
 			var self = this;
 			var selectRadius = document.querySelector("#radius-selected");
 
-			//create circle
-			var circle = L.circle([this.centerPoint.lat, this.centerPoint.lng], {
-				color: 'red',
-				fillColor: '#f03',
-				fillOpacity: 0.4,
-				radius: 500/2
-			}).addTo(this.map);
-
 			// Change the map's draggable function when you drag the radius:
-			circle.addEventListener('mousedown', function () {
+			this.circle.addEventListener('mousedown', function () {
 				self.map.dragging.disable();
 			});
-			circle.addEventListener('mouseup', function () {
+			this.circle.addEventListener('mouseup', function () {
 				self.map.dragging.enable();
 			});
 
 			// Dragging the circle:
-			circle.on('mousedown', function () {
+			this.circle.on('mousedown', function () {
 				self.map.on('mousemove', function (e) {
-					circle.setLatLng(e.latlng);
+					self.circle.setLatLng(e.latlng);
 				});
 			});
 
 			// Calculate the new center:
-			circle.on('mouseup', function () {
-				var latlng = circle.getLatLng();
-				var radius = circle.getRadius();
+			this.circle.on('mouseup', function () {
+				var latlng = self.circle.getLatLng();
+				var radius = self.circle.getRadius();
 
 				// Create the new polygon:
 				self.createPolygon(latlng, radius);
@@ -92,29 +96,19 @@ var uniqueStreets = [];
 				self.map.removeEventListener('mousemove');
 			});
 
-			selectRadius.addEventListener("change", function(e){
-				changeRadius(e);
-			})
-
-			function changeRadius(e) {
-				var latlng = circle.getLatLng();
+			selectRadius.addEventListener("change", function(e) {
+				var latlng = self.circle.getLatLng();
 				var meters = e.target.value / 2 * 1000;
-				circle.setRadius(meters);
+				self.circle.setRadius(meters);
 				self.createPolygon(latlng, meters);
 				self.distanceFromCenterPoint(data, self.centerPoint, meters);
-			}
+			})
 
 			this.distanceFromCenterPoint(data, this.centerPoint);
 		},
 		createPolygon: function (coords, radius = 250, numberOfEdges = 10) {
-			console.log('coords: ', coords);
-			console.log('radius: ', radius);
-			console.log('numberOfEdges: ', numberOfEdges);
-
 			//leaflet polygon to wkt
 			var polygonCoords = circleToPolygon([coords.lat, coords.lng], radius, numberOfEdges);
-
-			console.log('new coords: ', polygonCoords.coordinates[0]);
 
 			this.polygon
 				.setLatLngs(polygonCoords.coordinates[0]);
