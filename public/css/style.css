@@ -1,6 +1,11 @@
 body {
 	margin: 0;
 	padding: 0;
+	font-family: helvetica;
+}
+
+p, a, li {
+	font-size: 0.9em;
 }
 
 /* HOMEPAGE: INTRO */
@@ -155,12 +160,17 @@ body {
 	column-fill: auto;
 }
 
-.create-story .data div {
+.create-story .data div.image{
 	break-inside: avoid;
 	background-color: white;
 	color: black;
 	margin-bottom: 10%;
 	border-radius: 5px;
+}
+
+.create-story .data button {
+	/* position: sticky;
+	bottom: 5%; */
 }
 
 .create-story .data div p {
@@ -175,9 +185,9 @@ body {
 	width: 10%;
 }
 
-.create-story .data div a:hover {
-	z-index: 1000;
-	background-color: red;
+.create-story .data div a:hover, .create-story .data div a:focus {
+	outline: 0;
+	width: 12%;
 }
 
 .create-story div a img {
@@ -205,7 +215,7 @@ body {
 	height: 0;
 }
 
-.create-story form input[type="checkbox"]:checked ~ section {
+.create-story form input[type="checkbox"]:checked ~ section, form input[type="checkbox"]:focus ~ section {
 	position: absolute;
 	display: block;
 	width: 18vw;
@@ -223,11 +233,11 @@ body {
 	z-index: 100;
 }
 
-.create-story form input[type="checkbox"]:checked ~ img {
+.create-story form input[type="checkbox"]:checked ~ img, .create-story form input[type="checkbox"]:focus ~ img  {
 	opacity: 0.5;
 }
 
-.create-story form label div:hover section::after {
+.create-story form label div:hover section::after, form input[type="checkbox"]:focus ~ section::after {
 	background-image: url('/images/check-hover.png');
 	background-size: 20px 20px;
 	display: inline-block;
@@ -247,4 +257,82 @@ body {
 	content:"";
 	margin-left: 95%;
 	margin-top: -2%;
+}
+
+/* Popup box BEGIN */
+.detail{
+    background:rgba(0,0,0,.4);
+    cursor:pointer;
+    display:none;
+    height:100%;
+    position:fixed;
+    text-align:center;
+    top:0;
+    width:100%;
+    z-index:10000;
+}
+
+.detail {
+	background: rgba(0,0,0,.4);
+	cursor: pointer;
+	display: none;
+	height: 100%;
+	position: fixed;
+	text-align: center;
+	top: 0;
+	width: 100%;
+	z-index: 10000;
+	left: 0;
+}
+
+.show {
+	display: block;
+}
+
+.detail .helper{
+  display:inline-block;
+  height:100%;
+  vertical-align:middle;
+}
+.detail > div {
+  background-color: #fff;
+  box-shadow: 10px 10px 60px #555;
+  display: inline-block;
+  height: auto;
+	height: 60vh;
+	vertical-align: middle;
+  width: 60vw;
+  position: relative;
+  border-radius: 8px;
+  padding: 15px 5%;
+}
+
+.detail > div img{
+	width: 50vw;
+  max-height: 50vh;
+	width: auto;
+}
+
+.popupCloseButton {
+	color: black;
+  background-color: #fff;
+  border: 3px solid white;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: arial;
+  font-weight: bold;
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  font-size: 25px;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+
+.popupCloseButton:hover {
+  background-color: black;
+	color: white;
 }

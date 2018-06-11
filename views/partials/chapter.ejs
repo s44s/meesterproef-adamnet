@@ -10,9 +10,20 @@
 					<img src="<%- dataFirstQuery.results.bindings[i].img.value %>" alt="<%- dataFirstQuery.results.bindings[i].title.value%>"/>
 				</div>
 				<p>	<%- dataFirstQuery.results.bindings[i].title.value %></p>
-				<a href=""><img src="/images/zoom-in.png" alt="zoom-in icon"/></a>
+				<a class="openDetail" href=""><img src="/images/zoom-in.png" alt="zoom-in icon"/></a>
+				<div class="detail">
+					<span class="helper"></span>
+					<div>
+						<div class="popupCloseButton">X</div>
+						<img src="<%- dataFirstQuery.results.bindings[i].img.value %>" alt="<%- dataFirstQuery.results.bindings[i].title.value%>"/>
+						<p>	<%- dataFirstQuery.results.bindings[i].title.value %></p>
+					</div>
+				</div>
 			</label>
 		</div>
+
+
+
 	<% } %>
 	<button type="submit">Bewaar deze items</button>
 	</form>
