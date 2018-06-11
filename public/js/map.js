@@ -45,26 +45,14 @@ var wkt;
 				.addTo(this.map)
 				.bringToFront();
 
-			// Create the first polygon:
-			// var polygonCoords = circleToPolygon(this.centerPoint, 250, 10);
-
+			// Initialize polygon:
 			this.polygon
-				// .setLatLngs(polygonCoords.coordinates[0])
 				.addTo(this.map)
 				.bringToBack();
 
+			// Create the polygon, with the centerPoint as coords:
 			this.createPolygon(this.centerPoint);
-		},
-		data: function() {
-			var data = window.data;
-
-			// Add geometry to data:
-			data.forEach(function (street) {
-				street.geometry = wellknown(street.geo);
-			});
-
-			return data;
-		},
+		}
 		createCircle: function() {
 			var self = this;
 			var selectRadius = document.querySelector("#radius-selected");
@@ -97,7 +85,6 @@ var wkt;
 				// Create the new polygon:
 				self.createPolygon(Object.values(latlng), radius);
 
-				// self.distanceFromCenterPoint(data, latlng, radius);
 				self.map.removeEventListener('mousemove');
 			});
 
@@ -106,71 +93,18 @@ var wkt;
 				var meters = e.target.value / 2 * 1000;
 				self.circle.setRadius(meters);
 				self.createPolygon(Object.values(latlng), meters);
-				// self.distanceFromCenterPoint(data, self.centerPoint, meters);
 			})
-
-			// this.distanceFromCenterPoint(data, this.centerPoint);
 		},
 		createPolygon: function (coords, radius = 250, numberOfEdges = 10) {
 			//leaflet polygon to wkt
 			var polygonCoords = circleToPolygon(coords, radius, numberOfEdges);
 
+			// Set the new coords:
 			this.polygon
 				.setLatLngs(polygonCoords.coordinates[0]);
 
+			// Create a wkt from the polygon:
 			wkt = toWKT(this.polygon);
-			console.log('newWKT: ', wkt);
-		},
-		distanceFromCenterPoint: function(data, latlng, radius = 250) {
-			var counterStreetsInCircle = 0;
-
-			var selectedStreets = [];
-			uniqueStreets.splice(0, uniqueStreets.length);
-
-			// Count number of streets
-			function removeDuplicates(arr){
-				for(var i = 0;i < arr.length; i++){
-					if(uniqueStreets.indexOf(arr[i]) == -1){
-						uniqueStreets.push(arr[i]);
-					 }
-				}
-			}
-
-			//create geoJSON layer
-			var streets = L.geoJSON(data, {
-				onEachFeature: function(feature, layer) {
-					if(layer.feature.geometry.type !== "Point"){
-						var bounds = layer.getBounds();
-						var center = bounds.getCenter();
-						var distanceFromRadius = center.distanceTo(latlng);
-						var percentageFromCenterPoint = Math.round((distanceFromRadius / radius) * 100);
-
-						if (distanceFromRadius <= radius) {
-							var street = {
-								'uri': feature.properties.uri,
-								'disToCenter': percentageFromCenterPoint
-							};
-
-							selectedStreets.push(street);
-							// console.log('selectedStreets: ', selectedStreets);
-							removeDuplicates(selectedStreets);
-							counterStreetsInCircle++;
-						}
-					}
-				},
-				style: function (feature) {
-					return {
-						zIndexOffset: 100,
-						weight: 1,
-						lineCap: 'square',
-						lineJoin: 'square',
-						className: feature.properties.slug
-					}
-				}
-			});
-
-			var countStreets = document.querySelector('.count-streets');
-			countStreets.textContent = uniqueStreets.length + " straten";
 		}
 	};
 
