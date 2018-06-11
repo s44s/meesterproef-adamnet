@@ -7,20 +7,6 @@ var sparqlqueries = {
   encodedquery: function (query) {
     return encodeURIComponent(query);
   },
-  getAllStreets: `
-    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX hg: <http://rdf.histograph.io/>
-    PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-    PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
-
-    SELECT ?street ?name ?wkt WHERE {
-      ?street a hg:Street .
-      ?street rdfs:label ?name .
-      ?street geo:hasGeometry ?geo .
-      ?geo geo:asWKT ?wkt .
-    }
-  `,
   getLocationAndTimestamp: function (data) {
     var beginTimestamp = `${data.valMin}-01-01`;
     var endTimestamp = `${data.valMax}-12-31`;
