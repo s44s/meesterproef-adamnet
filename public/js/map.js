@@ -54,12 +54,12 @@ var uniqueStreets = [];
 			}).addTo(this.map);
 
 			//circle to polygon
-			var coordinates = [52.370216,4.895168];
-			var radius = 250; // in meters
-			var numberOfEdges = 200; //optional that defaults to 32
-			var polygon = circleToPolygon(coordinates, radius, numberOfEdges);
+			var coordinatesPolygon = [52.370216,4.895168];
+			var radiusPolygon = 250; // in meters
+			var numberOfEdges = 10; //optional that defaults to 32
+			var polygon = circleToPolygon(coordinatesPolygon, radiusPolygon, numberOfEdges);
 			//create polygon in leaflet
-			var polygonLeaflet = L.polygon(polygon.coordinates[0], {color: 'red'});
+			var polygonLeaflet = L.polygon(polygon.coordinates[0], {color: 'blue'}).addTo(this.map);
 			//leaflet polygon to wkt
 			console.log(toWKT(polygonLeaflet));
 
@@ -75,6 +75,7 @@ var uniqueStreets = [];
 			circle.on('mousedown', function () {
 				self.map.on('mousemove', function (e) {
 					circle.setLatLng(e.latlng);
+					coordinatesPolygon = e.latlng;
 				});
 			});
 
@@ -93,6 +94,7 @@ var uniqueStreets = [];
 			function changeRadius(e) {
 				var meters = e.target.value / 2 * 1000;
 				circle.setRadius(meters);
+				radiusPolygon = meters;
 				self.distanceFromCenterPoint(data, self.centerPoint, meters);
 			}
 
