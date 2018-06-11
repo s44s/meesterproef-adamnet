@@ -1,3 +1,10 @@
+:root {
+  --main-black: black;
+  --main-white: white;
+	--main-lightgrey: lightgrey;
+	--main-bg: LightSlateGrey;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -53,7 +60,7 @@ p, a, li {
 	height: 37.5vh;
 	z-index: -100;
 	top: 17%;
-	background-color: lightgrey;
+	background-color: var(--main-lightgrey);
 }
 
 .home form input[type="radio"]:checked ~ section::after {
@@ -123,8 +130,8 @@ p, a, li {
 .create-story {
 	padding: 0;
 	margin: 0;
-	background-color: LightSlateGrey ;
-	color: white;
+	background-color: var(--main-bg);
+	color: var(--main-white);
 }
 
 .create-story h1 {
@@ -162,8 +169,8 @@ p, a, li {
 
 .create-story .data div.image{
 	break-inside: avoid;
-	background-color: white;
-	color: black;
+	background-color: var(--main-white);
+	color: var(--main-black);
 	margin-bottom: 10%;
 	border-radius: 5px;
 }
@@ -303,8 +310,8 @@ p, a, li {
 }
 
 .popupCloseButton {
-	color: black;
-  background-color: #fff;
+	color: var(--main-black);
+  background-color: var(--main-white);
   border: 3px solid white;
   border-radius: 50px;
   cursor: pointer;
@@ -322,6 +329,6 @@ p, a, li {
 }
 
 .popupCloseButton:hover {
-  background-color: black;
-	color: white;
+  background-color: var(--main-black);
+	color: var(--main-white);
 }
