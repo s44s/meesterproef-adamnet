@@ -1,5 +1,6 @@
 var fetch = require('node-fetch');
 var sparqlqueries = require('./sparql');
+var chapters = require('./chapters.js');
 
 exports.homePage = function (req, res, next) {
   res.render('index');
@@ -55,28 +56,13 @@ exports.postCreateStoryPage = function (req, res, next) {
   res.redirect('/');
 }
 
-exports.getCreateStoryPage = function (req, res, next) {
-  var rows = [];
+exports.getCreateStoryPage = async function (req, res, next) {
+  var result = await chapters.location(newStoryData);
+  console.log('result: ', result);
 
-  // Fetch the images for selected location and timestamp:
-  if (Object.keys(rows).length === 0) {
-    var url = sparqlqueries.url(sparqlqueries.getLocationAndTimestamp(newStoryData));
-
-    fetch(url)
-		.then((resp) => resp.json()) // transform the data into json
-      .then(function (data) {
-        res.render('create-story', {
-          dataFirstQuery: data
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  } else {
-    res.render('create-story', {
-      dataFirstQuery: rows
-    });
-  }
+  res.render('create-story', {
+    dataFirstQuery: result
+  });
 }
 
 exports.saveStoryPage = function (req, res, next) {

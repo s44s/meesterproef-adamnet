@@ -4,6 +4,9 @@ var uniqueStreets = [];
 
 	"use strict"
 
+	var circleToPolygon = require('./circletopolygon.js');
+	var toWKT = require('./towkt.js');
+
 	var map = {
 		mapboxAccessToken: 'pk.eyJ1IjoibWF4ZGV2cmllczk1IiwiYSI6ImNqZWZydWkyNjF3NXoyd28zcXFqdDJvbjEifQ.Dl3DvuFEqHVAxfajg0ESWg',
 		map: L.map('map', {
@@ -50,6 +53,16 @@ var uniqueStreets = [];
 				radius: 500/2
 			}).addTo(this.map);
 
+			//circle to polygon
+			var coordinatesPolygon = [52.370216,4.895168];
+			var radiusPolygon = 250; // in meters
+			var numberOfEdges = 10; //optional that defaults to 32
+			var polygon = circleToPolygon(coordinatesPolygon, radiusPolygon, numberOfEdges);
+			//create polygon in leaflet
+			var polygonLeaflet = L.polygon(polygon.coordinates[0], {color: 'blue'}).addTo(this.map);
+			//leaflet polygon to wkt
+			console.log(toWKT(polygonLeaflet));
+
 			// Change the map's draggable function when you drag the radius:
 			circle.addEventListener('mousedown', function () {
 				self.map.dragging.disable();
@@ -62,6 +75,7 @@ var uniqueStreets = [];
 			circle.on('mousedown', function () {
 				self.map.on('mousemove', function (e) {
 					circle.setLatLng(e.latlng);
+					coordinatesPolygon = e.latlng;
 				});
 			});
 
@@ -80,6 +94,7 @@ var uniqueStreets = [];
 			function changeRadius(e) {
 				var meters = e.target.value / 2 * 1000;
 				circle.setRadius(meters);
+				radiusPolygon = meters;
 				self.distanceFromCenterPoint(data, self.centerPoint, meters);
 			}
 
@@ -110,16 +125,13 @@ var uniqueStreets = [];
 						var percentageFromCenterPoint = Math.round((distanceFromRadius / radius) * 100);
 
 						if (distanceFromRadius <= radius) {
-							console.log(feature.properties.streetName);
-							console.log('distance from radius: ', distanceFromRadius);
-							console.log(percentageFromCenterPoint);
-
 							var street = {
 								'uri': feature.properties.uri,
 								'disToCenter': percentageFromCenterPoint
 							};
 
 							selectedStreets.push(street);
+							// console.log('selectedStreets: ', selectedStreets);
 							removeDuplicates(selectedStreets);
 							counterStreetsInCircle++;
 						}
