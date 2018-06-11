@@ -1,3 +1,8 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
 /* HOMEPAGE: INTRO */
 /* radio buttons */
 .home h1 {
@@ -110,6 +115,13 @@
 
 /* CREATE-STORY */
 /* form */
+.create-story {
+	padding: 0;
+	margin: 0;
+	background-color: LightSlateGrey ;
+	color: white;
+}
+
 .create-story h1 {
 	margin-left: 5vw;
 	height: 5vh;
@@ -135,20 +147,41 @@
 }
 
 .create-story .data {
-	-webkit-columns: 18vw 4;
-	-moz-columns: 18vw 4; /* Firefox */
-	columns: 18vw 4;
-
-	-webkit-column-gap: 1.5rem; /* Chrome, Safari, Opera */
-	-moz-column-gap: 1.5rem; /* Firefox */
-	column-gap: 1.5rem;
+	-webkit-columns: 18vw 3;
+	-moz-columns: 18vw 3; /* Firefox */
+	columns: 18vw 3;
 
 	margin-left: 5vw;
-column-fill: auto;
+	column-fill: auto;
 }
 
 .create-story .data div {
 	break-inside: avoid;
+	background-color: white;
+	color: black;
+	margin-bottom: 10%;
+	border-radius: 5px;
+}
+
+.create-story .data div p {
+	margin: 0;
+	padding: 5%;
+	width: 75%;
+	display: inline-block;
+}
+
+.create-story .data div a {
+	display: inline-block;
+	width: 10%;
+}
+
+.create-story .data div a:hover {
+	z-index: 1000;
+	background-color: red;
+}
+
+.create-story div a img {
+	width: 75%;
 }
 
 .create-story .data label {
@@ -163,7 +196,6 @@ column-fill: auto;
 	margin-left: 5vw;
 	height: 5vh;
 }
-
 
 .create-story form input[type="checkbox"] {
 	margin: 0;
@@ -182,8 +214,28 @@ column-fill: auto;
 	z-index: 100;
 }
 
+.create-story form div:hover section {
+	position: absolute;
+	display: block;
+	width: 18vw;
+	height: auto;
+	opacity: 1;
+	z-index: 100;
+}
+
 .create-story form input[type="checkbox"]:checked ~ img {
 	opacity: 0.5;
+}
+
+.create-story form label div:hover section::after {
+	background-image: url('/images/check-hover.png');
+	background-size: 20px 20px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	content:"";
+	margin-left: 95%;
+	margin-top: -2%;
 }
 
 .create-story form input[type="checkbox"]:checked ~ section::after {
