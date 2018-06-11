@@ -1,4 +1,5 @@
-var uniqueStreets = require('./map.js');
+// var uniqueStreets = require('./map.js');
+var wkt = require('./map.js');
 
 (function () {
   var newStory = {
@@ -16,7 +17,8 @@ var uniqueStreets = require('./map.js');
         var data = {
           'valMin': valMin,
           'valMax': valMax,
-          'selectedStreets': uniqueStreets
+          // 'selectedStreets': uniqueStreets
+          'wkt': wkt()
         };
 
         var config = {

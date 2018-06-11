@@ -1,4 +1,4 @@
-var uniqueStreets = [];
+var wkt;
 
 (function(){
 
@@ -92,7 +92,7 @@ var uniqueStreets = [];
 				// Create the new polygon:
 				self.createPolygon(latlng, radius);
 
-				self.distanceFromCenterPoint(data, latlng, radius);
+				// self.distanceFromCenterPoint(data, latlng, radius);
 				self.map.removeEventListener('mousemove');
 			});
 
@@ -101,10 +101,10 @@ var uniqueStreets = [];
 				var meters = e.target.value / 2 * 1000;
 				self.circle.setRadius(meters);
 				self.createPolygon(latlng, meters);
-				self.distanceFromCenterPoint(data, self.centerPoint, meters);
+				// self.distanceFromCenterPoint(data, self.centerPoint, meters);
 			})
 
-			this.distanceFromCenterPoint(data, this.centerPoint);
+			// this.distanceFromCenterPoint(data, this.centerPoint);
 		},
 		createPolygon: function (coords, radius = 250, numberOfEdges = 10) {
 			//leaflet polygon to wkt
@@ -112,6 +112,9 @@ var uniqueStreets = [];
 
 			this.polygon
 				.setLatLngs(polygonCoords.coordinates[0]);
+
+			wkt = toWKT(this.polygon);
+			console.log('newWKT: ', wkt);
 		},
 		distanceFromCenterPoint: function(data, latlng, radius = 250) {
 			var counterStreetsInCircle = 0;
@@ -169,4 +172,6 @@ var uniqueStreets = [];
 	map.init()
 })()
 
-module.exports = uniqueStreets;
+module.exports = function () {
+	return wkt;
+};
