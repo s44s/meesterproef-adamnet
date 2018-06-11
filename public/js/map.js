@@ -1,16 +1,18 @@
+// Require JS files:
+var circleToPolygon = require('./circletopolygon.js');
+var toWKT = require('./towkt.js');
+
+// Set global wkt variable:
 var wkt;
 
 (function(){
 
 	"use strict"
 
-	var circleToPolygon = require('./circletopolygon.js');
-	var toWKT = require('./towkt.js');
-
 	var map = {
 		mapboxAccessToken: 'pk.eyJ1IjoibWF4ZGV2cmllczk1IiwiYSI6ImNqZWZydWkyNjF3NXoyd28zcXFqdDJvbjEifQ.Dl3DvuFEqHVAxfajg0ESWg',
 		map: L.map('map', {
-			zoomControl: false
+			minZoom: 11
 		}),
 		circle: L.circle({
 			color: 'red',
@@ -21,39 +23,37 @@ var wkt;
 		polygon: L.polygon({
 			color: 'blue'
 		}),
-		centerPoint: {
-			lat: 52.370216,
-			lng: 4.895168
-		},
+		centerPoint: [
+			52.370216,
+			4.895168
+		],
 		init: function () {
 			var self = this;
 			// Set the original view of the map:
-			this.map.setView(Object.values(this.centerPoint), 14);
+			this.map.setView(this.centerPoint, 14);
 
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + this.mapboxAccessToken, {
 				maxZoom: 20,
 				id: 'mapbox.streets'
 			}).addTo(this.map);
 
-			L.control.zoom({
-				position: 'bottomright'
-			}).addTo(this.map);
-
-			this.createCircle(this.data());
+			this.createCircle();
 
 			this.circle
-				.setLatLng(Object.values(this.centerPoint))
+				.setLatLng(this.centerPoint)
 				.setRadius(250)
 				.addTo(this.map)
 				.bringToFront();
 
 			// Create the first polygon:
-			var polygonCoords = circleToPolygon(Object.values(this.centerPoint), 250, 10);
+			// var polygonCoords = circleToPolygon(this.centerPoint, 250, 10);
 
 			this.polygon
-				.setLatLngs(polygonCoords.coordinates[0])
+				// .setLatLngs(polygonCoords.coordinates[0])
 				.addTo(this.map)
 				.bringToBack();
+
+			this.createPolygon(this.centerPoint);
 		},
 		data: function() {
 			var data = window.data;
@@ -65,7 +65,7 @@ var wkt;
 
 			return data;
 		},
-		createCircle: function(data) {
+		createCircle: function() {
 			var self = this;
 			var selectRadius = document.querySelector("#radius-selected");
 
@@ -86,11 +86,16 @@ var wkt;
 
 			// Calculate the new center:
 			this.circle.on('mouseup', function () {
-				var latlng = self.circle.getLatLng();
-				var radius = self.circle.getRadius();
+				// var latlng = self.circle.getLatLng();
+				// var radius = self.circle.getRadius();
+				var latlng = this.getLatLng();
+				var radius = this.getRadius();
+
+				console.log(latlng);
+				console.log(radius);
 
 				// Create the new polygon:
-				self.createPolygon(latlng, radius);
+				self.createPolygon(Object.values(latlng), radius);
 
 				// self.distanceFromCenterPoint(data, latlng, radius);
 				self.map.removeEventListener('mousemove');
@@ -100,7 +105,7 @@ var wkt;
 				var latlng = self.circle.getLatLng();
 				var meters = e.target.value / 2 * 1000;
 				self.circle.setRadius(meters);
-				self.createPolygon(latlng, meters);
+				self.createPolygon(Object.values(latlng), meters);
 				// self.distanceFromCenterPoint(data, self.centerPoint, meters);
 			})
 
@@ -108,7 +113,7 @@ var wkt;
 		},
 		createPolygon: function (coords, radius = 250, numberOfEdges = 10) {
 			//leaflet polygon to wkt
-			var polygonCoords = circleToPolygon([coords.lat, coords.lng], radius, numberOfEdges);
+			var polygonCoords = circleToPolygon(coords, radius, numberOfEdges);
 
 			this.polygon
 				.setLatLngs(polygonCoords.coordinates[0]);
