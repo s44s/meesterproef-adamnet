@@ -37,25 +37,16 @@ var wkt;
 				id: 'mapbox.streets'
 			}).addTo(this.map);
 
-			this.createCircle();
-
+			// Initialize the circle:
 			this.circle
 				.setLatLng(this.centerPoint)
 				.setRadius(250)
 				.addTo(this.map)
 				.bringToFront();
 
-			// Initialize polygon:
-			this.polygon
-				.addTo(this.map)
-				.bringToBack();
-
-			// Create the polygon, with the centerPoint as coords:
-			this.createPolygon(this.centerPoint);
-		}
-		createCircle: function() {
-			var self = this;
-			var selectRadius = document.querySelector("#radius-selected");
+			// Initialize circle events:
+			this.changeRadius();
+			this.moveCircle();
 
 			// Change the map's draggable function when you drag the radius:
 			this.circle.addEventListener('mousedown', function () {
@@ -65,35 +56,48 @@ var wkt;
 				self.map.dragging.enable();
 			});
 
+			// Initialize polygon:
+			this.polygon
+				.addTo(this.map)
+				.bringToBack();
+
+			// Create the polygon, with the centerPoint as coords:
+			this.createPolygon(this.centerPoint);
+		},
+		changeRadius: function () {
+			var self = this;
+			var selectRadius = document.querySelector("#radius-selected");
+
+			selectRadius.addEventListener("change", function(e) {
+				var latlng = self.circle.getLatLng();
+				var meters = e.target.value / 2 * 1000;
+				self.createCircle(Object.values(latlng), meters);
+				self.createPolygon(Object.values(latlng), meters);
+			});
+		},
+		moveCircle: function () {
+			var self = this;
+
 			// Dragging the circle:
 			this.circle.on('mousedown', function () {
 				self.map.on('mousemove', function (e) {
-					self.circle.setLatLng(e.latlng);
+					self.createCircle(Object.values(e.latlng));
 				});
 			});
 
 			// Calculate the new center:
 			this.circle.on('mouseup', function () {
-				// var latlng = self.circle.getLatLng();
-				// var radius = self.circle.getRadius();
 				var latlng = this.getLatLng();
 				var radius = this.getRadius();
 
-				console.log(latlng);
-				console.log(radius);
-
 				// Create the new polygon:
 				self.createPolygon(Object.values(latlng), radius);
-
 				self.map.removeEventListener('mousemove');
 			});
-
-			selectRadius.addEventListener("change", function(e) {
-				var latlng = self.circle.getLatLng();
-				var meters = e.target.value / 2 * 1000;
-				self.circle.setRadius(meters);
-				self.createPolygon(Object.values(latlng), meters);
-			})
+		},
+		createCircle: function (coords, radius = this.circle.getRadius()) {
+			this.circle.setLatLng(coords);
+			this.circle.setRadius(radius);
 		},
 		createPolygon: function (coords, radius = 250, numberOfEdges = 10) {
 			//leaflet polygon to wkt
