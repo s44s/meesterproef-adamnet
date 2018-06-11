@@ -14,12 +14,10 @@
 			<option value="50">50 km</option>
 		</select>
 
-		<p class="count-streets">0 straten</p>
-
 		<div id='map'></div>
 
 		<form class="location-and-timestamp" action="/create-story" method="post">
-			<input type="range" min="1900" max="2000" multiple value="1971,1976" />
+			<input type="range" min="1900" max="2018" multiple value="1971,1976" />
 			<output id="rangevalueMin" name="timestamp-min">1971</output>
 			<output id="rangevalueMax" name="timestamp-max">1976</output>
 
@@ -27,5 +25,4 @@
 		</form>
 
 	</main>
-	<script>window.data = <%- JSON.stringify(streets || null) %>;</script>
 <%- include('partials/foot.ejs') %>
