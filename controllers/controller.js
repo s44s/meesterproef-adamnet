@@ -19,7 +19,6 @@ exports.postCreateStoryPage = function (req, res, next) {
 
 exports.getCreateStoryPage = async function (req, res, next) {
   var result = await chapters.location(newStoryData);
-  console.log('result: ', result);
 
   res.render('create-story', {
     dataFirstQuery: result
