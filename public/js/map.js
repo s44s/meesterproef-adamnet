@@ -41,8 +41,7 @@ var wkt;
 			this.circle
 				.setLatLng(this.centerPoint)
 				.setRadius(250)
-				.addTo(this.map)
-				.bringToFront();
+				.addTo(this.map);
 
 			// Initialize circle events:
 			this.changeRadius();
@@ -55,11 +54,6 @@ var wkt;
 			this.circle.addEventListener('mouseup', function () {
 				self.map.dragging.enable();
 			});
-
-			// Initialize polygon:
-			this.polygon
-				.addTo(this.map)
-				.bringToBack();
 
 			// Create the polygon, with the centerPoint as coords:
 			this.createPolygon(this.centerPoint);
