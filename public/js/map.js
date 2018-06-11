@@ -12,11 +12,15 @@ var uniqueStreets = [];
 		map: L.map('map', {
 			zoomControl: false
 		}),
+		polygon: L.polygon({
+			color: 'blue'
+		}),
 		centerPoint: {
 			lat: 52.370216,
 			lng: 4.895168
 		},
 		init: function () {
+			var self = this;
 			// Set the original view of the map:
 			this.map.setView([this.centerPoint.lat, this.centerPoint.lng], 14);
 
@@ -30,6 +34,14 @@ var uniqueStreets = [];
 			}).addTo(this.map);
 
 			this.createCircle(this.data());
+
+			// Create the first polygon:
+			var polygonCoords = circleToPolygon([self.centerPoint.lat, self.centerPoint.lng], 250, 10);
+
+			this.polygon
+				.setLatLngs(polygonCoords.coordinates[0])
+				.addTo(this.map)
+				.bringToBack();
 		},
 		data: function() {
 			var data = window.data;
@@ -53,16 +65,6 @@ var uniqueStreets = [];
 				radius: 500/2
 			}).addTo(this.map);
 
-			//circle to polygon
-			var coordinatesPolygon = [52.370216,4.895168];
-			var radiusPolygon = 250; // in meters
-			var numberOfEdges = 10; //optional that defaults to 32
-			var polygon = circleToPolygon(coordinatesPolygon, radiusPolygon, numberOfEdges);
-			//create polygon in leaflet
-			var polygonLeaflet = L.polygon(polygon.coordinates[0], {color: 'blue'}).addTo(this.map);
-			//leaflet polygon to wkt
-			console.log(toWKT(polygonLeaflet));
-
 			// Change the map's draggable function when you drag the radius:
 			circle.addEventListener('mousedown', function () {
 				self.map.dragging.disable();
@@ -75,7 +77,6 @@ var uniqueStreets = [];
 			circle.on('mousedown', function () {
 				self.map.on('mousemove', function (e) {
 					circle.setLatLng(e.latlng);
-					coordinatesPolygon = e.latlng;
 				});
 			});
 
@@ -83,6 +84,10 @@ var uniqueStreets = [];
 			circle.on('mouseup', function () {
 				var latlng = circle.getLatLng();
 				var radius = circle.getRadius();
+
+				// Create the new polygon:
+				self.createPolygon(latlng, radius);
+
 				self.distanceFromCenterPoint(data, latlng, radius);
 				self.map.removeEventListener('mousemove');
 			});
@@ -92,13 +97,27 @@ var uniqueStreets = [];
 			})
 
 			function changeRadius(e) {
+				var latlng = circle.getLatLng();
 				var meters = e.target.value / 2 * 1000;
 				circle.setRadius(meters);
-				radiusPolygon = meters;
+				self.createPolygon(latlng, meters);
 				self.distanceFromCenterPoint(data, self.centerPoint, meters);
 			}
 
 			this.distanceFromCenterPoint(data, this.centerPoint);
+		},
+		createPolygon: function (coords, radius = 250, numberOfEdges = 10) {
+			console.log('coords: ', coords);
+			console.log('radius: ', radius);
+			console.log('numberOfEdges: ', numberOfEdges);
+
+			//leaflet polygon to wkt
+			var polygonCoords = circleToPolygon([coords.lat, coords.lng], radius, numberOfEdges);
+
+			console.log('new coords: ', polygonCoords.coordinates[0]);
+
+			this.polygon
+				.setLatLngs(polygonCoords.coordinates[0]);
 		},
 		distanceFromCenterPoint: function(data, latlng, radius = 250) {
 			var counterStreetsInCircle = 0;
