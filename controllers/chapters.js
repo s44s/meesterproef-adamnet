@@ -20,7 +20,7 @@ exports.location = async function (newStoryData) {
 				var chapter;
 
 				if (item.street.value == dataFilter[0].street.value) {
-					chapter = 'het ' + dataFilter[0].streetLabel.value;
+					chapter = dataFilter[0].streetLabel.value;
 				} else {
 					chapter = 'de overige straten';
 				}
