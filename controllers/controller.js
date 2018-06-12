@@ -10,6 +10,10 @@ exports.newStoryPage = function (req, res, next) {
   res.render('new-story');
 }
 
+exports.searchLocationPage = function (req, res, next) {
+  res.redirect('/new-story');
+}
+
 var newStoryData = {};
 
 exports.postCreateStoryPage = function (req, res, next) {
