@@ -11,6 +11,7 @@ exports.newStoryPage = function (req, res, next) {
 }
 
 exports.searchLocationPage = function (req, res, next) {
+  console.log(req.body.searchLocation);
   res.redirect('/new-story');
 }
 
