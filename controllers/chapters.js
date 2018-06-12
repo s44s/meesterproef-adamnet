@@ -9,9 +9,9 @@ exports.location = async function (newStoryData) {
 	  .then((resp) => resp.json()) // transform the data into json
     .then(function (data) {
 
-			var dataFilter = data.results.bindings;
+			var allDataMappedData = data.results.bindings;
 
-			var all = {
+			var allDataMappedDataMapped = {
 				years: {}
 			};
 
@@ -25,17 +25,17 @@ exports.location = async function (newStoryData) {
 					chapter = 'de overige straten';
 				}
 
-		    if (!all.years[year]) {
-		    	all.years[year] = {};
+		    if (!allDataMapped.years[year]) {
+		    	allDataMapped.years[year] = {};
 		    }
-				if (!all.years[year][chapter]) {
-					all.years[year][chapter] = [];
+				if (!allDataMapped.years[year][chapter]) {
+					allDataMapped.years[year][chapter] = [];
 				}
 
-				all.years[year][chapter].push(item);
+				allDataMapped.years[year][chapter].push(item);
 			});
 
-			return all;
+			return allDataMapped;
 
 
       // First data filter:
