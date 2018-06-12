@@ -8,7 +8,35 @@ exports.location = async function (newStoryData) {
   return await fetch(url)
 	  .then((resp) => resp.json()) // transform the data into json
     .then(function (data) {
-      return data;
+
+			var dataFilter = data.results.bindings;
+
+			var all = {
+				years: {}
+			};
+
+			dataFilter.forEach(function(item, i, self) {
+		  	var year = item.start.value.split('-')[0];
+				var chapter;
+
+				if (item.street.value == dataFilter[0].street.value) {
+					chapter = 'centerpoint';
+				} else if (self.indexOf(item) !== 2) {
+					chapter = 'other';
+				}
+
+		    if (!all.years[year]) {
+		    	all.years[year] = {};
+		    }
+				if (!all.years[year][chapter]) {
+					all.years[year][chapter] = [];
+				}
+
+				all.years[year][chapter].push(item);
+			});
+
+			return all;
+
 
       // First data filter:
 
@@ -38,8 +66,7 @@ exports.location = async function (newStoryData) {
       * ---------
       * Take closest street to centerPoint as main location
       */
-    })
-    .catch(function (error) {
+    }).catch(function (error) {
       console.log(error);
     });
-}
+};

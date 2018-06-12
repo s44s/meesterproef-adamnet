@@ -10,12 +10,11 @@
 			<button type="submit">Maak een verhaal</button>
 		</form>
 
-		<%- include('partials/chapter.ejs') %>
 
 	</main>
 	<script>
 		window.data = <%- JSON.stringify(dataFirstQuery || null) %>;
-		console.log(window.data.results.bindings)
+		console.log(window.data)
 	</script>
 	<script>
 		var trigger = document.querySelectorAll('.openDetail');
