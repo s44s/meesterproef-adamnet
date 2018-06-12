@@ -11,8 +11,19 @@ exports.newStoryPage = function (req, res, next) {
 }
 
 exports.searchLocationPage = function (req, res, next) {
-  console.log(req.body.searchLocation);
-  res.redirect('/new-story');
+  var url = sparqlqueries.url(sparqlqueries.getLocationBySearch(req.body.searchLocation));
+
+  fetch(url)
+    .then((res) => res.json())
+    .then(function (data) {
+
+      console.log(data);
+
+      res.redirect('/new-story');
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 }
 
 var newStoryData = {};
