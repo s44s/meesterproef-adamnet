@@ -16,8 +16,13 @@ exports.searchLocationPage = function (req, res, next) {
   fetch(url)
     .then((res) => res.json())
     .then(function (data) {
+      var rows = data.results.bindings;
 
-      console.log(data);
+      for (var key in rows) {
+        console.log(key);
+      }
+
+      // console.log(results);
 
       res.redirect('/new-story');
     })

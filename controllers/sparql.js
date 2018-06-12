@@ -7,6 +7,19 @@ var sparqlqueries = {
   encodedquery: function (query) {
     return encodeURIComponent(query);
   },
+  getLocationBySearch: function (val) {
+    return `
+      PREFIX hg: <http://rdf.histograph.io/>
+      PREFIX dct: <http://purl.org/dc/terms/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      SELECT ?street ?streetWkt WHERE {
+        ?cho dct:spatial ?street .
+        ?street a hg:Street .
+        ?street geo:hasGeometry/geo:asWKT ?streetWkt .
+        FILTER (REGEX (?street, "${val}"))
+      }
+    `;
+  },
   getLocationAndTimestamp: function (data) {
     var beginTimestamp = `${data.valMin}-01-01`;
     var endTimestamp = `${data.valMax}-12-31`;
