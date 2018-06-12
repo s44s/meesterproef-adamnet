@@ -10,6 +10,9 @@ router.get('/', controller.homePage);
 // GET new story page:
 router.get('/new-story', controller.newStoryPage);
 
+// POST search location page:
+router.post('/search-location', controller.searchLocationPage);
+
 // POST create story page:
 router.post('/create-story', controller.postCreateStoryPage);
 
