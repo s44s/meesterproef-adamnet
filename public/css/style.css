@@ -8,7 +8,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	font-family: helvetica sans-serif;
+	font-family: helvetica, sans-serif;
 }
 
 p, a, li {
@@ -145,7 +145,7 @@ p, a, li {
   margin: 0 5vw;
 }
 
-.create-story form + section {
+.create-story section.chapter {
 	width: 65vw;
 }
 
