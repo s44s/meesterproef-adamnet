@@ -14,6 +14,11 @@
 			<option value="50">50 km</option>
 		</select>
 
+		<form class="search-location" action="/search-location" method="post">
+			<input type="text" name="searchbar" placeholder="Zoek een locatie" value="" autocomplete="off">
+			<button type="submit">Zoek</button>
+		</form>
+
 		<div id='map'></div>
 
 		<form class="location-and-timestamp" action="/create-story" method="post">
