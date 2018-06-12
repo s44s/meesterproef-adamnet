@@ -20,9 +20,9 @@ exports.location = async function (newStoryData) {
 				var chapter;
 
 				if (item.street.value == dataFilter[0].street.value) {
-					chapter = 'centerpoint';
-				} else if (self.indexOf(item) !== 2) {
-					chapter = 'other';
+					chapter = 'het ' + dataFilter[0].streetLabel.value;
+				} else {
+					chapter = 'de overige straten';
 				}
 
 		    if (!all.years[year]) {
