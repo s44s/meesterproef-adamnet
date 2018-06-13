@@ -37,21 +37,30 @@ exports.location = async function (newStoryData) {
 
     return {
       'street': wkt.street.value,
-      'distance': nearestPoint.properties.dist * 100
+      'streetLabel': wkt.streetLabel.value,
+      'distance': nearestPoint.properties.dist * 1000
     };
   });
 
-  streets.forEach(function (street) {
-    console.log(street);
+  // Sort the streets by distance to centerpoint (closes first):
+  streets.sort(function (a, b) {
+    return a.distance - b.distance;
   });
 
-  /*
-  *   Next:
-  *   -----
-  *   1. Add leaflet node.js package
-  *   2. Try to calc distance between street wkts and centerpoint circle
-  *   3. Add the distance to every street as a property
-  */
+  // Get the street closest to centerpoint:
+  function getCenterPoint() {
+    return streets[0];
+  }
+
+  // Get the streets in the neighbourhood:
+  function getNeighbourhood() {
+    var filter = Math.round((streets.length - 1) / 4);
+    return streets.filter(function (street, i) {
+      if (i >= 1 && i <= filter) {
+        return street;
+      }
+    });
+  }
 
   // Fetch the images for selected location and timestamp:
   var fetchLocationAndTimestamp = async function () {
@@ -76,8 +85,8 @@ exports.location = async function (newStoryData) {
     var year = item.start.value.split('-')[0];
     var chapter;
 
-    if (item.street.value == allData[0].street.value) {
-      chapter = allData[0].streetLabel.value;
+    if (item.street.value == streets[0].street) {
+      chapter = streets[0].streetLabel;
     } else {
       chapter = 'de overige straten';
     }
