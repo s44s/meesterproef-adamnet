@@ -100,6 +100,10 @@ p, a, li {
 	width: 100%;
 }
 
+.home section:last-of-type .stories a p {
+	margin-bottom: 2rem;
+}
+
 .home aside {
 	background-color: var(--main-red);
 	height: 100%;
@@ -108,7 +112,7 @@ p, a, li {
 
 .home form {
 	width: 80%;
-	padding-top: 30%;
+	padding-top: 40%;
 	margin: 0;
 	margin-left: 10%;
 }
@@ -119,37 +123,38 @@ p, a, li {
 	}
 }
 
-.home form label img {
-	width: 10%;
-}
-
-/* .home h1 {
-	text-align: center;
-	height: 5%;
-}
-
-.home a {
-	display: block;
-	text-align: center;
-	height: 2%;
-}
-
-.home form {
-	display: flex;
-	width: 80vw;
-	margin-left: 10vw;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: flex-start;
-}
-
 .home form div {
+	display: inline-block;
 	text-align: center;
-	flex-basis: 25%;
-	height: 40vh;
-	margin-top: 10%;
+	width: 70%;
+	margin-left: 5%;
 	z-index: 100;
+	color: var(--main-white);
+}
+
+.home form button.slider {
+	display: inline-block;
+	float: left;
+	background: none;
+	border: none;
+	margin-top: 10%;
+}
+
+.home form .next {
+	float: right !important;
+}
+
+.home form div img {
+	display: block;
+	width: 30%;
+	margin-left: 35%;
+}
+
+.home form div p {
+	width: 90%;
+	margin-left: 5%;
+	text-align: center;
+	font-size: 1em;
 }
 
 .home form input[type="radio"] {
@@ -160,37 +165,37 @@ p, a, li {
 	height: 0;
 }
 
-.home form input[type="radio"]:checked ~ section {
-	position: absolute;
-	width: 20%;
-	height: 37.5vh;
-	z-index: -100;
-	top: 17%;
-	background-color: var(--main-lightgrey);
+.home form nav {
+	margin-top: 10%;
+	width: calc(25px*3);
+	margin-left: calc((100% - 25px*3)/2);
 }
 
-.home form input[type="radio"]:checked ~ section::after {
-	background-image: url('/images/checked.png');
-	background-size: 20px 20px;
+.home form nav button {
+	cursor: pointer;
 	display: inline-block;
+	background-color: rgba(255,255,255,0.5);
 	width: 20px;
 	height: 20px;
-	content:"";
-	margin-left: 95%;
-	margin-top: -2%;
+	border-radius: 50%;
+	margin-left: 5px;
+	border: 0;
 }
 
-.home form img {
-	z-index: 100;
-	display: block;
-	width: 3em;
-	margin-left: calc(50% - 1.5em);
+.activeSlider {
+	background-color: white !important;
 }
 
-.home form button {
-	margin-left: 25%;
-	flex-basis: 50%;
-} */
+.home form button[type="submit"] {
+	margin-top: 10%;
+	width: 80%;
+	height: 7.5%;
+	margin-left: 10%;
+	border: none;
+	color: var(--main-red);
+	font-weight: bold;
+	font-size: 1em;
+}
 
 /* NEW-STORY */
 /* leaflet map */
