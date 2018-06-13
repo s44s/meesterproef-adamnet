@@ -2,6 +2,8 @@ var fetch = require('node-fetch');
 var sparqlqueries = require('./sparql');
 var chapters = require('./chapters.js');
 
+var newStoryData = {};
+
 exports.homePage = function (req, res, next) {
   res.render('index');
 }
@@ -18,11 +20,21 @@ exports.searchLocationPage = function (req, res, next) {
     .then(function (data) {
       var rows = data.results.bindings;
 
-      for (var key in rows) {
-        console.log(key);
-      }
+      function removeDuplicates(arr) {
+        let unique_array = [];
+ 				for (var i = 0; i < arr.length; i++) {
+          if (unique_array.indexOf(arr[i]) == -1) {
+            unique_array.push(arr[i]);
+ 					}
+ 				}
+        return unique_array;
+ 			}
 
-      // console.log(results);
+      var arr = [];
+
+      rows.forEach(function (row) {
+        console.log(Object.values(rows));
+      });
 
       res.redirect('/new-story');
     })
@@ -30,8 +42,6 @@ exports.searchLocationPage = function (req, res, next) {
       console.log(error);
     });
 }
-
-var newStoryData = {};
 
 exports.postCreateStoryPage = function (req, res, next) {
   newStoryData = req.body;
