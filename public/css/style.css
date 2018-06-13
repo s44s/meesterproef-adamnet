@@ -130,6 +130,7 @@ p, a, li {
 	margin-left: 5%;
 	z-index: 100;
 	color: var(--main-white);
+	height: 12em;
 }
 
 .home form button.slider {
