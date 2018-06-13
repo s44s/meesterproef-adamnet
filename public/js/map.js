@@ -34,7 +34,7 @@ var wkt;
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + this.mapboxAccessToken, {
 				minZoom: 11,
 				maxZoom: 20,
-				id: 'mapbox.streets'
+				id: 'mapbox.light'
 			}).addTo(this.map);
 
 			// Initialize the circle:
