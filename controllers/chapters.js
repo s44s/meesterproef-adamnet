@@ -1,5 +1,6 @@
 var fetch = require('node-fetch');
 var sparqlqueries = require('./sparql');
+var wellknown = require('wellknown');
 
 exports.location = async function (newStoryData) {
   // Fetch the street Wkts for selected location and timestamp:
@@ -18,7 +19,13 @@ exports.location = async function (newStoryData) {
 
   var streetWkts = await fetchStreetWkts();
 
-  console.log(streetWkts);
+  /*
+  *   Next:
+  *   -----
+  *   1. Add leaflet node.js package
+  *   2. Try to calc distance between street wkts and centerpoint circle
+  *   3. Add the distance to every street as a property
+  */
 
   // Fetch the images for selected location and timestamp:
   var fetchLocationAndTimestamp = async function () {
