@@ -3,6 +3,7 @@
   --main-white: white;
 	--main-lightgrey: lightgrey;
 	--main-bg: LightSlateGrey;
+	--main-red: #DA121A;
 }
 
 body {
@@ -17,7 +18,112 @@ p, a, li {
 
 /* HOMEPAGE: INTRO */
 /* radio buttons */
-.home h1 {
+.home section:first-of-type, .home section:last-of-type {
+	width: 90%;
+	margin-left: 5%;
+}
+
+.home aside {
+	width: 100%;
+}
+
+@media only screen and (min-width: 50em) {
+	.home section:first-of-type {
+		display: inline-block;
+		width: 55%;
+		float: left;
+	}
+
+	.home aside {
+		display: inline-block;
+		width: 35%;
+		margin-left: 5%;
+		float: right;
+	}
+
+	.home section:last-of-type {
+		display: inline-block;
+		width: 55%;
+		float: left;
+	}
+}
+
+.home section:first-of-type h1 {
+	font-size: 3em;
+	margin-top: 20vh;
+	width: 80%;
+	font-weight: bolder;
+}
+
+.home section:first-of-type p {
+	font-size: 1.1em;
+	width: 50%;
+	font-weight: light;
+}
+
+.home section:last-of-type input {
+	display: block;
+	background-color: var(--main-red);
+	color: var(--main-white);
+	border: none;
+	padding: 2%;
+	margin-bottom: 2%;
+	text-indent: 30px;
+	height: 5vh;
+	width: 60%;
+}
+
+.home section:last-of-type input::placeholder {
+	color: rgba(255,255,255,0.7);
+}
+
+.home section:last-of-type div.search {
+	position: relative;
+}
+
+.home section:last-of-type div.search img {
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 10px;
+  z-index: 1;
+  color: #4f5b66;
+	width: 15px !important;
+}
+
+.home section:last-of-type .stories a {
+	display: inline-block;
+	width: 30%;
+	margin-right: 2%;
+}
+
+.home section:last-of-type .stories a img {
+	width: 100%;
+}
+
+.home aside {
+	background-color: var(--main-red);
+	height: 100%;
+	top: 0;
+}
+
+.home form {
+	width: 80%;
+	padding-top: 30%;
+	margin: 0;
+	margin-left: 10%;
+}
+
+@media only screen and (min-width: 50em) {
+	.home aside {
+		position: fixed;
+	}
+}
+
+.home form label img {
+	width: 10%;
+}
+
+/* .home h1 {
 	text-align: center;
 	height: 5%;
 }
@@ -84,7 +190,7 @@ p, a, li {
 .home form button {
 	margin-left: 25%;
 	flex-basis: 50%;
-}
+} */
 
 /* NEW-STORY */
 /* leaflet map */

@@ -1,36 +1,76 @@
 <%- include('partials/head.ejs') %>
 	<main class="home">
-		<h1>Maak jouw eigen Amsterdamse verhaal</h1>
-		<a href="/login">Of ga verder met je al eerder gemaakte verhaal</a>
-		<form action="/new-story">
-		  <div>
-				<label for="choice1">
-					<img src="/images/person.png" alt="iconPerson"/>
-			    <input checked type="radio" id="choice1" name="story" value="person">
-			    Persoon
-					<p>Een verhaal over één persoon. Bijvoorbeeld een verhaal over jouzelf, jouw oma of Anne Frank.</p>
-					<section></section>
-				</label>
+		<section>
+			<h1>Een verzameling herinneringen van Amsterdam</h1>
+			<p>Benieuwd wat jij kan verzamelen aan herinneringen? Maak een eigen verhaal!</p>
+		</section>
+
+		<aside>
+			<form action="/new-story">
+			  <div>
+					<label for="choice1">
+						<img src="/images/person.png" alt="iconPerson"/>
+				    <input checked type="radio" id="choice1" name="story" value="person">
+				    Persoon
+						<p>Een verhaal over één persoon. Bijvoorbeeld een verhaal over jouzelf, jouw oma of Anne Frank.</p>
+						<section></section>
+					</label>
+				</div>
+				<div>
+					<label for="choice2">
+						<img src="/images/building.png" alt="iconBuilding"/>
+				    <input type="radio" id="choice2" name="story" value="building">
+				    Gebouw
+						<p>Een plaats gevonden verhaal. Bijvoorbeeld een verhaal over het Centraal Station, Amsterdam Oost of jouw lokale sportvereniging.</p>
+						<section></section>
+					</label>
+				</div>
+				<div>
+					<label for="choice3">
+						<img src="/images/blanco.png" alt="iconBlanco"/>
+				    <input type="radio" id="choice3" name="story" value="blanco">
+				    Blanko
+						<p>Een nog niet ingevuld verhaal. Voor wanneer je een eigen onderzoek wilt uitwerken of wanneer jij jouw eigen verhaal wilt creeëren.</p>
+						<section></section>
+					</label>
+				</div>
+		    <button type="submit">Maak mijn verhaal</button>
+			</form>
+		</aside>
+
+		<section>
+			<h3>Eerder gemaakt</h3>
+			<div class="search">
+				<img src="/images/search-3-16.png"/>
+				<input id="story-name" name="story-name" type="text" placeholder="Naam van het verhaal.." />
 			</div>
-			<div>
-				<label for="choice2">
-					<img src="/images/building.png" alt="iconBuilding"/>
-			    <input type="radio" id="choice2" name="story" value="building">
-			    Gebouw
-					<p>Een plaats gevonden verhaal. Bijvoorbeeld een verhaal over het Centraal Station, Amsterdam Oost of jouw lokale sportvereniging.</p>
-					<section></section>
-				</label>
+			<div class="stories">
+				<a href="">
+					<img src="/images/stock1.jpg" alt=""/>
+					<p>Het spui</p>
+				</a>
+				<a href="">
+					<img src="/images/stock2.jpg" alt=""/>
+					<p>Opa Bol 80</p>
+				</a>
+				<a href="">
+					<img src="/images/stock3.jpg" alt=""/>
+					<p>Miep Valkuile</p>
+				</a>
+				<a href="">
+					<img src="/images/stock1.jpg" alt=""/>
+					<p>Het spui</p>
+				</a>
+				<a href="">
+					<img src="/images/stock2.jpg" alt=""/>
+					<p>Opa Bol 80</p>
+				</a>
+				<a href="">
+					<img src="/images/stock3.jpg" alt=""/>
+					<p>Miep Valkuile</p>
+				</a>
 			</div>
-			<div>
-				<label for="choice3">
-					<img src="/images/blanco.png" alt="iconBlanco"/>
-			    <input type="radio" id="choice3" name="story" value="blanco">
-			    Blanko
-					<p>Een nog niet ingevuld verhaal. Voor wanneer je een eigen onderzoek wilt uitwerken of wanneer jij jouw eigen verhaal wilt creeëren.</p>
-					<section></section>
-				</label>
-			</div>
-	    <button type="submit">Maak mijn verhaal</button>
-		</form>
+		</section>
+
 	</main>
 <%- include('partials/foot.ejs') %>
