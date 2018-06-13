@@ -10,12 +10,12 @@
 			<button type="submit">Maak een verhaal</button>
 		</form>
 
-		<%- include('partials/chapter.ejs') %>
+	<%- include('partials/chapter.ejs') %>
 
 	</main>
 	<script>
 		window.data = <%- JSON.stringify(dataFirstQuery || null) %>;
-		console.log(window.data.results.bindings)
+		console.log(window.data)
 	</script>
 	<script>
 		var trigger = document.querySelectorAll('.openDetail');
@@ -25,7 +25,7 @@
 		for(var i = 0; i < trigger.length; i++) {
 			trigger[i].addEventListener('click', function(e){
 				e.preventDefault();
-				e.path[2].childNodes[7].classList.add('show');
+				e.path[3].childNodes[3].classList.add('show');
 			});
 
 			detailpopup[i].addEventListener('click', function(e){
