@@ -7,6 +7,29 @@ var sparqlqueries = {
   encodedquery: function (query) {
     return encodeURIComponent(query);
   },
+  getStreetWkts: function (wkt) {
+    return `
+      PREFIX dct: <http://purl.org/dc/terms/>
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+      PREFIX void: <http://rdfs.org/ns/void#>
+      PREFIX hg: <http://rdf.histograph.io/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+      SELECT ?street ?streetLabel ?streetWkt WHERE {
+        ?street a hg:Street ;
+        geo:hasGeometry/geo:asWKT ?streetWkt ;
+        rdfs:label ?streetLabel .
+
+        BIND (bif:st_geomfromtext("${wkt}") as ?circle)
+        BIND (bif:st_geomfromtext(?streetWkt) AS ?streetGeo)
+        FILTER(bif:GeometryType(?streetGeo)!='POLYGON' && bif:st_intersects(?streetGeo, ?circle))
+      }
+    `;
+  },
   getLocationAndTimestamp: function (data) {
     var beginTimestamp = `${data.valMin}-01-01`;
     var endTimestamp = `${data.valMax}-12-31`;
