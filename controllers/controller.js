@@ -14,7 +14,6 @@ var newStoryData = {};
 
 exports.postCreateStoryPage = function (req, res, next) {
   newStoryData = req.body;
-  console.log(newStoryData);
   res.redirect('/');
 }
 
