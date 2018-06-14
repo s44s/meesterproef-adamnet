@@ -251,21 +251,21 @@ p, a, li {
 	height: 5vh;
 }
 
-.create-story .user-data {
+.create-story .personal-data {
 	width: 20vw;
   float: right;
   margin: 0 5vw;
 }
 
-.create-story section.chapter {
+.create-story .chapter {
 	width: 65vw;
 }
 
-.create-story label .user-data {
+.create-story label .personal-data {
 	display: block;
 }
 
-.create-story .user-data input[type="text"], .create-story .user-data input[type="number"] {
+.create-story .personal-data input {
 	display: block;
 	margin-bottom: 2%;
 }
@@ -274,22 +274,16 @@ p, a, li {
 	-webkit-columns: 18vw 3;
 	-moz-columns: 18vw 3; /* Firefox */
 	columns: 18vw 3;
-
 	margin-left: 5vw;
 	column-fill: auto;
 }
 
-.create-story .data div.image{
+.create-story .data .data-image {
 	break-inside: avoid;
 	background-color: var(--main-white);
 	color: var(--main-black);
 	margin-bottom: 10%;
 	border-radius: 5px;
-}
-
-.create-story .data button {
-	/* position: sticky;
-	bottom: 5%; */
 }
 
 .create-story .data div p {
@@ -304,7 +298,8 @@ p, a, li {
 	width: 10%;
 }
 
-.create-story .data div a:hover, .create-story .data div a:focus {
+.create-story .data div a:hover,
+.create-story .data div a:focus {
 	outline: 0;
 	width: 12%;
 }
@@ -334,7 +329,8 @@ p, a, li {
 	height: 0;
 }
 
-.create-story form input[type="checkbox"]:checked ~ section, form input[type="checkbox"]:focus ~ section {
+.create-story form input[type="checkbox"]:checked ~ .check,
+.create-story form input[type="checkbox"]:focus ~ .check {
 	position: absolute;
 	display: block;
 	width: 18vw;
@@ -343,7 +339,7 @@ p, a, li {
 	z-index: 100;
 }
 
-.create-story form div:hover section {
+.create-story form div:hover .check {
 	position: absolute;
 	display: block;
 	width: 18vw;
@@ -352,11 +348,13 @@ p, a, li {
 	z-index: 100;
 }
 
-.create-story form input[type="checkbox"]:checked ~ img, .create-story form input[type="checkbox"]:focus ~ img  {
+.create-story form input[type="checkbox"]:checked ~ img,
+.create-story form input[type="checkbox"]:focus ~ img  {
 	opacity: 0.5;
 }
 
-.create-story form label div:hover section::after, form input[type="checkbox"]:focus ~ section::after {
+.create-story form label div:hover .check::after,
+.create-story form input[type="checkbox"]:focus ~ .check::after {
 	background-image: url('/images/check-hover.svg');
 	background-size: 20px 20px;
 	display: inline-block;
@@ -367,7 +365,7 @@ p, a, li {
 	margin-top: -2%;
 }
 
-.create-story form input[type="checkbox"]:checked ~ section::after {
+.create-story form input[type="checkbox"]:checked ~ .check::after {
 	background-image: url('/images/checked.svg');
 	background-size: 20px 20px;
 	display: inline-block;
