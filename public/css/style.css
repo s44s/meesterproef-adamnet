@@ -357,7 +357,7 @@ p, a, li {
 }
 
 .create-story form label div:hover section::after, form input[type="checkbox"]:focus ~ section::after {
-	background-image: url('/images/check-hover.png');
+	background-image: url('/images/check-hover.svg');
 	background-size: 20px 20px;
 	display: inline-block;
 	width: 20px;
@@ -368,7 +368,7 @@ p, a, li {
 }
 
 .create-story form input[type="checkbox"]:checked ~ section::after {
-	background-image: url('/images/checked.png');
+	background-image: url('/images/checked.svg');
 	background-size: 20px 20px;
 	display: inline-block;
 	width: 20px;
