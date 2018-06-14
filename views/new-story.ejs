@@ -1,5 +1,5 @@
 <%- include('partials/head.ejs') %>
-	<main class="new-story">
+	<body class="new-story">
 		<h1>New story page</h1>
 
 		<select id="radius-selected" name="radius">
@@ -20,9 +20,6 @@
 			<input type="range" min="1900" max="2018" multiple value="1971,1976" />
 			<output id="rangevalueMin" name="timestamp-min">1971</output>
 			<output id="rangevalueMax" name="timestamp-max">1976</output>
-
 			<button type="submit">Maak een verhaal</button>
 		</form>
-
-	</main>
 <%- include('partials/foot.ejs') %>
