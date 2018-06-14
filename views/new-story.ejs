@@ -1,6 +1,6 @@
 <%- include('partials/head.ejs') %>
 	<body class="new-story">
-		<h1>New story page</h1>
+		<h1>Selecteer een plek op de kaart & kies een tijdperk</h1>
 
 		<select id="radius-selected" name="radius">
 			<option value="0.5" selected>500 m</option>
@@ -18,6 +18,8 @@
 
 		<form class="location-and-timestamp" action="/create-story" method="post">
 			<input type="range" min="1900" max="2018" multiple value="1971,1976" />
+			<output name="timestamp-min-static">1900</output>
+			<output name="timestamp-max-static">2018</output>
 			<output id="rangevalueMin" name="timestamp-min">1971</output>
 			<output id="rangevalueMax" name="timestamp-max">1976</output>
 			<button type="submit">Maak een verhaal</button>
