@@ -19,13 +19,13 @@ var sparqlqueries = {
       PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
       PREFIX dc: <http://purl.org/dc/elements/1.1/>
 
-      SELECT ?street ?streetLabel ?streetWkt WHERE {
+      SELECT ?street ?streetLabel ?wkt WHERE {
         ?street a hg:Street ;
-        geo:hasGeometry/geo:asWKT ?streetWkt ;
+        geo:hasGeometry/geo:asWKT ?wkt ;
         rdfs:label ?streetLabel .
 
         BIND (bif:st_geomfromtext("${wkt}") as ?circle)
-        BIND (bif:st_geomfromtext(?streetWkt) AS ?streetGeo)
+        BIND (bif:st_geomfromtext(?wkt) AS ?streetGeo)
         FILTER(bif:GeometryType(?streetGeo)!='POLYGON' && bif:st_intersects(?streetGeo, ?circle))
       }
     `;
