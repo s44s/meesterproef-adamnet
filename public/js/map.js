@@ -3,7 +3,7 @@ var circleToPolygon = require('./circletopolygon.js');
 var toWKT = require('./towkt.js');
 
 // Set global wkt variable:
-var wkt;
+var inputCircle;
 
 (function(){
 
@@ -102,7 +102,10 @@ var wkt;
 				.setLatLngs(polygonCoords.coordinates[0]);
 
 			// Create a wkt from the polygon:
-			wkt = toWKT(this.polygon);
+			inputCircle = {
+				wkt: toWKT(this.polygon),
+				coords: coords
+			};
 		}
 	};
 
@@ -110,5 +113,5 @@ var wkt;
 })()
 
 module.exports = function () {
-	return wkt;
+	return inputCircle;
 };
