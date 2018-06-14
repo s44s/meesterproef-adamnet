@@ -22,7 +22,7 @@ exports.location = async function (newStoryData) {
 
   var streetsInRadius = streetWkts.map(function (street) {
     var parseWkt = wellknown(street.wkt.value);
-    var point = turf.point([4.895168, 52.370216]);
+    var point = turf.point([newStoryData.coords[1], newStoryData.coords[0]]);
     var line;
 
     if (parseWkt.type == 'MultiLineString') {
