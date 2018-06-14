@@ -1,7 +1,7 @@
 <%- include('partials/head.ejs') %>
-	<main class="create-story">
+	<body class="create-story">
+	<section class="intro">
 		<h1>Maak jouw eigen verhaal</h1>
-
 		<form class="user-data" action="/" method="post">
 			<label for="name">Vul hier jouw naam in</label>
 			<input id="name" name="name" type="text" placeholder="Jan Jansen.." />
@@ -9,10 +9,9 @@
 			<input id="year" name="year" type="number" placeholder="1969" min="1900" max="2017" />
 			<button type="submit">Maak een verhaal</button>
 		</form>
-
+	</section>
 	<%- include('partials/chapter.ejs') %>
 
-	</main>
 	<script>
 		window.data = <%- JSON.stringify(dataFirstQuery || null) %>;
 		console.log(window.data)
