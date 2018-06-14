@@ -20,6 +20,20 @@
 		</ol>
 	</nav>
 
+	<main class="contents">
+		<form class="personal-data" action="/create-story" method="post">
+			<input type="text" name="title" placeholder="Geef jouw verhaal een titel" autocomplete="off">
+
+			<label for="name">Dit is het verhaal over:</label>
+			<input id="name" name="name" type="text" placeholder="Jan Jansen.." autocomplete="off">
+
+			<label for="year">Geboren in:</label>
+			<input id="year" name="year" type="number" placeholder="1969" min="1900" max="2018">
+
+			<button type="submit">Opslaan</button>
+		</form>
+	</main>
+
 
 	<section class="intro">
 		<h1>Maak jouw eigen verhaal</h1>
