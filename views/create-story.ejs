@@ -1,5 +1,26 @@
 <%- include('partials/head.ejs') %>
-	<body class="create-story">
+<body class="create-story">
+
+	<section class="map-visualisation">
+		Map visualisation here
+	</section>
+
+	<nav class="table-of-contents">
+		<ol>
+			<% for(var i = 0; i < Object.keys(dataFirstQuery.years).length; i++) { %>
+				<li class="year">
+					<h1><%- Object.keys(dataFirstQuery.years)[i] %></h1>
+					<% var objectYears = dataFirstQuery.years[Object.keys(dataFirstQuery.years)[i]]; %>
+					<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
+						<h2><%- Object.keys(objectYears)[j] %></h2>
+					<% } %>
+					<button class="add-chapter-btn" type="button">+</button>
+				</li>
+			<% } %>
+		</ol>
+	</nav>
+
+
 	<section class="intro">
 		<h1>Maak jouw eigen verhaal</h1>
 		<form class="user-data" action="/" method="post">
@@ -10,7 +31,20 @@
 			<button type="submit">Maak een verhaal</button>
 		</form>
 	</section>
-	<%- include('partials/chapter.ejs') %>
+
+	<!-- Create a section for each selected year: -->
+	<% for(var i = 0; i < Object.keys(dataFirstQuery.years).length; i++) { %>
+		<section class="year">
+			<h1><%- Object.keys(dataFirstQuery.years)[i] %></h1>
+
+			<% var objectYears = dataFirstQuery.years[Object.keys(dataFirstQuery.years)[i]]; %>
+			<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
+
+				<%- include('partials/chapter.ejs', {i: i, j: j, objectYears: objectYears}) %>
+
+			<% } %>
+		</section>
+	<% } %>
 
 	<script>
 		window.data = <%- JSON.stringify(dataFirstQuery || null) %>;
