@@ -20,8 +20,8 @@ exports.location = async function (newStoryData) {
 
   var streetWkts = await fetchStreetWkts();
 
-  var streets = streetWkts.map(function (wkt) {
-    var parseWkt = wellknown(wkt.streetWkt.value);
+  var streetsInRadius = streetWkts.map(function (street) {
+    var parseWkt = wellknown(street.wkt.value);
     var point = turf.point([4.895168, 52.370216]);
     var line;
 
@@ -30,36 +30,39 @@ exports.location = async function (newStoryData) {
     } else if (parseWkt.type == 'LineString') {
       line = turf.lineString(parseWkt.coordinates);
     } else {
+      // line = turf.point(parseWkt.coordinates);
       return;
     }
 
     var nearestPoint = turf.nearestPointOnLine(line, point, {units: 'kilometers'});
 
     return {
-      'street': wkt.street.value,
-      'streetLabel': wkt.streetLabel.value,
+      'street': street.street.value,
+      'streetLabel': street.streetLabel.value,
       'distance': nearestPoint.properties.dist * 1000
     };
   });
 
   // Sort the streets by distance to centerpoint (closes first):
-  streets.sort(function (a, b) {
+  streetsInRadius.sort(function (a, b) {
     return a.distance - b.distance;
   });
 
-  // Get the street closest to centerpoint:
-  function getCenterPoint() {
-    return streets[0];
-  }
-
   // Get the streets in the neighbourhood:
-  function getNeighbourhood() {
-    var filter = Math.round((streets.length - 1) / 4);
-    return streets.filter(function (street, i) {
+  function getNeighbourhood(item) {
+    var conduct = false;
+    var filter = Math.round((streetsInRadius.length - 1) / 4);
+    var neighbourhood = streetsInRadius.filter(function (street, i) {
       if (i >= 1 && i <= filter) {
         return street;
       }
     });
+    neighbourhood.filter(function (street) {
+      if (item.street.value == street.street) {
+        conduct = true;
+      }
+    });
+    return conduct;
   }
 
   // Fetch the images for selected location and timestamp:
@@ -85,8 +88,10 @@ exports.location = async function (newStoryData) {
     var year = item.start.value.split('-')[0];
     var chapter;
 
-    if (item.street.value == streets[0].street) {
-      chapter = streets[0].streetLabel;
+    if (item.street.value == streetsInRadius[0].street) {
+      chapter = streetsInRadius[0].streetLabel;
+    } else if (getNeighbourhood(item) == true) {
+      chapter = 'de buurt';
     } else {
       chapter = 'de overige straten';
     }
