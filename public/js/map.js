@@ -11,7 +11,9 @@ var inputCircle;
 
 	var map = {
 		mapboxAccessToken: 'pk.eyJ1IjoibWF4ZGV2cmllczk1IiwiYSI6ImNqZWZydWkyNjF3NXoyd28zcXFqdDJvbjEifQ.Dl3DvuFEqHVAxfajg0ESWg',
-		map: L.map('map'),
+		map: L.map('map', {
+			zoomControl: false
+		}),
 		circle: L.circle({
 			color: 'red',
 			fillColor: '#f03',
@@ -35,6 +37,10 @@ var inputCircle;
 				minZoom: 11,
 				maxZoom: 20,
 				id: 'mapbox.light'
+			}).addTo(this.map);
+
+			L.control.zoom({
+					position: 'bottomright'
 			}).addTo(this.map);
 
 			// Initialize the circle:
