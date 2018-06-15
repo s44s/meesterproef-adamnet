@@ -7,6 +7,7 @@ var sparqlqueries = {
   encodedquery: function (query) {
     return encodeURIComponent(query);
   },
+<<<<<<< HEAD
   getLocationBySearch: function (val) {
     return `
       PREFIX hg: <http://rdf.histograph.io/>
@@ -17,6 +18,28 @@ var sparqlqueries = {
         ?street a hg:Street .
         ?street geo:hasGeometry/geo:asWKT ?streetWkt .
         FILTER (REGEX (?street, "${val}"))
+=======
+  getStreetWkts: function (wkt) {
+    return `
+      PREFIX dct: <http://purl.org/dc/terms/>
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+      PREFIX void: <http://rdfs.org/ns/void#>
+      PREFIX hg: <http://rdf.histograph.io/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+      SELECT ?street ?streetLabel ?wkt WHERE {
+        ?street a hg:Street ;
+        geo:hasGeometry/geo:asWKT ?wkt ;
+        rdfs:label ?streetLabel .
+
+        BIND (bif:st_geomfromtext("${wkt}") as ?circle)
+        BIND (bif:st_geomfromtext(?wkt) AS ?streetGeo)
+        FILTER(bif:GeometryType(?streetGeo)!='POLYGON' && bif:st_intersects(?streetGeo, ?circle))
+>>>>>>> d91dda6b72aed85df74e41aef7573095a6acafa3
       }
     `;
   },

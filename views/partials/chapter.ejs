@@ -1,35 +1,37 @@
 <% for(var i = 0; i < Object.keys(dataFirstQuery.years).length; i++) { %>
-	<h1 class=""><%- Object.keys(dataFirstQuery.years)[i] %></h1>
-	<% var objectYears = dataFirstQuery.years[Object.keys(dataFirstQuery.years)[i]];
-	<!-- console.log(Object.keys(dataFirstQuery.years)[i].chapters); -->
-	%>
-	<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
-	<section class="chapter">
-		<h2>We zijn in jaar <%- Object.keys(dataFirstQuery.years)[i]%> en we bevinden ons bij <%- Object.keys(objectYears)[j] %> </h2>
-		<form class="data" action="" method="post">
-			<% var objectChapters = objectYears[Object.keys(objectYears)[j]]
-			for(var k = 0; k < Object.keys(objectChapters).length; k++) { %>
-				<div class="image">
-					<label>
-						<div>
-							<input id="checkBox" type="checkbox">
-							<section></section>
-							<img src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
-							<p><%- Object.values(objectChapters)[k].title.value %></p>
-							<a class="openDetail" href=""><img src="/images/zoom-in.png" alt="zoom-in icon"/></a>
-						</div>
-						<div class="detail">
-							<span class="helper"></span>
+	<section class="year">
+		<h1><%- Object.keys(dataFirstQuery.years)[i] %></h1>
+		<% var objectYears = dataFirstQuery.years[Object.keys(dataFirstQuery.years)[i]];
+		<!-- console.log(Object.keys(dataFirstQuery.years)[i].chapters); -->
+		%>
+		<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
+		<section class="chapter">
+			<h2>We zijn in jaar <%- Object.keys(dataFirstQuery.years)[i]%> en we bevinden ons bij <%- Object.keys(objectYears)[j] %> </h2>
+			<form class="data" action="" method="post">
+				<% var objectChapters = objectYears[Object.keys(objectYears)[j]]
+				for(var k = 0; k < Object.keys(objectChapters).length; k++) { %>
+					<div class="image">
+						<label>
 							<div>
-								<div class="popupCloseButton">X</div>
+								<input id="checkBox" type="checkbox">
+								<section></section>
 								<img src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
 								<p><%- Object.values(objectChapters)[k].title.value %></p>
+								<a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
 							</div>
-						</div>
-					</label>
-				</div>
-			<% } %>
-		</form>
+							<div class="detail">
+								<span class="helper"></span>
+								<div>
+									<div class="popupCloseButton">X</div>
+									<img src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
+									<p><%- Object.values(objectChapters)[k].title.value %></p>
+								</div>
+							</div>
+						</label>
+					</div>
+				<% } %>
+			</form>
+		</section>
+		<% } %>
 	</section>
-	<% } %>
 <% } %>

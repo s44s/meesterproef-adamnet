@@ -3,6 +3,7 @@
   --main-white: white;
 	--main-lightgrey: lightgrey;
 	--main-bg: LightSlateGrey;
+	--main-red: #DA121A;
 }
 
 body {
@@ -17,33 +18,144 @@ p, a, li {
 
 /* HOMEPAGE: INTRO */
 /* radio buttons */
-.home h1 {
-	text-align: center;
-	height: 5%;
+.home section:first-of-type, .home section:last-of-type {
+	width: 90%;
+	margin-left: 5%;
 }
 
-.home a {
+.home aside {
+	width: 100%;
+}
+
+@media only screen and (min-width: 50em) {
+	.home section:first-of-type {
+		display: inline-block;
+		width: 55%;
+		float: left;
+	}
+
+	.home aside {
+		display: inline-block;
+		width: 35%;
+		margin-left: 5%;
+		float: right;
+	}
+
+	.home section:last-of-type {
+		display: inline-block;
+		width: 55%;
+		float: left;
+	}
+}
+
+.home section:first-of-type h1 {
+	font-size: 3em;
+	margin-top: 20vh;
+	width: 80%;
+	font-weight: bolder;
+}
+
+.home section:first-of-type p {
+	font-size: 1.1em;
+	width: 50%;
+	font-weight: light;
+}
+
+.home section:last-of-type input {
 	display: block;
-	text-align: center;
-	height: 2%;
+	background-color: var(--main-red);
+	color: var(--main-white);
+	border: none;
+	padding: 2%;
+	margin-bottom: 2%;
+	text-indent: 30px;
+	height: 5vh;
+	width: 60%;
+}
+
+.home section:last-of-type input::placeholder {
+	color: rgba(255,255,255,0.7);
+}
+
+.home section:last-of-type div.search {
+	position: relative;
+}
+
+.home section:last-of-type div.search img {
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 10px;
+  z-index: 1;
+  color: #4f5b66;
+	width: 15px !important;
+}
+
+.home section:last-of-type .stories a {
+	display: inline-block;
+	width: 30%;
+	margin-right: 2%;
+}
+
+.home section:last-of-type .stories a img {
+	width: 100%;
+}
+
+.home section:last-of-type .stories a p {
+	margin-bottom: 2rem;
+}
+
+.home aside {
+	background-color: var(--main-red);
+	height: 100%;
+	top: 0;
 }
 
 .home form {
-	display: flex;
-	width: 80vw;
-	margin-left: 10vw;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: flex-start;
+	width: 80%;
+	padding-top: 40%;
+	margin: 0;
+	margin-left: 10%;
+}
+
+@media only screen and (min-width: 50em) {
+	.home aside {
+		position: fixed;
+	}
 }
 
 .home form div {
+	display: inline-block;
 	text-align: center;
-	flex-basis: 25%;
-	height: 40vh;
-	margin-top: 10%;
+	width: 70%;
+	margin-left: 5%;
 	z-index: 100;
+	color: var(--main-white);
+	height: 12em;
+}
+
+.home form button.slider {
+	display: inline-block;
+	float: left;
+	background: none;
+	border: none;
+	margin-top: 10%;
+}
+
+.home form .next {
+	float: right !important;
+}
+
+.home form div img {
+	display: block;
+	width: 30%;
+	margin-left: 35%;
+}
+
+.home form div p {
+	width: 90%;
+	margin-left: 5%;
+	text-align: center;
+	font-size: 1em;
 }
 
 .home form input[type="radio"] {
@@ -54,36 +166,36 @@ p, a, li {
 	height: 0;
 }
 
-.home form input[type="radio"]:checked ~ section {
-	position: absolute;
-	width: 20%;
-	height: 37.5vh;
-	z-index: -100;
-	top: 17%;
-	background-color: var(--main-lightgrey);
+.home form nav {
+	margin-top: 10%;
+	width: calc(25px*3);
+	margin-left: calc((100% - 25px*3)/2);
 }
 
-.home form input[type="radio"]:checked ~ section::after {
-	background-image: url('/images/checked.png');
-	background-size: 20px 20px;
+.home form nav button {
+	cursor: pointer;
 	display: inline-block;
+	background-color: rgba(255,255,255,0.5);
 	width: 20px;
 	height: 20px;
-	content:"";
-	margin-left: 95%;
-	margin-top: -2%;
+	border-radius: 50%;
+	margin-left: 5px;
+	border: 0;
 }
 
-.home form img {
-	z-index: 100;
-	display: block;
-	width: 3em;
-	margin-left: calc(50% - 1.5em);
+.activeSlider {
+	background-color: white !important;
 }
 
-.home form button {
-	margin-left: 25%;
-	flex-basis: 50%;
+.home form button[type="submit"] {
+	margin-top: 10%;
+	width: 80%;
+	height: 7.5%;
+	margin-left: 10%;
+	border: none;
+	color: var(--main-red);
+	font-weight: bold;
+	font-size: 1em;
 }
 
 /* NEW-STORY */
@@ -245,7 +357,7 @@ p, a, li {
 }
 
 .create-story form label div:hover section::after, form input[type="checkbox"]:focus ~ section::after {
-	background-image: url('/images/check-hover.png');
+	background-image: url('/images/check-hover.svg');
 	background-size: 20px 20px;
 	display: inline-block;
 	width: 20px;
@@ -256,7 +368,7 @@ p, a, li {
 }
 
 .create-story form input[type="checkbox"]:checked ~ section::after {
-	background-image: url('/images/checked.png');
+	background-image: url('/images/checked.svg');
 	background-size: 20px 20px;
 	display: inline-block;
 	width: 20px;
