@@ -13,28 +13,14 @@ exports.newStoryPage = function (req, res, next) {
 }
 
 exports.searchLocationPage = function (req, res, next) {
-  var url = sparqlqueries.url(sparqlqueries.getLocationBySearch(req.body.searchLocation));
+  var url = sparqlqueries.url(sparqlqueries.getAllStreets());
 
   fetch(url)
     .then((res) => res.json())
     .then(function (data) {
       var rows = data.results.bindings;
 
-      function removeDuplicates(arr) {
-        let unique_array = [];
- 				for (var i = 0; i < arr.length; i++) {
-          if (unique_array.indexOf(arr[i]) == -1) {
-            unique_array.push(arr[i]);
- 					}
- 				}
-        return unique_array;
- 			}
-
-      var arr = [];
-
-      rows.forEach(function (row) {
-        console.log(Object.values(rows));
-      });
+      
 
       res.redirect('/new-story');
     })
