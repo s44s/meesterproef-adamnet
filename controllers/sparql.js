@@ -7,18 +7,17 @@ var sparqlqueries = {
   encodedquery: function (query) {
     return encodeURIComponent(query);
   },
-<<<<<<< HEAD
   getLocationBySearch: function (val) {
     return `
       PREFIX hg: <http://rdf.histograph.io/>
       PREFIX dct: <http://purl.org/dc/terms/>
       PREFIX geo: <http://www.opengis.net/ont/geosparql#>
       SELECT ?street ?streetWkt WHERE {
-        ?cho dct:spatial ?street .
         ?street a hg:Street .
         ?street geo:hasGeometry/geo:asWKT ?streetWkt .
         FILTER (REGEX (?street, "${val}"))
-=======
+    `;
+  },
   getStreetWkts: function (wkt) {
     return `
       PREFIX dct: <http://purl.org/dc/terms/>
@@ -39,7 +38,6 @@ var sparqlqueries = {
         BIND (bif:st_geomfromtext("${wkt}") as ?circle)
         BIND (bif:st_geomfromtext(?wkt) AS ?streetGeo)
         FILTER(bif:GeometryType(?streetGeo)!='POLYGON' && bif:st_intersects(?streetGeo, ?circle))
->>>>>>> d91dda6b72aed85df74e41aef7573095a6acafa3
       }
     `;
   },
