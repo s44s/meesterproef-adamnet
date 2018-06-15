@@ -1,6 +1,7 @@
 // Require JS files:
 var circleToPolygon = require('./circletopolygon.js');
 var toWKT = require('./towkt.js');
+var streetsJSON = require('./streets.json');
 
 // Set global wkt variable:
 var inputCircle;
@@ -36,6 +37,27 @@ var inputCircle;
 				maxZoom: 20,
 				id: 'mapbox.light'
 			}).addTo(this.map);
+
+			var mapStreets = streetsJSON.map(function (street) {
+				return {
+					"type": "Feature",
+					"properties": {
+						"name": street.name.value
+					},
+					"geometry": wellknown(street.wkt.value)
+				};
+			});
+
+			// local JSON test:
+			var streets = L.geoJSON(mapStreets, {
+				onEachFeature: function (feature, layer) {
+					if (feature.geometry.type !== "Point"){
+						var bounds = layer.getBounds();
+						var center = bounds.getCenter();
+						console.log(center);
+					}
+				}
+			});
 
 			// Initialize the circle:
 			this.circle
