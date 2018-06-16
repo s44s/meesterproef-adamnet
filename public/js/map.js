@@ -15,13 +15,13 @@ var inputCircle;
 			zoomControl: false
 		}),
 		circle: L.circle({
-			color: 'red',
-			fillColor: '#f03',
+			color: '#DA121A',
+			fillColor: '#DA121A',
 			fillOpacity: 0.4,
 			radius: 500/2
 		}),
 		polygon: L.polygon({
-			color: 'blue'
+			color: '#DA121A'
 		}),
 		centerPoint: [
 			52.370216,
