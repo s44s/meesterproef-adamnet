@@ -1,7 +1,6 @@
 // Require JS files:
 var circleToPolygon = require('./circletopolygon.js');
 var toWKT = require('./towkt.js');
-var streetsJSON = require('./streets.json');
 
 // Set global wkt variable:
 var inputCircle;
@@ -26,7 +25,7 @@ var inputCircle;
 			52.370216,
 			4.895168
 		],
-		init: function () {
+		init: async function () {
 			var self = this;
 
 			// Set the original view of the map:
@@ -37,27 +36,6 @@ var inputCircle;
 				maxZoom: 20,
 				id: 'mapbox.light'
 			}).addTo(this.map);
-
-			var mapStreets = streetsJSON.map(function (street) {
-				return {
-					"type": "Feature",
-					"properties": {
-						"name": street.name.value
-					},
-					"geometry": wellknown(street.wkt.value)
-				};
-			});
-
-			// local JSON test:
-			var streets = L.geoJSON(mapStreets, {
-				onEachFeature: function (feature, layer) {
-					if (feature.geometry.type !== "Point"){
-						var bounds = layer.getBounds();
-						var center = bounds.getCenter();
-						console.log(center);
-					}
-				}
-			});
 
 			// Initialize the circle:
 			this.circle
@@ -79,6 +57,26 @@ var inputCircle;
 
 			// Create the polygon, with the centerPoint as coords:
 			this.createPolygon(this.centerPoint);
+
+			var log = await this.getAllStreets();
+			console.log(log);
+
+			// local JSON test:
+			var streets = L.geoJSON(log, {
+				onEachFeature: function (feature, layer) {
+					if (feature.geometry.type !== "Point"){
+						var bounds = layer.getBounds();
+						var center = bounds.getCenter();
+					}
+				}
+			});
+		},
+		getAllStreets: async function () {
+			return fetch('/js/streets.json')
+				.then((res) => res.json())
+				.catch(function (error) {
+					console.log(error);
+				})
 		},
 		changeRadius: function () {
 			var self = this;
