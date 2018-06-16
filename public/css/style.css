@@ -223,26 +223,56 @@ p, a, li {
 	display: none;
 }
 
-/* top layer */
+/* top layer: h1 & select */
 .new-story h1 {
 	position: absolute;
 	top: 5%;
-	left: 15%;
+	left: 20%;
+	width: 70%;
 	z-index: 100;
 	background-color: white;
 	color: var(--main-red);
 	font-size: 2em;
 }
 
-.new-story .radius {
+.new-story .radiusSelect {
 	position: absolute;
-	top: 15%;
-	left: 15%;
+	top: 30%;
+	left: 20%;
 	z-index: 100;
-	background-color: white;
+	display: inline-block;
+	background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+	background-color: var(--main-red);
+	width: 60%;
+	overflow: hidden;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
 }
 
-/* multiple rangeslider */
+@media only screen and (min-width: 50em) {
+	.new-story h1 {
+		left: 15%;
+	}
+
+	.new-story .radiusSelect {
+		top: 20%;
+		left: 15%;
+		width: 20%;
+	}
+}
+
+.new-story select {
+  color: #fff;
+	background: transparent;
+	border: none;
+	font-size: 14px;
+	height: 29px;
+	padding: 5px;
+	width: calc(200px + 70%);
+}
+
+/* multiple rangeslider - noUiSlider */
 #slider {
 	position: absolute;
 	top: 0;
@@ -285,7 +315,6 @@ p, a, li {
 .noUi-vertical .noUi-handle {
 	position: relative;
 	z-index: 1;
-
   width: 4em;
   height: 4em;
 	border-radius: 50%;
@@ -305,10 +334,12 @@ p, a, li {
 	font-weight: bold;
 }
 
+/* outputs */
+
 .new-story .timestamp-min-static {
 	position: absolute;
 	top: 0%;
-	left: calc(2em + 5%);
+	left: calc(5% + 1em);
 	z-index: 100;
 	color: var(--main-red);
 	background-color: var(--main-white);
@@ -318,7 +349,7 @@ p, a, li {
 .new-story .timestamp-max-static {
 	position: absolute;
 	bottom: 0%;
-	left: calc(2em + 5%);
+	left: calc(5% + 1em);
 	z-index: 100;
 	color: var(--main-red);
 	background-color: var(--main-white);
@@ -329,17 +360,25 @@ p, a, li {
 	display: none;
 }
 
+/* submit button */
 .new-story form button {
 	position: absolute;
 	bottom: 10%;
-	right: 10%;
-	width: 30%;
+	right: 20%;
+	width: 60%;
 	height: 5%;
 	border: none;
 	color: white;
 	background-color: var(--main-red);
 	font-weight: bold;
 	font-size: 1em;
+}
+
+@media only screen and (min-width: 50em) {
+	.new-story form button {
+		right: 10%;
+		width: 30%;
+	}
 }
 
 
