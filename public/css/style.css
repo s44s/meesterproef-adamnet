@@ -242,13 +242,113 @@ p, a, li {
 .create-story {
 	padding: 0;
 	margin: 0;
-	background-color: var(--main-bg);
 	color: var(--main-white);
+	display: flex;
+	flex-direction: row;
 }
 
 /* layout page */
-.create-story .chapter {
-	width: 65vw;
+.create-story .map-visualisation {
+	display: none;
+}
+
+.create-story .table-of-contents {
+	width: 30vw;
+	background-color: var(--main-red);
+	color: white;
+}
+
+.create-story .contents {
+	width: 70vw;
+	margin: 0;
+}
+
+@media only screen and (min-width: 50em) {
+	.create-story .map-visualisation {
+		display: block;
+		position: fixed;
+		width: 50vw;
+	}
+
+	.create-story .table-of-contents {
+		position: fixed;
+		left: 20vw;
+		overflow: scroll;
+		background-color: rgba(255,255,255,0.9);
+		color: black;
+	}
+
+	.create-story .contents {
+		width: 50vw;
+		margin-left: 50vw;
+	}
+}
+
+/* map visualisation */
+.create-story .map-visualisation #map {
+	height: 100vh;
+	width: auto;
+}
+
+.create-story .map-visualisation #map .leaflet-interactive {
+	display: none;
+}
+
+/* table of contents */
+.create-story .table-of-contents ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	overflow: hidden;
+	clear: both;
+	transition: max-height .2s ease-out;
+}
+
+.create-story .table-of-contents ol a {
+	color: white;
+}
+
+.create-story .table-of-contents button {
+	border: none;
+	background-color: var(--main-red);
+}
+
+.create-story .table-of-contents button svg {
+	fill: white;
+}
+
+.create-story .table-of-contents .close {
+	display: none;
+}
+
+.create-story .table-of-contents .first {
+	max-height: 0;
+}
+
+.create-story .table-of-contents .close-menu {
+	max-height: 0;
+}
+
+.create-story .table-of-contents .open-menu {
+	max-height: 100vh;
+}
+
+@media only screen and (min-width: 50em) {
+	.create-story .table-of-contents ol a {
+		color: black;
+	}
+
+	.create-story .table-of-contents .first {
+		max-height: none;
+	}
+
+	.create-story .table-of-contents .open, .create-story .table-of-contents .close {
+		display: none !important;
+	}
+
+	.create-story .table-of-contents button {
+		background-color: rgba(255,255,255,0.9);
+	}
 }
 
 /* chapter */
@@ -256,9 +356,11 @@ p, a, li {
 	margin-left: 5vw;
 	height: 5vh;
 	font-weight: normal;
+	color: black;
 }
 
 .create-story .chapter h2 strong {
+	color: var(--main-red);
 	font-weight: bolder;
 }
 

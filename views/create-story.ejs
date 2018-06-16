@@ -2,18 +2,28 @@
 <body class="create-story">
 
 	<section class="map-visualisation">
-		Map visualisation here
+		<div id="map"></div>
 	</section>
 
 	<nav class="table-of-contents">
-		<ol>
+		<button class="open">
+			<svg class="navicon" height="32px" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+			</svg>
+		</button>
+		<button class="close">
+			<svg class="navicon" height="32px" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 -5 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"/>
+			</svg>
+		</button>
+		<ol id="menu" class="menu">
 			<% for(var i = 0; i < Object.keys(dataFirstQuery.years).length; i++) { %>
 				<li class="year">
-					<h1><%- Object.keys(dataFirstQuery.years)[i] %></h1>
+					<a href=""><h1><%- Object.keys(dataFirstQuery.years)[i] %></h1></a>
 
 					<% var objectYears = dataFirstQuery.years[Object.keys(dataFirstQuery.years)[i]]; %>
 					<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
-						<h2><%- Object.keys(objectYears)[j] %></h2>
+						<a href=""><h2><%- Object.keys(objectYears)[j] %></h2></a>
 					<% } %>
 
 					<button class="add-chapter-btn" type="button">+</button>
@@ -71,6 +81,42 @@
 				e.preventDefault();
 				e.target.parentElement.parentElement.classList.remove('show')
 			});
+		}
+	</script>
+	<script>
+		if('querySelector' in document && 'querySelectorAll' in document && 'addEventListener' in window) {
+			var open = document.querySelector('.open');
+			var close = document.querySelector('.close');
+			var menu = document.querySelector('nav ol');
+			var items = document.querySelectorAll('nav ol li');
+
+			menu.classList.add('first');
+
+			open.addEventListener('click', function(){
+				menu.classList.add('open-menu');
+				menu.classList.remove('close-menu');
+
+				open.style.display = "none";
+				close.style.display = "block";
+			})
+
+			close.addEventListener('click', function(){
+				menu.classList.remove('open-menu');
+				menu.classList.add('close-menu');
+
+				close.style.display = "none";
+				open.style.display = "block";
+			})
+
+			items.forEach(function(el){
+				el.addEventListener('click', function(){
+					menu.classList.remove('open-menu');
+					menu.classList.add('close-menu');
+
+					close.style.display = "none";
+					open.style.display = "block";
+				})
+			})
 		}
 	</script>
 
