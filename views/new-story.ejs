@@ -19,22 +19,30 @@
 			<button type="submit">Zoek</button>
 		</form>
 
-		<% if (data !== null && data !== undefined) { %>
-			<% data.forEach(function (street) { %>
-				<div><%= street.name.value %></div>
-			<% }); %>
-		<% } %>
-
 		<div id='map'></div>
 
 		<form class="location-and-timestamp" action="/create-story" method="post">
-			<input type="range" min="1900" max="2018" multiple value="1971,1976" />
-			<output id="rangevalueMin" name="timestamp-min">1971</output>
-			<output id="rangevalueMax" name="timestamp-max">1976</output>
+			<div class="autocomplete">
+				<% if (data !== null && data !== undefined) { %>
+					<ul id="autocomplete-list" class="autocomplete-items">
+						<% data.forEach(function (street) { %>
+							<li>
+								<input id="<%- street.street.value %>" type="radio" name="wkt" value="<%- street.wkt.value %>">
+								<label for="<%- street.street.value %>"><%= street.name.value %></label>
+							</li>
+						<% }); %>
+					</ul>
+				<% } %>
+			</div>
+			<div class="timestamp">
+				<input type="range" name="timestamp" min="1900" max="2018" multiple value="1971,1976" />
+				<output id="rangevalueMin" name="timestamp-min">1971</output>
+				<output id="rangevalueMax" name="timestamp-max">1976</output>
+			</div>
 			<button type="submit">Maak een verhaal</button>
 		</form>
 		<script>
 			window.data = <%- JSON.stringify(data || null) %>;
-			console.log(window.data)
+			console.log(window.data);
 		</script>
 <%- include('partials/foot.ejs') %>
