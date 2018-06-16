@@ -20,7 +20,7 @@ exports.searchLocationPage = function (req, res, next) {
     .then(function (data) {
       var rows = data.results.bindings;
 
-      
+
 
       res.redirect('/new-story');
     })
@@ -40,17 +40,4 @@ exports.getCreateStoryPage = async function (req, res, next) {
   res.render('create-story', {
     dataFirstQuery: result
   });
-}
-
-exports.saveStoryPage = function (req, res, next) {
-  // Use bodyParser to get the submitted story id
-  res.render('save-story');
-}
-
-exports.loginPage = function (req, res, next) {
-  res.render('login');
-}
-
-exports.createAccountPage = function (req, res, next) {
-  res.render('create-account');
 }
