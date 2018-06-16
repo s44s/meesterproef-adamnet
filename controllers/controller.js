@@ -9,19 +9,19 @@ exports.homePage = function (req, res, next) {
 }
 
 exports.newStoryPage = function (req, res, next) {
-  res.render('new-story');
+  res.render('new-story', {
+    data: req.session.searchResults
+  });
 }
 
 exports.searchLocationPage = function (req, res, next) {
-  var url = sparqlqueries.url(sparqlqueries.getAllStreets());
+  var url = sparqlqueries.url(sparqlqueries.getLocationBySearch(req.body.searchLocation));
 
   fetch(url)
-    .then((res) => res.json())
+    .then((resp) => resp.json())
     .then(function (data) {
       var rows = data.results.bindings;
-
-
-
+      req.session.searchResults = rows;
       res.redirect('/new-story');
     })
     .catch(function (error) {
