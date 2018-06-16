@@ -20,11 +20,19 @@ exports.location = async function (newStoryData) {
 
   var streetWkts = await fetchStreetWkts();
 
+  // Check if a radius is selected, or just one street:
+  // if (newStoryData.coords !== null && newStoryData.coords !== undefined) {
+  //   console.log('has coords');
+  // } else {
+  //   console.log('does not have coords');
+  // }
+
   var streetsInRadius = streetWkts.map(function (street) {
     var parseWkt = wellknown(street.wkt.value);
     var point = turf.point([newStoryData.coords[1], newStoryData.coords[0]]);
     var line;
 
+    // Check what type the wkt is:
     if (parseWkt.type == 'MultiLineString') {
       line = turf.multiLineString(parseWkt.coordinates);
     } else if (parseWkt.type == 'LineString') {
