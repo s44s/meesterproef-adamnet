@@ -12,7 +12,7 @@ var sparqlqueries = {
       PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX hg: <http://rdf.histograph.io/>
       PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-      SELECT ?name ?wkt WHERE {
+      SELECT ?street ?name ?wkt WHERE {
         ?street a hg:Street .
         ?street rdfs:label ?name .
         ?street geo:hasGeometry/geo:asWKT ?wkt .
