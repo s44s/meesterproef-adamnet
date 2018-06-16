@@ -245,15 +245,20 @@ p, a, li {
 	color: var(--main-white);
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 /* layout page */
+.create-story .personal-data {
+	width: 100vw;
+}
+
 .create-story .map-visualisation {
 	display: none;
 }
 
 .create-story .table-of-contents {
-	width: 30vw;
+	width: 10vw;
 	background-color: var(--main-red);
 	color: white;
 }
@@ -266,14 +271,17 @@ p, a, li {
 @media only screen and (min-width: 50em) {
 	.create-story .map-visualisation {
 		display: block;
-		position: fixed;
+		position: sticky;
+		top: 0;
 		width: 50vw;
 	}
 
 	.create-story .table-of-contents {
-		position: fixed;
+		width: 30vw;
 		left: 20vw;
-		overflow: scroll;
+		top: 0;
+		right: 50vw;
+		position: sticky;
 		background-color: rgba(255,255,255,0.9);
 		color: black;
 	}
@@ -282,6 +290,25 @@ p, a, li {
 		width: 50vw;
 		margin-left: 50vw;
 	}
+}
+
+/* personal data form */
+.create-story .personal-data form {
+	width: 50vw;
+	margin-left: 50vw;
+}
+
+.create-story .personal-data form .title {
+	font-size: 2em;
+	width: 90%;
+	margin-left: 5%;
+	border: 0;
+	text-align: right;
+}
+
+.create-story .personal-data form label {
+	color: black;
+	display: block;
 }
 
 /* map visualisation */
@@ -350,13 +377,17 @@ p, a, li {
 		background-color: rgba(255,255,255,0.9);
 	}
 }
-
+/* contents */
 /* chapter */
 .create-story .chapter h2 {
 	margin-left: 5vw;
 	height: 5vh;
 	font-weight: normal;
 	color: black;
+	position: sticky;
+	top: 0;
+	padding: 4% 0;
+	background-color: white;
 }
 
 .create-story .chapter h2 strong {
@@ -413,7 +444,7 @@ p, a, li {
 	width: 75%;
 }
 
-.create-story ul li div img {
+.create-story ul li div:first-child img {
 	width: 100%;
 }
 
