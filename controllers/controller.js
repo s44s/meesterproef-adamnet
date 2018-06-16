@@ -31,7 +31,7 @@ exports.searchLocationPage = function (req, res, next) {
 
 exports.postCreateStoryPage = function (req, res, next) {
   newStoryData = req.body;
-  res.redirect('/');
+  res.redirect('/create-story');
 }
 
 exports.getCreateStoryPage = async function (req, res, next) {
