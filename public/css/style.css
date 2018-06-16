@@ -246,39 +246,37 @@ p, a, li {
 	color: var(--main-white);
 }
 
-.create-story h1 {
-	margin-left: 5vw;
-	height: 5vh;
-}
-
-.create-story .personal-data {
-	width: 20vw;
-  float: right;
-  margin: 0 5vw;
-}
-
+/* layout page */
 .create-story .chapter {
 	width: 65vw;
 }
 
-.create-story label .personal-data {
-	display: block;
+/* chapter */
+.create-story .chapter h2 {
+	margin-left: 5vw;
+	height: 5vh;
+	font-weight: normal;
 }
 
-.create-story .personal-data input {
-	display: block;
-	margin-bottom: 2%;
+.create-story .chapter h2 strong {
+	font-weight: bolder;
 }
 
 .create-story .data {
 	-webkit-columns: 18vw 3;
-	-moz-columns: 18vw 3; /* Firefox */
+	-moz-columns: 18vw 3;
 	columns: 18vw 3;
 	margin-left: 5vw;
 	column-fill: auto;
 }
 
-.create-story .data .data-image {
+.create-story .data ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.create-story .data ul li {
 	break-inside: avoid;
 	background-color: var(--main-white);
 	color: var(--main-black);
@@ -286,42 +284,38 @@ p, a, li {
 	border-radius: 5px;
 }
 
-.create-story .data div p {
+.create-story .data ul li label {
+	cursor: pointer;
+}
+
+.create-story .data ul li div p {
 	margin: 0;
 	padding: 5%;
 	width: 75%;
 	display: inline-block;
 }
 
-.create-story .data div a {
+.create-story .data ul li div a {
 	display: inline-block;
 	width: 10%;
 }
 
-.create-story .data div a:hover,
-.create-story .data div a:focus {
+.create-story .data ul li div a:hover,
+.create-story .data ul li div a:focus {
 	outline: 0;
-	width: 12%;
+	padding-bottom: 1%;
+	border-bottom: 2px solid black;
 }
 
-.create-story div a img {
+.create-story ul li div a img {
 	width: 75%;
 }
 
-.create-story .data label {
-	cursor: pointer;
-}
-
-.create-story div img {
+.create-story ul li div img {
 	width: 100%;
 }
 
-.create-story h2 {
-	margin-left: 5vw;
-	height: 5vh;
-}
-
-.create-story form input[type="checkbox"] {
+.create-story form ul li input[type="checkbox"] {
 	margin: 0;
 	padding: 0;
 	opacity: 0;
@@ -329,8 +323,8 @@ p, a, li {
 	height: 0;
 }
 
-.create-story form input[type="checkbox"]:checked ~ .check,
-.create-story form input[type="checkbox"]:focus ~ .check {
+.create-story form ul li input[type="checkbox"]:checked ~ .check,
+.create-story form ul li input[type="checkbox"]:focus ~ .check {
 	position: absolute;
 	display: block;
 	width: 18vw;
@@ -339,7 +333,7 @@ p, a, li {
 	z-index: 100;
 }
 
-.create-story form div:hover .check {
+.create-story form ul li div:hover .check {
 	position: absolute;
 	display: block;
 	width: 18vw;
@@ -348,13 +342,13 @@ p, a, li {
 	z-index: 100;
 }
 
-.create-story form input[type="checkbox"]:checked ~ img,
-.create-story form input[type="checkbox"]:focus ~ img  {
+.create-story form ul li input[type="checkbox"]:checked ~ img,
+.create-story form ul li input[type="checkbox"]:focus ~ img  {
 	opacity: 0.5;
 }
 
-.create-story form label div:hover .check::after,
-.create-story form input[type="checkbox"]:focus ~ .check::after {
+.create-story form ul li label div:hover .check::after,
+.create-story form ul li input[type="checkbox"]:focus ~ .check::after {
 	background-image: url('/images/check-hover.svg');
 	background-size: 20px 20px;
 	display: inline-block;
@@ -365,7 +359,7 @@ p, a, li {
 	margin-top: -2%;
 }
 
-.create-story form input[type="checkbox"]:checked ~ .check::after {
+.create-story form ul li input[type="checkbox"]:checked ~ .check::after {
 	background-image: url('/images/checked.svg');
 	background-size: 20px 20px;
 	display: inline-block;
