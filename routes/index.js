@@ -19,13 +19,4 @@ router.post('/create-story', controller.postCreateStoryPage);
 // GET create story page:
 router.get('/create-story', controller.getCreateStoryPage);
 
-// POST save story page:
-router.post('/save-story', controller.saveStoryPage);
-
-// GET login page:
-router.get('/login', controller.loginPage);
-
-// GET create account page:
-router.get('/create-account', controller.createAccountPage);
-
 module.exports = router;
