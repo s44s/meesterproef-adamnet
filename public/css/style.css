@@ -325,6 +325,10 @@ p, a, li {
 	font-size: 2em;
 }
 
+#rangevalueMin, #rangevalueMax {
+	display: none;
+}
+
 .new-story form button {
 	position: absolute;
 	bottom: 10%;

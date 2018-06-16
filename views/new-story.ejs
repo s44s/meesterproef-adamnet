@@ -26,6 +26,7 @@
 			<div id="slider"></div>
 			<output class="timestamp-min-static">1900</output>
 			<output class="timestamp-max-static">2018</output>
+
 			<output id="rangevalueMin" name="timestamp-min"></output>
 			<output id="rangevalueMax" name="timestamp-max"></output>
 
@@ -55,8 +56,22 @@
 				'min': 1900,
 				'max': 2018
 			}
-
 		});
+
+		var minValue = document.getElementById('rangevalueMin');
+		var maxValue = document.getElementById('rangevalueMax');
+
+	 // When the slider value changes, update the input and span
+	 range.noUiSlider.on('update', function( values, handle ) {
+			 if ( handle ) {
+				 console.log('changemax');
+				 maxValue.innerHTML = values[handle];
+			 } else {
+				 console.log('changemin');
+				 minValue.innerHTML = values[handle];
+			 }
+	 });
+
 
 		</script>
 <%- include('partials/foot.ejs') %>
