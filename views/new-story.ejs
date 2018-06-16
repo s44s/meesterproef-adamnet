@@ -19,6 +19,12 @@
 			<button type="submit">Zoek</button>
 		</form>
 
+		<% if (data !== null && data !== undefined) { %>
+			<% data.forEach(function (street) { %>
+				<div><%= street.name.value %></div>
+			<% }); %>
+		<% } %>
+
 		<div id='map'></div>
 
 		<form class="location-and-timestamp" action="/create-story" method="post">
@@ -27,4 +33,8 @@
 			<output id="rangevalueMax" name="timestamp-max">1976</output>
 			<button type="submit">Maak een verhaal</button>
 		</form>
+		<script>
+			window.data = <%- JSON.stringify(data || null) %>;
+			console.log(window.data)
+		</script>
 <%- include('partials/foot.ejs') %>
