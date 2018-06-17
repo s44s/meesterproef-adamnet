@@ -79,7 +79,6 @@ var map = require('./map.js');
 
           li.addEventListener('click', function (e) {
             e.preventDefault();
-            self.searchbar.value = this.textContent;
             self.closeList();
             map.selectedStreet(this.textContent);
           });
