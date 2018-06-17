@@ -43,8 +43,14 @@
         self.closeAllLists(e.target);
       });
     },
-    getAutocomplete: function () {
-
+    getAutocomplete: function (data, val) {
+      // Check what data matches the search query:
+      var results = data.filter(function (str) {
+        if (str.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          return str;
+        }
+      });
+      this.setAutocomplete(results);
     },
     setAutocomplete: function () {
 
