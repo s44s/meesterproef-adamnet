@@ -99,8 +99,10 @@
       if (this.currentFocus < 0) this.currentFocus = (x.length - 1);
       x[this.currentFocus].children[0].classList.add('autocomplete-active');
     },
-    removeActive: function () {
-
+    removeActive: function (x) {
+      for (var i = 0; i < x.length; i++) {
+        x[i].children[0].classList.remove('autocomplete-active');
+      }
     },
     closeAllLists: function () {
 
