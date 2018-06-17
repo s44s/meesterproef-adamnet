@@ -104,8 +104,14 @@
         x[i].children[0].classList.remove('autocomplete-active');
       }
     },
-    closeAllLists: function () {
+    closeAllLists: function (el) {
+      var x = document.querySelectorAll('.autocomplete-items');
 
+      for (var i = 0; i < x.length; i++) {
+        if (el != x[i] && el != this.searchbar) {
+          x[i].parentNode.removeChild(x[i]);
+        }
+      }
     }
   };
 
