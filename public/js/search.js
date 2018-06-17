@@ -1,3 +1,5 @@
+var map = require('./map.js');
+
 (function () {
 
   'use strict';
@@ -79,6 +81,7 @@
             e.preventDefault();
             self.searchbar.value = this.textContent;
             self.closeList();
+            map.selectedStreet(this.textContent);
           });
         }
       });
