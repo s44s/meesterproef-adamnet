@@ -92,8 +92,12 @@
         }
       });
     },
-    addActive: function () {
-
+    addActive: function (x) {
+      if (!x) return false;
+      this.removeActive(x);
+      if (this.currentFocus >= x.length) this.currentFocus = 0;
+      if (this.currentFocus < 0) this.currentFocus = (x.length - 1);
+      x[this.currentFocus].children[0].classList.add('autocomplete-active');
     },
     removeActive: function () {
 
