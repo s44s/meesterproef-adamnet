@@ -38,6 +38,10 @@
         }
       });
 
+      // Event listener when clicking the document:
+      document.addEventListener('click', function (e) {
+        self.closeAllLists(e.target);
+      });
     },
     getAutocomplete: function () {
 
