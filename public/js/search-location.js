@@ -2,16 +2,16 @@
 
   'use strict';
 
-  var searchLocation = {
+  var search = {
     currentFocus: 0,
-    init: function (searchbar) {
+    init: function (searchbar, data) {
       var self = this;
 
       // Add the given searchbar to this object:
       this.searchbar = searchbar;
 
       // Event listener for input value:
-      this.searchbar.addEventListener('input', function (e) {
+      this.searchbar.addEventListener('input', function () {
         self.closeAllLists();
         if (!this.value) return false;
         self.currentFocus = -1;
@@ -20,23 +20,23 @@
 
       // Event listener for keyboard functions:
       this.searchbar.addEventListener('keydown', function (e) {
-        var x = document.getElementById(this.id + 'autocomplete-list');
+        var list = document.querySelector('.autocomplete-items');
 
-        if (x) x = x.querySelectorAll('li');
+        if (list) list = list.querySelectorAll('li');
 
         switch (e.keyCode) {
           case 40:
             self.currentFocus++;
-            self.addActive(x);
+            self.addActive(list);
             break;
           case 38:
             self.currentFocus--;
-            self.addActive(x);
+            self.addActive(list);
             break;
           case 13:
             e.preventDefault();
             if (self.currentFocus > -1) {
-              if (x) x[self.currentFocus].children[0].click();
+              if (list) list[self.currentFocus].children[0].click();
             }
         }
       });
@@ -57,62 +57,52 @@
     },
     setAutocomplete: function (results) {
       var self = this;
+      var autocomplete = document.querySelector('.autocomplete');
       var ul = document.createElement('ul');
 
-      ul.setAttribute('id', this.searchbar.id + 'autocomplete-list');
       ul.setAttribute('class', 'autocomplete-items');
 
-      this.searchbar.parentNode.appendChild(ul);
+      autocomplete.appendChild(ul);
 
       results.forEach(function (result, i) {
         if (i < 2) {
           var li = document.createElement('li');
-          var radio = document.createElement('input').type = 'radio';
-          var label = document.createElement('label');
+          var a = document.createElement('a');
 
           ul.appendChild(li);
 
-          radio.setAttribute('id', result);
-          radio.name = 'wkt';
-          radio.value = result;
-          li.appendChild(radio);
+          a.textContent = result;
+          li.appendChild(a);
 
-          label.setAttribute('for', result);
-          label.textContent = result;
-          li.appendChild(label);
-
-          radio.addEventListener('change', function (e) {
+          li.addEventListener('click', function (e) {
             e.preventDefault();
-            if (radio.checked == true) {
-              self.searchbar.value = this.nextElementSibling.textContent;
-              self.closeAllLists();
-              // Handle click on street here
-            }
+            self.searchbar.value = this.textContent;
+            self.closeAllLists();
           });
         }
       });
     },
-    addActive: function (x) {
-      if (!x) return false;
-      this.removeActive(x);
-      if (this.currentFocus >= x.length) this.currentFocus = 0;
-      if (this.currentFocus < 0) this.currentFocus = (x.length - 1);
-      x[this.currentFocus].children[0].classList.add('autocomplete-active');
+    addActive: function (list) {
+      if (!list) return false;
+      this.removeActive(list);
+      if (this.currentFocus >= list.length) this.currentFocus = 0;
+      if (this.currentFocus < 0) this.currentFocus = (list.length - 1);
+      list[this.currentFocus].children[0].classList.add('autocomplete-active');
     },
-    removeActive: function (x) {
-      for (var i = 0; i < x.length; i++) {
-        x[i].children[0].classList.remove('autocomplete-active');
+    removeActive: function (list) {
+      for (var i = 0; i < list.length; i++) {
+        list[i].children[0].classList.remove('autocomplete-active');
       }
     },
-    closeAllLists: function (el) {
-      var x = document.querySelectorAll('.autocomplete-items');
+    closeList: function (el) {
+      var list = document.querySelector('.autocomplete-items');
 
-      for (var i = 0; i < x.length; i++) {
-        if (el != x[i] && el != this.searchbar) {
-          x[i].parentNode.removeChild(x[i]);
-        }
+      if (el != list && el != this.searchbar) {
+        list.parentNode.removeChild(list);
       }
     }
   };
+
+  module.exports = search;
 
 })();
