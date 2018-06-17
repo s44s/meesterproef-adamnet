@@ -12,7 +12,7 @@
 
       // Event listener for input value:
       this.searchbar.addEventListener('input', function () {
-        self.closeAllLists();
+        self.closeList();
         if (!this.value) return false;
         self.currentFocus = -1;
         self.getAutocomplete(data, this.value);
@@ -43,7 +43,7 @@
 
       // Event listener when clicking the document:
       document.addEventListener('click', function (e) {
-        self.closeAllLists(e.target);
+        self.closeList(e.target);
       });
     },
     getAutocomplete: function (data, val) {
@@ -65,19 +65,20 @@
       autocomplete.appendChild(ul);
 
       results.forEach(function (result, i) {
-        if (i < 2) {
+        if (i < 10) {
           var li = document.createElement('li');
           var a = document.createElement('a');
 
           ul.appendChild(li);
 
           a.textContent = result;
+          a.href = '#';
           li.appendChild(a);
 
           li.addEventListener('click', function (e) {
             e.preventDefault();
             self.searchbar.value = this.textContent;
-            self.closeAllLists();
+            self.closeList();
           });
         }
       });
