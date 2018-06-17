@@ -7,8 +7,11 @@
     init: function (searchbar) {
       var self = this;
 
+      // Add the given searchbar to this object:
+      this.searchbar = searchbar;
+
       // Event listener for input value:
-      searchbar.addEventListener('input', function (e) {
+      this.searchbar.addEventListener('input', function (e) {
         self.closeAllLists();
         if (!this.value) return false;
         self.currentFocus = -1;
@@ -16,7 +19,7 @@
       });
 
       // Event listener for keyboard functions:
-      searchbar.addEventListener('keydown', function (e) {
+      this.searchbar.addEventListener('keydown', function (e) {
         var x = document.getElementById(this.id + 'autocomplete-list');
 
         if (x) x = x.querySelectorAll('li');
@@ -52,8 +55,42 @@
       });
       this.setAutocomplete(results);
     },
-    setAutocomplete: function () {
+    setAutocomplete: function (results) {
+      var self = this;
+      var ul = document.createElement('ul');
 
+      ul.setAttribute('id', this.searchbar.id + 'autocomplete-list');
+      ul.setAttribute('class', 'autocomplete-items');
+
+      this.searchbar.parentNode.appendChild(ul);
+
+      results.forEach(function (result, i) {
+        if (i < 2) {
+          var li = document.createElement('li');
+          var radio = document.createElement('input').type = 'radio';
+          var label = document.createElement('label');
+
+          ul.appendChild(li);
+
+          radio.setAttribute('id', result);
+          radio.name = 'wkt';
+          radio.value = result;
+          li.appendChild(radio);
+
+          label.setAttribute('for', result);
+          label.textContent = result;
+          li.appendChild(label);
+
+          radio.addEventListener('change', function (e) {
+            e.preventDefault();
+            if (radio.checked == true) {
+              self.searchbar.value = this.nextElementSibling.textContent;
+              self.closeAllLists();
+              // Handle click on street here
+            }
+          });
+        }
+      });
     },
     addActive: function () {
 
