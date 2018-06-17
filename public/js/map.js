@@ -28,6 +28,7 @@ var inputCircle;
 		],
 		init: async function () {
 			var self = this;
+			var searchbar = document.querySelector('[name="searchLocation"]');
 
 			// Set the original view of the map:
 			this.map.setView(this.centerPoint, 14);
@@ -59,11 +60,19 @@ var inputCircle;
 			// Create the polygon, with the centerPoint as coords:
 			this.createPolygon(this.centerPoint);
 
-			var log = await this.getAllStreets();
-			console.log(log);
+			// Get all the streets:
+			var allStreets = await this.getAllStreets();
 
-			// local JSON test:
-			var streets = L.geoJSON(log, {
+			// Map the street names from allStreets for search:
+			var streetNames = allStreets.map(function (street) {
+				return street.properties.name;
+			});
+
+			// Initialize the autocomplete search:
+			search.init(searchbar, streetNames);
+
+			// Create geoJSON:
+			var streets = L.geoJSON(allStreets, {
 				onEachFeature: function (feature, layer) {
 					if (feature.geometry.type !== "Point"){
 						var bounds = layer.getBounds();
