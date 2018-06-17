@@ -1,13 +1,14 @@
 // Require JS files:
 var circleToPolygon = require('./circletopolygon.js');
 var toWKT = require('./towkt.js');
+var search = require('./search.js');
 
 // Set global wkt variable:
 var inputCircle;
 
 (function(){
 
-	"use strict"
+	"use strict";
 
 	var map = {
 		mapboxAccessToken: 'pk.eyJ1IjoibWF4ZGV2cmllczk1IiwiYSI6ImNqZWZydWkyNjF3NXoyd28zcXFqdDJvbjEifQ.Dl3DvuFEqHVAxfajg0ESWg',
