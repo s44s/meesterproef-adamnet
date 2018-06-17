@@ -96,10 +96,12 @@
       }
     },
     closeList: function (el) {
-      var list = document.querySelector('.autocomplete-items');
+      var lists = document.querySelectorAll('.autocomplete-items');
 
-      if (el != list && el != this.searchbar) {
-        list.parentNode.removeChild(list);
+      for (var i = 0; i < lists.length; i++) {
+        if (el != lists[i] && el != this.searchbar) {
+          lists[i].parentNode.removeChild(lists[i]);
+        }
       }
     }
   };
