@@ -4,6 +4,35 @@ var chapters = require('./chapters.js');
 
 var newStoryData = {};
 
+var stories = [];
+
+/*
+  Story data structure:
+  ---------------------
+
+  story: {
+    "id": 0001,
+    "key": "A0B1CC2",
+    "type": "person",
+    "title": "Mijn verhaal van Amsterdam",
+    "name": "Anne Frank",
+    "birthyear": 1929,
+    "years": {
+      "1940": {
+        "de buurt": [img, img],
+        "de overige straten": [img, img]
+      },
+      "1941": {
+        "Sint Agnietenstraat": [img],
+        "de buurt": [img, img],
+        "de overige straten": [img, img],
+        "basisschool": [img, img],
+        "posters": [img, img]
+      }
+    }
+  }
+*/
+
 exports.homePage = function (req, res, next) {
   res.render('index');
 }
@@ -35,9 +64,19 @@ exports.postCreateStoryPage = function (req, res, next) {
 }
 
 exports.getCreateStoryPage = async function (req, res, next) {
+  console.log('title:', req.params.title);
+  console.log('id:', req.params.id);
   var result = await chapters.location(newStoryData);
 
   res.render('create-story', {
     dataFirstQuery: result
   });
+}
+
+exports.saveStoryPage = function (req, res, next) {
+
+}
+
+exports.storyPage = function (req, res, next) {
+  
 }
