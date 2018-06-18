@@ -1,8 +1,12 @@
 var fetch = require('node-fetch');
+var uuid = require('uuid/v1');
+var shortid = require('shortid');
 var sparqlqueries = require('./sparql');
 var chapters = require('./chapters.js');
 
 var newStoryData = {};
+
+var stories = [];
 
 /*
   Story data structure:
@@ -68,15 +72,32 @@ exports.getCreateStoryPage = async function (req, res, next) {
     "years": result.years
   };
 
-  console.log('first:', req.session.story);
-
   res.render('create-story', {
     dataFirstQuery: result
   });
 }
 
 exports.saveStoryPage = function (req, res, next) {
-  console.log('second:', req.session.story);
+  // Generate new id:
+  var id = shortid.generate();
+
+  // Generate new key:
+  var key = uuid();
+
+  // Add id and key to story data:
+  req.session.story.id = id;
+  req.session.story.key = key;
+
+  // Push the story object in temporary database:
+  stories.push(req.session.story);
+
+  // Create the new url:
+  var url = req.get('host') + '/story/' + id;
+
+  res.render('save-story', {
+    url: url,
+    key: key
+  });
 }
 
 exports.storyPage = function (req, res, next) {
