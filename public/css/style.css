@@ -348,7 +348,6 @@ p, a, li {
 }
 
 /* outputs */
-
 .new-story .timestamp-min-static {
 	position: absolute;
 	top: 0%;
@@ -394,22 +393,19 @@ p, a, li {
 	}
 }
 
-
 /* CREATE-STORY */
 /* form */
 .create-story {
 	padding: 0;
 	margin: 0;
 	color: var(--main-white);
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
 }
 
 /* layout page */
-.create-story .personal-data {
-	width: 100vw;
-	height: 20vh;
+.create-story .grid {
+	/* display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap; */
 }
 
 .create-story .map-visualisation {
@@ -417,66 +413,54 @@ p, a, li {
 }
 
 .create-story .table-of-contents {
-	width: 10vw;
+	flex-basis: 10vw;
 	background-color: var(--main-red);
 	color: white;
 }
 
 .create-story .contents {
-	width: 70vw;
+	flex-basis: 70vw;
 	margin: 0;
 }
 
 @media only screen and (min-width: 50em) {
 	.create-story .map-visualisation {
 		display: block;
-		position: sticky;
-		top: 0;
 		width: 50vw;
+		z-index: 1;
+		position: fixed;
+		left: 0;
+		top: 0;
 	}
 
 	.create-story .table-of-contents {
-		flex-basis: 30vw;
-		width: 30vw;
 		left: 20vw;
-		top: 0;
-		right: 50vw;
-		display: inline-block;
-		position: sticky;
+		width: 30vw;
+		z-index: 100;
 		background-color: rgba(255,255,255,0.9);
 		color: black;
+
+		position: fixed;
+		padding-top: 20vh;
+
+		overflow: scroll;
+		height: 100%;
+
+		/* padding-top: 20vh;
+		position: sticky;
+		top: 0; */
 	}
 
 	.create-story .contents {
-		flex-basis: 50vw;
-		width: 50vw;
+		width: 45vw;
 		margin-left: 50vw;
 	}
-}
-
-/* personal data form */
-.create-story .personal-data form {
-	width: 50vw;
-	margin-left: 50vw;
-}
-
-.create-story .personal-data form .title {
-	font-size: 2em;
-	width: 90%;
-	margin-left: 5%;
-	border: 0;
-	text-align: right;
-}
-
-.create-story .personal-data form label {
-	color: black;
-	display: block;
 }
 
 /* map visualisation */
 .create-story .map-visualisation #map {
 	height: 100vh;
-	width: auto;
+	width: 50vw;
 }
 
 .create-story .map-visualisation #map .leaflet-interactive {
@@ -484,6 +468,17 @@ p, a, li {
 }
 
 /* table of contents */
+.create-story .table-of-contents::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100px;
+	height: 100%;
+	background-color: var(--main-red);
+	z-index: 1000;
+}
+
 .create-story .table-of-contents ol {
 	margin: 0;
 	padding: 0;
@@ -497,6 +492,15 @@ p, a, li {
 	color: white;
 }
 
+.create-story .table-of-contents ol li {
+	font-weight: lighter;
+}
+
+.create-story .table-of-contents ol li .active-year {
+	color: red;
+}
+
+/* dropdown menu */
 .create-story .table-of-contents button {
 	border: none;
 	background-color: var(--main-red);
@@ -540,16 +544,45 @@ p, a, li {
 	}
 }
 /* contents */
-/* chapter */
-.create-story .chapter h2 {
-	margin-left: 5vw;
-	height: 5vh;
-	font-weight: normal;
+/* personal data form */
+.create-story .personal-data {
+	margin-left: 2.5vw;
+}
+
+.create-story .personal-data form .title {
+	font-size: 2em;
+	width: 90%;
+	margin-left: 5%;
+	border: 0;
+	text-align: right;
+}
+
+.create-story .personal-data form label {
 	color: black;
-	position: sticky;
-	top: 0;
-	padding: 4% 0;
+	display: block;
+}
+
+/* chapter */
+.create-story .chapter {
+	width: 45vw;
+	margin-left: 2.5vw;
+}
+
+.create-story .chapter h2 {
+	height: 3vh;
+  font-weight: normal;
+  color: black;
+  position: sticky;
+  top: -0.95;
+  padding: 7.5% 0;
 	background-color: white;
+	z-index: 1000;
+}
+
+.create-story .chapter h2::before {
+	content: url('/images/crosses.svg'); /* with class ModalCarrot ??*/
+	position: absolute;
+	top: 10%;
 }
 
 .create-story .chapter h2 strong {
@@ -561,7 +594,6 @@ p, a, li {
 	-webkit-columns: 18vw 3;
 	-moz-columns: 18vw 3;
 	columns: 18vw 3;
-	margin-left: 5vw;
 	column-fill: auto;
 }
 
@@ -585,14 +617,16 @@ p, a, li {
 
 .create-story .data ul li div p {
 	margin: 0;
-	padding: 5%;
+	padding: 5% 0;
 	width: 75%;
 	display: inline-block;
 }
 
 .create-story .data ul li div a {
 	display: inline-block;
-	width: 10%;
+	margin-top: 5%;
+	width: 7.5%;
+  margin-left: 12.5%;
 }
 
 .create-story .data ul li div a:hover,
