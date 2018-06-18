@@ -403,9 +403,9 @@ p, a, li {
 
 /* layout page */
 .create-story .grid {
-	/* display: flex;
+	display: flex;
 	flex-direction: row;
-	flex-wrap: nowrap; */
+	flex-wrap: nowrap;
 }
 
 .create-story .map-visualisation {
@@ -434,8 +434,8 @@ p, a, li {
 	}
 
 	.create-story .table-of-contents {
-		left: 20vw;
-		width: 30vw;
+		left: 25vw;
+		width: 25vw;
 		z-index: 100;
 		background-color: rgba(255,255,255,0.9);
 		color: black;
@@ -443,8 +443,8 @@ p, a, li {
 		position: fixed;
 		padding-top: 20vh;
 
-		overflow: scroll;
-		height: 100%;
+		/* overflow: scroll;
+		height: 100%; */
 
 		/* padding-top: 20vh;
 		position: sticky;
@@ -468,15 +468,17 @@ p, a, li {
 }
 
 /* table of contents */
-.create-story .table-of-contents::after {
-	content: "";
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 100px;
-	height: 100%;
-	background-color: var(--main-red);
-	z-index: 1000;
+@media only screen and (min-width: 50em) {
+	.create-story .table-of-contents::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 40%;
+		height: 100%;
+		background-color: var(--main-red);
+		z-index: 100;
+	}
 }
 
 .create-story .table-of-contents ol {
@@ -488,16 +490,39 @@ p, a, li {
 	transition: max-height .2s ease-out;
 }
 
-.create-story .table-of-contents ol a {
-	color: white;
-}
-
 .create-story .table-of-contents ol li {
 	font-weight: lighter;
 }
 
-.create-story .table-of-contents ol li .active-year {
-	color: red;
+.create-story .table-of-contents ol li h1 {
+	width: 55%;
+	margin-right: 5%;
+	text-align: right;
+}
+
+.create-story .table-of-contents ol li h1.active-year {
+	position: relative;
+	width: 40%;
+	color: white;
+	font-size: 3em;
+	margin-left: 60%;
+	z-index: 1000;
+	text-align: center;
+}
+
+.create-story .table-of-contents ol li a {
+	width: 55%;
+	margin-right: 5%;
+	text-align: right;
+	display: block;
+}
+
+.create-story .table-of-contents ol li button {
+	width: 5%;
+	color: white;
+	background-color: black;
+	margin-left: 50%;
+	margin-top: 2%;
 }
 
 /* dropdown menu */
