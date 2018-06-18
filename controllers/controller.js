@@ -88,6 +88,9 @@ exports.saveStoryPage = function (req, res, next) {
   req.session.story.id = id;
   req.session.story.key = key;
 
+  // Temporary empty database for dev:
+  stories.splice(0, stories.length);
+
   // Push the story object in temporary database:
   stories.push(req.session.story);
 
@@ -101,5 +104,14 @@ exports.saveStoryPage = function (req, res, next) {
 }
 
 exports.storyPage = function (req, res, next) {
+  var id = req.params.id;
+  var story = stories.filter(function (story) {
+    if (story.id == id) {
+      return story;
+    }
+  });
 
+  res.render('story', {
+    dataFirstQuery: story[0]
+  });
 }
