@@ -199,11 +199,20 @@ p, a, li {
 }
 
 /* NEW-STORY */
+.new-story {
+	overflow: hidden;
+}
+
 /* leaflet map */
 .new-story #map {
-	width: 80vw;
-	height: 50vh;
-	margin-left: 10vw;
+	z-index: 0;
+	width: 100vw;
+	height: 100vh;
+}
+
+.new-story #map .leaflet-interactive {
+	fill: var(--main-red);
+	stroke: var(--main-red);
 }
 
 .new-story .mapboxgl-ctrl-logo {
@@ -214,28 +223,164 @@ p, a, li {
 	display: none;
 }
 
-/* multiple rangeslider */
-.new-story form {
-	margin-top: 5%;
+/* top layer: h1 & select */
+.new-story h1 {
+	position: absolute;
+	top: 5%;
+	left: 20%;
+	width: 70%;
+	z-index: 100;
+	background-color: white;
+	color: var(--main-red);
+	font-size: 2em;
 }
 
-.new-story input[type="range"] {
-	width: 80vw;
-	margin-left: 10vw !important;
-}
-
-.new-story output {
+.new-story .radiusSelect {
+	position: absolute;
+	top: 30%;
+	left: 20%;
+	z-index: 100;
 	display: inline-block;
-	width: 40vw;
+	background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+	background-color: var(--main-red);
+	width: 60%;
+	overflow: hidden;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
 }
 
-.new-story output:first-of-type {
-	margin-left: 10vw;
+@media only screen and (min-width: 50em) {
+	.new-story h1 {
+		left: 15%;
+	}
+
+	.new-story .radiusSelect {
+		top: 20%;
+		left: 15%;
+		width: 20%;
+	}
 }
 
-.new-story output:last-of-type {
-	text-align: right;
+.new-story select {
+  color: #fff;
+	background: transparent;
+	border: none;
+	font-size: 14px;
+	height: 29px;
+	padding: 5px;
+	width: calc(200px + 70%);
 }
+
+/* multiple rangeslider - noUiSlider */
+#slider {
+	position: absolute;
+	top: 0;
+	left: 5%;
+	height: 100vh;
+}
+
+.noUi-background {
+	background: var(--main-red);
+}
+
+.noUi-vertical {
+	width: 2em;
+}
+
+.noUi-base, .noUi-handle {
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.noUi-base {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.noUi-connect {
+	background: var(--main-red);
+}
+
+.noUi-origin {
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.noUi-vertical .noUi-handle {
+	position: relative;
+	z-index: 1;
+  width: 4em;
+  height: 4em;
+	border-radius: 50%;
+	border: 0.4em solid var(--main-red);
+	box-sizing: border-box;
+	left: -1em;
+  top: -2em;
+	background: #FFF;
+	cursor: ns-resize;
+}
+
+.noUi-tooltip {
+	position: absolute;
+	height: 1em;
+	top: 1em;
+	left: 0.5em;
+	font-weight: bold;
+}
+
+/* outputs */
+
+.new-story .timestamp-min-static {
+	position: absolute;
+	top: 0%;
+	left: calc(5% + 1em);
+	z-index: 100;
+	color: var(--main-red);
+	background-color: var(--main-white);
+	font-size: 2em;
+}
+
+.new-story .timestamp-max-static {
+	position: absolute;
+	bottom: 0%;
+	left: calc(5% + 1em);
+	z-index: 100;
+	color: var(--main-red);
+	background-color: var(--main-white);
+	font-size: 2em;
+}
+
+#rangevalueMin, #rangevalueMax {
+	display: none;
+}
+
+/* submit button */
+.new-story form button {
+	position: absolute;
+	bottom: 10%;
+	right: 20%;
+	width: 60%;
+	height: 5%;
+	border: none;
+	color: white;
+	background-color: var(--main-red);
+	font-weight: bold;
+	font-size: 1em;
+}
+
+@media only screen and (min-width: 50em) {
+	.new-story form button {
+		right: 10%;
+		width: 30%;
+	}
+}
+
 
 /* CREATE-STORY */
 /* form */

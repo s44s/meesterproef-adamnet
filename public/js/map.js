@@ -12,15 +12,17 @@ var inputCircle;
 
 	var map = {
 		mapboxAccessToken: 'pk.eyJ1IjoibWF4ZGV2cmllczk1IiwiYSI6ImNqZWZydWkyNjF3NXoyd28zcXFqdDJvbjEifQ.Dl3DvuFEqHVAxfajg0ESWg',
-		map: L.map('map'),
+		map: L.map('map', {
+			zoomControl: false
+		}),
 		circle: L.circle({
-			color: 'red',
-			fillColor: '#f03',
+			color: '#DA121A',
+			fillColor: '#DA121A',
 			fillOpacity: 0.4,
 			radius: 500/2
 		}),
 		polygon: L.polygon({
-			color: 'blue'
+			color: '#DA121A'
 		}),
 		geoJSON: L.geoJSON(),
 		centerPoint: [
@@ -38,6 +40,10 @@ var inputCircle;
 				minZoom: 11,
 				maxZoom: 20,
 				id: 'mapbox.streets'
+			}).addTo(this.map);
+
+			L.control.zoom({
+					position: 'bottomright'
 			}).addTo(this.map);
 
 			// Initialize the circle:
