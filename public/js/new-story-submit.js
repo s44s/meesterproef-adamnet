@@ -1,4 +1,4 @@
-var inputCircle = require('./map.js');
+var map = require('./map.js');
 
 (function () {
   var newStory = {
@@ -16,8 +16,8 @@ var inputCircle = require('./map.js');
         var data = {
           'valMin': valMin,
           'valMax': valMax,
-          'wkt': inputCircle().wkt,
-          'coords': inputCircle().coords
+          'wkt': map.inputCircle().wkt,
+          'coords': map.inputCircle().coords
         };
 
         var config = {

@@ -1,32 +1,37 @@
 // Require JS files:
 var circleToPolygon = require('./circletopolygon.js');
 var toWKT = require('./towkt.js');
+var search = require('./search.js');
 
 // Set global wkt variable:
 var inputCircle;
 
 (function(){
 
-	"use strict"
+	"use strict";
 
 	var map = {
 		mapboxAccessToken: 'pk.eyJ1IjoibWF4ZGV2cmllczk1IiwiYSI6ImNqZWZydWkyNjF3NXoyd28zcXFqdDJvbjEifQ.Dl3DvuFEqHVAxfajg0ESWg',
-		map: L.map('map'),
+		map: L.map('map', {
+			zoomControl: false
+		}),
 		circle: L.circle({
-			color: 'red',
-			fillColor: '#f03',
+			color: '#DA121A',
+			fillColor: '#DA121A',
 			fillOpacity: 0.4,
 			radius: 500/2
 		}),
 		polygon: L.polygon({
-			color: 'blue'
+			color: '#DA121A'
 		}),
+		geoJSON: L.geoJSON(),
 		centerPoint: [
 			52.370216,
 			4.895168
 		],
-		init: function () {
+		init: async function () {
 			var self = this;
+			var searchbar = document.querySelector('[name="searchLocation"]');
 
 			// Set the original view of the map:
 			this.map.setView(this.centerPoint, 14);
@@ -35,6 +40,10 @@ var inputCircle;
 				minZoom: 11,
 				maxZoom: 20,
 				id: 'mapbox.light'
+			}).addTo(this.map);
+
+			L.control.zoom({
+					position: 'bottomright'
 			}).addTo(this.map);
 
 			// Initialize the circle:
@@ -57,6 +66,27 @@ var inputCircle;
 
 			// Create the polygon, with the centerPoint as coords:
 			this.createPolygon(this.centerPoint);
+
+			// Get all the streets:
+			var allStreets = await this.getAllStreets();
+
+			// Map the street names from allStreets for search:
+			var streetNames = allStreets.map(function (street) {
+				return street.properties.name;
+			});
+
+			// Initialize the autocomplete search:
+			search.init(searchbar, streetNames);
+
+			// Add the streets data to geoJSON:
+			this.geoJSON.addData(allStreets);
+		},
+		getAllStreets: async function () {
+			return fetch('/js/streets.json')
+				.then((res) => res.json())
+				.catch(function (error) {
+					console.log(error);
+				})
 		},
 		changeRadius: function () {
 			var self = this;
@@ -93,7 +123,7 @@ var inputCircle;
 			this.circle.setLatLng(coords);
 			this.circle.setRadius(radius);
 		},
-		createPolygon: function (coords, radius = 250, numberOfEdges = 10) {
+		createPolygon: function (coords, radius = this.circle.getRadius(), numberOfEdges = 10) {
 			//leaflet polygon to wkt
 			var polygonCoords = circleToPolygon(coords, radius, numberOfEdges);
 
@@ -109,9 +139,21 @@ var inputCircle;
 		}
 	};
 
-	map.init()
-})()
+	map.init();
 
-module.exports = function () {
+	exports.selectedStreet = function (streetName) {
+		map.geoJSON.eachLayer(function (layer) {
+			if (layer.feature.properties.name === streetName) {
+				var bounds = layer.getBounds();
+				var center = bounds.getCenter();
+				map.map.setView([center.lat, center.lng], 15);
+				map.createCircle([center.lat, center.lng]);
+				map.createPolygon([center.lat, center.lng]);
+			}
+		});
+	}
+})();
+
+exports.inputCircle = function () {
 	return inputCircle;
-};
+}

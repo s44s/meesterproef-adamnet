@@ -1,25 +1,94 @@
 <%- include('partials/head.ejs') %>
 	<body class="new-story">
-		<h1>New story page</h1>
-
-		<select id="radius-selected" name="radius">
-			<option value="0.5" selected>500 m</option>
-			<option value="1">1 km</option>
-			<option value="2">2 km</option>
-			<option value="3">3 km</option>
-			<option value="4">4 km</option>
-			<option value="5">5 km</option>
-			<option value="10">10 km</option>
-			<option value="25">25 km</option>
-			<option value="50">50 km</option>
-		</select>
-
 		<div id='map'></div>
+		<section>
+			<h1>Selecteer een plek op de kaart & kies een tijdperk</h1>
 
-		<form class="location-and-timestamp" action="/create-story" method="post">
-			<input type="range" min="1900" max="2018" multiple value="1971,1976" />
-			<output id="rangevalueMin" name="timestamp-min">1971</output>
-			<output id="rangevalueMax" name="timestamp-max">1976</output>
-			<button type="submit">Maak een verhaal</button>
-		</form>
+			<div class="radiusSelect">
+				<select id="radius-selected" name="radius">
+					<option value="0.1">100 m</option>
+					<option value="0.2">200 m</option>
+					<option value="0.3">300 m</option>
+					<option value="0.4">400 m</option>
+					<option value="0.5" selected>500 m</option>
+					<option value="0.6">600 m</option>
+					<option value="0.7">700 m</option>
+					<option value="0.8">800 m</option>
+					<option value="0.9">900 m</option>
+					<option value="1">1 km</option>
+					<option value="2">2 km</option>
+				</select>
+			</div>
+
+			<form class="search-location" action="/search-location" method="post">
+				<input type="text" name="searchLocation" placeholder="Zoek een locatie" value="" autocomplete="off">
+				<button type="submit">Zoek</button>
+			</form>
+
+			<div class="autocomplete">
+				<% if (data !== null && data !== undefined) { %>
+					<ul id="autocomplete-list" class="autocomplete-items">
+						<% data.forEach(function (street) { %>
+							<li>
+								<input id="<%- street.street.value %>" type="radio" name="wkt" value="<%- street.wkt.value %>">
+								<label for="<%- street.street.value %>"><%= street.name.value %></label>
+							</li>
+						<% }); %>
+					</ul>
+				<% } %>
+			</div>
+
+
+
+			<form class="location-and-timestamp" action="/create-story" method="post">
+				<div id="slider"></div>
+				<output class="timestamp-min-static">1900</output>
+				<output class="timestamp-max-static">2018</output>
+
+				<output id="rangevalueMin" name="timestamp-min"></output>
+				<output id="rangevalueMax" name="timestamp-max"></output>
+
+				<button type="submit">Maak een verhaal</button>
+			</form>
+
+			<script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
+			<script>
+				var range = document.getElementById('slider');
+
+				noUiSlider.create(range, {
+					start: [ 1970, 1980 ], // Handle start position
+					step: 1, // Slider moves in increments of '10'
+					margin: 1, // Handles must be more than '20' apart
+					connect: true, // Display a colored bar between the handles
+					orientation: 'vertical',
+					behaviour: 'tap-drag', // Move handle on tap, bar is draggable
+					tooltips: true,
+					format: {
+						to: function ( value ) {
+						return value + '';
+						},
+						from: function ( value ) {
+						return value.replace('', '');
+						}
+					},
+					range: {
+						'min': 1900,
+						'max': 2018
+					}
+				});
+
+				var minValue = document.getElementById('rangevalueMin');
+				var maxValue = document.getElementById('rangevalueMax');
+
+	 			// When the slider value changes, update the input and span
+	 			range.noUiSlider.on('update', function( values, handle ) {
+						 if ( handle ) {
+							 console.log('changemax');
+							 maxValue.innerHTML = values[handle];
+						 } else {
+							 console.log('changemin');
+							 minValue.innerHTML = values[handle];
+						 }
+	 			});
+	 		</script>
 <%- include('partials/foot.ejs') %>

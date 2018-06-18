@@ -7,6 +7,19 @@ var sparqlqueries = {
   encodedquery: function (query) {
     return encodeURIComponent(query);
   },
+  getLocationBySearch: function (val) {
+    return `
+      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX hg: <http://rdf.histograph.io/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      SELECT ?street ?name ?wkt WHERE {
+        ?street a hg:Street .
+        ?street rdfs:label ?name .
+        ?street geo:hasGeometry/geo:asWKT ?wkt .
+        FILTER (REGEX (?street, "${val}"))
+      }
+    `;
+  },
   getStreetWkts: function (wkt) {
     return `
       PREFIX dct: <http://purl.org/dc/terms/>
@@ -18,7 +31,6 @@ var sparqlqueries = {
       PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
       PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
       PREFIX dc: <http://purl.org/dc/elements/1.1/>
-
       SELECT ?street ?streetLabel ?wkt WHERE {
         ?street a hg:Street ;
         geo:hasGeometry/geo:asWKT ?wkt ;
@@ -45,7 +57,6 @@ var sparqlqueries = {
       PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
       PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
       PREFIX dc: <http://purl.org/dc/elements/1.1/>
-
       SELECT ?title ?img ?start ?end ?street ?streetLabel WHERE {
         # basic data
         ?cho dc:title ?title .

@@ -1,5 +1,13 @@
 // modules laden (express als framework)
 var express = require('express');
+var session = require('express-session')({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    expires: 10000
+  }
+});
 var bodyParser = require('body-parser');
 var app = express();
 
@@ -13,6 +21,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(session);
 
 // Require routes:
 var routes = require('./routes');
