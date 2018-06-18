@@ -4,8 +4,6 @@ var chapters = require('./chapters.js');
 
 var newStoryData = {};
 
-var stories = [];
-
 /*
   Story data structure:
   ---------------------
@@ -64,9 +62,13 @@ exports.postCreateStoryPage = function (req, res, next) {
 }
 
 exports.getCreateStoryPage = async function (req, res, next) {
-  console.log('title:', req.params.title);
-  console.log('id:', req.params.id);
   var result = await chapters.location(newStoryData);
+
+  req.session.story = {
+    "years": result.years
+  };
+
+  console.log('first:', req.session.story);
 
   res.render('create-story', {
     dataFirstQuery: result
@@ -74,9 +76,9 @@ exports.getCreateStoryPage = async function (req, res, next) {
 }
 
 exports.saveStoryPage = function (req, res, next) {
-
+  console.log('second:', req.session.story);
 }
 
 exports.storyPage = function (req, res, next) {
-  
+
 }
