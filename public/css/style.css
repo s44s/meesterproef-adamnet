@@ -272,6 +272,19 @@ p, a, li {
 	width: calc(200px + 70%);
 }
 
+/* Search bar */
+.new-story .search-location {
+  position: absolute;
+  left: 15%;
+  top: 25%;
+}
+
+.new-story .autocomplete {
+  position: absolute;
+  left: 15%;
+  top: 30%;
+}
+
 /* multiple rangeslider - noUiSlider */
 #slider {
 	position: absolute;
