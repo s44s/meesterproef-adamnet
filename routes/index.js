@@ -20,6 +20,9 @@ router.post('/create-story', controller.postCreateStoryPage);
 router.get('/create-story', controller.getCreateStoryPage);
 
 // GET save story page:
-router.get('/save-story/:title/:id', controller.saveStoryPage);
+router.get('/save-story', controller.saveStoryPage);
+
+// GET story page:
+router.get('/story/:title/:id', controller.storyPage);
 
 module.exports = router;
