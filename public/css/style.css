@@ -436,17 +436,18 @@ p, a, li {
 	.create-story .table-of-contents {
 		left: 25vw;
 		width: 25vw;
+		height: 100vh;
 		z-index: 100;
 		background-color: rgba(255,255,255,0.9);
 		color: black;
 
 		position: fixed;
+		padding-top: 5vh;
+
+		/*
 		padding-top: 20vh;
-
-		/* overflow: scroll;
-		height: 100%; */
-
-		/* padding-top: 20vh;
+		overflow: scroll;
+		height: 100%;
 		position: sticky;
 		top: 0; */
 	}
@@ -494,10 +495,30 @@ p, a, li {
 	font-weight: lighter;
 }
 
+details summary::-webkit-details-marker {
+	display:none;
+}
+
+.create-story .table-of-contents ol li details summary::after {
+	content:"►";
+	font-size: 1em;
+	position: relative;
+	transition: .3s linear;
+}
+
+.create-story .table-of-contents ol li details[open] summary::after{
+	content:"▼";
+	font-size: 1em;
+	position: relative;
+	transition: .3s linear;
+	color: red;
+}
+
 .create-story .table-of-contents ol li h1 {
-	width: 55%;
+	width: 50%;
 	margin-right: 5%;
 	text-align: right;
+  transition: 1s;
 }
 
 .create-story .table-of-contents ol li h1.active-year {
@@ -508,6 +529,20 @@ p, a, li {
 	margin-left: 60%;
 	z-index: 1000;
 	text-align: center;
+}
+
+.create-story .table-of-contents ol li h1.active-year::after {
+	background-image: none;
+	content:"";
+}
+
+.create-story .table-of-contents ol li .info {
+	display: none;
+	overflow: hidden;
+}
+
+.create-story .table-of-contents ol li .active-year + .info {
+  display: block;
 }
 
 .create-story .table-of-contents ol li a {
@@ -620,6 +655,7 @@ p, a, li {
 	-moz-columns: 18vw 3;
 	columns: 18vw 3;
 	column-fill: auto;
+	margin-bottom: 5%;
 }
 
 .create-story .data ul {

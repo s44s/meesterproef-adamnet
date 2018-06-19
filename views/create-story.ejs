@@ -20,14 +20,14 @@
 			<ol class="menu">
 				<% for(var i = 0; i < Object.keys(dataFirstQuery.years).length; i++) { %>
 					<li>
-						<h1 class="year-title"><%- Object.keys(dataFirstQuery.years)[i] %></h1>
-
-						<% var objectYears = dataFirstQuery.years[Object.keys(dataFirstQuery.years)[i]]; %>
-						<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
-							<a href="#<%- Object.keys(dataFirstQuery.years)[i] %>-<%- Object.keys(objectYears)[j].replace(/\s/g,'') %>"><%- Object.keys(objectYears)[j] %></a>
-						<% } %>
-
-						<button class="add-chapter-btn" type="button">+</button>
+						<details>
+						  <summary><h1 class="year-title"><%- Object.keys(dataFirstQuery.years)[i] %></h1></summary>
+								<% var objectYears = dataFirstQuery.years[Object.keys(dataFirstQuery.years)[i]]; %>
+								<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
+									<a href="#<%- Object.keys(dataFirstQuery.years)[i] %>-<%- Object.keys(objectYears)[j].replace(/\s/g,'') %>"><%- Object.keys(objectYears)[j] %></a>
+								<% } %>
+								<button class="add-chapter-btn" type="button">+</button>
+						</details>
 					</li>
 				<% } %>
 			</ol>
@@ -128,26 +128,34 @@
 	var yearTitle = document.querySelectorAll('.year-title');
 	var chapters = document.querySelectorAll('.table-of-contents ol li a');
 
-	for (var i = 0; i < chapters.length; i++) {
-		chapters[i].addEventListener('click', function(e){
-			yearTitle.forEach(function(year){
-				year.classList.remove('active-year');
-				console.log(year);
-			});
-		});
-	}
 	window.addEventListener('scroll', function(){
 		for (var i = 0; i < sections.length; i++) {
-		if(sections[i].offsetTop-5 <= window.scrollY && sections[i+1].offsetTop > window.scrollY+5) {
-			console.log(sections[i].offsetTop-5, window.scrollY)
-			console.log(window.scrollY, sections[i+1].offsetTop)
-
-			yearTitle[i].classList.add('active-year');
-		} else {
-			yearTitle[i].classList.remove('active-year');
-		}
+			if(sections[i].offsetTop-5 <= window.scrollY && sections[i+1].offsetTop > window.scrollY+5) {
+				yearTitle[i].classList.add('active-year');
+			} else {
+				yearTitle[i].classList.remove('active-year');
+			}
 		}
 	});
 	</script>
+	<!-- <script>
+	var trigger = document.querySelectorAll(".year-title");
 
+	for (	var i = 0; i < trigger.length; i++) {
+		trigger[i].addEventListener("click", function() {
+				console.log('click');
+				/* Toggle between adding and removing the "active" class,
+				to highlight the button that controls the panel */
+				this.classList.toggle("active");
+
+				/* Toggle between hiding and showing the active panel */
+				var panel = this.nextElementSibling;
+				if (panel.style.display === "block") {
+						panel.style.display = "none";
+				} else {
+						panel.style.display = "block";
+				}
+		});
+	}
+	</script> -->
 <%- include('partials/foot.ejs') %>
