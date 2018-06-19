@@ -82,8 +82,6 @@ exports.postCreateStoryPage = function (req, res, next) {
 exports.getCreateStoryPage = async function (req, res, next) {
   var result = await chapters.location(newStoryData);
 
-  console.log(stories.length);
-
   // Add the id to the story object:
   req.session.story.id = req.params.id;
 
@@ -91,7 +89,8 @@ exports.getCreateStoryPage = async function (req, res, next) {
   req.session.story.years = result.years;
 
   res.render('create-story', {
-    dataFirstQuery: result
+    dataFirstQuery: result,
+    id: req.session.story.id
   });
 }
 
