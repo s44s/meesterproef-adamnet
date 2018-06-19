@@ -109,7 +109,7 @@ exports.saveStoryPage = function (req, res, next) {
   stories.push(req.session.story);
 
   // Create the new url:
-  var url = req.get('host') + '/story/' + req.session.story.id;
+  var url = req.get('host') + '/story/' + req.params.id;
 
   res.render('save-story', {
     url: url,
