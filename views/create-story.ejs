@@ -1,8 +1,5 @@
 <%- include('partials/head.ejs') %>
 <body class="create-story">
-
-	<a class="save-story-btn" role="button" href="/save-story">Verhaal opslaan</a>
-
 	<div class="grid">
 		<section class="map-visualisation">
 			<div id="map"></div>
@@ -20,6 +17,7 @@
 				</svg>
 			</button>
 			<ol class="menu">
+				<a class="save-story-btn" role="button" href="/save-story">Verhaal opslaan</a>
 				<% for(var i = 0; i < Object.keys(dataFirstQuery.years).length; i++) { %>
 					<li>
 						<details>
@@ -129,6 +127,7 @@
 	var main = document.querySelector('body');
 	var yearTitle = document.querySelectorAll('.year-title');
 	var chapters = document.querySelectorAll('.table-of-contents ol li a');
+	var details = document.querySelectorAll('details');
 
 	window.addEventListener('scroll', function(){
 		for (var i = 0; i < sections.length; i++) {
@@ -138,7 +137,18 @@
 				yearTitle[i].classList.remove('active-year');
 			}
 		}
+
+		for (var i = 0; i < yearTitle.length; i++) {
+			console.log(yearTitle[i].classList.value.split("year-title ")[1]);
+			if (yearTitle[i].classList.value.split("year-title ")[1] == 'active-year') {
+				details[i].open = true;
+			} else {
+				details[i].open = false;
+			}
+		}
 	});
+
+
 	</script>
 	<!-- <script>
 	var trigger = document.querySelectorAll(".year-title");

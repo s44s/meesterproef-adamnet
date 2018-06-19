@@ -499,19 +499,21 @@ details summary::-webkit-details-marker {
 	display:none;
 }
 
-.create-story .table-of-contents ol li details summary::after {
+.create-story .table-of-contents ol li details summary h1::after {
 	content:"►";
-	font-size: 1em;
+	font-size: 0.8em;
 	position: relative;
 	transition: .3s linear;
+	left: 2%;
+
 }
 
-.create-story .table-of-contents ol li details[open] summary::after{
+.create-story .table-of-contents ol li details[open] summary h1::after {
 	content:"▼";
-	font-size: 1em;
+	font-size: 0.8em;
 	position: relative;
 	transition: .3s linear;
-	color: red;
+	left: 2%;
 }
 
 .create-story .table-of-contents ol li h1 {
@@ -531,8 +533,7 @@ details summary::-webkit-details-marker {
 	text-align: center;
 }
 
-.create-story .table-of-contents ol li h1.active-year::after {
-	background-image: none;
+.create-story .table-of-contents ol li details summary h1.active-year::after {
 	content:"";
 }
 
