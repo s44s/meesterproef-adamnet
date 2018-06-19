@@ -80,6 +80,22 @@ exports.postCreateStoryPage = function (req, res, next) {
 }
 
 exports.getCreateStoryPage = async function (req, res, next) {
+  // Check if given id exists in database:
+  var checkDatabase = stories.filter(function (story) {
+    if (story.id == req.params.id) {
+      return story;
+    }
+  });
+
+  if (checkDatabase[0] !== undefined) {
+    console.log('edit existing story: ', checkDatabase[0].id);
+  } else {
+    console.log('create new story with id: ', req.params.id);
+  }
+
+
+
+
   var result = await chapters.location(newStoryData);
 
   // Add the id to the story object:
