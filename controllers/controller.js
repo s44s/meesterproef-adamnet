@@ -40,6 +40,18 @@ exports.homePage = function (req, res, next) {
 }
 
 exports.newStoryPage = function (req, res, next) {
+  // Get the selected type of story:
+  var type = req.query.type;
+
+  // Create a local story object in the session, which we will fill in later:
+  req.session.story = {
+    "id": null,
+    "key": null,
+    "type": type,
+    "title": null,
+    "meta": {}
+  };
+
   res.render('new-story', {
     data: req.session.searchResults
   });
@@ -61,16 +73,22 @@ exports.searchLocationPage = function (req, res, next) {
 }
 
 exports.postCreateStoryPage = function (req, res, next) {
+  console.log('client post works');
   newStoryData = req.body;
-  res.redirect('/create-story');
+  var id = shortid.generate();
+  res.redirect('/create-story/' + id);
 }
 
 exports.getCreateStoryPage = async function (req, res, next) {
   var result = await chapters.location(newStoryData);
 
-  req.session.story = {
-    "years": result.years
-  };
+  // Add the id to the story object:
+  req.session.story.id = req.params.id;
+
+  // Add the data to the story object:
+  req.session.story.years = result.years;
+
+  console.log(req.session.story);
 
   res.render('create-story', {
     dataFirstQuery: result
@@ -78,9 +96,6 @@ exports.getCreateStoryPage = async function (req, res, next) {
 }
 
 exports.saveStoryPage = function (req, res, next) {
-  // Generate new id:
-  var id = shortid.generate();
-
   // Generate new key:
   var key = uuid();
 
