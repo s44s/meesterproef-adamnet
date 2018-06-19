@@ -412,6 +412,26 @@ p, a, li {
 	display: none;
 }
 
+.create-story .map-visualisation .back {
+	position: absolute;
+  left: 5%;
+  top: 5%;
+  height: 5%;
+  width: 5%;
+  z-index: 1000;
+  text-decoration: none;
+  background-color: white;
+  font-size: 2em;
+  border: 4px solid black;
+	color: black;
+}
+
+.create-story .map-visualisation .back img {
+	width: 100%;
+	height: 100%;
+	transform: rotate(90deg);
+}
+
 .create-story .table-of-contents {
 	flex-basis: 10vw;
 	background-color: var(--main-red);
@@ -482,6 +502,12 @@ p, a, li {
 	}
 }
 
+.create-story .table-of-contents .save-story-btn {
+	text-align: right;
+	width: 50vw;
+	margin-left: 5vw;
+}
+
 .create-story .table-of-contents ol {
 	margin: 0;
 	padding: 0;
@@ -505,7 +531,6 @@ details summary::-webkit-details-marker {
 	position: relative;
 	transition: .3s linear;
 	left: 2%;
-
 }
 
 .create-story .table-of-contents ol li details[open] summary h1::after {
@@ -551,13 +576,15 @@ details summary::-webkit-details-marker {
 	margin-right: 5%;
 	text-align: right;
 	display: block;
+	text-decoration: none;
+	font-size:
 }
 
 .create-story .table-of-contents ol li button {
-	width: 5%;
+	width: 7%;
 	color: white;
 	background-color: black;
-	margin-left: 50%;
+	margin-left: 47%;
 	margin-top: 2%;
 }
 
@@ -606,21 +633,80 @@ details summary::-webkit-details-marker {
 }
 /* contents */
 /* personal data form */
-.create-story .personal-data {
-	margin-left: 2.5vw;
+.create-story .personal-data form {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-end;
 }
 
 .create-story .personal-data form .title {
-	font-size: 2em;
-	width: 90%;
-	margin-left: 5%;
+	font-size: 1.2em;
+	width: 95%;
 	border: 0;
-	text-align: right;
+	margin-top: 3%;
+	margin-bottom: 5%;
+	border:1px solid black;
+	padding: 2%;
 }
 
-.create-story .personal-data form label {
+.create-story .personal-data form div {
+	width: 70%;
+	margin-bottom: 5%;
+	margin-right: 25%;
+}
+
+.create-story .personal-data form div label {
 	color: black;
 	display: block;
+}
+
+.create-story .personal-data form div input {
+	border: 1px solid black;
+	color: black;
+	height: 4%;
+	margin-top: 2%;
+	padding-left: 5%;
+	width: 100%;
+}
+
+.create-story .personal-data form button {
+	border: none;
+	margin-right: 25%;
+	width: 70%;
+	height: 4%;
+	background-color: red;
+	color: white;
+}
+
+@media only screen and (min-width: 50em) {
+	.create-story .personal-data {
+		margin-left: 2.5vw;
+	}
+
+	.create-story .personal-data form {
+		flex-direction: row;
+	}
+
+	.create-story .personal-data form .title {
+		font-size: 2em;
+	}
+
+	.create-story .personal-data form div {
+		width: 30%;
+		margin-bottom: 0%;
+		margin-right: 0;
+	}
+
+	.create-story .personal-data form button {
+		border: none;
+		width: 25%;
+		margin-right: 5%;
+		height: 4%;
+		background-color: red;
+		color: white;
+	}
 }
 
 /* chapter */
@@ -629,21 +715,23 @@ details summary::-webkit-details-marker {
 	margin-left: 2.5vw;
 }
 
-.create-story .chapter h2 {
-	height: 3vh;
-  font-weight: normal;
-  color: black;
-  position: sticky;
+.create-story .chapter .title-sticky {
+	position: sticky;
   top: -0.95;
-  padding: 7.5% 0;
+  padding: 2% 0;
 	background-color: white;
 	z-index: 1000;
 }
 
-.create-story .chapter h2::before {
-	content: url('/images/crosses.svg'); /* with class ModalCarrot ??*/
-	position: absolute;
-	top: 10%;
+.create-story .chapter img.crosses {
+	width: 4em;
+}
+
+.create-story .chapter h2 {
+	height: min-content;
+  font-weight: normal;
+  color: black;
+  width: 100%;
 }
 
 .create-story .chapter h2 strong {
@@ -652,11 +740,21 @@ details summary::-webkit-details-marker {
 }
 
 .create-story .data {
-	-webkit-columns: 18vw 3;
-	-moz-columns: 18vw 3;
-	columns: 18vw 3;
+	-webkit-columns: 25vw 2;
+	-moz-columns: 25vw 2;
+	columns: 25vw 2;
 	column-fill: auto;
 	margin-bottom: 5%;
+}
+
+@media only screen and (min-width: 50em) {
+	.create-story .data {
+		-webkit-columns: 20vw 2;
+		-moz-columns: 20vw 2;
+		columns: 20vw 2;
+		column-fill: auto;
+		margin-bottom: 5%;
+	}
 }
 
 .create-story .data ul {

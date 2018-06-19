@@ -3,6 +3,7 @@
 	<div class="grid">
 		<section class="map-visualisation">
 			<div id="map"></div>
+			<a class="back" href="http://localhost:3000/new-story"/><img src="/images/arrow-down.svg" alt="back-button"/></a>
 		</section>
 
 		<nav class="table-of-contents">
@@ -38,11 +39,14 @@
 				<form action="/create-story" method="post">
 					<input class="title" type="text" name="title" placeholder="Geef jouw verhaal een titel.." autocomplete="off">
 
-					<label for="name">Dit is het verhaal over:</label>
-					<input id="name" name="name" type="text" placeholder="Jan Jansen.." autocomplete="off">
-
-					<label for="year">Geboren in:</label>
-					<input id="year" name="year" type="number" placeholder="1969" min="1900" max="2018">
+					<div>
+						<label for="name">Dit is het verhaal over:</label>
+						<input id="name" name="name" type="text" placeholder="Jan Jansen.." autocomplete="off">
+					</div>
+					<div>
+						<label for="year">Geboren in:</label>
+						<input id="year" name="year" type="number" placeholder="1969" min="1900" max="2018">
+					</div>
 
 					<button type="submit">Opslaan</button>
 				</form>
