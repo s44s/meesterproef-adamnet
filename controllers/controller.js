@@ -4,10 +4,6 @@ var shortid = require('shortid');
 var sparqlqueries = require('./sparql');
 var chapters = require('./chapters.js');
 
-var newStoryData = {};
-
-var database = [];
-
 /*
   Story data structure:
   ---------------------
@@ -34,6 +30,10 @@ var database = [];
     }
   }
 */
+
+var newStoryData = {};
+
+var database = [];
 
 exports.homePage = function (req, res, next) {
   res.render('index');
@@ -87,32 +87,33 @@ exports.postCreateStoryPage = function (req, res, next) {
 
 exports.getCreateStoryPage = async function (req, res, next) {
   // Check if given id exists in database:
-  var checkDatabase = stories.filter(function (story) {
+  var checkDatabase = database.filter(function (story) {
     if (story.id == req.params.id) {
       return story;
     }
   });
 
+  var data;
+
   if (checkDatabase[0] !== undefined) {
     console.log('edit existing story: ', checkDatabase[0].id);
+    data = checkDatabase[0].years;
   } else {
     console.log('create new story with id: ', req.params.id);
+
+    var result = await chapters.location(newStoryData);
+
+    req.session.stories.filter(function (story) {
+      if (story.id == req.params.id) {
+        story.years = result.years;
+        data = story.years;
+      }
+    });
   }
 
-
-
-
-  var result = await chapters.location(newStoryData);
-
-  // Add the id to the story object:
-  req.session.story.id = req.params.id;
-
-  // Add the data to the story object:
-  req.session.story.years = result.years;
-
   res.render('create-story', {
-    dataFirstQuery: result,
-    id: req.session.story.id
+    dataFirstQuery: data,
+    id: req.params.id
   });
 }
 
