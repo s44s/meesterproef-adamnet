@@ -125,6 +125,7 @@ exports.storyPage = function (req, res, next) {
   });
 
   res.render('story', {
-    dataFirstQuery: story[0]
+    dataFirstQuery: story[0],
+    id: id
   });
 }
