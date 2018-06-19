@@ -20,7 +20,7 @@ router.post('/create-story', controller.postCreateStoryPage);
 router.get('/create-story/:id', controller.getCreateStoryPage);
 
 // GET save story page:
-router.get('/save-story', controller.saveStoryPage);
+router.get('/save-story/:id', controller.saveStoryPage);
 
 // GET story page:
 router.get('/story/:id', controller.storyPage);
