@@ -3,10 +3,7 @@ var express = require('express');
 var session = require('express-session')({
   secret: 'keyboard cat',
   resave: true,
-  saveUninitialized: true,
-  cookie: {
-    expires: 10000
-  }
+  saveUninitialized: true
 });
 var bodyParser = require('body-parser');
 var app = express();
