@@ -280,6 +280,7 @@ p, a, li {
 
 @media only screen and (min-width: 50em) {
 	.new-story .meta-data {
+		left: 15vw;
 		flex-direction: row;
 	}
 
