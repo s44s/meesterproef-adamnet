@@ -20,26 +20,18 @@ var map = require('./map.js');
           'coords': map.inputCircle().coords
         };
 
-        var config = {
-          method: 'POST',
-          body: JSON.stringify(data),
-          redirect: 'follow',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+        var http = new XMLHttpRequest();
+        var url = '/create-story';
+
+        http.open('post', url, true);
+        http.setRequestHeader('Content-type', 'application/json');
+        http.onreadystatechange = function () {
+          if (http.readyState == 4 && http.status == 200) {
+            console.log(http.responseURL);
+            window.location = http.responseURL;
           }
-        };
-
-        console.log(config);
-
-        fetch('/create-story', config)
-          .then(function (data) {
-            console.log(data);
-            window.location.replace('/create-story');
-          })
-          .catch(function (err) {
-            throw err;
-          });
+        }
+        http.send(JSON.stringify(data));
       });
     }
   };
