@@ -143,7 +143,6 @@
 		}
 
 		for (var i = 0; i < yearTitle.length; i++) {
-			console.log(yearTitle[i].classList.value.split("year-title ")[1]);
 			if (yearTitle[i].classList.value.split("year-title ")[1] == 'active-year') {
 				details[i].open = true;
 			} else {
@@ -152,6 +151,37 @@
 		}
 	});
 
+
+	</script>
+	<script>
+		var forms = document.querySelectorAll('.data');
+		var buttons = document.querySelectorAll('.submit-chapter');
+		var checkboxes = document.querySelectorAll('.data input');
+
+		forms.forEach(function(form){
+			form.addEventListener('submit', function(e){
+				e.preventDefault();
+				var inputs = e.target.elements;
+				for(var i = 0; i < inputs.length; i++) {
+					if(inputs[i].checked == false) {
+						inputs[i].parentElement.parentElement.parentElement.classList.add('hide-me');
+					} else {
+						inputs[i].parentElement.parentElement.parentElement.classList.remove('hide-me');
+
+					}
+				}
+			})
+		})
+
+		// console.log(checkboxes);
+		// for(var i = 0; i < buttons.length; i++) {
+		// 	buttons[i].addEventListener('click', function(e){
+		// 		e.preventDefault();
+		//
+		// 		console.log(e);
+		//
+		// 	});
+		// }
 
 	</script>
 	<!-- <script>

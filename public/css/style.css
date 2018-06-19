@@ -701,7 +701,7 @@ details summary::-webkit-details-marker {
 	border: 0;
 	margin-top: 3%;
 	margin-bottom: 5%;
-	border:1px solid black;
+	border-bottom: 1px solid black;
 	padding: 2%;
 }
 
@@ -794,28 +794,40 @@ details summary::-webkit-details-marker {
 }
 
 .create-story .data {
+	margin-top: 2%;
+	margin-bottom: 5%;
+}
+
+.create-story .data ul {
 	-webkit-columns: 25vw 2;
 	-moz-columns: 25vw 2;
 	columns: 25vw 2;
 	column-fill: auto;
-	margin-bottom: 5%;
-}
-
-@media only screen and (min-width: 50em) {
-	.create-story .data {
-		-webkit-columns: 20vw 2;
-		-moz-columns: 20vw 2;
-		columns: 20vw 2;
-		column-fill: auto;
-		margin-bottom: 5%;
-	}
-}
-
-.create-story .data ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
+
+@media only screen and (min-width: 50em) {
+	.create-story .data ul {
+		-webkit-columns: 20vw 2;
+		-moz-columns: 20vw 2;
+		columns: 20vw 2;
+		column-fill: auto;
+	}
+}
+
+.create-story .data button {
+	display: block;
+	width: 80%;
+	height: 7.5%;
+	border: none;
+	background-color: var(--main-red);
+	color: white;
+	font-weight: bold;
+	font-size: 1em;
+}
+
 
 .create-story .data ul li {
 	break-inside: avoid;
@@ -823,6 +835,10 @@ details summary::-webkit-details-marker {
 	color: var(--main-black);
 	margin-bottom: 10%;
 	border-radius: 5px;
+}
+
+.create-story .data ul li.hide-me {
+	display: none;
 }
 
 .create-story .data ul li label {
