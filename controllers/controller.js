@@ -31,7 +31,7 @@ var chapters = require('./chapters.js');
   }
 */
 
-var newStoryData = {};
+// var newStoryData = {};
 
 var database = [];
 
@@ -62,10 +62,12 @@ exports.searchLocationPage = function (req, res, next) {
 
 exports.postCreateStoryPage = function (req, res, next) {
   console.log('client post works');
-  newStoryData = req.body;
+  // newStoryData = req.body;
 
   // Create a stories array in session:
-  req.session.stories = [];
+  if (!req.session.stories) {
+    req.session.stories = [];
+  }
 
   // Create id for new story:
   var id = shortid.generate();
@@ -76,6 +78,7 @@ exports.postCreateStoryPage = function (req, res, next) {
     "key": null,
     "title": null,
     "meta": {},
+    "newStoryData": req.body,
     "years": {}
   };
 
@@ -101,14 +104,15 @@ exports.getCreateStoryPage = async function (req, res, next) {
   } else {
     console.log('create new story with id: ', req.params.id);
 
-    var result = await chapters.location(newStoryData);
-
-    req.session.stories.filter(function (story) {
+    var currentStory = req.session.stories.filter(function (story) {
       if (story.id == req.params.id) {
-        story.years = result.years;
-        data = story.years;
+        return story;
       }
     });
+
+    var result = await chapters.location(currentStory[0].newStoryData);
+    currentStory[0].years = result.years;
+    data = currentStory[0].years;
   }
 
   res.render('create-story', {
