@@ -1,7 +1,7 @@
 <%- include('partials/head.ejs') %>
 	<body class="story">
 
-	<a class="edit-story-btn" href="/create-story" role="button">Bewerk dit verhaal</a>
+	<a class="edit-story-btn" href="/create-story/<%- id %>" role="button">Bewerk dit verhaal</a>
 
 	<% for(var i = 0; i < Object.keys(dataFirstQuery.years).length; i++) { %>
 		<section class="year">
