@@ -6,7 +6,7 @@ var chapters = require('./chapters.js');
 
 var newStoryData = {};
 
-var stories = [];
+var database = [];
 
 /*
   Story data structure:
@@ -40,18 +40,6 @@ exports.homePage = function (req, res, next) {
 }
 
 exports.newStoryPage = function (req, res, next) {
-  // Get the selected type of story:
-  var type = req.query.type;
-
-  // Create a local story object in the session, which we will fill in later:
-  req.session.story = {
-    "id": null,
-    "key": null,
-    "type": type,
-    "title": null,
-    "meta": {}
-  };
-
   res.render('new-story', {
     data: req.session.searchResults
   });
@@ -75,7 +63,25 @@ exports.searchLocationPage = function (req, res, next) {
 exports.postCreateStoryPage = function (req, res, next) {
   console.log('client post works');
   newStoryData = req.body;
+
+  // Create a stories array in session:
+  req.session.stories = [];
+
+  // Create id for new story:
   var id = shortid.generate();
+
+  // Create a story object, which we will fill in later:
+  var story = {
+    "id": id,
+    "key": null,
+    "title": null,
+    "meta": {},
+    "years": {}
+  };
+
+  // Push story object in stories array in session:
+  req.session.stories.push(story);
+
   res.redirect('/create-story/' + id);
 }
 
