@@ -17,7 +17,7 @@ router.post('/search-location', controller.searchLocationPage);
 router.post('/create-story', controller.postCreateStoryPage);
 
 // GET create story page:
-router.get('/create-story', controller.getCreateStoryPage);
+router.get('/create-story/:id', controller.getCreateStoryPage);
 
 // GET save story page:
 router.get('/save-story', controller.saveStoryPage);
