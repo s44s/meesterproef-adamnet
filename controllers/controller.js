@@ -82,13 +82,13 @@ exports.postCreateStoryPage = function (req, res, next) {
 exports.getCreateStoryPage = async function (req, res, next) {
   var result = await chapters.location(newStoryData);
 
+  console.log(stories.length);
+
   // Add the id to the story object:
   req.session.story.id = req.params.id;
 
   // Add the data to the story object:
   req.session.story.years = result.years;
-
-  console.log(req.session.story);
 
   res.render('create-story', {
     dataFirstQuery: result
@@ -99,18 +99,17 @@ exports.saveStoryPage = function (req, res, next) {
   // Generate new key:
   var key = uuid();
 
-  // Add id and key to story data:
-  req.session.story.id = id;
+  // Add key to story data:
   req.session.story.key = key;
 
   // Temporary empty database for dev:
-  stories.splice(0, stories.length);
+  // stories.splice(0, stories.length);
 
   // Push the story object in temporary database:
   stories.push(req.session.story);
 
   // Create the new url:
-  var url = req.get('host') + '/story/' + id;
+  var url = req.get('host') + '/story/' + req.session.story.id;
 
   res.render('save-story', {
     url: url,
