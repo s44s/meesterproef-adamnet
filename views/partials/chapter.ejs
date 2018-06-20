@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <% for(var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
 	<section class="year">
 		<h1><%- Object.keys(dataFirstQuery)[i] %></h1>
@@ -12,26 +13,39 @@
 				for(var k = 0; k < Object.keys(objectChapters).length; k++) { %>
 					<div class="image">
 						<label>
+=======
+<article id="<%- Object.keys(dataFirstQuery.years)[i] %>-<%- Object.keys(objectYears)[j].replace(/\s/g,'') %>"class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>We bevinden ons op de <strong><%- Object.keys(objectYears)[j] %></strong></h2>
+	</div>
+
+	<form class="data" action="/create-story" method="post">
+		<ul>
+			<% var objectChapters = objectYears[Object.keys(objectYears)[j]] %>
+			<% for(var k = 0; k < Object.keys(objectChapters).length; k++) { %>
+				<li class="data-image">
+					<label>
+						<div>
+							<input id="checkbox" type="checkbox">
+							<span class="check"></span>
+							<img src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
+							<p><%- Object.values(objectChapters)[k].title.value %></p>
+							<a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+						</div>
+						<div class="detail">
+							<span class="helper"></span>
+>>>>>>> 313fde5784a72c65ae0168117ff958e8900e4a64
 							<div>
-								<input id="checkBox" type="checkbox">
-								<section></section>
+								<div class="popupCloseButton">X</div>
 								<img src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
 								<p><%- Object.values(objectChapters)[k].title.value %></p>
-								<a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
 							</div>
-							<div class="detail">
-								<span class="helper"></span>
-								<div>
-									<div class="popupCloseButton">X</div>
-									<img src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
-									<p><%- Object.values(objectChapters)[k].title.value %></p>
-								</div>
-							</div>
-						</label>
-					</div>
-				<% } %>
-			</form>
-		</section>
-		<% } %>
-	</section>
-<% } %>
+						</div>
+					</label>
+				</li>
+			<% } %>
+		</ul>
+		<button class="submit-chapter" type="submit">Opslaan</button>
+	</form>
+</article>

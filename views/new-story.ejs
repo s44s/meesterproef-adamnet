@@ -1,44 +1,43 @@
 <%- include('partials/head.ejs') %>
 	<body class="new-story">
-		<div id='map'></div>
 		<section>
-			<h1>Selecteer een plek op de kaart & kies een tijdperk</h1>
+			<div id='map'></div>
 
-			<div class="radiusSelect">
-				<select id="radius-selected" name="radius">
-					<option value="0.1">100 m</option>
-					<option value="0.2">200 m</option>
-					<option value="0.3">300 m</option>
-					<option value="0.4">400 m</option>
-					<option value="0.5" selected>500 m</option>
-					<option value="0.6">600 m</option>
-					<option value="0.7">700 m</option>
-					<option value="0.8">800 m</option>
-					<option value="0.9">900 m</option>
-					<option value="1">1 km</option>
-					<option value="2">2 km</option>
-				</select>
+			<div class="meta-data">
+				<h1>Selecteer een plek en een tijdperk</h1>
+				<form class="search-location" action="/search-location" method="post">
+					<input type="text" name="searchLocation" placeholder="Zoek jouw straat" value="" autocomplete="off">
+					<button type="submit">Zoek</button>
+				</form>
+
+				<div class="autocomplete">
+					<% if (data !== null && data !== undefined) { %>
+						<ul id="autocomplete-list" class="autocomplete-items">
+							<% data.forEach(function (street) { %>
+								<li>
+									<input id="<%- street.street.value %>" type="radio" name="wkt" value="<%- street.wkt.value %>">
+									<label for="<%- street.street.value %>"><%= street.name.value %></label>
+								</li>
+							<% }); %>
+						</ul>
+					<% } %>
+				</div>
+				<div class="radiusSelect">
+					<select id="radius-selected" name="radius">
+						<option value="0.1">100 m</option>
+						<option value="0.2">200 m</option>
+						<option value="0.3">300 m</option>
+						<option value="0.4">400 m</option>
+						<option value="0.5" selected>500 m</option>
+						<option value="0.6">600 m</option>
+						<option value="0.7">700 m</option>
+						<option value="0.8">800 m</option>
+						<option value="0.9">900 m</option>
+						<option value="1">1 km</option>
+						<option value="2">2 km</option>
+					</select>
+				</div>
 			</div>
-
-			<form class="search-location" action="/search-location" method="post">
-				<input type="text" name="searchLocation" placeholder="Zoek een locatie" value="" autocomplete="off">
-				<button type="submit">Zoek</button>
-			</form>
-
-			<div class="autocomplete">
-				<% if (data !== null && data !== undefined) { %>
-					<ul id="autocomplete-list" class="autocomplete-items">
-						<% data.forEach(function (street) { %>
-							<li>
-								<input id="<%- street.street.value %>" type="radio" name="wkt" value="<%- street.wkt.value %>">
-								<label for="<%- street.street.value %>"><%= street.name.value %></label>
-							</li>
-						<% }); %>
-					</ul>
-				<% } %>
-			</div>
-
-
 
 			<form class="location-and-timestamp" action="/create-story" method="post">
 				<div id="slider"></div>
@@ -48,7 +47,7 @@
 				<output id="rangevalueMin" name="timestamp-min"></output>
 				<output id="rangevalueMax" name="timestamp-max"></output>
 
-				<button type="submit">Maak een verhaal</button>
+				<button type="submit">Maak mijn verhaal</button>
 			</form>
 
 			<script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
