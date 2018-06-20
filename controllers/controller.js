@@ -125,14 +125,20 @@ exports.saveStoryPage = function (req, res, next) {
   // Generate new key:
   var key = uuid();
 
+  var currentStory = req.session.stories.filter(function (story) {
+    if (story.id == req.params.id) {
+      return story;
+    }
+  });
+
   // Add key to story data:
-  req.session.story.key = key;
+  currentStory[0].key = key;
 
   // Temporary empty database for dev:
-  // stories.splice(0, stories.length);
+  // database.splice(0, database.length);
 
   // Push the story object in temporary database:
-  stories.push(req.session.story);
+  database.push(currentStory[0]);
 
   // Create the new url:
   var url = req.get('host') + '/story/' + req.params.id;
@@ -145,7 +151,7 @@ exports.saveStoryPage = function (req, res, next) {
 
 exports.storyPage = function (req, res, next) {
   var id = req.params.id;
-  var story = stories.filter(function (story) {
+  var story = database.filter(function (story) {
     if (story.id == id) {
       return story;
     }
