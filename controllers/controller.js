@@ -11,11 +11,12 @@ var chapters = require('./chapters.js');
   story: {
     "id": 0001,
     "key": "A0B1CC2",
-    "type": "person",
     "title": "Mijn verhaal van Amsterdam",
-    "name": "Anne Frank",
-    "birthyear": 1929,
-    "years": {
+    "meta": {
+      "name": "Anne Frank",
+      "birthyear": 1929
+    },
+    "data": {
       "1940": {
         "de buurt": [img, img],
         "de overige straten": [img, img]
@@ -27,11 +28,14 @@ var chapters = require('./chapters.js');
         "basisschool": [img, img],
         "posters": [img, img]
       }
+    },
+    "selection": {
+      "1940": {
+        "de buurt": [img]
+      }
     }
   }
 */
-
-// var newStoryData = {};
 
 var database = [];
 
@@ -62,7 +66,6 @@ exports.searchLocationPage = function (req, res, next) {
 
 exports.postCreateStoryPage = function (req, res, next) {
   console.log('client post works');
-  // newStoryData = req.body;
 
   // Create a stories array in session:
   if (!req.session.stories) {
@@ -79,7 +82,8 @@ exports.postCreateStoryPage = function (req, res, next) {
     "title": null,
     "meta": {},
     "newStoryData": req.body,
-    "years": {}
+    "data": {},
+    "selection": {}
   };
 
   // Push story object in stories array in session:
@@ -89,30 +93,29 @@ exports.postCreateStoryPage = function (req, res, next) {
 }
 
 exports.getCreateStoryPage = async function (req, res, next) {
+  // Return the current story:
+  var findCurrentStory = function (arr) {
+    return arr.find(function (story) {
+      return story.id == req.params.id;
+    });
+  }
+
   // Check if given id exists in database:
-  var checkDatabase = database.filter(function (story) {
-    if (story.id == req.params.id) {
-      return story;
-    }
+  var checkDatabase = database.some(function (story) {
+    return story.id == req.params.id;
   });
 
   var data;
 
-  if (checkDatabase[0] !== undefined) {
-    console.log('edit existing story: ', checkDatabase[0].id);
-    data = checkDatabase[0].years;
+  if (checkDatabase) {
+    var currentStory = findCurrentStory(database);
+    data = currentStory.data;
   } else {
-    console.log('create new story with id: ', req.params.id);
+    var currentStory = findCurrentStory(req.session.stories);
+    var result = await chapters.location(currentStory.newStoryData);
 
-    var currentStory = req.session.stories.filter(function (story) {
-      if (story.id == req.params.id) {
-        return story;
-      }
-    });
-
-    var result = await chapters.location(currentStory[0].newStoryData);
-    currentStory[0].years = result.years;
-    data = currentStory[0].years;
+    currentStory.data = result.years;
+    data = currentStory.data;
   }
 
   res.render('create-story', {
