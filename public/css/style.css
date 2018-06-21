@@ -493,14 +493,14 @@ p, a, li {
 }
 
 .create-story .contents {
-	flex-basis: 70vw;
+	width: 70vw;
 	margin: 0;
 }
 
 @media only screen and (min-width: 50em) {
 	.create-story .map-visualisation {
 		display: block;
-		width: 50vw;
+		width: 30vw;
 		z-index: 1;
 		position: fixed;
 		left: 0;
@@ -508,8 +508,8 @@ p, a, li {
 	}
 
 	.create-story .table-of-contents {
-		left: 25vw;
-		width: 25vw;
+		left: 5vw;
+		width: 15vw;
 		height: 100vh;
 		z-index: 100;
 		background-color: rgba(255,255,255,0.9);
@@ -527,15 +527,15 @@ p, a, li {
 	}
 
 	.create-story .contents {
-		width: 45vw;
-		margin-left: 50vw;
+		width: 80vw;
+		margin-left: 20vw;
 	}
 }
 
 /* map visualisation */
 .create-story .map-visualisation #map {
 	height: 100vh;
-	width: 50vw;
+	width: 20vw;
 }
 
 .create-story .map-visualisation #map .leaflet-interactive {
@@ -549,7 +549,7 @@ p, a, li {
 		position: absolute;
 		top: 0;
 		right: 0;
-		width: 40%;
+		width: 50%;
 		height: 100%;
 		background-color: var(--main-red);
 		z-index: 100;
@@ -597,17 +597,17 @@ details summary::-webkit-details-marker {
 
 .create-story .table-of-contents ol li h1 {
 	width: 50%;
-	margin-right: 5%;
-	text-align: right;
+	text-align: center;
+	margin-left: 5%;
   transition: 1s;
 }
 
 .create-story .table-of-contents ol li h1.active-year {
 	position: relative;
-	width: 40%;
+	width: 50%;
 	color: white;
-	font-size: 3em;
-	margin-left: 60%;
+	font-size: 2em;
+	margin-left: 50%;
 	z-index: 1000;
 	text-align: center;
 }
@@ -687,7 +687,7 @@ details summary::-webkit-details-marker {
 }
 /* contents */
 /* personal data form */
-.create-story .personal-data form {
+/* .create-story .personal-data form {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -762,11 +762,18 @@ details summary::-webkit-details-marker {
 		color: white;
 	}
 }
+/*
 
 /* chapter */
-.create-story .chapter {
-	width: 45vw;
+.create-story .contents h1 {
+	color: black;
+	margin: 5% 0;
+	width: 90%;
 	margin-left: 2.5vw;
+}
+
+.create-story .chapter {
+	margin: 0 2.5vw;
 }
 
 .create-story .chapter .title-sticky {
@@ -810,9 +817,9 @@ details summary::-webkit-details-marker {
 
 @media only screen and (min-width: 50em) {
 	.create-story .data ul {
-		-webkit-columns: 20vw 2;
-		-moz-columns: 20vw 2;
-		columns: 20vw 2;
+		-webkit-columns: 20vw 3;
+		-moz-columns: 20vw 3;
+		columns: 20vw 3;
 		column-fill: auto;
 	}
 }

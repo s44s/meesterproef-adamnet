@@ -18,24 +18,26 @@
 				</svg>
 			</button>
 			<ol class="menu">
-				<a class="save-story-btn" role="button" href="/save-story/<%- id %>">Verhaal opslaan</a>
+				<!-- <a class="save-story-btn" role="button" href="/save-story/<%- id %>">Verhaal opslaan</a> -->
 				<% for(var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
 					<li>
-						<details>
+						<h1 class="year-title"><%- Object.keys(dataFirstQuery)[i] %></h1>
+						<!-- <details>
 						  <summary><h1 class="year-title"><%- Object.keys(dataFirstQuery)[i] %></h1></summary>
 								<% var objectYears = dataFirstQuery[Object.keys(dataFirstQuery)[i]]; %>
 								<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
 									<a href="#<%- Object.keys(dataFirstQuery)[i] %>-<%- Object.keys(objectYears)[j].replace(/\s/g,'') %>"><%- Object.keys(objectYears)[j] %></a>
 								<% } %>
 								<button class="add-chapter-btn" type="button">+</button>
-						</details>
+						</details> -->
 					</li>
 				<% } %>
 			</ol>
 		</nav>
 
 		<main class="contents">
-			<section class="personal-data">
+			<h1>Selecteer de foto's die je wilt gebruiken voor jouw verhaal</h1>
+			<!-- <section class="personal-data">
 				<form action="/create-story/<%- id %>" method="post">
 					<input class="title" type="text" name="title" placeholder="Geef jouw verhaal een titel.." autocomplete="off">
 
@@ -50,7 +52,8 @@
 
 					<button type="submit">Opslaan</button>
 				</form>
-			</section>
+			</section> -->
+			<form class="data" action="/my-story/<%- id %>" method="post">
 			<% for(var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
 				<section id="<%- Object.keys(dataFirstQuery)[i] %>" class="year <%- Object.keys(dataFirstQuery)[i] %>">
 					<% var objectYears = dataFirstQuery[Object.keys(dataFirstQuery)[i]]; %>
@@ -61,6 +64,14 @@
 					<% } %>
 				</section>
 			<% } %>
+				<section class="selected-images">
+				</section>
+
+				<div class="selected-">
+					<button class="submit-chapter" type="submit">Opslaan</button>
+				</div>
+			</form>
+
 		</main>
 	</div>
 

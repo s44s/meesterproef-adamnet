@@ -1,17 +1,17 @@
 <article id="<%- Object.keys(dataFirstQuery)[i] %>-<%- Object.keys(objectYears)[j].replace(/\s/g,'') %>" class="chapter">
+	<!--
 	<div class="title-sticky">
 		<img class="crosses" src="/images/crosses.svg"/>
 		<h2>We bevinden ons op de <strong><%- Object.keys(objectYears)[j] %></strong></h2>
 	</div>
-
-	<form class="data" action="/create-story/<%- id %>" method="post">
+	-->
 		<ul>
 			<% var objectChapters = objectYears[Object.keys(objectYears)[j]] %>
 			<% for(var k = 0; k < Object.keys(objectChapters).length; k++) { %>
 				<li class="data-image">
 					<label>
 						<div>
-							<input id="checkbox" type="checkbox">
+							<input id="checkbox" type="checkbox" name="images" value="<%- Object.values(objectChapters)[k].img.value %>">
 							<span class="check"></span>
 							<img src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
 							<p><%- Object.values(objectChapters)[k].title.value %></p>
@@ -29,6 +29,4 @@
 				</li>
 			<% } %>
 		</ul>
-		<button class="submit-chapter" type="submit">Opslaan</button>
-	</form>
 </article>
