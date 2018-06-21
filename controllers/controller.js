@@ -153,7 +153,8 @@ exports.myStoryPage = function (req, res, next) {
 
   res.render('my-story', {
     selection: selection,
-    id: req.params.id
+    id: req.params.id,
+    edit: currentStory.edit
   });
 }
 
@@ -168,6 +169,8 @@ exports.saveStoryPage = function (req, res, next) {
   // Add key to story data:
   currentStory.key = key;
 
+  currentStory.edit = false;
+
   // Temporary empty database for dev:
   // database.splice(0, database.length);
 
@@ -177,8 +180,18 @@ exports.saveStoryPage = function (req, res, next) {
   // Create the new url:
   var url = req.get('host') + '/my-story/' + req.params.id;
 
-  res.render('save-story', {
-    url: url,
-    key: key
+  res.redirect('/my-story/' + req.params.id);
+
+  // res.render('save-story', {
+  //   url: url,
+  //   key: key
+  // });
+}
+
+exports.editStoryPage = function (req, res, next) {
+  var currentStory = req.session.stories.find(function (story) {
+    return story.id == req.params.id;
   });
+  currentStory.edit = true;
+  res.redirect('/my-story/' + req.params.id);
 }
