@@ -141,7 +141,7 @@ exports.saveStoryPage = function (req, res, next) {
   database.push(currentStory[0]);
 
   // Create the new url:
-  var url = req.get('host') + '/story/' + req.params.id;
+  var url = req.get('host') + '/my-story/' + req.params.id;
 
   res.render('save-story', {
     url: url,
@@ -149,7 +149,7 @@ exports.saveStoryPage = function (req, res, next) {
   });
 }
 
-exports.storyPage = function (req, res, next) {
+exports.myStoryPage = function (req, res, next) {
   var id = req.params.id;
   var story = database.filter(function (story) {
     if (story.id == id) {
@@ -157,7 +157,7 @@ exports.storyPage = function (req, res, next) {
     }
   });
 
-  res.render('story', {
+  res.render('my-story', {
     dataFirstQuery: story[0].years,
     id: id
   });

@@ -23,6 +23,6 @@ router.get('/create-story/:id', controller.getCreateStoryPage);
 router.get('/save-story/:id', controller.saveStoryPage);
 
 // GET story page:
-router.get('/story/:id', controller.storyPage);
+router.get('/my-story/:id', controller.myStoryPage);
 
 module.exports = router;
