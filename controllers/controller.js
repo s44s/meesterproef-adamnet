@@ -128,20 +128,18 @@ exports.saveStoryPage = function (req, res, next) {
   // Generate new key:
   var key = uuid();
 
-  var currentStory = req.session.stories.filter(function (story) {
-    if (story.id == req.params.id) {
-      return story;
-    }
+  var currentStory = req.session.stories.find(function (story) {
+    return story.id == req.params.id;
   });
 
   // Add key to story data:
-  currentStory[0].key = key;
+  currentStory.key = key;
 
   // Temporary empty database for dev:
   // database.splice(0, database.length);
 
   // Push the story object in temporary database:
-  database.push(currentStory[0]);
+  database.push(currentStory);
 
   // Create the new url:
   var url = req.get('host') + '/my-story/' + req.params.id;
