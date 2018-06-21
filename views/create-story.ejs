@@ -195,6 +195,38 @@
 		// }
 
 	</script>
+	<script>
+		var checkboxes = document.querySelectorAll('input[name="images"]');
+
+		checkboxes.forEach(function(item){
+			item.addEventListener('change', function(){
+				if(item.checked == true) {
+					//delete item
+					var li = item.parentElement.parentElement.parentElement;
+					var ul = li.parentElement;
+
+					li.style.opacity = '0';
+					setTimeout(function(){
+						ul.removeChild(li);
+					}, 1000);
+
+					// ul.removeChild(li);
+
+					//show item
+						//year
+						var url = item.value
+						var img = document.createElement("img");
+						var selectedImages = document.querySelector('.selected-images');
+						img.src = url;
+						selectedImages.appendChild(img);
+
+						var newImages = document.querySelectorAll('.selected-images img');
+				    newImages[newImages.length-1].scrollIntoView();
+
+				}
+			});
+		});
+	</script>
 	<!-- <script>
 	var trigger = document.querySelectorAll(".year-title");
 

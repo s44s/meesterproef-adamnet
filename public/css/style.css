@@ -765,6 +765,52 @@ details summary::-webkit-details-marker {
 /*
 
 /* chapter */
+.create-story .selected-images {
+	position: fixed;
+	bottom: 0;
+	height: 20vh;
+	width: 80vw;
+	background-color: var(--main-red);
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	overflow-x: scroll;
+	box-shadow: 1px 1px 0px 4px rgba(0,0,0,.1);
+}
+
+/* width */
+.create-story .selected-images::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.create-story .selected-images::-webkit-scrollbar-track {
+  background: var(--main-red);
+	opacity: 0.5;
+}
+
+/* Handle */
+.create-story .selected-images::-webkit-scrollbar-thumb {
+  background: white;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+.create-story .selected-images::-webkit-scrollbar-thumb:hover {
+	background: grey;
+}
+
+.create-story .selected-images img {
+	height: 15vh;
+	margin-top: 1.5vh;
+	display: inline-block;
+	padding-right: 3%;
+}
+
+.create-story .selected-images img:last-of-type {
+	padding-right: 5%;
+}
+
 .create-story .contents h1 {
 	color: black;
 	margin: 5% 0;
@@ -842,6 +888,9 @@ details summary::-webkit-details-marker {
 	color: var(--main-black);
 	margin-bottom: 10%;
 	border-radius: 5px;
+	opacity: 1;
+	-webkit-transition: opacity 1000ms linear;
+	transition: opacity 1000ms linear;
 }
 
 .create-story .data ul li.hide-me {
