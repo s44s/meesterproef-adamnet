@@ -152,7 +152,7 @@ exports.myStoryPage = function (req, res, next) {
   }
 
   res.render('my-story', {
-    selection: selection
+    selection: selection,
     id: req.params.id
   });
 }
