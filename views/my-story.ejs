@@ -1,15 +1,25 @@
 <%- include('partials/head.ejs') %>
 	<body class="story">
 
-	<a class="edit-story-btn" href="/create-story/<%- id %>" role="button">Bewerk dit verhaal</a>
+	<a class="edit-story-btn" href="/create-story/<%- id %>" role="button">Selecteer andere foto's</a>
+	<% var text; %>
+	<% var url; %>
+	<% if (edit == true) { %>
+		<% text = 'Verhaal opslaan'; %>
+		<% url = '/save-story/'; %>
+	<% } else { %>
+		<% text = 'Verhaal bewerken'; %>
+		<% url = '/edit-story/'; %>
+	<% } %>
+	<a class="save-story-btn" href="<%- url %><%- id %>" role="button"><%= text %></a>
 
-	<% for(var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
+	<% for(var i = 0; i < Object.keys(selection).length; i++) { %>
 		<section class="year">
-			<h1><%- Object.keys(dataFirstQuery)[i] %></h1>
-			<% var objectYears = dataFirstQuery[Object.keys(dataFirstQuery)[i]]; %>
+			<h1><%- Object.keys(selection)[i] %></h1>
+			<% var objectYears = selection[Object.keys(selection)[i]]; %>
 			<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
 				<section class="chapter">
-					<h2>We zijn in jaar <%- Object.keys(dataFirstQuery)[i]%> en we bevinden ons bij <%- Object.keys(objectYears)[j] %> </h2>
+					<h2>We zijn in jaar <%- Object.keys(selection)[i]%> en we bevinden ons bij <%- Object.keys(objectYears)[j] %> </h2>
 					<div>
 						<% var objectChapters = objectYears[Object.keys(objectYears)[j]] %>
 						<% for(var k = 0; k < Object.keys(objectChapters).length; k++) { %>
@@ -30,7 +40,7 @@
 	<% } %>
 
 	<script>
-		window.data = <%- JSON.stringify(dataFirstQuery || null) %>;
+		window.data = <%- JSON.stringify(selection || null) %>;
 		console.log(window.data);
 	</script>
 
