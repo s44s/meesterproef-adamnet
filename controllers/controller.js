@@ -106,20 +106,53 @@ exports.getCreateStoryPage = async function (req, res, next) {
   });
 
   var data;
+  var selection;
 
   if (checkDatabase) {
     var currentStory = findCurrentStory(database);
     data = currentStory.data;
+    selection = currentStory.selection;
   } else {
     var currentStory = findCurrentStory(req.session.stories);
     var result = await chapters.location(currentStory.newStoryData);
 
     currentStory.data = result.years;
     data = currentStory.data;
+    selection = currentStory.selection;
   }
 
   res.render('create-story', {
     dataFirstQuery: data,
+    selection: selection,
+    id: req.params.id
+  });
+}
+
+exports.myStoryPage = function (req, res, next) {
+  // Return the current story:
+  var findCurrentStory = function (arr) {
+    return arr.find(function (story) {
+      return story.id == req.params.id;
+    });
+  }
+
+  // Check if given id exists in database:
+  var checkDatabase = database.some(function (story) {
+    return story.id == req.params.id;
+  });
+
+  var selection;
+
+  if (checkDatabase) {
+    var currentStory = findCurrentStory(database);
+    selection = currentStory.selection;
+  } else {
+    var currentStory = findCurrentStory(req.session.stories);
+    selection = currentStory.selection;
+  }
+
+  res.render('my-story', {
+    selection: selection
     id: req.params.id
   });
 }
@@ -147,17 +180,5 @@ exports.saveStoryPage = function (req, res, next) {
   res.render('save-story', {
     url: url,
     key: key
-  });
-}
-
-exports.myStoryPage = function (req, res, next) {
-  var id = req.params.id;
-  var story = database.find(function (story) {
-    return story.id == id;
-  });
-
-  res.render('my-story', {
-    dataFirstQuery: story.data,
-    id: id
   });
 }
