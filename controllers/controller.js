@@ -152,14 +152,12 @@ exports.saveStoryPage = function (req, res, next) {
 
 exports.myStoryPage = function (req, res, next) {
   var id = req.params.id;
-  var story = database.filter(function (story) {
-    if (story.id == id) {
-      return story;
-    }
+  var story = database.find(function (story) {
+    return story.id == id;
   });
 
   res.render('my-story', {
-    dataFirstQuery: story[0].years,
+    dataFirstQuery: story.data,
     id: id
   });
 }
