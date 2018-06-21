@@ -2,7 +2,16 @@
 	<body class="story">
 
 	<a class="edit-story-btn" href="/create-story/<%- id %>" role="button">Selecteer andere foto's</a>
-	<a class="save-story-btn" href="/save-story/<%- id %>" role="button">Verhaal opslaan</a>
+	<% var text; %>
+	<% var url; %>
+	<% if (edit == true) { %>
+		<% text = 'Verhaal opslaan'; %>
+		<% url = '/save-story/'; %>
+	<% } else { %>
+		<% text = 'Verhaal bewerken'; %>
+		<% url = '/edit-story/'; %>
+	<% } %>
+	<a class="save-story-btn" href="<%- url %><%- id %>" role="button"><%= text %></a>
 
 	<% for(var i = 0; i < Object.keys(selection).length; i++) { %>
 		<section class="year">
