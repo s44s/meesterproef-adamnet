@@ -20,17 +20,9 @@
 			<ol class="menu">
 				<% for(var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
 					<li>
-						<a href="#<%- Object.keys(dataFirstQuery)[i] %>">
+						<a href="#year-<%- Object.keys(dataFirstQuery)[i] %>">
 							<h1 class="year-title"><%- Object.keys(dataFirstQuery)[i] %></h1>
 						</a>
-						<!-- <details>
-						  <summary><h1 class="year-title"><%- Object.keys(dataFirstQuery)[i] %></h1></summary>
-								<% var objectYears = dataFirstQuery[Object.keys(dataFirstQuery)[i]]; %>
-								<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
-									<a href="#<%- Object.keys(dataFirstQuery)[i] %>-<%- Object.keys(objectYears)[j].replace(/\s/g,'') %>"><%- Object.keys(objectYears)[j] %></a>
-								<% } %>
-								<button class="add-chapter-btn" type="button">+</button>
-						</details> -->
 					</li>
 				<% } %>
 			</ol>
@@ -40,7 +32,8 @@
 			<h1>Selecteer de foto's die je wilt gebruiken voor jouw verhaal</h1>
 			<form class="data" action="/my-story/<%- id %>" method="post">
 			<% for(var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
-				<section id="<%- Object.keys(dataFirstQuery)[i] %>" class="year <%- Object.keys(dataFirstQuery)[i] %>">
+				<section id="year-<%- Object.keys(dataFirstQuery)[i] %>" class="year <%- Object.keys(dataFirstQuery)[i] %>">
+					<img class="crosses" src="/images/crosses.svg"/>
 					<ul>
 						<% var objectYears = dataFirstQuery[Object.keys(dataFirstQuery)[i]]; %>
 						<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
@@ -74,6 +67,7 @@
 
 				<div class="next-page">
 					<button class="submit-chapter" type="submit">Opslaan</button>
+					<span class="count-images"></span>
 				</div>
 			</form>
 		</main>
@@ -149,8 +143,6 @@
 		var sections = document.querySelectorAll('section.year');
 		var main = document.querySelector('body');
 		var yearTitle = document.querySelectorAll('.year-title');
-		var chapters = document.querySelectorAll('.table-of-contents ol li a');
-		var details = document.querySelectorAll('details');
 
 		window.addEventListener('scroll', function(){
 			for (var i = 0; i < sections.length; i++) {
@@ -160,20 +152,31 @@
 					yearTitle[i].classList.remove('active-year');
 				}
 			}
-	});
+		});
+
+		// yearTitle.forEach(function(year){
+		// 	year.addEventListener('click', function(){
+		//
+		// 	});
+		// });
 	</script>
 	<script>
 		var checkboxes = document.querySelectorAll('input[name="images"]');
 		var selectedImages = document.querySelector('.selected-images');
 		var submitButton = document.querySelector('.submit-chapter');
+		var span = document.querySelector('.count-images');
+		var inputSelected;
 
-		checkboxes.forEach(function(item){
+		checkboxes.forEach(function(item) {
 			item.addEventListener('change', function(){
 				if(item.checked == true) {
+					//add number
+					span.innerHTML++;
+
 					//delete item
 					selectedImages.classList.add('show-selected-images');
 					submitButton.classList.add('show-selected-images');
-
+					span.classList.add('show-selected-images');
 
 					var li = item.parentElement.parentElement.parentElement;
 					var ul = li.parentElement;
@@ -184,9 +187,13 @@
 					}, 1000);
 
 					//show item
-					var url = item.value
+					var url = item.value;
+					var text = item.parentElement.childNodes[7].innerHTML;
+					var section = item.parentElement.parentElement.parentElement.parentElement.parentElement;
+					var year = section.classList[1];
 
 					var label = document.createElement('label');
+					label.classList.add(year);
 					selectedImages.appendChild(label);
 
 					var input = document.createElement('input');
@@ -197,15 +204,248 @@
 
 					label.appendChild(input);
 
+					input.addEventListener('change', function(){
+						if(input.checked == false){
+							//add number
+							span.innerHTML--;
+
+							//delete item
+							var url2 = input.value;
+							var text2 = input.parentElement.childNodes[1].alt;
+							var label = input.parentElement;
+							var section = input.parentElement.parentElement;
+
+							// label.style.opacity = '0';
+							// setTimeout(function(){
+								section.removeChild(label);
+							// }, 1000);
+
+							//add item
+							var yearSection = document.querySelectorAll('.year');
+							for(var i = 0; i < checkboxes.length; i++) {
+								if(yearSection[i].classList[1] == label.classList[0]){
+									//li
+									var li = document.createElement('li');
+									li.classList.add('data-image');
+									var container = document.querySelector('#year-' + yearSection[i].classList[1] + ' ul');
+									container.appendChild(li);
+
+									//label
+									var label = document.createElement('label');
+									li.appendChild(label);
+
+									//div
+									var div1 = document.createElement('div');
+									label.appendChild(div1);
+
+									//div detail
+									var div2 = document.createElement('div');
+									div2.classList.add('detail')
+									label.appendChild(div2);
+
+									//input
+									var inputNew = document.createElement('input');
+									inputNew.setAttribute('type', 'checkbox');
+									inputNew.setAttribute('name', 'images');
+									inputNew.setAttribute('value', item.value);
+									div1.appendChild(inputNew);
+
+									//span
+									var span2 = document.createElement('span');
+									span2.classList.add('check')
+									div1.appendChild(span2);
+
+									//img
+									var img2 = document.createElement('img');
+									img2.src = url2;
+									div1.appendChild(img2);
+
+									//p
+									console.log(text2);
+									var p2 = document.createElement('p');
+									p2.textContent = text2;
+									div1.appendChild(p2);
+
+									//a
+									var a = document.createElement('a');
+									a.classList.add('openDetail');
+									div1.appendChild(a);
+
+									//img zoom in
+									var imgZoom = document.createElement('img');
+									imgZoom.src = "/images/zoom-in.svg";
+									a.appendChild(imgZoom);
+
+									//helper
+									var helper = document.createElement('span');
+									helper.classList.add('helper')
+									div2.appendChild(helper);
+
+									//nested div
+									var div3 = document.createElement('div');
+									div2.appendChild(div3);
+
+									//nested div
+									var div4 = document.createElement('div');
+									div4.classList.add('popupCloseButton');
+									di4.textContent = 'X';
+									div3.appendChild(div4);
+
+									//img nested
+									var img3 = document.createElement('img');
+									img3.src = url2;
+									div3.appendChild(img3);
+
+									//p nested
+									var p3 = document.createElement('p');
+									p3.textContent = text2
+									div3.appendChild(p3);
+
+									// var newImages2 = document.querySelectorAll('.year ul li');
+							    // newImages2[newImages2.length-1].scrollIntoView();
+
+								}
+							}
+
+						}
+					})
+
 					var img = document.createElement('img');
 					img.src = url;
+					img.alt = text;
 					label.appendChild(img);
 
-					var newImages = document.querySelectorAll('.selected-images img');
-			    newImages[newImages.length-1].scrollIntoView();
-
+					var newImages = document.querySelectorAll('.selected-images label');
+					newImages[newImages.length-1].scrollIntoView();
 				}
+
+
+
+				inputSelected = document.querySelectorAll('.selected-images input');
 			});
 		});
+
+		// console.log(inputSelected);
+		//
+		// inputSelected.forEach(function(item) {
+		// 	item.addEventListener('change', function(){
+		// 		if(item.checked == false) {
+		// 			//add number
+		// 			span.innerHTML--;
+		//
+		// 			//delete item
+		// 			var label = item.parentElement;
+		// 			var section = item.parentElement.parentElement;
+		// 			console.log(label, section)
+		//
+		// 			label.style.opacity = '0';
+		// 			setTimeout(function(){
+		// 				section.removeChild(label);
+		// 			}, 1000);
+		// 		}
+		// 	});
+		// });
+
+		</script>
+		<!-- <script>
+			var inputSelected;
+			var checkboxes = document.querySelectorAll('input[name="images"]');
+
+			for(var i = 0; i < checkboxes.length; i++) {
+				checkbox[i].addEventListener('change', function(){
+					inputSelected = document.querySelectorAll('.selected-images input[name="images"]');
+					console.log(inputSelected);
+
+					for(var i = 0; i < inputSelected.length; i++) {
+						var arrayNumber = inputSelected.length - i;
+						// console.log(arrayNumber);
+
+						inputSelected[i].addEventListener('change', function(){
+							// console.log('check');
+							// if(item.checked == false) {
+							// 	//add number
+							// 	console.log(item);
+							// 	span.innerHTML--;
+							// }
+						});
+					};
+				})
+			}
+
+
+			checkboxes.forEach(function(item) {
+				item.addEventListener('change', function(){
+					inputSelected = document.querySelectorAll('.selected-images input[name="images"]');
+
+					// inputSelected.forEach(function(item) {
+					// 	item.addEventListener('change', function(){
+					//
+					// 		if(item.checked == false) {
+					// 			//add number
+					// 			console.log(item);
+					// 			span.innerHTML--;
+					// 		}
+					// 	});
+					// });
+				});
+			});
+
+		</script> -->
+		<script>
+		//smoothscroll
+		(function() // Code in a function to create an isolate scope
+		{
+		var speed = 500;
+		var moving_frequency = 15; // Affects performance !
+		var links = document.getElementsByTagName('a');
+		var href;
+		for(var i=0; i<links.length; i++)
+		{
+		    href = (links[i].attributes.href === undefined) ? null : links[i].attributes.href.nodeValue.toString();
+		    if(href !== null && href.length > 1 && href.substr(0, 1) == '#')
+		    {
+		        links[i].onclick = function()
+		        {
+		            var element;
+		            var href = this.attributes.href.nodeValue.toString();
+		            if(element = document.getElementById(href.substr(1)))
+		            {
+		                var hop_count = speed/moving_frequency
+		                var getScrollTopDocumentAtBegin = getScrollTopDocument();
+		                var gap = (getScrollTopElement(element) - getScrollTopDocumentAtBegin) / hop_count;
+
+		                for(var i = 1; i <= hop_count; i++)
+		                {
+		                    (function()
+		                    {
+		                        var hop_top_position = gap*i;
+		                        setTimeout(function(){  window.scrollTo(0, hop_top_position + getScrollTopDocumentAtBegin); }, moving_frequency*i);
+		                    })();
+		                }
+		            }
+
+		            return false;
+		        };
+		    }
+		}
+
+		var getScrollTopElement =  function (e)
+		{
+		    var top = 0;
+
+		    while (e.offsetParent != undefined && e.offsetParent != null)
+		    {
+		        top += e.offsetTop + (e.clientTop != null ? e.clientTop : 0);
+		        e = e.offsetParent;
+		    }
+
+		    return top;
+		};
+
+		var getScrollTopDocument = function()
+		{
+		    return document.documentElement.scrollTop + document.body.scrollTop;
+		};
+		})();
 	</script>
 <%- include('partials/foot.ejs') %>

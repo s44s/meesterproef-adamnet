@@ -584,57 +584,6 @@ p, a, li {
 	text-decoration: none;
 }
 
-/* details summary::-webkit-details-marker {
-	display:none;
-}
-
-.create-story .table-of-contents ol li details summary h1::after {
-	content:"►";
-	font-size: 0.8em;
-	position: relative;
-	transition: .3s linear;
-	left: 2%;
-}
-
-.create-story .table-of-contents ol li details[open] summary h1::after {
-	content:"▼";
-	font-size: 0.8em;
-	position: relative;
-	transition: .3s linear;
-	left: 2%;
-}
-
-.create-story .table-of-contents ol li details summary h1.active-year::after {
-	content:"";
-}
-
-.create-story .table-of-contents ol li .info {
-	display: none;
-	overflow: hidden;
-}
-
-.create-story .table-of-contents ol li .active-year + .info {
-  display: block;
-}
-
-.create-story .table-of-contents ol li a {
-	width: 55%;
-	margin-right: 5%;
-	text-align: right;
-	display: block;
-	text-decoration: none;
-	font-size:
-}
-
-.create-story .table-of-contents ol li button {
-	width: 7%;
-	color: white;
-	background-color: black;
-	margin-left: 47%;
-	margin-top: 2%;
-}
-*/
-
 /* hamburger menu - mobile  */
 .create-story .table-of-contents button {
 	border: none;
@@ -680,125 +629,28 @@ p, a, li {
 }
 
 /* contents */
-/* personal data form */
-/* .create-story .personal-data form {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: flex-end;
-}
-
-.create-story .personal-data form .title {
-	font-size: 1.2em;
-	width: 95%;
-	border: 0;
-	margin-top: 3%;
-	margin-bottom: 5%;
-	border-bottom: 1px solid black;
-	padding: 2%;
-}
-
-.create-story .personal-data form div {
-	width: 70%;
-	margin-bottom: 5%;
-	margin-right: 25%;
-}
-
-.create-story .personal-data form div label {
-	color: black;
-	display: block;
-}
-
-.create-story .personal-data form div input {
-	border: 1px solid black;
-	color: black;
-	height: 4%;
-	margin-top: 2%;
-	padding-left: 5%;
-	width: 100%;
-}
-
-.create-story .personal-data form button {
-	border: none;
-	margin-right: 25%;
-	width: 70%;
-	height: 4%;
-	background-color: red;
-	color: white;
-}
-
-@media only screen and (min-width: 50em) {
-	.create-story .personal-data {
-		margin-left: 2.5vw;
-	}
-
-	.create-story .personal-data form {
-		flex-direction: row;
-	}
-
-	.create-story .personal-data form .title {
-		font-size: 2em;
-	}
-
-	.create-story .personal-data form div {
-		width: 30%;
-		margin-bottom: 0%;
-		margin-right: 0;
-	}
-
-	.create-story .personal-data form button {
-		border: none;
-		width: 25%;
-		margin-right: 5%;
-		height: 4%;
-		background-color: red;
-		color: white;
-	}
-}
-/*
-
-/* chapter */
 /* title */
 .create-story .contents h1 {
 	color: black;
-	margin: 5% 0;
-	width: 90%;
+	width: 95%;
+	margin: 0;
 	margin-left: 2.5vw;
-}
-
-/* each chapter */
-.create-story .chapter {
-	margin: 0 2.5vw;
-}
-
-.create-story .chapter .title-sticky {
 	position: sticky;
-  top: -0.95;
-  padding: 2% 0;
+	top: -0.95;
+	padding: 2% 0;
 	background-color: white;
 	z-index: 1000;
 }
 
-.create-story .chapter img.crosses {
-	width: 4em;
+/* each year */
+.create-story .year {
+	margin: 0 2.5vw;
 }
 
-.create-story .chapter h2 {
-	height: min-content;
-  font-weight: normal;
-  color: black;
-  width: 100%;
-}
-
-.create-story .chapter h2 strong {
-	color: var(--main-red);
-	font-weight: bolder;
-}
-
-.create-story .data {
+.create-story .year .crosses {
+	width: 10em;
 	margin-top: 2%;
-	margin-bottom: 5%;
+  margin-bottom: 5%;
 }
 
 .create-story .data ul {
@@ -820,18 +672,6 @@ p, a, li {
 	}
 }
 
-.create-story .data button {
-	display: block;
-	width: 80%;
-	height: 7.5%;
-	border: none;
-	background-color: var(--main-red);
-	color: white;
-	font-weight: bold;
-	font-size: 1em;
-}
-
-
 .create-story .data ul li {
 	break-inside: avoid;
 	background-color: var(--main-white);
@@ -841,10 +681,6 @@ p, a, li {
 	opacity: 1;
 	-webkit-transition: opacity 1000ms linear;
 	transition: opacity 1000ms linear;
-}
-
-.create-story .data ul li.hide-me {
-	display: none;
 }
 
 .create-story .data ul li label {
@@ -1024,13 +860,19 @@ p, a, li {
 
 .create-story .selected-images label {
 	margin-left: 2%;
+	opacity: 1;
+	-webkit-transition: opacity 1000ms linear;
+	transition: opacity 1000ms linear;
+}
+
+.create-story .selected-images label:last-of-type {
+	padding-right: 5%;
 }
 
 .create-story .selected-images img {
 	height: 15vh;
 	margin-top: 1.5vh;
 	display: inline-block;
-	padding-right: 3%;
 }
 
 .create-story .selected-images img:last-of-type {
@@ -1054,6 +896,23 @@ p, a, li {
 	background-color: var(--main-red);
 	transform: translateY(30vh);
 	cursor: pointer;
+	color: white;
+	border: none;
+}
+
+.create-story .next-page .submit-chapter + span {
+	position: fixed;
+  bottom: 26vh;
+  right: 1vw;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: white;
+  color: black;
+  border: 3px solid var(--main-red);
+	transform: translateY(30vh);
+	padding: .25%;
 }
 
 .create-story .selected-images::-webkit-scrollbar {
