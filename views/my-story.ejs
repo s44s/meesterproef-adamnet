@@ -15,7 +15,7 @@
 								<% } %>
 								<li><a href="#<%- year %>-<%- chapter.replace(/\s/g,'').toLowerCase() %>"><%= chapter %></a></li>
 							<% }); %>
-							<li><button type="button">+</button></li>
+							<li><button class="add-chapter-btn" type="button">+</button></li>
 						</ul>
 					</li>
 				<% }); %>
@@ -41,12 +41,15 @@
 		</main>
 
 		<script type="text/javascript">
+			var links = document.querySelectorAll('.register-years > li > a');
 
-			var register = document.querySelector('.register');
-			var registerYears = document.querySelector('.register-years');
-
-			// Show only the list of chapters for the first year:
-			registerYears.children[0].children[1].classList.add('show');
-
+			links.forEach(function (link, i, self) {
+				self[0].nextElementSibling.classList.add('show');
+				link.addEventListener('click', function () {
+					var current = document.querySelector('.register-chapters.show');
+					current.classList.remove('show');
+					this.nextElementSibling.classList.add('show');
+				});
+			});
 		</script>
 <%- include('partials/foot.ejs') %>
