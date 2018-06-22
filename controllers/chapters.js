@@ -80,7 +80,7 @@ exports.location = async function (newStoryData) {
     var chapter;
 
     if (item.street.value == streetsInRadius[0].street) {
-      chapter = 'Jouw straat';
+      chapter = streetsInRadius[0].streetLabel;
     } else {
       chapter = 'Jouw buurt';
     }
