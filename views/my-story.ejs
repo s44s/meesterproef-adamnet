@@ -1,7 +1,36 @@
 <%- include('partials/head.ejs') %>
 	<body class="my-story">
 
-	<a class="edit-story-btn" href="/create-story/<%- id %>" role="button">Selecteer andere foto's</a>
+		<% var years = Object.keys(selection); %>
+		<nav class="register">
+			<ol>
+				<% years.forEach(function (year) { %>
+					<% var chapters = Object.keys(selection[year]); %>
+					<li>
+						<a href="#"><%= year %></a>
+						<ul>
+							<% chapters.forEach(function (chapter) { %>
+								<li><a href="#"><%= chapter %></a></li>
+							<% }); %>
+							<li><button type="button">+</button></li>
+						</ul>
+					</li>
+				<% }); %>
+			</ol>
+		</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <a class="edit-story-btn" href="/create-story/<%- id %>" role="button">Selecteer andere foto's</a>
 	<% var text; %>
 	<% var url; %>
 	<% if (edit == true) { %>
@@ -11,9 +40,9 @@
 		<% text = 'Verhaal bewerken'; %>
 		<% url = '/edit-story/'; %>
 	<% } %>
-	<a class="save-story-btn" href="<%- url %><%- id %>" role="button"><%= text %></a>
+	<a class="save-story-btn" href="<%- url %><%- id %>" role="button"><%= text %></a> -->
 
-	<% for(var i = 0; i < Object.keys(selection).length; i++) { %>
+	<!-- <% for(var i = 0; i < Object.keys(selection).length; i++) { %>
 		<section class="year">
 			<h1><%- Object.keys(selection)[i] %></h1>
 			<% var objectYears = selection[Object.keys(selection)[i]]; %>
@@ -37,11 +66,6 @@
 				</section>
 			<% } %>
 		</section>
-	<% } %>
-
-	<script>
-		window.data = <%- JSON.stringify(selection || null) %>;
-		console.log(window.data);
-	</script>
+	<% } %> -->
 
 <%- include('partials/foot.ejs') %>
