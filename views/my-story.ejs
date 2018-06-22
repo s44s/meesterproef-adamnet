@@ -7,10 +7,13 @@
 				<% years.forEach(function (year) { %>
 					<% var chapters = Object.keys(selection[year]); %>
 					<li>
-						<a href="<%- year %>-<%- chapters[0].replace(/\s/g,'').toLowerCase() %>"><%= year %></a>
+						<a href="#<%- year %>-<%- chapters[0].replace(/\s/g,'').toLowerCase() %>"><%= year %></a>
 						<ul>
 							<% chapters.forEach(function (chapter) { %>
-								<li><a href="<%- year %>-<%- chapter.replace(/\s/g,'').toLowerCase() %>"><%= chapter %></a></li>
+								<% if (chapter != 'Jouw buurt') { %>
+									<% chapter = 'Jouw straat'; %>
+								<% } %>
+								<li><a href="#<%- year %>-<%- chapter.replace(/\s/g,'').toLowerCase() %>"><%= chapter %></a></li>
 							<% }); %>
 							<li><button type="button">+</button></li>
 						</ul>
@@ -20,10 +23,19 @@
 		</nav>
 
 		<main class="content">
-			<% years.forEach(function(year) { %>
+			<% years.forEach(function (year) { %>
 				<% var chapters = Object.keys(selection[year]); %>
 				<% chapters.forEach(function (chapter) { %>
-					<%#- include('partials/chapter.ejs', {year: year, chapter: chapter}) %>
+					<% if (chapter != 'Jouw buurt') { %>
+						<% var streetName = chapter; %>
+						<% chapter = 'Jouw straat'; %>
+					<% } %>
+					<%- include('partials/chapter.ejs', {
+						selection: selection,
+						year: year,
+						chapter: chapter,
+						streetName: streetName
+					}) %>
 				<% }); %>
 			<% }); %>
 		</main>
