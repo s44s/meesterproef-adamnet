@@ -18,10 +18,11 @@
 				</svg>
 			</button>
 			<ol class="menu">
-				<a class="save-story-btn" role="button" href="/edit-story/<%- id %>">Verhaal maken</a>
 				<% for(var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
 					<li>
-						<h1 class="year-title"><%- Object.keys(dataFirstQuery)[i] %></h1>
+						<a href="#<%- Object.keys(dataFirstQuery)[i] %>">
+							<h1 class="year-title"><%- Object.keys(dataFirstQuery)[i] %></h1>
+						</a>
 						<!-- <details>
 						  <summary><h1 class="year-title"><%- Object.keys(dataFirstQuery)[i] %></h1></summary>
 								<% var objectYears = dataFirstQuery[Object.keys(dataFirstQuery)[i]]; %>
@@ -67,7 +68,7 @@
 				<section class="selected-images">
 				</section>
 
-				<div class="selected-">
+				<div class="next-page">
 					<button class="submit-chapter" type="submit">Opslaan</button>
 				</div>
 			</form>
@@ -153,36 +154,36 @@
 			}
 		}
 
-		for (var i = 0; i < yearTitle.length; i++) {
-			if (yearTitle[i].classList.value.split("year-title ")[1] == 'active-year') {
-				details[i].open = true;
-			} else {
-				details[i].open = false;
-			}
-		}
+		// for (var i = 0; i < yearTitle.length; i++) {
+		// 	if (yearTitle[i].classList.value.split("year-title ")[1] == 'active-year') {
+		// 		details[i].open = true;
+		// 	} else {
+		// 		details[i].open = false;
+		// 	}
+		// }
 	});
 
 
 	</script>
 	<script>
-		var forms = document.querySelectorAll('.data');
-		var buttons = document.querySelectorAll('.submit-chapter');
-		var checkboxes = document.querySelectorAll('.data input');
-
-		forms.forEach(function(form){
-			form.addEventListener('submit', function(e){
-				e.preventDefault();
-				var inputs = e.target.elements;
-				for(var i = 0; i < inputs.length; i++) {
-					if(inputs[i].checked == false) {
-						inputs[i].parentElement.parentElement.parentElement.classList.add('hide-me');
-					} else {
-						inputs[i].parentElement.parentElement.parentElement.classList.remove('hide-me');
-
-					}
-				}
-			})
-		})
+		// var forms = document.querySelectorAll('.data');
+		// var buttons = document.querySelectorAll('.submit-chapter');
+		// var checkboxes = document.querySelectorAll('.data input');
+		//
+		// forms.forEach(function(form){
+		// 	form.addEventListener('submit', function(e){
+		// 		e.preventDefault();
+		// 		var inputs = e.target.elements;
+		// 		for(var i = 0; i < inputs.length; i++) {
+		// 			if(inputs[i].checked == false) {
+		// 				inputs[i].parentElement.parentElement.parentElement.classList.add('hide-me');
+		// 			} else {
+		// 				inputs[i].parentElement.parentElement.parentElement.classList.remove('hide-me');
+		//
+		// 			}
+		// 		}
+		// 	})
+		// })
 
 		// console.log(checkboxes);
 		// for(var i = 0; i < buttons.length; i++) {
@@ -197,11 +198,17 @@
 	</script>
 	<script>
 		var checkboxes = document.querySelectorAll('input[name="images"]');
+		var selectedImages = document.querySelector('.selected-images');
+		var submitButton = document.querySelector('.submit-chapter');
 
 		checkboxes.forEach(function(item){
 			item.addEventListener('change', function(){
 				if(item.checked == true) {
 					//delete item
+					selectedImages.classList.add('show-selected-images');
+					submitButton.classList.add('show-selected-images');
+
+
 					var li = item.parentElement.parentElement.parentElement;
 					var ul = li.parentElement;
 
@@ -210,18 +217,26 @@
 						ul.removeChild(li);
 					}, 1000);
 
-					// ul.removeChild(li);
-
 					//show item
-						//year
-						var url = item.value
-						var img = document.createElement("img");
-						var selectedImages = document.querySelector('.selected-images');
-						img.src = url;
-						selectedImages.appendChild(img);
+					var url = item.value
 
-						var newImages = document.querySelectorAll('.selected-images img');
-				    newImages[newImages.length-1].scrollIntoView();
+					var label = document.createElement('label');
+					selectedImages.appendChild(label);
+
+					var input = document.createElement('input');
+					input.setAttribute('type', 'checkbox');
+					input.setAttribute('name', 'images');
+					input.setAttribute('value', item.value);
+					input.checked = true;
+
+					label.appendChild(input);
+
+					var img = document.createElement('img');
+					img.src = url;
+					label.appendChild(img);
+
+					var newImages = document.querySelectorAll('.selected-images img');
+			    newImages[newImages.length-1].scrollIntoView();
 
 				}
 			});
