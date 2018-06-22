@@ -38,22 +38,6 @@
 
 		<main class="contents">
 			<h1>Selecteer de foto's die je wilt gebruiken voor jouw verhaal</h1>
-			<!-- <section class="personal-data">
-				<form action="/create-story/<%- id %>" method="post">
-					<input class="title" type="text" name="title" placeholder="Geef jouw verhaal een titel.." autocomplete="off">
-
-					<div>
-						<label for="name">Dit is het verhaal over:</label>
-						<input id="name" name="name" type="text" placeholder="Jan Jansen.." autocomplete="off">
-					</div>
-					<div>
-						<label for="year">Geboren in:</label>
-						<input id="year" name="year" type="number" placeholder="1969" min="1900" max="2018">
-					</div>
-
-					<button type="submit">Opslaan</button>
-				</form>
-			</section> -->
 			<form class="data" action="/my-story/<%- id %>" method="post">
 			<% for(var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
 				<section id="<%- Object.keys(dataFirstQuery)[i] %>" class="year <%- Object.keys(dataFirstQuery)[i] %>">
@@ -81,19 +65,17 @@
 									</div>
 								</label>
 							</li>
+							<% } %>
 						<% } %>
-					<% } %>
-					</ul>
-				</section>
-			<% } %>
-				<section class="selected-images">
-				</section>
+						</ul>
+					</section>
+				<% } %>
+				<section class="selected-images"></section>
 
 				<div class="next-page">
 					<button class="submit-chapter" type="submit">Opslaan</button>
 				</div>
 			</form>
-
 		</main>
 	</div>
 
@@ -101,7 +83,9 @@
 		window.data = <%- JSON.stringify(dataFirstQuery || null) %>;
 		console.log(window.data)
 	</script>
+
 	<script>
+		//open detail page image
 		var trigger = document.querySelectorAll('.openDetail');
 		var detailpopup = document.querySelectorAll('.detail');
 		var closeButton = document.querySelectorAll('.popupCloseButton');
@@ -124,6 +108,7 @@
 		}
 	</script>
 	<script>
+		//hamburger menu mobile
 		if('querySelector' in document && 'querySelectorAll' in document && 'addEventListener' in window) {
 			var open = document.querySelector('.open');
 			var close = document.querySelector('.close');
@@ -160,62 +145,22 @@
 		}
 	</script>
 	<script>
-	var sections = document.querySelectorAll('section.year');
-	var main = document.querySelector('body');
-	var yearTitle = document.querySelectorAll('.year-title');
-	var chapters = document.querySelectorAll('.table-of-contents ol li a');
-	var details = document.querySelectorAll('details');
+		//active state year when scrolling
+		var sections = document.querySelectorAll('section.year');
+		var main = document.querySelector('body');
+		var yearTitle = document.querySelectorAll('.year-title');
+		var chapters = document.querySelectorAll('.table-of-contents ol li a');
+		var details = document.querySelectorAll('details');
 
-	window.addEventListener('scroll', function(){
-		for (var i = 0; i < sections.length; i++) {
-			if(sections[i].offsetTop-5 <= window.scrollY && sections[i+1].offsetTop > window.scrollY+5) {
-				yearTitle[i].classList.add('active-year');
-			} else {
-				yearTitle[i].classList.remove('active-year');
+		window.addEventListener('scroll', function(){
+			for (var i = 0; i < sections.length; i++) {
+				if(sections[i].offsetTop-5 <= window.scrollY && sections[i+1].offsetTop > window.scrollY+5) {
+					yearTitle[i].classList.add('active-year');
+				} else {
+					yearTitle[i].classList.remove('active-year');
+				}
 			}
-		}
-
-		// for (var i = 0; i < yearTitle.length; i++) {
-		// 	if (yearTitle[i].classList.value.split("year-title ")[1] == 'active-year') {
-		// 		details[i].open = true;
-		// 	} else {
-		// 		details[i].open = false;
-		// 	}
-		// }
 	});
-
-
-	</script>
-	<script>
-		// var forms = document.querySelectorAll('.data');
-		// var buttons = document.querySelectorAll('.submit-chapter');
-		// var checkboxes = document.querySelectorAll('.data input');
-		//
-		// forms.forEach(function(form){
-		// 	form.addEventListener('submit', function(e){
-		// 		e.preventDefault();
-		// 		var inputs = e.target.elements;
-		// 		for(var i = 0; i < inputs.length; i++) {
-		// 			if(inputs[i].checked == false) {
-		// 				inputs[i].parentElement.parentElement.parentElement.classList.add('hide-me');
-		// 			} else {
-		// 				inputs[i].parentElement.parentElement.parentElement.classList.remove('hide-me');
-		//
-		// 			}
-		// 		}
-		// 	})
-		// })
-
-		// console.log(checkboxes);
-		// for(var i = 0; i < buttons.length; i++) {
-		// 	buttons[i].addEventListener('click', function(e){
-		// 		e.preventDefault();
-		//
-		// 		console.log(e);
-		//
-		// 	});
-		// }
-
 	</script>
 	<script>
 		var checkboxes = document.querySelectorAll('input[name="images"]');
@@ -263,24 +208,4 @@
 			});
 		});
 	</script>
-	<!-- <script>
-	var trigger = document.querySelectorAll(".year-title");
-
-	for (	var i = 0; i < trigger.length; i++) {
-		trigger[i].addEventListener("click", function() {
-				console.log('click');
-				/* Toggle between adding and removing the "active" class,
-				to highlight the button that controls the panel */
-				this.classList.toggle("active");
-
-				/* Toggle between hiding and showing the active panel */
-				var panel = this.nextElementSibling;
-				if (panel.style.display === "block") {
-						panel.style.display = "none";
-				} else {
-						panel.style.display = "block";
-				}
-		});
-	}
-	</script> -->
 <%- include('partials/foot.ejs') %>

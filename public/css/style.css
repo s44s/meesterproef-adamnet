@@ -516,13 +516,6 @@ p, a, li {
 
 		position: fixed;
 		padding-top: 5vh;
-
-		/*
-		padding-top: 20vh;
-		overflow: scroll;
-		height: 100%;
-		position: sticky;
-		top: 0; */
 	}
 
 	.create-story .contents {
@@ -642,7 +635,7 @@ p, a, li {
 }
 */
 
-/* dropdown menu - mobile  */
+/* hamburger menu - mobile  */
 .create-story .table-of-contents button {
 	border: none;
 	background-color: var(--main-red);
