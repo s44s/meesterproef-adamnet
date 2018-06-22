@@ -56,23 +56,6 @@ exports.location = async function (newStoryData) {
     return a.distance - b.distance;
   });
 
-  // Get the streets in the neighbourhood:
-  function getNeighbourhood(item) {
-    var conduct = false;
-    var filter = Math.round((streetsInRadius.length - 1) / 4);
-    var neighbourhood = streetsInRadius.filter(function (street, i) {
-      if (i >= 1 && i <= filter) {
-        return street;
-      }
-    });
-    neighbourhood.filter(function (street) {
-      if (item.street.value == street.street) {
-        conduct = true;
-      }
-    });
-    return conduct;
-  }
-
   // Fetch the images for selected location and timestamp:
   var fetchLocationAndTimestamp = async function () {
     var url = sparqlqueries.url(sparqlqueries.getLocationAndTimestamp(newStoryData));
@@ -97,11 +80,9 @@ exports.location = async function (newStoryData) {
     var chapter;
 
     if (item.street.value == streetsInRadius[0].street) {
-      chapter = streetsInRadius[0].streetLabel;
-    } else if (getNeighbourhood(item) == true) {
-      chapter = 'de buurt';
+      chapter = 'Jouw straat';
     } else {
-      chapter = 'de overige straten';
+      chapter = 'Jouw buurt';
     }
 
     if (!allDataMapped.years[year]) {
