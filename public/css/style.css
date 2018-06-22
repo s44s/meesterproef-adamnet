@@ -1053,6 +1053,17 @@ details summary::-webkit-details-marker {
   height: 5rem;
 }
 
+.my-story .register-chapters .add-chapter-btn {
+  display: block;
+  width: 5rem;
+  height: 5rem;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  font-size: 1.25rem;
+  background: none;
+}
+
 .my-story .content {
   position: absolute;
   z-index: -1;
