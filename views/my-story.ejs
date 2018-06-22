@@ -7,10 +7,10 @@
 				<% years.forEach(function (year) { %>
 					<% var chapters = Object.keys(selection[year]); %>
 					<li>
-						<a href="#"><%= year %></a>
+						<a href="<%- year %>-<%- chapters[0].replace(/\s/g,'').toLowerCase() %>"><%= year %></a>
 						<ul>
 							<% chapters.forEach(function (chapter) { %>
-								<li><a href="#"><%= chapter %></a></li>
+								<li><a href="<%- year %>-<%- chapter.replace(/\s/g,'').toLowerCase() %>"><%= chapter %></a></li>
 							<% }); %>
 							<li><button type="button">+</button></li>
 						</ul>
@@ -18,6 +18,15 @@
 				<% }); %>
 			</ol>
 		</nav>
+
+		<main class="content">
+			<% years.forEach(function(year) { %>
+				<% var chapters = Object.keys(selection[year]); %>
+				<% chapters.forEach(function (chapter) { %>
+					<%#- include('partials/chapter.ejs', {year: year, chapter: chapter}) %>
+				<% }); %>
+			<% }); %>
+		</main>
 
 
 
