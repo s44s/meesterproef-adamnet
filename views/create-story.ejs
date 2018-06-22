@@ -57,12 +57,33 @@
 			<form class="data" action="/my-story/<%- id %>" method="post">
 			<% for(var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
 				<section id="<%- Object.keys(dataFirstQuery)[i] %>" class="year <%- Object.keys(dataFirstQuery)[i] %>">
-					<% var objectYears = dataFirstQuery[Object.keys(dataFirstQuery)[i]]; %>
-					<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
-
-						<%- include('partials/chapter.ejs', {i: i, j: j, objectYears: objectYears}) %>
-
+					<ul>
+						<% var objectYears = dataFirstQuery[Object.keys(dataFirstQuery)[i]]; %>
+						<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
+						<% var objectChapters = objectYears[Object.keys(objectYears)[j]] %>
+						<% for(var k = 0; k < Object.keys(objectChapters).length; k++) { %>
+							<li class="data-image">
+								<label>
+									<div>
+										<input id="checkbox" type="checkbox" name="images" value="<%- Object.values(objectChapters)[k].img.value %>">
+										<span class="check"></span>
+										<img src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
+										<p><%- Object.values(objectChapters)[k].title.value %></p>
+										<a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+									</div>
+									<div class="detail">
+										<span class="helper"></span>
+										<div>
+											<div class="popupCloseButton">X</div>
+											<img src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
+											<p><%- Object.values(objectChapters)[k].title.value %></p>
+										</div>
+									</div>
+								</label>
+							</li>
+						<% } %>
 					<% } %>
+					</ul>
 				</section>
 			<% } %>
 				<section class="selected-images">
