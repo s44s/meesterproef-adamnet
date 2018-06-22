@@ -995,3 +995,68 @@ details summary::-webkit-details-marker {
   background-color: var(--main-black);
 	color: var(--main-white);
 }
+
+/* MY STORY */
+.my-story li > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 .5rem;
+  color: var(--main-black);
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+
+.my-story .register-years {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 5rem;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-color: green;
+}
+
+.my-story .register-years > li {
+  display: block;
+  width: 5rem;
+  height: 3.125rem;
+}
+
+.my-story .register-years > li > a {
+  padding: 0;
+}
+
+.my-story .register-chapters {
+  position: fixed;
+  left: 5rem;
+  top: 0;
+  display: none;
+  flex-wrap: nowrap;
+  width: calc(100% - 5rem);
+  height: 5rem;
+  padding: 0;
+  margin: 0;
+  background-color: red;
+}
+.my-story .register-chapters.show {
+  display: flex;
+}
+
+.my-story .register-chapters > li {
+  display: block;
+  min-width: 5rem;
+  height: 5rem;
+}
+
+.my-story .content {
+  position: absolute;
+  z-index: -1;
+  left: 5rem;
+  top: 5rem;
+  width: calc(100% - 5rem);
+}
