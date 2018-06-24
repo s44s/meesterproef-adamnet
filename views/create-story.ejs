@@ -18,49 +18,58 @@
 				</svg>
 			</button>
 			<ol class="menu">
-				<a class="save-story-btn" role="button" href="/edit-story/<%- id %>">Verhaal maken</a>
 				<% for(var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
 					<li>
-						<details>
-						  <summary><h1 class="year-title"><%- Object.keys(dataFirstQuery)[i] %></h1></summary>
-								<% var objectYears = dataFirstQuery[Object.keys(dataFirstQuery)[i]]; %>
-								<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
-									<a href="#<%- Object.keys(dataFirstQuery)[i] %>-<%- Object.keys(objectYears)[j].replace(/\s/g,'') %>"><%- Object.keys(objectYears)[j] %></a>
-								<% } %>
-								<button class="add-chapter-btn" type="button">+</button>
-						</details>
+						<a href="#year-<%- Object.keys(dataFirstQuery)[i] %>">
+							<h1 class="year-title"><%- Object.keys(dataFirstQuery)[i] %></h1>
+						</a>
 					</li>
 				<% } %>
 			</ol>
 		</nav>
 
 		<main class="contents">
-			<section class="personal-data">
-				<form action="/create-story/<%- id %>" method="post">
-					<input class="title" type="text" name="title" placeholder="Geef jouw verhaal een titel.." autocomplete="off">
-
-					<div>
-						<label for="name">Dit is het verhaal over:</label>
-						<input id="name" name="name" type="text" placeholder="Jan Jansen.." autocomplete="off">
-					</div>
-					<div>
-						<label for="year">Geboren in:</label>
-						<input id="year" name="year" type="number" placeholder="1969" min="1900" max="2018">
-					</div>
-
-					<button type="submit">Opslaan</button>
-				</form>
-			</section>
+			<h1>Selecteer de foto's die je wilt gebruiken voor jouw verhaal</h1>
+			<form class="data" action="/my-story/<%- id %>" method="post">
 			<% for(var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
-				<section id="<%- Object.keys(dataFirstQuery)[i] %>" class="year <%- Object.keys(dataFirstQuery)[i] %>">
-					<% var objectYears = dataFirstQuery[Object.keys(dataFirstQuery)[i]]; %>
-					<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
+				<section id="year-<%- Object.keys(dataFirstQuery)[i] %>" class="year <%- Object.keys(dataFirstQuery)[i] %>">
+					<img class="crosses" src="/images/crosses.svg"/>
+					<ul>
+						<% var objectYears = dataFirstQuery[Object.keys(dataFirstQuery)[i]]; %>
+						<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
+						<% var objectChapters = objectYears[Object.keys(objectYears)[j]] %>
+						<% for(var k = 0; k < Object.keys(objectChapters).length; k++) { %>
+							<li class="data-image">
+								<label>
+									<div class="content">
+										<input id="checkbox" type="checkbox" name="images" value="<%- Object.values(objectChapters)[k].img.value %>">
+										<span class="check"></span>
+										<img class="lazy" src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
+										<p><%- Object.values(objectChapters)[k].title.value %></p>
+										<a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+									</div>
+									<div class="detail">
+										<span class="helper"></span>
+										<div>
+											<div class="popupCloseButton">X</div>
+											<img src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
+											<p><%- Object.values(objectChapters)[k].title.value %></p>
+										</div>
+									</div>
+								</label>
+							</li>
+							<% } %>
+						<% } %>
+						</ul>
+					</section>
+				<% } %>
+				<section class="selected-images"></section>
 
-						<%- include('partials/chapter.ejs', {i: i, j: j, objectYears: objectYears}) %>
-
-					<% } %>
-				</section>
-			<% } %>
+				<div class="next-page">
+					<button class="submit-chapter" type="submit">Opslaan</button>
+					<span class="count-images"></span>
+				</div>
+			</form>
 		</main>
 	</div>
 
@@ -68,7 +77,9 @@
 		window.data = <%- JSON.stringify(dataFirstQuery || null) %>;
 		console.log(window.data)
 	</script>
+
 	<script>
+		//open detail page image
 		var trigger = document.querySelectorAll('.openDetail');
 		var detailpopup = document.querySelectorAll('.detail');
 		var closeButton = document.querySelectorAll('.popupCloseButton');
@@ -91,6 +102,7 @@
 		}
 	</script>
 	<script>
+		//hamburger menu mobile
 		if('querySelector' in document && 'querySelectorAll' in document && 'addEventListener' in window) {
 			var open = document.querySelector('.open');
 			var close = document.querySelector('.close');
@@ -127,81 +139,214 @@
 		}
 	</script>
 	<script>
-	var sections = document.querySelectorAll('section.year');
-	var main = document.querySelector('body');
-	var yearTitle = document.querySelectorAll('.year-title');
-	var chapters = document.querySelectorAll('.table-of-contents ol li a');
-	var details = document.querySelectorAll('details');
+		//active state year when scrolling
+		var sections = document.querySelectorAll('section.year');
+		var main = document.querySelector('body');
+		var yearTitle = document.querySelectorAll('.year-title');
 
-	window.addEventListener('scroll', function(){
-		for (var i = 0; i < sections.length; i++) {
-			if(sections[i].offsetTop-5 <= window.scrollY && sections[i+1].offsetTop > window.scrollY+5) {
-				yearTitle[i].classList.add('active-year');
-			} else {
-				yearTitle[i].classList.remove('active-year');
-			}
-		}
-
-		for (var i = 0; i < yearTitle.length; i++) {
-			if (yearTitle[i].classList.value.split("year-title ")[1] == 'active-year') {
-				details[i].open = true;
-			} else {
-				details[i].open = false;
-			}
-		}
-	});
-
-
-	</script>
-	<script>
-		var forms = document.querySelectorAll('.data');
-		var buttons = document.querySelectorAll('.submit-chapter');
-		var checkboxes = document.querySelectorAll('.data input');
-
-		forms.forEach(function(form){
-			form.addEventListener('submit', function(e){
-				e.preventDefault();
-				var inputs = e.target.elements;
-				for(var i = 0; i < inputs.length; i++) {
-					if(inputs[i].checked == false) {
-						inputs[i].parentElement.parentElement.parentElement.classList.add('hide-me');
-					} else {
-						inputs[i].parentElement.parentElement.parentElement.classList.remove('hide-me');
-
-					}
+		window.addEventListener('scroll', function(){
+			for (var i = 0; i < sections.length; i++) {
+				if(sections[i].offsetTop-5 <= window.scrollY && sections[i+1].offsetTop > window.scrollY+5) {
+					yearTitle[i].classList.add('active-year');
+				} else {
+					yearTitle[i].classList.remove('active-year');
 				}
-			})
-		})
+			}
+		});
 
-		// console.log(checkboxes);
-		// for(var i = 0; i < buttons.length; i++) {
-		// 	buttons[i].addEventListener('click', function(e){
-		// 		e.preventDefault();
-		//
-		// 		console.log(e);
+		// yearTitle.forEach(function(year){
+		// 	year.addEventListener('click', function(){
 		//
 		// 	});
-		// }
-
+		// });
 	</script>
-	<!-- <script>
-	var trigger = document.querySelectorAll(".year-title");
+	<script>
+		var checkboxes = document.querySelectorAll('input[name="images"]');
+		var selectedImages = document.querySelector('.selected-images');
+		var submitButton = document.querySelector('.submit-chapter');
+		var span = document.querySelector('.count-images');
 
-	for (	var i = 0; i < trigger.length; i++) {
-		trigger[i].addEventListener("click", function() {
-				console.log('click');
-				/* Toggle between adding and removing the "active" class,
-				to highlight the button that controls the panel */
-				this.classList.toggle("active");
+		checkboxes.forEach(function(item) {
+			item.addEventListener('change', function(){
+				var li = item.parentElement.parentElement.parentElement;
+				var ul = li.parentElement;
 
-				/* Toggle between hiding and showing the active panel */
-				var panel = this.nextElementSibling;
-				if (panel.style.display === "block") {
-						panel.style.display = "none";
+				if(item.checked == true) {
+					//add number
+					span.innerHTML++;
+
+					//show selected-images-bar
+					selectedImages.classList.add('show-selected-images');
+					submitButton.classList.add('show-selected-images');
+					span.classList.add('show-selected-images');
+
+					//create item
+					var url = item.value;
+					var text = item.parentElement.childNodes[7].innerHTML;
+
+					var img = document.createElement('img');
+					img.src = url;
+					img.alt = text;
+					selectedImages.appendChild(img);
+
+					var newImages = document.querySelectorAll('.selected-images img');
+					newImages[newImages.length-1].scrollIntoView();
+
+					//add style
+					li.classList.add('hide-li');
+
+					img.addEventListener('click', function(){
+						//add number
+						span.innerHTML--;
+
+						//delete item
+						var img = this;
+						var section = this.parentElement;
+
+						// label.style.opacity = '0';
+						// setTimeout(function(){
+							section.removeChild(img);
+						// }, 1000);
+
+						//add item
+						var inputHidden = document.querySelector('input[value="' + this.src + '"]');
+						var liHidden = inputHidden.parentElement.parentElement.parentElement;
+
+						li.classList.remove('hide-li');
+						inputHidden.checked = false;
+					});
+
 				} else {
-						panel.style.display = "block";
+					//add number
+					span.innerHTML--;
+
+					//show li item
+					li.classList.remove('hide-li');
+
+					//delete selected image
+					var images = document.querySelectorAll('.selected-images img');
+					for(var i = 0; i < images.length; i++) {
+						if(item.value == images[i].src) {
+							selectedImages.removeChild(images[i])
+						}
+					}
+
 				}
+			});
 		});
-	}
-	</script> -->
+
+		</script>
+		<!-- <script>
+			var inputSelected;
+			var checkboxes = document.querySelectorAll('input[name="images"]');
+
+			for(var i = 0; i < checkboxes.length; i++) {
+				checkbox[i].addEventListener('change', function(){
+					inputSelected = document.querySelectorAll('.selected-images input[name="images"]');
+					console.log(inputSelected);
+
+					for(var i = 0; i < inputSelected.length; i++) {
+						var arrayNumber = inputSelected.length - i;
+						// console.log(arrayNumber);
+
+						inputSelected[i].addEventListener('change', function(){
+							// console.log('check');
+							// if(item.checked == false) {
+							// 	//add number
+							// 	console.log(item);
+							// 	span.innerHTML--;
+							// }
+						});
+					};
+				})
+			}
+
+
+			checkboxes.forEach(function(item) {
+				item.addEventListener('change', function(){
+					inputSelected = document.querySelectorAll('.selected-images input[name="images"]');
+
+					// inputSelected.forEach(function(item) {
+					// 	item.addEventListener('change', function(){
+					//
+					// 		if(item.checked == false) {
+					// 			//add number
+					// 			console.log(item);
+					// 			span.innerHTML--;
+					// 		}
+					// 	});
+					// });
+				});
+			});
+
+		</script> -->
+		<script>
+		//smoothscroll
+		(function() // Code in a function to create an isolate scope
+		{
+		var speed = 500;
+		var moving_frequency = 15; // Affects performance !
+		var links = document.getElementsByTagName('a');
+		var href;
+		for(var i=0; i<links.length; i++)
+		{
+		    href = (links[i].attributes.href === undefined) ? null : links[i].attributes.href.nodeValue.toString();
+		    if(href !== null && href.length > 1 && href.substr(0, 1) == '#')
+		    {
+		        links[i].onclick = function()
+		        {
+		            var element;
+		            var href = this.attributes.href.nodeValue.toString();
+		            if(element = document.getElementById(href.substr(1)))
+		            {
+		                var hop_count = speed/moving_frequency
+		                var getScrollTopDocumentAtBegin = getScrollTopDocument();
+		                var gap = (getScrollTopElement(element) - getScrollTopDocumentAtBegin) / hop_count;
+
+		                for(var i = 1; i <= hop_count; i++)
+		                {
+		                    (function()
+		                    {
+		                        var hop_top_position = gap*i;
+		                        setTimeout(function(){  window.scrollTo(0, hop_top_position + getScrollTopDocumentAtBegin); }, moving_frequency*i);
+		                    })();
+		                }
+		            }
+
+		            return false;
+		        };
+		    }
+		}
+
+		var getScrollTopElement =  function (e)
+		{
+		    var top = 0;
+
+		    while (e.offsetParent != undefined && e.offsetParent != null)
+		    {
+		        top += e.offsetTop + (e.clientTop != null ? e.clientTop : 0);
+		        e = e.offsetParent;
+		    }
+
+		    return top;
+		};
+
+		var getScrollTopDocument = function()
+		{
+		    return document.documentElement.scrollTop + document.body.scrollTop;
+		};
+		})();
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.9.0/lazyload.min.js"></script>
+	<script>
+		var myLazyLoad = new LazyLoad({
+			elements_selector: ".lazy"
+		});
+	</script>
+	<script>
+		//get height of table of contents
+		var height = document.querySelector('.table-of-contents ol').offsetHeight;
+		var bar = document.querySelector('.table-of-contents ol');
+		bar.style.height = height + 100;
+	</script>
 <%- include('partials/foot.ejs') %>

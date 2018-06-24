@@ -123,7 +123,7 @@ exports.getCreateStoryPage = async function (req, res, next) {
 
   res.render('create-story', {
     dataFirstQuery: data,
-    selection: selection,
+    // selection: selection,
     id: req.params.id
   });
 }
@@ -172,7 +172,7 @@ exports.saveStoryPage = function (req, res, next) {
   currentStory.edit = false;
 
   // Temporary empty database for dev:
-  // database.splice(0, database.length);
+  database.splice(0, database.length);
 
   // Push the story object in temporary database:
   database.push(currentStory);
