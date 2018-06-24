@@ -41,7 +41,7 @@
 						<% for(var k = 0; k < Object.keys(objectChapters).length; k++) { %>
 							<li class="data-image">
 								<label>
-									<div>
+									<div class="content">
 										<input id="checkbox" type="checkbox" name="images" value="<%- Object.values(objectChapters)[k].img.value %>">
 										<span class="check"></span>
 										<img src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
@@ -165,186 +165,75 @@
 		var selectedImages = document.querySelector('.selected-images');
 		var submitButton = document.querySelector('.submit-chapter');
 		var span = document.querySelector('.count-images');
-		var inputSelected;
 
 		checkboxes.forEach(function(item) {
 			item.addEventListener('change', function(){
+				var li = item.parentElement.parentElement.parentElement;
+				var ul = li.parentElement;
+
 				if(item.checked == true) {
 					//add number
 					span.innerHTML++;
 
-					//delete item
+					//show selected-images-bar
 					selectedImages.classList.add('show-selected-images');
 					submitButton.classList.add('show-selected-images');
 					span.classList.add('show-selected-images');
 
-					var li = item.parentElement.parentElement.parentElement;
-					var ul = li.parentElement;
-
-					li.style.opacity = '0';
-					setTimeout(function(){
-						ul.removeChild(li);
-					}, 1000);
-
-					//show item
+					//create item
 					var url = item.value;
 					var text = item.parentElement.childNodes[7].innerHTML;
-					var section = item.parentElement.parentElement.parentElement.parentElement.parentElement;
-					var year = section.classList[1];
-
-					var label = document.createElement('label');
-					label.classList.add(year);
-					selectedImages.appendChild(label);
-
-					var input = document.createElement('input');
-					input.setAttribute('type', 'checkbox');
-					input.setAttribute('name', 'images');
-					input.setAttribute('value', item.value);
-					input.checked = true;
-
-					label.appendChild(input);
-
-					input.addEventListener('change', function(){
-						if(input.checked == false){
-							//add number
-							span.innerHTML--;
-
-							//delete item
-							var url2 = input.value;
-							var text2 = input.parentElement.childNodes[1].alt;
-							var label = input.parentElement;
-							var section = input.parentElement.parentElement;
-
-							// label.style.opacity = '0';
-							// setTimeout(function(){
-								section.removeChild(label);
-							// }, 1000);
-
-							//add item
-							var yearSection = document.querySelectorAll('.year');
-							for(var i = 0; i < checkboxes.length; i++) {
-								if(yearSection[i].classList[1] == label.classList[0]){
-									//li
-									var li = document.createElement('li');
-									li.classList.add('data-image');
-									var container = document.querySelector('#year-' + yearSection[i].classList[1] + ' ul');
-									container.appendChild(li);
-
-									//label
-									var label = document.createElement('label');
-									li.appendChild(label);
-
-									//div
-									var div1 = document.createElement('div');
-									label.appendChild(div1);
-
-									//div detail
-									var div2 = document.createElement('div');
-									div2.classList.add('detail')
-									label.appendChild(div2);
-
-									//input
-									var inputNew = document.createElement('input');
-									inputNew.setAttribute('type', 'checkbox');
-									inputNew.setAttribute('name', 'images');
-									inputNew.setAttribute('value', item.value);
-									div1.appendChild(inputNew);
-
-									//span
-									var span2 = document.createElement('span');
-									span2.classList.add('check')
-									div1.appendChild(span2);
-
-									//img
-									var img2 = document.createElement('img');
-									img2.src = url2;
-									div1.appendChild(img2);
-
-									//p
-									console.log(text2);
-									var p2 = document.createElement('p');
-									p2.textContent = text2;
-									div1.appendChild(p2);
-
-									//a
-									var a = document.createElement('a');
-									a.classList.add('openDetail');
-									div1.appendChild(a);
-
-									//img zoom in
-									var imgZoom = document.createElement('img');
-									imgZoom.src = "/images/zoom-in.svg";
-									a.appendChild(imgZoom);
-
-									//helper
-									var helper = document.createElement('span');
-									helper.classList.add('helper')
-									div2.appendChild(helper);
-
-									//nested div
-									var div3 = document.createElement('div');
-									div2.appendChild(div3);
-
-									//nested div
-									var div4 = document.createElement('div');
-									div4.classList.add('popupCloseButton');
-									di4.textContent = 'X';
-									div3.appendChild(div4);
-
-									//img nested
-									var img3 = document.createElement('img');
-									img3.src = url2;
-									div3.appendChild(img3);
-
-									//p nested
-									var p3 = document.createElement('p');
-									p3.textContent = text2
-									div3.appendChild(p3);
-
-									// var newImages2 = document.querySelectorAll('.year ul li');
-							    // newImages2[newImages2.length-1].scrollIntoView();
-
-								}
-							}
-
-						}
-					})
 
 					var img = document.createElement('img');
 					img.src = url;
 					img.alt = text;
-					label.appendChild(img);
+					selectedImages.appendChild(img);
 
-					var newImages = document.querySelectorAll('.selected-images label');
+					var newImages = document.querySelectorAll('.selected-images img');
 					newImages[newImages.length-1].scrollIntoView();
+
+					//add style
+					li.classList.add('hide-li');
+
+					img.addEventListener('click', function(){
+						//add number
+						span.innerHTML--;
+
+						//delete item
+						var img = this;
+						var section = this.parentElement;
+
+						// label.style.opacity = '0';
+						// setTimeout(function(){
+							section.removeChild(img);
+						// }, 1000);
+
+						//add item
+						var inputHidden = document.querySelector('input[value="' + this.src + '"]');
+						var liHidden = inputHidden.parentElement.parentElement.parentElement;
+
+						li.classList.remove('hide-li');
+						inputHidden.checked = false;
+					});
+
+				} else {
+					//add number
+					span.innerHTML--;
+
+					//show li item
+					li.classList.remove('hide-li');
+
+					//delete selected image
+					var images = document.querySelectorAll('.selected-images img');
+					for(var i = 0; i < images.length; i++) {
+						if(item.value == images[i].src) {
+							selectedImages.removeChild(images[i])
+						}
+					}
+
 				}
-
-
-
-				inputSelected = document.querySelectorAll('.selected-images input');
 			});
 		});
-
-		// console.log(inputSelected);
-		//
-		// inputSelected.forEach(function(item) {
-		// 	item.addEventListener('change', function(){
-		// 		if(item.checked == false) {
-		// 			//add number
-		// 			span.innerHTML--;
-		//
-		// 			//delete item
-		// 			var label = item.parentElement;
-		// 			var section = item.parentElement.parentElement;
-		// 			console.log(label, section)
-		//
-		// 			label.style.opacity = '0';
-		// 			setTimeout(function(){
-		// 				section.removeChild(label);
-		// 			}, 1000);
-		// 		}
-		// 	});
-		// });
 
 		</script>
 		<!-- <script>
