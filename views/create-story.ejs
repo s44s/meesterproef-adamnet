@@ -44,7 +44,7 @@
 									<div class="content">
 										<input id="checkbox" type="checkbox" name="images" value="<%- Object.values(objectChapters)[k].img.value %>">
 										<span class="check"></span>
-										<img src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
+										<img class="lazy" src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
 										<p><%- Object.values(objectChapters)[k].title.value %></p>
 										<a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
 									</div>
@@ -336,5 +336,11 @@
 		    return document.documentElement.scrollTop + document.body.scrollTop;
 		};
 		})();
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.9.0/lazyload.min.js"></script>
+	<script>
+		var myLazyLoad = new LazyLoad({
+			elements_selector: ".lazy"
+		});
 	</script>
 <%- include('partials/foot.ejs') %>
