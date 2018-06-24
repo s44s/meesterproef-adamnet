@@ -343,4 +343,10 @@
 			elements_selector: ".lazy"
 		});
 	</script>
+	<script>
+		//get height of table of contents
+		var height = document.querySelector('.table-of-contents ol').offsetHeight;
+		var bar = document.querySelector('.table-of-contents ol');
+		bar.style.height = height + 100;
+	</script>
 <%- include('partials/foot.ejs') %>

@@ -509,7 +509,8 @@ p, a, li {
 	.create-story .table-of-contents {
 		left: 5vw;
 		width: 15vw;
-		height: 100vh;
+		height: 100%;
+		overflow: scroll;
 		z-index: 100;
 		background-color: rgba(255,255,255,0.9);
 		color: black;
@@ -536,15 +537,16 @@ p, a, li {
 
 /* table of contents */
 @media only screen and (min-width: 50em) {
-	.create-story .table-of-contents::after {
+	.create-story .table-of-contents ol::after {
 		content: "";
 		position: absolute;
 		top: 0;
 		right: 0;
 		width: 50%;
-		height: 100%;
+		height: inherit;
 		background-color: var(--main-red);
 		z-index: 100;
+		padding-bottom: 5%;
 	}
 }
 
