@@ -133,15 +133,18 @@ exports.postMyStoryPage = function (req, res, next) {
   var currentStory = findCurrentStory(req.session.stories, req.params.id);
   var selectedImages = [].concat.apply([], Object.values(req.body));
 
+  // Create an array of all chapters:
   var allChapters = Object.values(currentStory.data);
   var arr = allChapters.map(function (chapter) {
     return [].concat.apply([], Object.values(chapter));
   });
 
+  // Merge all the images from different chapters in one array:
   var merged = [].concat.apply([], arr);
 
   var selection = [];
 
+  // Push all selected images with meta data in selection array:
   selectedImages.forEach(function (image) {
     merged.filter(function (item) {
       if (item.img.value == image) {
@@ -150,7 +153,22 @@ exports.postMyStoryPage = function (req, res, next) {
     });
   });
 
-  console.log('selection', selection);
+  // Map the selection by year and chapter:
+  selection.forEach(function (item) {
+    var year = item.start.value.split('-')[0];
+    var chapter = item.chapter;
+
+    if (!currentStory.selection[year]) {
+      currentStory.selection[year] = {};
+    }
+    if (!currentStory.selection[year][chapter]) {
+      currentStory.selection[year][chapter] = [];
+    }
+
+    currentStory.selection[year][chapter].push(item);
+  });
+
+  console.log('new data:', currentStory);
 }
 
 exports.getMyStoryPage = function (req, res, next) {
