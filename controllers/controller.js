@@ -158,6 +158,19 @@ exports.postMyStoryPage = function (req, res, next) {
     var year = item.start.value.split('-')[0];
     var chapter = item.chapter;
 
+    // Remove img from original data:
+    currentStory.data[year][chapter].splice(currentStory.data[year][chapter].indexOf(item), 1);
+
+    // If there are no images in chapter, remove chapter:
+    if (!currentStory.data[year][chapter].length) {
+      delete currentStory.data[year][chapter];
+    }
+
+    // If there are no chapters in year, remove year:
+    if (!Object.keys(currentStory.data[year]).length) {
+      delete currentStory.data[year];
+    }
+
     if (!currentStory.selection[year]) {
       currentStory.selection[year] = {};
     }
@@ -167,8 +180,6 @@ exports.postMyStoryPage = function (req, res, next) {
 
     currentStory.selection[year][chapter].push(item);
   });
-
-  console.log('new data:', currentStory);
 }
 
 exports.getMyStoryPage = function (req, res, next) {
