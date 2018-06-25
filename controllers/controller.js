@@ -129,8 +129,10 @@ exports.getCreateStoryPage = async function (req, res, next) {
 }
 
 exports.postMyStoryPage = function (req, res, next) {
+  var id = req.params.id;
+
   // Place the selected images from data to selection:
-  var currentStory = findCurrentStory(req.session.stories, req.params.id);
+  var currentStory = findCurrentStory(req.session.stories, id);
   var selectedImages = [].concat.apply([], Object.values(req.body));
 
   // Create an array of all chapters:
@@ -180,6 +182,8 @@ exports.postMyStoryPage = function (req, res, next) {
 
     currentStory.selection[year][chapter].push(item);
   });
+
+  res.redirect('/my-story/' + id);
 }
 
 exports.getMyStoryPage = function (req, res, next) {
