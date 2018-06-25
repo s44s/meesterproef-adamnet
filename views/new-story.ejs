@@ -4,38 +4,40 @@
 			<div id='map'></div>
 
 			<div class="meta-data">
-				<h1>Selecteer een plek en een tijdperk</h1>
-				<form class="search-location" action="/search-location" method="post">
-					<input type="text" name="searchLocation" placeholder="Zoek jouw straat" value="" autocomplete="off">
-					<button type="submit">Zoek</button>
-				</form>
+				<div class="select-street">
+					<h1>Selecteer een plek en een tijdperk</h1>
+					<form class="search-location" action="/search-location" method="post">
+						<input type="text" name="searchLocation" placeholder="Zoek jouw straat" value="" autocomplete="off">
+						<button type="submit">Zoek</button>
+					</form>
 
-				<div class="autocomplete">
-					<% if (data !== null && data !== undefined) { %>
-						<ul id="autocomplete-list" class="autocomplete-items">
-							<% data.forEach(function (street) { %>
-								<li>
-									<input id="<%- street.street.value %>" type="radio" name="wkt" value="<%- street.wkt.value %>">
-									<label for="<%- street.street.value %>"><%= street.name.value %></label>
-								</li>
-							<% }); %>
-						</ul>
-					<% } %>
-				</div>
-				<div class="radiusSelect">
-					<select id="radius-selected" name="radius">
-						<option value="0.1">100 m</option>
-						<option value="0.2">200 m</option>
-						<option value="0.3">300 m</option>
-						<option value="0.4">400 m</option>
-						<option value="0.5" selected>500 m</option>
-						<option value="0.6">600 m</option>
-						<option value="0.7">700 m</option>
-						<option value="0.8">800 m</option>
-						<option value="0.9">900 m</option>
-						<option value="1">1 km</option>
-						<option value="2">2 km</option>
-					</select>
+					<div class="autocomplete">
+						<% if (data !== null && data !== undefined) { %>
+							<ul id="autocomplete-list" class="autocomplete-items">
+								<% data.forEach(function (street) { %>
+									<li>
+										<input id="<%- street.street.value %>" type="radio" name="wkt" value="<%- street.wkt.value %>">
+										<label for="<%- street.street.value %>"><%= street.name.value %></label>
+									</li>
+								<% }); %>
+							</ul>
+						<% } %>
+					</div>
+					<div class="radiusSelect">
+						<select id="radius-selected" name="radius">
+							<option value="0.1">100 m</option>
+							<option value="0.2">200 m</option>
+							<option value="0.3">300 m</option>
+							<option value="0.4">400 m</option>
+							<option value="0.5" selected>500 m</option>
+							<option value="0.6">600 m</option>
+							<option value="0.7">700 m</option>
+							<option value="0.8">800 m</option>
+							<option value="0.9">900 m</option>
+							<option value="1">1 km</option>
+							<option value="2">2 km</option>
+						</select>
+					</div>
 				</div>
 			</div>
 
@@ -55,13 +57,15 @@
 				var range = document.getElementById('slider');
 
 				noUiSlider.create(range, {
-					start: [ 1970, 1980 ], // Handle start position
+					start: [ 1900, 2018 ], // Handle start position
 					step: 1, // Slider moves in increments of '10'
 					margin: 1, // Handles must be more than '20' apart
 					connect: true, // Display a colored bar between the handles
 					orientation: 'vertical',
 					behaviour: 'tap-drag', // Move handle on tap, bar is draggable
 					tooltips: true,
+					animate: true,
+					animationDuration: 300,
 					format: {
 						to: function ( value ) {
 						return value + '';
@@ -82,10 +86,8 @@
 	 			// When the slider value changes, update the input and span
 	 			range.noUiSlider.on('update', function( values, handle ) {
 						 if ( handle ) {
-							 console.log('changemax');
 							 maxValue.innerHTML = values[handle];
 						 } else {
-							 console.log('changemin');
 							 minValue.innerHTML = values[handle];
 						 }
 	 			});
@@ -94,14 +96,16 @@
 
 				});
 
-
 				//animate slider zero state
-				setTimeout(function(){
-					range.noUiSlider.set(1940);
-				}, 1000);
-
-				// setTimeout(function(){
-				// 	range.noUiSlider.set(1970);
-				// }, 1000);
+				var bar = document.querySelectorAll('.noUi-origin');
+				bar.forEach(function(e){
+					setTimeout(function(){
+						e.classList.add('animate');
+						range.noUiSlider.set([1970, 1980]);
+					}, 1000);
+					setTimeout(function(){
+						e.classList.remove('animate');
+					}, 2000);
+				});
 	 		</script>
 <%- include('partials/foot.ejs') %>
