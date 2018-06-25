@@ -89,5 +89,19 @@
 							 minValue.innerHTML = values[handle];
 						 }
 	 			});
+
+				range.noUiSlider.on('update', function( values, handle ) {
+
+				});
+
+
+				//animate slider zero state
+				setTimeout(function(){
+					range.noUiSlider.set(1940);
+				}, 1000);
+
+				// setTimeout(function(){
+				// 	range.noUiSlider.set(1970);
+				// }, 1000);
 	 		</script>
 <%- include('partials/foot.ejs') %>
