@@ -3,7 +3,7 @@
 
 		<% var years = Object.keys(selection); %>
 		<nav class="register">
-			<a href=""><img src="/images/left-arrow.svg"/></a>
+			<a href="/create-story/<%- id %>"><img src="/images/left-arrow.svg"/></a>
 			<ol class="register-years">
 				<% years.forEach(function (year) { %>
 					<% var chapters = Object.keys(selection[year]); %>
@@ -71,8 +71,7 @@
 			var countYears = years.length;
 
 			years.forEach(function(year){
-				var perc = 100/countYears;
-				year.style.height = perc + '%';
+				year.style.height = 'calc((100% - 5rem) / ' + countYears + ')';
 
 				var chapters = year.childNodes[3].children;
 				var countChapters = chapters.length
@@ -104,7 +103,7 @@
 
 			window.addEventListener('scroll', function(){
 				for (var i = 0; i < yearSections.length; i++) {
-					if(yearSections[i].offsetTop-5 <= window.scrollY && yearSections[i+1].offsetTop > window.scrollY+5) {
+					if(yearSections[i].offsetTop-5 <= window.scrollY && (yearSections[i].offsetHeight + yearSections[i].offsetTop) > window.scrollY+5) {
 						yearsTitle[i].classList.add('active-menu');
 						yearsTitle[i].children[1].classList.add('show-chapter');
 					} else {
@@ -114,7 +113,7 @@
 				}
 
 				for (var i = 0; i < sections.length; i++) {
-					if(sections[i].offsetTop-5 <= window.scrollY && sections[i+1].offsetTop > window.scrollY+5) {
+					if(sections[i].offsetTop-5 <= window.scrollY && (sections[i].offsetHeight + sections[i].offsetTop )> window.scrollY+5) {
 						chaptersTitle[i].classList.add('active-menu');
 					} else {
 						chaptersTitle[i].classList.remove('active-menu');
