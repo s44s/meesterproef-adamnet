@@ -131,8 +131,7 @@ exports.getCreateStoryPage = async function (req, res, next) {
 exports.postMyStoryPage = function (req, res, next) {
   // Place the selected images from data to selection:
   var currentStory = findCurrentStory(req.session.stories, req.params.id);
-
-  // console.log('data:', currentStory);
+  var selectedImages = [].concat.apply([], Object.values(req.body));
 
   var allChapters = Object.values(currentStory.data);
   var arr = allChapters.map(function (chapter) {
@@ -141,18 +140,17 @@ exports.postMyStoryPage = function (req, res, next) {
 
   var merged = [].concat.apply([], arr);
 
+  var selection = [];
 
+  selectedImages.forEach(function (image) {
+    merged.filter(function (item) {
+      if (item.img.value == image) {
+        selection.push(item);
+      }
+    });
+  });
 
-
-
-
-
-
-  // var selection = Object.values(currentStory.data).map(function (item) {
-  //   return Object.values(item);
-  // });
-
-  // console.log('selection:', selection);
+  console.log('selection', selection);
 }
 
 exports.getMyStoryPage = function (req, res, next) {
