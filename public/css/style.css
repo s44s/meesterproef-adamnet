@@ -990,6 +990,26 @@ p, a, li {
 }
 
 /* MY STORY */
+.my-story nav ol {
+	z-index: 100;
+}
+
+.my-story nav > a {
+	display: block;
+	width: 1.5rem;
+	height: 1rem;
+	position: fixed;
+	sition: absolute;
+	z-index: 1000;
+	top: 2rem;
+	left: 1.5rem;
+}
+
+.my-story nav > a img {
+	width: 100%;
+	fill: white;
+}
+
 .my-story nav .register-years {
   position: fixed;
   left: 0;
@@ -1000,15 +1020,20 @@ p, a, li {
 
   width: 5rem;
   height: 100vh;
+	padding: 0;
+	margin: 0;
+	padding-top: 5rem;
 
-  padding: 0;
-  margin: 0;
   background-color: var(--main-red);
 }
 
 .my-story nav .register-years > li {
   display: block;
   width: 5rem;
+}
+
+.my-story nav .register-years > li:hover {
+	background-color: rgba(255,255,255,0.5);
 }
 
 .my-story nav .register-years li > a {
@@ -1035,10 +1060,12 @@ p, a, li {
   padding: 0;
   margin: 0;
   background-color: var(--main-red);
+	z-index: 100;
 }
 
-.my-story .register-chapters.show {
+.my-story .register-chapters.show-chapter {
   display: flex;
+	z-index: 1000;
 }
 
 .my-story .register-chapters > li {
@@ -1050,16 +1077,8 @@ p, a, li {
 	color: var(--main-red);
 }
 
-.my-story .register-chapters > li:active {
-	background-color: white;
-}
-
-.my-story .register-chapters > li:active a {
-	color: var(--main-red);
-}
-
-.my-story .register-chapters > li:active .add-chapter-btn {
-	color: var(--main-red);
+.my-story nav .register-chapters > li:hover {
+	background-color: rgba(255,255,255,0.5);
 }
 
 .my-story .register-chapters .add-chapter-btn {
@@ -1087,15 +1106,15 @@ p, a, li {
 }
 
 /* sticky title */
-/* .my-story .title-sticky {
+.my-story .title-sticky {
  	position: sticky;
   top: -0.95;
   padding: 2% 0;
 	top: 4.95rem;
 	padding: 2% 0;
  	background-color: white;
- 	z-index: 1000;
- } */
+	z-index: 0;
+ }
 
 .my-story img.crosses {
 	width: 4em;

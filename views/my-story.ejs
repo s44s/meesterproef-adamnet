@@ -3,6 +3,7 @@
 
 		<% var years = Object.keys(selection); %>
 		<nav class="register">
+			<a href=""><img src="/images/left-arrow.svg"/></a>
 			<ol class="register-years">
 				<% years.forEach(function (year) { %>
 					<% var chapters = Object.keys(selection[year]); %>
@@ -44,11 +45,11 @@
 			var links = document.querySelectorAll('.register-years > li > a');
 
 			links.forEach(function (link, i, self) {
-				self[0].nextElementSibling.classList.add('show');
+				self[0].nextElementSibling.classList.add('show-chapter');
 				link.addEventListener('click', function () {
-					var current = document.querySelector('.register-chapters.show');
-					current.classList.remove('show');
-					this.nextElementSibling.classList.add('show');
+					var current = document.querySelector('.register-chapters.show-chapter');
+					current.classList.remove('show-chapter');
+					this.nextElementSibling.classList.add('show-chapter');
 				});
 			});
 		</script>
@@ -88,8 +89,9 @@
 				var countChapters = chapters.length
 
 				for(var i = 0; i < chapters.length; i++) {
-					var perc = 100/countChapters;
-					chapters[i].style.width = perc + '%';
+					var perc = 'calc(100% / ' + countChapters + ')';
+					console.log(perc)
+					chapters[i].style.width = perc;
 				}
 			});
 		</script>
