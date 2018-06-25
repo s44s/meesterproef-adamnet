@@ -5,7 +5,8 @@
 	</div>
 	<ul>
 		<% Object.values(selection[year])[0].forEach(function (item) { %>
-			<li class="data-image">
+			<!-- <li class="data-image">
+				<label>
 				<div>
 					<img src="<%- item.img.value %>" alt="<%- item.title.value %>"/>
 					<p><%= item.title.value %></p>
@@ -19,7 +20,28 @@
 						<p><%= item.title.value %></p>
 					</div>
 				</div>
+			</label>
+			</li> -->
+			<li class="data-image">
+				<label>
+					<div class="content">
+						<input id="checkbox" type="checkbox" name="images" value="<%- item.img.value %>">
+						<span class="check"></span>
+						<img class="lazy" src="<%- item.img.value %>" alt="<%- item.title.value %>"/>
+						<p><%- item.title.value%></p>
+						<a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+					</div>
+					<div class="detail">
+						<span class="helper"></span>
+						<div>
+							<div class="popupCloseButton">X</div>
+							<img src="<%- item.img.value %>" alt="<%- item.title.value %>"/>
+							<p><%- item.title.value %></p>
+						</div>
+					</div>
+				</label>
 			</li>
+
 		<% }); %>
 	</ul>
 </article>

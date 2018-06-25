@@ -145,10 +145,10 @@ exports.myStoryPage = function (req, res, next) {
 
   if (checkDatabase) {
     var currentStory = findCurrentStory(database);
-    selection = currentStory.selection;
+    selection = currentStory.data;
   } else {
     var currentStory = findCurrentStory(req.session.stories);
-    selection = currentStory.selection;
+    selection = currentStory.data;
   }
 
   res.render('my-story', {
