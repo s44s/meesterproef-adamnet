@@ -39,6 +39,13 @@ var chapters = require('./chapters.js');
 
 var database = [];
 
+// Return the current story:
+var findCurrentStory = function (arr, id) {
+  return arr.find(function (story) {
+    return story.id == id;
+  });
+}
+
 exports.homePage = function (req, res, next) {
   res.render('index');
 }
@@ -93,13 +100,6 @@ exports.postCreateStoryPage = function (req, res, next) {
 }
 
 exports.getCreateStoryPage = async function (req, res, next) {
-  // Return the current story:
-  var findCurrentStory = function (arr) {
-    return arr.find(function (story) {
-      return story.id == req.params.id;
-    });
-  }
-
   // Check if given id exists in database:
   var checkDatabase = database.some(function (story) {
     return story.id == req.params.id;
@@ -109,11 +109,11 @@ exports.getCreateStoryPage = async function (req, res, next) {
   var selection;
 
   if (checkDatabase) {
-    var currentStory = findCurrentStory(database);
+    var currentStory = findCurrentStory(database, req.params.id);
     data = currentStory.data;
     selection = currentStory.selection;
   } else {
-    var currentStory = findCurrentStory(req.session.stories);
+    var currentStory = findCurrentStory(req.session.stories, req.params.id);
     var result = await chapters.location(currentStory.newStoryData);
 
     currentStory.data = result.years;
@@ -128,14 +128,11 @@ exports.getCreateStoryPage = async function (req, res, next) {
   });
 }
 
-exports.myStoryPage = function (req, res, next) {
-  // Return the current story:
-  var findCurrentStory = function (arr) {
-    return arr.find(function (story) {
-      return story.id == req.params.id;
-    });
-  }
+exports.postMyStoryPage = function (req, res, next) {
+  console.log(req.session.stories[0]);
+}
 
+exports.getMyStoryPage = function (req, res, next) {
   // Check if given id exists in database:
   var checkDatabase = database.some(function (story) {
     return story.id == req.params.id;
@@ -144,10 +141,10 @@ exports.myStoryPage = function (req, res, next) {
   var selection;
 
   if (checkDatabase) {
-    var currentStory = findCurrentStory(database);
+    var currentStory = findCurrentStory(database, req.params.id);
     selection = currentStory.selection;
   } else {
-    var currentStory = findCurrentStory(req.session.stories);
+    var currentStory = findCurrentStory(req.session.stories, req.params.id);
     selection = currentStory.selection;
   }
 
