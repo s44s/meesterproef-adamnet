@@ -39,6 +39,13 @@ var chapters = require('./chapters.js');
 
 var database = [];
 
+// Return the current story:
+var findCurrentStory = function (arr, id) {
+  return arr.find(function (story) {
+    return story.id == id;
+  });
+}
+
 exports.homePage = function (req, res, next) {
   res.render('index');
 }
@@ -93,13 +100,6 @@ exports.postCreateStoryPage = function (req, res, next) {
 }
 
 exports.getCreateStoryPage = async function (req, res, next) {
-  // Return the current story:
-  var findCurrentStory = function (arr) {
-    return arr.find(function (story) {
-      return story.id == req.params.id;
-    });
-  }
-
   // Check if given id exists in database:
   var checkDatabase = database.some(function (story) {
     return story.id == req.params.id;
@@ -109,11 +109,11 @@ exports.getCreateStoryPage = async function (req, res, next) {
   var selection;
 
   if (checkDatabase) {
-    var currentStory = findCurrentStory(database);
+    var currentStory = findCurrentStory(database, req.params.id);
     data = currentStory.data;
     selection = currentStory.selection;
   } else {
-    var currentStory = findCurrentStory(req.session.stories);
+    var currentStory = findCurrentStory(req.session.stories, req.params.id);
     var result = await chapters.location(currentStory.newStoryData);
 
     currentStory.data = result.years;
@@ -128,14 +128,65 @@ exports.getCreateStoryPage = async function (req, res, next) {
   });
 }
 
-exports.myStoryPage = function (req, res, next) {
-  // Return the current story:
-  var findCurrentStory = function (arr) {
-    return arr.find(function (story) {
-      return story.id == req.params.id;
-    });
-  }
+exports.postMyStoryPage = function (req, res, next) {
+  var id = req.params.id;
 
+  // Place the selected images from data to selection:
+  var currentStory = findCurrentStory(req.session.stories, id);
+  var selectedImages = [].concat.apply([], Object.values(req.body));
+
+  // Create an array of all chapters:
+  var allChapters = Object.values(currentStory.data);
+  var arr = allChapters.map(function (chapter) {
+    return [].concat.apply([], Object.values(chapter));
+  });
+
+  // Merge all the images from different chapters in one array:
+  var merged = [].concat.apply([], arr);
+
+  var selection = [];
+
+  // Push all selected images with meta data in selection array:
+  selectedImages.forEach(function (image) {
+    merged.filter(function (item) {
+      if (item.img.value == image) {
+        selection.push(item);
+      }
+    });
+  });
+
+  // Map the selection by year and chapter:
+  selection.forEach(function (item) {
+    var year = item.start.value.split('-')[0];
+    var chapter = item.chapter;
+
+    // Remove img from original data:
+    currentStory.data[year][chapter].splice(currentStory.data[year][chapter].indexOf(item), 1);
+
+    // If there are no images in chapter, remove chapter:
+    if (!currentStory.data[year][chapter].length) {
+      delete currentStory.data[year][chapter];
+    }
+
+    // If there are no chapters in year, remove year:
+    if (!Object.keys(currentStory.data[year]).length) {
+      delete currentStory.data[year];
+    }
+
+    if (!currentStory.selection[year]) {
+      currentStory.selection[year] = {};
+    }
+    if (!currentStory.selection[year][chapter]) {
+      currentStory.selection[year][chapter] = [];
+    }
+
+    currentStory.selection[year][chapter].push(item);
+  });
+
+  res.redirect('/my-story/' + id);
+}
+
+exports.getMyStoryPage = function (req, res, next) {
   // Check if given id exists in database:
   var checkDatabase = database.some(function (story) {
     return story.id == req.params.id;
@@ -144,11 +195,11 @@ exports.myStoryPage = function (req, res, next) {
   var selection;
 
   if (checkDatabase) {
-    var currentStory = findCurrentStory(database);
-    selection = currentStory.data;
+    var currentStory = findCurrentStory(database, req.params.id);
+    selection = currentStory.selection;
   } else {
-    var currentStory = findCurrentStory(req.session.stories);
-    selection = currentStory.data;
+    var currentStory = findCurrentStory(req.session.stories, req.params.id);
+    selection = currentStory.selection;
   }
 
   res.render('my-story', {

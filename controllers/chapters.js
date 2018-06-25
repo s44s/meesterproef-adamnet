@@ -85,6 +85,9 @@ exports.location = async function (newStoryData) {
       chapter = 'Jouw buurt';
     }
 
+    // Add chapter to item:
+    item.chapter = chapter;
+
     if (!allDataMapped.years[year]) {
       allDataMapped.years[year] = {};
     }
