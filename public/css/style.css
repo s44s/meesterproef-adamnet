@@ -1036,6 +1036,10 @@ p, a, li {
 	background-color: rgba(255,255,255,0.5);
 }
 
+.my-story nav .register-years > li.active-menu {
+	background-color: rgba(255,255,255,0.5);
+}
+
 .my-story nav .register-years li > a {
   display: flex;
   justify-content: center;
@@ -1078,6 +1082,10 @@ p, a, li {
 }
 
 .my-story nav .register-chapters > li:hover {
+	background-color: rgba(255,255,255,0.5);
+}
+
+.my-story nav .register-chapters > li.active-menu {
 	background-color: rgba(255,255,255,0.5);
 }
 

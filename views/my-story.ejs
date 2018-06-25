@@ -14,7 +14,7 @@
 								<% if (chapter != 'Jouw buurt') { %>
 									<% chapter = 'Jouw straat'; %>
 								<% } %>
-								<li><a href="#<%- year %>-<%- chapter.replace(/\s/g,'').toLowerCase() %>"><%= chapter %></a></li>
+								<li class="chapter-name"><a href="#<%- year %>-<%- chapter.replace(/\s/g,'').toLowerCase() %>"><%= chapter %></a></li>
 							<% }); %>
 							<li><button class="add-chapter-btn" type="button">+</button></li>
 						</ul>
@@ -25,6 +25,7 @@
 
 		<main class="content">
 			<% years.forEach(function (year) { %>
+				<div class="year">
 				<% var chapters = Object.keys(selection[year]); %>
 				<% chapters.forEach(function (chapter) { %>
 					<% if (chapter != 'Jouw buurt') { %>
@@ -38,21 +39,10 @@
 						streetName: streetName
 					}) %>
 				<% }); %>
+			</div>
 			<% }); %>
 		</main>
 
-		<script type="text/javascript">
-			var links = document.querySelectorAll('.register-years > li > a');
-
-			links.forEach(function (link, i, self) {
-				self[0].nextElementSibling.classList.add('show-chapter');
-				link.addEventListener('click', function () {
-					var current = document.querySelector('.register-chapters.show-chapter');
-					current.classList.remove('show-chapter');
-					this.nextElementSibling.classList.add('show-chapter');
-				});
-			});
-		</script>
 		<script>
 			//open detail page image
 			var trigger = document.querySelectorAll('.openDetail');
@@ -85,13 +75,50 @@
 				year.style.height = perc + '%';
 
 				var chapters = year.childNodes[3].children;
-				console.log(chapters)
 				var countChapters = chapters.length
 
 				for(var i = 0; i < chapters.length; i++) {
 					var perc = 'calc(100% / ' + countChapters + ')';
-					console.log(perc)
 					chapters[i].style.width = perc;
+				}
+			});
+		</script>
+
+		<script type="text/javascript">
+			//active state when scrolling
+			var yearSections = document.querySelectorAll('main .year');
+			var sections = document.querySelectorAll('article.chapter');
+			var yearsTitle = document.querySelectorAll('.register-years > li');
+			var chaptersTitle = document.querySelectorAll('.register-chapters > .chapter-name');
+			var links = document.querySelectorAll('.register-years > li > a');
+
+			links.forEach(function (link, i, self) {
+				self[0].nextElementSibling.classList.add('show-chapter');
+
+				link.addEventListener('click', function () {
+					var current = document.querySelector('.register-chapters.show-chapter');
+					current.classList.remove('show-chapter');
+					this.nextElementSibling.classList.add('show-chapter');
+				});
+			});
+
+			window.addEventListener('scroll', function(){
+				for (var i = 0; i < yearSections.length; i++) {
+					if(yearSections[i].offsetTop-5 <= window.scrollY && yearSections[i+1].offsetTop > window.scrollY+5) {
+						yearsTitle[i].classList.add('active-menu');
+						yearsTitle[i].children[1].classList.add('show-chapter');
+					} else {
+						yearsTitle[i].classList.remove('active-menu');
+						yearsTitle[i].children[1].classList.remove('show-chapter');
+					}
+				}
+
+				for (var i = 0; i < sections.length; i++) {
+					if(sections[i].offsetTop-5 <= window.scrollY && sections[i+1].offsetTop > window.scrollY+5) {
+						chaptersTitle[i].classList.add('active-menu');
+					} else {
+						chaptersTitle[i].classList.remove('active-menu');
+					}
 				}
 			});
 		</script>
