@@ -1173,14 +1173,39 @@ p, a, li {
 	padding: 5% 0;
 	width: 75%;
 	display: inline-block;
+	border: 1px solid transparent;
+	padding: 2%;
 }
+
+.my-story ul li div p::after {
+	background-image: url('/images/pencil-edit-button.svg');
+	background-size: 15px 15px;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	content:"";
+	margin-left: 5%;
+}
+
+.my-story ul li div p:active,
+.my-story ul li div p:focus {
+	border: 1px solid black;
+	outline: none;
+}
+
+.my-story ul li div p:active::after,
+.my-story ul li div p:focus::after {
+	background-image: none;
+}
+
 
 .my-story ul li div a {
 	display: inline-block;
 	margin-top: 5%;
 	width: 7.5%;
-  margin-left: 12.5%;
+  margin-left: 5%;
 }
+
 
 .my-story ul li div a:hover,
 .my-story ul li div a:focus {
