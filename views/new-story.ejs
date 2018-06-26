@@ -2,7 +2,7 @@
 <body class="new-story">
 	<div id='map'></div>
 
-	<form class="location-and-timestamp" action="/create-story" method="post">
+	<div class="location-and-timestamp">
 		<div class="meta-data">
 			<div class="timestamp">
 				<div id="slider"></div>
@@ -32,7 +32,7 @@
 					<% } %>
 				</div>
 
-				<form class="radiusSelect">
+				<div class="radiusSelect">
 					<select id="radius-selected" name="radius">
 						<option value="0.1">100 m</option>
 						<option value="0.2">200 m</option>
@@ -46,11 +46,13 @@
 						<option value="1">1 km</option>
 						<option value="2">2 km</option>
 					</select>
-				</form>
+				</div>
 			</div>
 		</div>
-		<button type="submit">Maak mijn verhaal</button>
-	</form>
+		<form action="/create-story" method="post">
+			<button type="submit">Maak mijn verhaal</button>
+		</form>
+	</div>
 
 	<script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
 	<script>
