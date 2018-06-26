@@ -16,7 +16,29 @@
 								<% } %>
 								<li class="chapter-name"><a href="#<%- year %>-<%- chapter.replace(/\s/g,'').toLowerCase() %>"><%= chapter %></a></li>
 							<% }); %>
-							<li><button class="add-chapter-btn" type="button">+</button></li>
+							<li>
+								<button class="add-chapter-btn" type="button">+</button>
+								<ul class="add-chapters-options">
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="#">Politieke posters</a></li>
+									<li class="chapter-new"><a href="#">Muziek posters</a></li>
+									<li class="chapter-new"><a href="#">Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="#">Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="#">Verhuizing</a></li>
+								</ul>
+							</li>
 						</ul>
 					</li>
 				<% }); %>

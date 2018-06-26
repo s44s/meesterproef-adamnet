@@ -1101,6 +1101,10 @@ p, a, li {
 	color: white;
 }
 
+.my-story .add-chapters-options {
+	display: none;
+}
+
 /* main */
 .my-story main {
 	margin-left: 5rem;
@@ -1111,6 +1115,7 @@ p, a, li {
 .my-story article {
 	width: 90%;
 	margin-left: 5%;
+	min-height: 100vh;
 }
 
 /* sticky title */
