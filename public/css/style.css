@@ -1138,6 +1138,84 @@ p, a, li {
 }
 
 /* main */
+/* personal data form */
+.my-story .personal-data {
+	width: 90%;
+  margin-left: 5%;
+	margin-bottom: 5%;
+}
+
+.my-story .personal-data form {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.my-story .personal-data form .title {
+	font-size: 1.2em;
+	width: 95%;
+	border: 0;
+	margin-top: 3%;
+	margin-bottom: 5%;
+	border-bottom: 1px solid black;
+	padding: 2%;
+}
+
+.my-story .personal-data form div {
+	width: 70%;
+	margin-bottom: 5%;
+	margin-right: 25%;
+}
+
+.my-story .personal-data form div label {
+	color: black;
+	display: block;
+}
+
+.my-story .personal-data form div input {
+	border: 1px solid black;
+	height: 4%;
+	margin-top: 2%;
+	padding-left: 5%;
+}
+
+.my-story .personal-data form button {
+	border: none;
+	margin-right: 25%;
+	width: 70%;
+	height: 4%;
+	background-color: var(--main-red);
+	color: white;
+}
+
+@media only screen and (min-width: 50em) {
+	.my-story .personal-data form {
+		flex-direction: row;
+	}
+
+	.my-story .personal-data form .title {
+		font-size: 2em;
+	}
+
+	.my-story .personal-data form div {
+		width: 30%;
+		margin-bottom: 0%;
+		margin-right: 0;
+	}
+
+	.my-story .personal-data form button {
+		border: none;
+		width: 25%;
+		margin-right: 5%;
+		height: 4%;
+		background-color: var(--main-red);
+		color: white;
+	}
+}
+
+/* article */
 .my-story main {
 	margin-left: 5rem;
 	margin-top: 5rem;
