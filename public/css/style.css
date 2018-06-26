@@ -1053,6 +1053,11 @@ p, a, li {
 	padding: 0;
 }
 
+.my-story nav .register-chapters li > a, .my-story nav .register-chapters li > button {
+	justify-content: flex-start;
+	margin-left: 2rem;
+}
+
 .my-story .register-chapters {
   position: fixed;
   left: 5rem;
@@ -1085,20 +1090,43 @@ p, a, li {
 	background-color: rgba(255,255,255,0.5);
 }
 
+.my-story nav .register-chapters > .add-chapter:hover > ul,
+.my-story nav .register-chapters > .add-chapter:focus > ul,
+.my-story nav .register-chapters > .add-chapter:active > ul {
+	display: block;
+}
+
 .my-story nav .register-chapters > li.active-menu {
 	background-color: rgba(255,255,255,0.5);
 }
 
 .my-story .register-chapters .add-chapter-btn {
   display: block;
-  width: 5rem;
   height: 5rem;
   padding: 0;
   border: 0;
-  margin: 0;
   font-size: 1.25rem;
   background: none;
 	color: white;
+}
+
+.my-story .add-chapters-options {
+	display: none;
+	background-color: var(--main-red);
+	padding: 0;
+}
+
+.my-story .add-chapters-options li {
+	list-style: none;
+}
+
+.my-story .add-chapters-options li:hover {
+	background-color: rgba(255,255,255,0.5);
+}
+
+.my-story .add-chapters-options li a {
+	text-align: left;
+	justify-content: flex-start !important;
 }
 
 /* main */
@@ -1111,6 +1139,7 @@ p, a, li {
 .my-story article {
 	width: 90%;
 	margin-left: 5%;
+	min-height: 100vh;
 }
 
 /* sticky title */
@@ -1220,4 +1249,10 @@ p, a, li {
 
 .my-story ul li div:first-child img {
 	width: 100%;
+}
+
+/* add chapter form */
+.my-story .chapter-form-input label {
+	display: block;
+	margin-bottom: 2%;
 }
