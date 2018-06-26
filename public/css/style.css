@@ -199,9 +199,9 @@ p, a, li {
 }
 
 /* NEW-STORY */
-.new-story {
+/* .new-story {
 	overflow: hidden;
-}
+} */
 
 /* leaflet map */
 .new-story #map {
@@ -362,20 +362,89 @@ p, a, li {
   }
 }
 
-.new-story .select-street h1 {
-  background-color: green;
+/* Searchbar */
+.new-story .search-location input {
+	display: inline-block;
+	width: calc(100% - 6.5rem);
+  max-width: 20rem;
+	height: 3.125rem;
+	padding: 0;
+	padding-left: 1rem;
+  margin: 0;
+	border: 3px solid black;
+	color: black;
+	font-size: 1em;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 
-/* Searchbar */
-.new-story .select-street .search-location {
+.new-story .search-location button {
+	display: inline-block;
+	height: 3.125rem;
+	width: 5rem;
+	padding: 0;
+	border: 3px solid black;
+	background-color: black;
+	color: white;
+	font-size: 1em;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	margin-left: -4px;
+}
+
+/* Autocomplete */
+.new-story .autocomplete {
   display: block;
-  background-color: green;
+  width: calc(100% - 1.5rem);
+}
+
+.new-story .autocomplete ul {
+  display: block;
+  width: 100%;
+  padding: 0;
+}
+
+.new-story .autocomplete li {
+  display: block;
+}
+
+.new-story .autocomplete li a {
+  display: block;
+  padding: 1rem;
+  border-bottom: 3px solid #000;
+  color: #000;
+  font-size: 1rem;
+  text-decoration: none;
+}
+.new-story .autocomplete li a:focus,
+.new-story .autocomplete li a:hover,
+.new-story .autocomplete li a:active,
+.new-story .autocomplete li a.autocomplete-active {
+  color: var(--main-red);
+  border-color: var(--main-red);
 }
 
 /* Radius select */
-.new-story .select-street .radiusSelect {
-  display: block;
-  background-color: blue;
+.new-story .radiusSelect {
+	display: block;
+	width: calc(100% - 1.5rem);
+  max-width: 25rem;
+	margin-bottom: 5%;
+	background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 95% 0;
+  background-size: auto 100%;
+	background-color: black;
+	overflow: hidden;
+	border-radius: 10px;
+}
+
+.new-story .radiusSelect select {
+  color: #fff;
+	background: transparent;
+	border: none;
+	font-size: 1em;
+	height: 3.125rem;
+  margin-left: 1rem;
+	width: calc(200px + 70%);
 }
 
 /* top layer: h1 & select & search*/
@@ -463,33 +532,6 @@ p, a, li {
 		order: 1;
 		width: 40%;
 	}
-}
-
-.new-story .search-location input {
-	display: inline-block;
-	width: 60%;
-	height: 5vh;
-	padding: 0;
-	padding-left: 5%;
-	border: 3px solid black;
-	color: black;
-	font-size: 1em;
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
-}
-
-.new-story .search-location button {
-	display: inline-block;
-	height: 5vh;
-	width: 30%;
-	padding: 0;
-	border: 3px solid black;
-	background-color: black;
-	color: white;
-	font-size: 1em;
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
-	margin-left: -2%;
 }
 
 .new-story .autocomplete {
