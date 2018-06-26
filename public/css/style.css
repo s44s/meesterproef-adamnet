@@ -366,9 +366,9 @@ p, a, li {
 /* multiple rangeslider - noUiSlider */
 #slider {
 	position: absolute;
-	top: 3.5vh;
+	top: 5vh;
 	left: 5%;
-	height: 94vh;
+	height: 90vh;
 	width: 1.5em;
   border-radius: 1em;
 }
@@ -436,7 +436,7 @@ p, a, li {
 .new-story .timestamp-min-static {
 	display: none;
 	position: absolute;
-	top: 3vh;
+	top: 4vh;
 	left: calc(5% + 1.7em);
 	z-index: 0;
 	color: black;
@@ -446,7 +446,7 @@ p, a, li {
 .new-story .timestamp-max-static {
 	display: none;
 	position: absolute;
-	bottom: 2.5vh;
+	bottom: 4vh;
 	left: calc(5% + 1.7em);
 	z-index: 0;
 	color: black;
