@@ -2,7 +2,7 @@ var map = require('./map.js');
 
 (function () {
   var newStory = {
-    form: document.querySelector('.location-and-timestamp'),
+    form: document.querySelector('.submit-location-and-timestamp'),
     timestampMin: document.querySelector('[name="timestamp-min"]'),
     timestampMax: document.querySelector('[name="timestamp-max"]'),
     init: function () {
