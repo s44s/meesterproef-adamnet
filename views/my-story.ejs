@@ -18,7 +18,8 @@
 							<% }); %>
 							<li class="add-chapter">
 								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
-								<ul class="add-chapters-options">
+								<ul id="year-<%- year %>" class="add-chapters-options">
+
 									<!--
 									if (birthyear.value !empty) {
 										if (birthyear.value > 4 && < 13) {
@@ -32,11 +33,11 @@
 										}
 									}
 									-->
-									<li class="chapter-new"><a href="#">+ Politieke posters</a></li>
-									<li class="chapter-new"><a href="#">+ Muziek posters</a></li>
-									<li class="chapter-new"><a href="#">+ Jouw vereniging</a></li>
-									<li class="chapter-new"><a href="#">+ Openbaar vervoer</a></li>
-									<li class="chapter-new"><a href="#">+ Verhuizing</a></li>
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -47,7 +48,7 @@
 
 		<main class="content">
 			<% years.forEach(function (year) { %>
-				<div class="year">
+				<div class="year year-<%- year %>">
 				<% var chapters = Object.keys(selection[year]); %>
 				<% chapters.forEach(function (chapter) { %>
 					<% if (chapter != 'Jouw buurt') { %>
@@ -89,28 +90,9 @@
 			}
 		</script>
 		<script>
-			var years = document.querySelectorAll('.my-story nav .register-years > li')
-			var countYears = years.length;
-
-			years.forEach(function(year){
-				year.style.height = 'calc((100% - 5rem) / ' + countYears + ')';
-
-				var chapters = year.childNodes[3].children;
-				var countChapters = chapters.length
-
-				for(var i = 0; i < chapters.length; i++) {
-					var perc = 'calc(100% / ' + countChapters + ')';
-					chapters[i].style.width = perc;
-				}
-			});
-		</script>
-
-		<script type="text/javascript">
-			//active state when scrolling
+			//active menu li item on scroll
 			var yearSections = document.querySelectorAll('main .year');
-			var sections = document.querySelectorAll('article.chapter');
 			var yearsTitle = document.querySelectorAll('.register-years > li');
-			var chaptersTitle = document.querySelectorAll('.register-chapters > .chapter-name');
 			var links = document.querySelectorAll('.register-years > li > a');
 
 			links.forEach(function (link, i, self) {
@@ -123,25 +105,88 @@
 				});
 			});
 
-			window.addEventListener('scroll', function(){
-				for (var i = 0; i < yearSections.length; i++) {
-					if(yearSections[i].offsetTop-5 <= window.scrollY && (yearSections[i].offsetHeight + yearSections[i].offsetTop) > window.scrollY+5) {
-						yearsTitle[i].classList.add('active-menu');
-						yearsTitle[i].children[1].classList.add('show-chapter');
-					} else {
-						yearsTitle[i].classList.remove('active-menu');
-						yearsTitle[i].children[1].classList.remove('show-chapter');
-					}
-				}
+			//add new chapter
+			var newChapters = document.querySelectorAll('.chapter-new');
+			newChapters.forEach(function(trigger){
+				trigger.addEventListener('click', function(e){
+					e.preventDefault();
 
-				for (var i = 0; i < sections.length; i++) {
-					if(sections[i].offsetTop-5 <= window.scrollY && (sections[i].offsetHeight + sections[i].offsetTop )> window.scrollY+5) {
-						chaptersTitle[i].classList.add('active-menu');
-					} else {
-						chaptersTitle[i].classList.remove('active-menu');
-					}
-				}
+					//create nav item
+					var nameChapter = this.textContent;
+					var chapter1 = nameChapter.split('+ ');
+					var chapter2 = nameChapter.toLowerCase().split('+ ');
+					var parentMenu = this.parentElement.parentElement.parentElement;
+					var itemBefore = this.parentElement.parentElement;
+					console.log(itemBefore)
+
+					var li = document.createElement('li');
+					li.classList.add('chapter-name');
+					parentMenu.insertBefore(li, itemBefore)
+
+					var a = document.createElement('a');
+					a.textContent = chapter1[1];
+					li.appendChild(a);
+
+					//create article
+					var parentArticle = document.querySelector('.' + this.parentElement.id);
+
+					var article = document.createElement('article');
+					var id = this.parentElement.id.substr(5,9) + '-' + chapter2[1];
+					article.id = id
+					article.classList.add('chapter');
+					parentArticle.appendChild(article);
+
+					onScroll();
+					navWidth();
+
+				});
 			});
+
+			//menu equal li items
+			function navWidth(){
+				var years = document.querySelectorAll('.my-story nav .register-years > li')
+				var countYears = years.length;
+
+				years.forEach(function(year){
+					year.style.height = 'calc((100% - 5rem) / ' + countYears + ')';
+
+						var chapters = year.childNodes[3].children;
+						var countChapters = chapters.length;
+
+						for(var i = 0; i < chapters.length; i++) {
+							var perc = 'calc(100% / ' + countChapters + ')';
+							chapters[i].style.width = perc;
+						}
+				});
+			}
+			navWidth();
+
+
+			function onScroll(){
+				var sections = document.querySelectorAll('article.chapter');
+				var chaptersTitle = document.querySelectorAll('.register-chapters > .chapter-name');
+
+				window.addEventListener('scroll', function(){
+					for (var i = 0; i < yearSections.length; i++) {
+						if(yearSections[i].offsetTop-5 <= window.scrollY && (yearSections[i].offsetHeight + yearSections[i].offsetTop) > window.scrollY+5) {
+							yearsTitle[i].classList.add('active-menu');
+							yearsTitle[i].children[1].classList.add('show-chapter');
+						} else {
+							yearsTitle[i].classList.remove('active-menu');
+							yearsTitle[i].children[1].classList.remove('show-chapter');
+						}
+					}
+
+					for (var i = 0; i < sections.length; i++) {
+						if(sections[i].offsetTop-5 <= window.scrollY && (sections[i].offsetHeight + sections[i].offsetTop) > window.scrollY+5) {
+							chaptersTitle[i].classList.add('active-menu');
+						} else {
+							chaptersTitle[i].classList.remove('active-menu');
+						}
+					}
+				});
+			}
+			onScroll();
 		</script>
 
 <%- include('partials/foot.ejs') %>
