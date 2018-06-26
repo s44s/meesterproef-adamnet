@@ -110,9 +110,17 @@ p, a, li {
 	top: 0;
 }
 
+.home aside h2 {
+	color: white;
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 30%;
+	text-align: center;
+}
+
 .home form {
 	width: 80%;
-	padding-top: 40%;
+	padding-top: 10%;
 	margin: 0;
 	margin-left: 10%;
 }
