@@ -123,7 +123,7 @@ exports.getCreateStoryPage = async function (req, res, next) {
 
   res.render('create-story', {
     dataFirstQuery: data,
-    // selection: selection,
+    selection: selection,
     id: req.params.id
   });
 }
