@@ -31,10 +31,46 @@
 		<main class="contents">
 			<h1>Selecteer de foto's die je wilt gebruiken voor jouw verhaal</h1>
 			<form class="data" action="/my-story/<%- id %>" method="post">
+
+				<% var allChapters = Object.values(selection); %>
+				<% var arr = allChapters.map(function (chapter) { %>
+					<% return [].concat.apply([], Object.values(chapter)); %>
+				<% }); %>
+
+				<% var merged = [].concat.apply([], arr); %>
+
 			<% for(var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
 				<section id="year-<%- Object.keys(dataFirstQuery)[i] %>" class="year <%- Object.keys(dataFirstQuery)[i] %>">
 					<img class="crosses" src="/images/crosses.svg"/>
 					<ul>
+						<% var objectYearsSelection = dataFirstQuery[Object.keys(selection)[i]]; %>
+					<% if (objectYearsSelection !== null && objectYearsSelection !== undefined) { %>
+						<% for(var j = 0; j < Object.keys(objectYearsSelection).length; j++) { %>
+						<% var objectChaptersSelection = objectYearsSelection[Object.keys(objectYearsSelection)[j]] %>
+						<% for(var k = 0; k < Object.keys(objectChaptersSelection).length; k++) { %>
+							<li class="data-image">
+								<label>
+									<div class="content">
+										<input id="checkbox" type="checkbox" name="images" value="<%- Object.values(objectChaptersSelection)[k].img.value %>" checked>
+										<span class="check"></span>
+										<img class="lazy" src="<%- Object.values(objectChaptersSelection)[k].img.value %>" alt="<%- Object.values(objectChaptersSelection)[k].title.value %>"/>
+										<p><%- Object.values(objectChaptersSelection)[k].title.value %></p>
+										<a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+									</div>
+									<div class="detail">
+										<span class="helper"></span>
+										<div>
+											<div class="popupCloseButton">X</div>
+											<img src="<%- Object.values(objectChaptersSelection)[k].img.value %>" alt="<%- Object.values(objectChaptersSelection)[k].title.value %>"/>
+											<p><%- Object.values(objectChaptersSelection)[k].title.value %></p>
+										</div>
+									</div>
+								</label>
+							</li>
+							<% } %>
+						<% } %>
+					<% } else { %>
+
 						<% var objectYears = dataFirstQuery[Object.keys(dataFirstQuery)[i]]; %>
 						<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
 						<% var objectChapters = objectYears[Object.keys(objectYears)[j]] %>
@@ -60,6 +96,8 @@
 							</li>
 							<% } %>
 						<% } %>
+
+					<% } %>
 						</ul>
 					</section>
 				<% } %>
@@ -75,7 +113,9 @@
 
 	<script>
 		window.data = <%- JSON.stringify(dataFirstQuery || null) %>;
-		console.log(window.data)
+		window.selection = <%- JSON.stringify(selection || null) %>;
+		console.log('data', window.data);
+		console.log('selection', window.selection);
 	</script>
 
 	<script>
