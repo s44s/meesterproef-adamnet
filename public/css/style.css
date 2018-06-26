@@ -199,10 +199,6 @@ p, a, li {
 }
 
 /* NEW-STORY */
-/* .new-story {
-	overflow: hidden;
-} */
-
 /* leaflet map */
 .new-story #map {
 	position: absolute;
@@ -460,125 +456,14 @@ p, a, li {
 	width: calc(200px + 70%);
 }
 
-/* top layer: h1 & select & search*/
-/* .new-story .meta-data {
-	width: 100vw;
-	height: 40vh;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background-color: rgba(255,255,255,0.8);
-}
-
-.new-story .select-street {
-	position: absolute;
-	z-index: 10;
-	width: 70vw;
-	left: 20vw;
-	top: 5vh;
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: column;
-	justify-content: flex-start;
-}
-
-.new-story h1 {
-	margin: 0;
-	color: black;
-	font-size: 2em;
-	width: 100%;
-	margin-bottom: 5%;
-}
-
-.new-story .radiusSelect {
-	display: inline-block;
-	width: 90%;
-	order: 1;
-	margin-bottom: 5%;
-	background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
-	background-color: black;
-	overflow: hidden;
-	border-radius: 10px;
-}
-
-.new-story select {
-  color: #fff;
-	background: transparent;
-	border: none;
-	font-size: 1em;
-	height: 5vh;
-  margin-left: 5%;
-	width: calc(200px + 70%);
-} */
-
-/* Search bar */
-/* .new-story .search-location {
-	display: flex;
-	order: 2;
-	width: 100%;
-	margin: 0;
-	display: inline-block;
-	align-items: flex-start;
-}
-
-@media only screen and (min-width: 50em) {
-	.new-story .meta-data {
-    height: 30vh;
-	}
-
-	.new-story .search-location {
-		left: 20vw;
-		width: 70vw;
-	}
-
-	.new-story .select-street {
-		flex-direction: row;
-	}
-
-	.new-story .radiusSelect {
-		width: 20%;
-		order: 2;
-		margin-bottom: 0;
-	}
-
-	.new-story .search-location {
-		order: 1;
-		width: 40%;
-	}
-}
-
-.new-story .autocomplete {
-	width: 100%;
-	order: 4;
-}
-
-.new-story .autocomplete ul {
-	padding: 0;
-	margin: 0;
-	width: 24%;
-	background-color: white;
-	list-style: none;
-	padding: 2% 0;
-}
-
-.new-story .autocomplete ul li {
-	padding-left: 5%;
-	margin-bottom: 5%;
-}
-
-.new-story .autocomplete ul li a {
-	color: black;
-} */
-
-/* multiple rangeslider - noUiSlider */
-
 /* submit button */
-.new-story form.location-and-timestamp button {
+.new-story form.submit-location-and-timestamp button {
 	position: absolute;
-	bottom: 5%;
-	right: 20%;
-	width: 60%;
-	height: 5%;
+	bottom: 3.5vh;
+	right: 3.5rem;
+	width: calc(95% - 7.5rem);
+  max-width: 15rem;
+	height: 3.125rem;
 	border: none;
 	color: white;
 	background-color: var(--main-red);
@@ -586,8 +471,13 @@ p, a, li {
 	font-size: 1em;
 	border-radius: 10px;
 }
+@media all and (min-width: 50em) {
+  .new-story form.submit-location-and-timestamp button {
+    right: 5rem;
+  }
+}
 
-.new-story form.location-and-timestamp button::after {
+.new-story form.submit-location-and-timestamp button::after {
 	background-image: url('/images/chevron-sign-to-right.svg');
 	background-size: 15px 15px;
 	display: inline-block;
