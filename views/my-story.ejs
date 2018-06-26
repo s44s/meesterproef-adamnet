@@ -218,6 +218,10 @@
 
 				window.addEventListener('scroll', function(){
 					for (var i = 0; i < yearSections.length; i++) {
+						var showChapter = document.querySelector('.show-chapter');
+						if(showChapter == null){
+							yearsTitle[0].children[1].classList.add('show-chapter');
+						}
 						if(yearSections[i].offsetTop-5 <= window.scrollY && (yearSections[i].offsetHeight + yearSections[i].offsetTop) > window.scrollY+5) {
 							yearsTitle[i].classList.add('active-menu');
 							yearsTitle[i].children[1].classList.add('show-chapter');
@@ -226,6 +230,7 @@
 							yearsTitle[i].children[1].classList.remove('show-chapter');
 						}
 					}
+
 
 					for (var i = 0; i < sections.length; i++) {
 						if(sections[i].offsetTop-5 <= window.scrollY && (sections[i].offsetHeight + sections[i].offsetTop) > window.scrollY+5) {
