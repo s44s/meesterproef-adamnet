@@ -164,6 +164,7 @@
 					div.appendChild(h2);
 
 					var form = document.createElement('form');
+					form.classList.add('chapter-form-input')
 					article.appendChild(form);
 
 					var label = document.createElement('label');
@@ -175,6 +176,10 @@
 					input.setAttribute('type', 'text');
 					input.setAttribute('name', 'chapter-input');
 					form.appendChild(input);
+
+					var articles = document.querySelectorAll('.chapter')
+					articles[articles.length-1].scrollIntoView()-100;
+
 
 					onScroll();
 					navWidth();
