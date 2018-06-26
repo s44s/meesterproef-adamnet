@@ -113,22 +113,22 @@
 					var nameChapter = this.textContent;
 					var chapter1 = nameChapter.split('+ ');
 					var chapter2 = nameChapter.toLowerCase().split('+ ');
+					var chapter3 = chapter2[1].replace(' ', '-')
 					var parentMenu = this.parentElement.parentElement.parentElement;
 					var itemBefore = this.parentElement.parentElement;
-					console.log(itemBefore)
+					console.log(chapter3)
 
 					//get value depends on chapter
 					var value;
-					console.log(chapter2[1])
-					if(chapter2[1] == 'politieke posters') {
+					if(chapter3 == 'politieke-posters') {
 						value = 'wijk';
-					} else if (chapter2[1] == 'muziek posters') {
+					} else if (chapter3 == 'muziek-posters') {
 						value = 'muziek genre';
-					} else if (chapter2[1] == 'jouw vereniging') {
+					} else if (chapter3 == 'jouw-vereniging') {
 						value = 'vereniging';
-					} else if (chapter2[1] == 'openbaar vervoer') {
+					} else if (chapter3 == 'openbaar-vervoer') {
 						value = 'openbaar vervoer lijn nummer';
-					} else if (chapter2[1] == 'verhuizing') {
+					} else if (chapter3 == 'verhuizing') {
 						value = 'nieuwe straatnaam';
 					}
 
@@ -139,12 +139,13 @@
 
 					var a = document.createElement('a');
 					a.textContent = chapter1[1];
+					a.href = '#' + this.parentElement.id.substr(5,9) + '-' + chapter3;
 					li.appendChild(a);
 
 					//create article
 					var parentArticle = document.querySelector('.' + this.parentElement.id);
 					var article = document.createElement('article');
-					var id = this.parentElement.id.substr(5,9) + '-' + chapter2[1];
+					var id = this.parentElement.id.substr(5,9) + '-' + chapter3;
 					article.id = id
 					article.classList.add('chapter');
 					parentArticle.appendChild(article);
@@ -177,8 +178,8 @@
 					input.setAttribute('name', 'chapter-input');
 					form.appendChild(input);
 
-					var articles = document.querySelectorAll('.chapter')
-					articles[articles.length-1].scrollIntoView()-100;
+					// var articles = document.querySelectorAll('.chapter')
+					// articles[articles.length-1].scrollIntoView()-100;
 
 
 					onScroll();
