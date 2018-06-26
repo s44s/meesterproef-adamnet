@@ -946,11 +946,12 @@ p, a, li {
 	cursor: pointer;
 	color: white;
 	border: none;
+	border-radius: 10px;
 }
 
 .create-story .next-page .submit-chapter + span {
 	position: fixed;
-  bottom: 26vh;
+  bottom: 25vh;
   right: 1vw;
   width: 20px;
   height: 20px;
