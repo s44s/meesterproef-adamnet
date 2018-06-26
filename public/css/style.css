@@ -1225,3 +1225,9 @@ p, a, li {
 .my-story ul li div:first-child img {
 	width: 100%;
 }
+
+/* add chapter form */
+.my-story .chapter-form-input label {
+	display: block;
+	margin-bottom: 2%;
+}

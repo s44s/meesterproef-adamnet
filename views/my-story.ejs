@@ -168,6 +168,10 @@
 					form.classList.add('chapter-form-input')
 					article.appendChild(form);
 
+					form.addEventListener('submit', function(e){
+						e.preventDefault();
+					})
+
 					var label = document.createElement('label');
 					label.htmlFor = 'chapter-input';
 					label.textContent = "Vul jouw " + value + " in"
