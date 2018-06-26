@@ -1341,3 +1341,63 @@ p, a, li {
 	display: block;
 	margin-bottom: 2%;
 }
+
+/* explain button */
+#help {
+	background-color: var(--main-red);
+	color: white;
+	border: none;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	margin-left: 95%;
+	margin-top: 2%;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+.modal-content h1 {
+	text-align: center;
+}
+
+.modal-content p {
+	width: 60%;
+	margin-left: 20%;
+	text-align: center;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
