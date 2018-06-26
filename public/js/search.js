@@ -43,6 +43,13 @@ var map = require('./map.js');
         }
       });
 
+      // Event for clicking search button:
+      this.searchbar.parentNode.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var val = self.searchbar.value;
+        self.getAutocomplete(data, val);
+      });
+
       // Event listener when clicking the document:
       document.addEventListener('click', function (e) {
         self.closeList(e.target);
@@ -79,6 +86,7 @@ var map = require('./map.js');
 
           li.addEventListener('click', function (e) {
             e.preventDefault();
+            self.searchbar.value = this.textContent;
             self.closeList();
             map.selectedStreet(this.textContent);
           });
@@ -90,6 +98,7 @@ var map = require('./map.js');
       this.removeActive(list);
       if (this.currentFocus >= list.length) this.currentFocus = 0;
       if (this.currentFocus < 0) this.currentFocus = (list.length - 1);
+      this.searchbar.value = list[this.currentFocus].children[0].textContent;
       list[this.currentFocus].children[0].classList.add('autocomplete-active');
     },
     removeActive: function (list) {
