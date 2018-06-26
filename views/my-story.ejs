@@ -110,8 +110,6 @@
 			newChapters.forEach(function(trigger){
 				trigger.addEventListener('click', function(e){
 					e.preventDefault();
-
-					//create nav item
 					var nameChapter = this.textContent;
 					var chapter1 = nameChapter.split('+ ');
 					var chapter2 = nameChapter.toLowerCase().split('+ ');
@@ -119,6 +117,22 @@
 					var itemBefore = this.parentElement.parentElement;
 					console.log(itemBefore)
 
+					//get value depends on chapter
+					var value;
+					console.log(chapter2[1])
+					if(chapter2[1] == 'politieke posters') {
+						value = 'wijk';
+					} else if (chapter2[1] == 'muziek posters') {
+						value = 'muziek genre';
+					} else if (chapter2[1] == 'jouw vereniging') {
+						value = 'vereniging';
+					} else if (chapter2[1] == 'openbaar vervoer') {
+						value = 'openbaar vervoer lijn nummer';
+					} else if (chapter2[1] == 'verhuizing') {
+						value = 'nieuwe straatnaam';
+					}
+
+					//create nav item
 					var li = document.createElement('li');
 					li.classList.add('chapter-name');
 					parentMenu.insertBefore(li, itemBefore)
@@ -129,12 +143,38 @@
 
 					//create article
 					var parentArticle = document.querySelector('.' + this.parentElement.id);
-
 					var article = document.createElement('article');
 					var id = this.parentElement.id.substr(5,9) + '-' + chapter2[1];
 					article.id = id
 					article.classList.add('chapter');
 					parentArticle.appendChild(article);
+
+					//article text
+					var div = document.createElement('div');
+					div.classList.add('title-sticky');
+					article.appendChild(div);
+
+					var img = document.createElement('img');
+					img.classList.add('crosses');
+					img.src = '/images/crosses.svg';
+					div.appendChild(img);
+
+					var h2 = document.createElement('h2');
+					h2.textContent = "Vul de volgende gegevens in om een chapter toe te voegen";
+					div.appendChild(h2);
+
+					var form = document.createElement('form');
+					article.appendChild(form);
+
+					var label = document.createElement('label');
+					label.htmlFor = 'chapter-input';
+					label.textContent = "Vul jouw " + value + " in"
+					form.appendChild(label);
+
+					var input = document.createElement('input');
+					input.setAttribute('type', 'text');
+					input.setAttribute('name', 'chapter-input');
+					form.appendChild(input);
 
 					onScroll();
 					navWidth();
