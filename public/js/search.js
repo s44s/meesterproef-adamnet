@@ -48,6 +48,16 @@ var map = require('./map.js');
         e.preventDefault();
         var val = self.searchbar.value;
         self.getAutocomplete(data, val);
+
+        var results = data.filter(function (str) {
+          if (str.toUpperCase() == val.toUpperCase()) {
+            return str;
+          }
+        });
+
+        if (results.length) {
+          map.selectedStreet(results[0]);
+        }
       });
 
       // Event listener when clicking the document:
