@@ -6,6 +6,7 @@
   <p>
     For the organisation <a href="http://www.adamnet.nl">Adamnet</a> we created the website <a href="http://www.eenstukjenostalgie.amsterdam">eenstukjenostalgie.amsterdam</a>, where people can create there own <strong>Memories Book</strong>, filled with images from a chosen time period and location.
   </p>
+  <img src="screenshots/new-story-page.png">
 </div>
 <br>
 
@@ -18,7 +19,7 @@
 * [User Scenarios](#user-scenarios)
 * [Linked open data](#linked-open-data)
 * [Usage](#usage)
-* [Coming soon...](#coming-soon...)
+* [Coming soon...](#coming-soon)
 * [Wishlist](#wishlist)
 * [Collaborators](#collaborators)
 
@@ -140,7 +141,74 @@ With SPARQL you use `PREFIX` to link to another data source. You select items fr
 ### Our data flow
 ---
 
-<!-- Add Actor diagram -->
+We fetch the pictures depending on the given begin and end timestamps we've gotten and the radius we get from the POST request from the page where we select the location and time period. This is the query we send to the API endpoint:
+
+```
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX hg: <http://rdf.histograph.io/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+SELECT ?title ?img ?start ?end ?street ?streetLabel WHERE {
+  # basic data
+  ?cho dc:title ?title .
+  ?cho foaf:depiction ?img .
+
+  # temporal filter
+  ?cho sem:hasBeginTimeStamp ?orgStart .
+  ?cho sem:hasEndTimeStamp ?orgEnd .
+  BIND (xsd:date(str(?orgStart)) AS ?start)
+  BIND (xsd:date(str(?orgEnd)) AS ?end)
+  FILTER BOUND (?start)
+  FILTER BOUND (?end)
+  FILTER (?start >= xsd:date("${beginTimestamp}") && ?end <= xsd:date("${endTimestamp}") )
+
+  # spatial filter
+  ?cho dct:spatial ?street .
+  ?street a hg:Street ;
+  geo:hasGeometry/geo:asWKT ?streetWkt ;
+  rdfs:label ?streetLabel .
+  BIND (bif:st_geomfromtext("${wkt}") as ?x)
+  BIND (bif:st_geomfromtext(?streetWkt) AS ?y)
+  FILTER(bif:GeometryType(?y)!='POLYGON' && bif:st_intersects(?x, ?y))
+}
+ORDER BY ?start
+```
+
+From there the user is creating it's own Memories book, which means we have to continue with an unique id. We add the selected data to an object for this current book and add this to the user's session storage. In the following pages, until we reach the final book, the data is transferred between each state.
+
+This is what our data object looks like:
+
+```
+book: {
+  "id": Bk7K2MZG7,
+  "key": "null",
+  "title": "Mijn verhaal van Amsterdam",
+  "meta": {},
+  "data": {
+    "1940": {
+      "de buurt": [img, img],
+      "de overige straten": [img, img]
+    },
+    "1941": {
+      "Sint Agnietenstraat": [img],
+      "de buurt": [img, img],
+      "de overige straten": [img, img]
+    }
+  },
+  "selection": {
+    "1940": {
+      "de buurt": [img]
+    }
+  }
+}
+```
+
+The `selection` object are all the images the user selects. They are filtered from the original `data` object.
 
 ## Usage
 
@@ -151,7 +219,7 @@ If you are arriving on the homepage you will find below the intro text memoriebo
 
 On the right side of the page you have the option to create your own book. You can pick a subject (person, building or blanco) and start your book.
 
-<!-- Screenshot of homepage -->
+![Homepage](screenshots/homepage.png)
 
 ### State 2: Selecting location and time period
 ---
@@ -160,22 +228,22 @@ On the second stage you will find a fullscreen map of Amsterdam. You have to sel
 
 When the location and time period are as you would like, you can click on the submit button on the right to get your results.
 
-<!-- Screenshot of new-story page -->
+![New Story Page](screenshots/new-story-page.png)
 
 ### State 3: Selecting pictures
 ---
 
 Yes, you have your first results now! On this page you can find the images that are in the time period you have selected and in the neighborhood that the radius pointed out. When you scroll down the page the year will shown up with a nice transition, so it will be clear which year the images are from. The years are clickable, you can easily navigate through the years.
 
-<!-- Screenshot of one selected year -->
+![Create Story Page](screenshots/create-story-page-001.png)
 
 On a hover you will find out that you can select each of the images. By clicking on the images you will add it to a red bar. At the same time a save button will shown up with the number of images you have added. You delete the image by unselecting the images or by clicking on the image in the red bar.
 
-<!-- Screenshot of selected images in selection bar -->
+![Create Story Page](screenshots/create-story-page-002.png)
 
 You can see every image in detail by clicking on the zoom icon.
 
-<!-- Screenshot of image in detail view -->
+![Create Story Page](screenshots/create-story-page-003.png)
 
 By the way, on every page you have the option to go back to the previous page or homepage.
 
@@ -190,13 +258,11 @@ Each image has a text that is editable. You can change the text or add some new 
 
 You are able to add new chapters. You can find them by clicking on the button on the top right. By choosing on of the them you will create a new menu item in the top bar and create a new article on the page.
 
-<!-- Screenshot of selecting a chapter -->
+![My Story Page](screenshots/my-story-page-001.png)
 
 In the chapter you have to fill in a input field, which will search (coming soon..) for images.
 
-<!-- Screenshot of new chapter input field -->
-
-<!-- Maybe something about saving -->
+![My Story Page](screenshots/my-story-page-002.png)
 
 ## Coming soon...
 
@@ -211,10 +277,7 @@ In the chapter you have to fill in a input field, which will search (coming soon
 ## Wishlist
 
 * **Photosuggestion:** on your memoriesbook page you will find photo’s that are similar to yours. The user will be finding new image because of this new feature.
-* Enhancement design frontpage (see images below)
-
-<!-- Screenshot of design home -->
-
+* Enhancement design frontpage
 * **New chapters (queries):**
   * school/uni/work
   * posters politic
