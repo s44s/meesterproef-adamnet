@@ -1,7 +1,7 @@
-<!-- <h1 align="center">Een stukje nostalgie</h1>
-<h4 align="center">Meesterproef Adamnet</h4> -->
+<br>
+[![title](screenshots/title2.svg)](http://www.eenstukjenostalgie.amsterdam)
+<br>
 
-![](screenshots/title2.svg)
 # Meesterproef Adamnet
 
 
