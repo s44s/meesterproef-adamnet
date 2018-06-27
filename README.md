@@ -1,12 +1,13 @@
 [![title](screenshots/title.svg)](http://www.eenstukjenostalgie.amsterdam)
 
-<div align="center" style="width:75%; margin:0 auto">
+<div align="center">
   <img src="screenshots/crosses.svg">
   <h1>Meesterproef Adamnet</h1>
   <p>
     For the organisation <a href="http://www.adamnet.nl">Adamnet</a> we created the website <a href="http://www.eenstukjenostalgie.amsterdam">eenstukjenostalgie.amsterdam</a>, where people can create there own <strong>Memories Book</strong>, filled with images from a chosen time period and location.
   </p>
 </div>
+<br>
 
 ## Table of Contents
 
@@ -92,17 +93,29 @@ Actor diagram:
 
 //Tell something about the concept for this project
 
+
+
 ## Stakeholders
 
 //Maybe?
 
-## User Scenario
+## User Scenarios
 
-//Who is gonna use this?
+### Create a Memories Book for your grandma's birthday
+---
+
+Anne's grandma Miep is turning 80 next week, so Anne wants to give her something special for her birthday. She wants to make a collection of images from Miep's childhood. Anne knows Miep has lived in Amsterdam her entire life and knows that she lived somewhere in the Jordaan during her childhood. Where exactly, she doesn't know.
+
+### Create a Memories Book of your childhood
+---
+
+Erik is 48 and lives in Amsterdam. During his childhood, he lived in the Ranonkelkade, in Amsterdam North. Erik feels nostalgic and would like to relive his childhood memories.
 
 ## Linked open data
 
 //Tell something about the data that we use (sparql)
+
+
 
 ## Usage
 
