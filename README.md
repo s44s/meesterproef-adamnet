@@ -120,7 +120,34 @@ Erik is 48 and lives in Amsterdam. During his childhood, he lived in the Ranonke
 
 //Tell something about the data that we use (sparql)
 
-The data we use is coming from
+The data we use is coming from [Adamlink](http://www.adamlink.nl) and is known as Linked Open Data. This means that all of the data in the Adamlink database are linked to each other or other databases. With Linked Open Data you can easily link data from one source to another. Links are made using **URIs**, like this one:
+
+```
+<http://www.opengis.net/ont/geosparql#>
+```
+
+### SPARQL
+---
+
+Fetching data from this database is done with SPARQL. SPARQL is an RDF query language, that is, a semantic query language for databases, able to retrieve and manipulate data stored in Resource Description Framework (RDF) format. *(Source: [Wikipedia](https://en.wikipedia.org/wiki/SPARQL))*
+
+**An example of a SPARQL query we use:**
+
+```
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX hg: <http://rdf.histograph.io/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+SELECT ?street ?name ?wkt WHERE {
+  ?street a hg:Street .
+  ?street rdfs:label ?name .
+  ?street geo:hasGeometry/geo:asWKT ?wkt .
+  FILTER (REGEX (?street, "Achter"))
+}
+```
+
+This query fetches all the streets in Amsterdam that relate to the search term "Achter".
+
+With SPARQL you use `PREFIX` to link to another data source. You select items from the database using `SELECT`, define the items you want to select with variables (`?name`). Selecting items from a database using SPARQL works using something called **triples**. You select an item using three variables. The first one is always the subject, the second and third one define the item and the relationship between the two.
 
 ## Usage
 
