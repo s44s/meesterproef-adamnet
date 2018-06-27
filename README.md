@@ -1,6 +1,4 @@
-<br>
 [![title](screenshots/title2.svg)](http://www.eenstukjenostalgie.amsterdam)
-<br>
 
 # Meesterproef Adamnet
 
