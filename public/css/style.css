@@ -381,12 +381,16 @@ p, a, li {
   width: 5rem;
   height: 5rem;
   padding: 1.5rem;
-  /* background-color: #000; */
 }
 
-.new-story .home-btn img {
+.new-story .home-btn svg {
   width: 100%;
   height: 100%;
+}
+.new-story .home-btn:focus svg,
+.new-story .home-btn:hover svg,
+.new-story .home-btn:active svg {
+  fill: var(--main-red);
 }
 
 /* Select street */
