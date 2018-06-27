@@ -1224,6 +1224,9 @@ p, a, li {
 .my-story article {
 	width: 90%;
 	margin-left: 5%;
+}
+
+.my-story article:last-of-type {
 	min-height: 100vh;
 }
 

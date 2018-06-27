@@ -199,7 +199,7 @@
 
 		window.addEventListener('scroll', function(){
 			for (var i = 0; i < sections.length; i++) {
-				if(sections[i].offsetTop-5 <= window.scrollY && (sections[i].offsetTop + sections[i].offsetHeight) > window.scrollY+5) {
+				if(sections[i].offsetTop <= window.scrollY && (sections[i].offsetTop + sections[i].offsetHeight) > window.scrollY+5) {
 					yearTitle[i].classList.add('active-year');
 				} else {
 					yearTitle[i].classList.remove('active-year');
@@ -207,11 +207,11 @@
 			}
 		});
 
-		// yearTitle.forEach(function(year){
-		// 	year.addEventListener('click', function(){
-		//
-		// 	});
-		// });
+		yearTitle.forEach(function(year){
+			year.addEventListener('click', function(){
+				console.log("click");
+			});
+		});
 	</script>
 	<script>
 		var checkboxes = document.querySelectorAll('input[name="images"]');

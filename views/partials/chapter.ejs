@@ -1,27 +1,43 @@
 <article id="<%- year %>-<%- chapter.replace(/\s/g,'').toLowerCase() %>" class="chapter">
 	<div class="title-sticky">
 		<img class="crosses" src="/images/crosses.svg"/>
-		<h2>Het is <strong><%= year %></strong> en we zijn in <strong><%= chapter.toLowerCase() %><% if (chapter != 'Jouw buurt') { %>: <%= streetName %><% } %></strong></h2>
+		<h2>Het is <strong><%= year %></strong> en we zijn in <strong><%= chapter.toLowerCase() %></strong></h2>
 	</div>
 	<ul>
-	<% var merged = [].concat.apply([], Object.values(selection[year])); %>
+	<%
+	var merged = Object.values(selection[year])
+	var name = chapter;
 
-	<% merged.forEach(function(item) { %>
-			<li class="data-image">
-				<div>
-					<img src="<%- item.img.value %>" alt="<%- item.title.value %>"/>
-					<p contenteditable="true"><%= item.title.value %></p>
-					<a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
-				</div>
-				<div class="detail">
-					<span class="helper"></span>
-					<div>
-						<div class="popupCloseButton">X</div>
-						<img src="<%- item.img.value %>" alt="<%- item.title.value %>"/>
-						<p><%= item.title.value %></p>
-					</div>
-				</div>
-			</li>
-		<% }); %>
+	merged.forEach(function(items){
+		if(items[0].chapter == name){
+			items.forEach(function(item){
+				console.log(item)
+		 %>
+		 <li class="data-image">
+		   <div>
+		     <img src="<%- item.img.value %>" alt="<%- item.title.value %>"/>
+		     <p contenteditable="true"><%= item.title.value %></p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="<%- item.img.value %>" alt="<%- item.title.value %>"/>
+		       <p><%= item.title.value %></p>
+		     </div>
+		   </div>
+		 </li>
+		<%
+				})
+			}
+	}) %>
+
+
 	</ul>
 </article>
+
+<script>
+	window.chapter = <%- JSON.stringify(chapter || null) %>;
+	console.log('merged', window.chapter);
+</script>

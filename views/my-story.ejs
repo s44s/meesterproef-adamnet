@@ -77,21 +77,20 @@
 				<div class="year year-<%- year %>">
 				<% var chapters = Object.keys(selection[year]); %>
 				<% chapters.forEach(function (chapter) { %>
-					<% if (chapter != 'Jouw buurt') { %>
-						<% var streetName = chapter; %>
-						<% chapter = 'Jouw straat'; %>
-					<% } %>
+
 					<%- include('partials/chapter.ejs', {
 						selection: selection,
 						year: year,
-						chapter: chapter,
-						streetName: streetName
+						chapter: chapter
 					}) %>
 				<% }); %>
 			</div>
 			<% }); %>
 		</main>
 
+		<script>
+
+		</script>
 		<script>
 			// Get the modal
 			var modal = document.getElementById('tell-me-more');
