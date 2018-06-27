@@ -52,7 +52,35 @@ Actor diagram:
 
 ## Features
 
-//List of features
+### General features
+---
+
+**Homepage:**
+* Create your book of memories of Amsterdam
+* Choose between 3 themes:
+  * Book about a person
+  * Book about a building
+  * A blank book to fill in yourself
+
+**Selecting location and time period:**
+* Select a location on the map based on a selected radius
+* Search for your own street or a street of your choice
+* Change the radius on the map to get a more or less precise location
+* Select a time period between 1900 and 2018
+
+**Selecting pictures:**
+* Browse between the pictures, ordered by year
+* Select the images you want to save in your book
+
+**My memories book:**
+* Give your book a title
+* Browse between the selected pictures, ordered by year
+* Browse between different chapters of your book, like 'Your street' or 'Your neighbourhood'.
+* Add new chapters from a selection of chapters
+* Add or edit descriptions of your choice to the pictures.
+
+<!-- ### Technical features
+--- -->
 
 ## Concept
 
