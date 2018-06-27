@@ -431,6 +431,10 @@ p, a, li {
 	font-size: 1em;
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
+  outline: 0;
+}
+.new-story .search-location input:focus {
+  border-color: var(--main-red);
 }
 
 .new-story .search-location button {
@@ -445,6 +449,13 @@ p, a, li {
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
 	margin-left: -4px;
+  cursor: pointer;
+}
+.new-story .search-location button:focus,
+.new-story .search-location button:hover,
+.new-story .search-location button:active {
+  background-color: var(--main-red);
+  border-color: var(--main-red);
 }
 
 /* Autocomplete */
@@ -491,6 +502,11 @@ p, a, li {
 	overflow: hidden;
 	border-radius: 10px;
 }
+.new-story .radiusSelect:focus,
+.new-story .radiusSelect:hover,
+.new-story .radiusSelect:active {
+  background-color: var(--main-red);
+}
 
 .new-story .radiusSelect select {
   color: #fff;
@@ -500,6 +516,7 @@ p, a, li {
 	height: 3.125rem;
   margin-left: 1rem;
 	width: calc(200px + 70%);
+  cursor: pointer;
 }
 
 /* submit button */
@@ -516,6 +533,12 @@ p, a, li {
 	font-weight: bold;
 	font-size: 1em;
 	border-radius: 10px;
+  cursor: pointer;
+}
+.new-story form.submit-location-and-timestamp button:focus,
+.new-story form.submit-location-and-timestamp button:hover,
+.new-story form.submit-location-and-timestamp button:active {
+  background-color: #000;
 }
 @media all and (min-width: 50em) {
   .new-story form.submit-location-and-timestamp button {
