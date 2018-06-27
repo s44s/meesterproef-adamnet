@@ -1,9 +1,9 @@
 [![title](screenshots/title.svg)](http://www.eenstukjenostalgie.amsterdam)
 
-<div align="center">
+<div align="center" style="width:75%; margin:0 auto">
   <img src="screenshots/crosses.svg">
   <h1>Meesterproef Adamnet</h1>
-  <p style="width:'50%';">
+  <p>
     For the organisation <a href="http://www.adamnet.nl">Adamnet</a> we created the website <a href="http://www.eenstukjenostalgie.amsterdam">eenstukjenostalgie.amsterdam</a>, where people can create there own <strong>Memories Book</strong>, filled with images from a chosen time period and location.
   </p>
 </div>
