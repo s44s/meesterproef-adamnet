@@ -1,9 +1,9 @@
 [![title](screenshots/title.svg)](http://www.eenstukjenostalgie.amsterdam)
 
-<center>
+<div align="center">
   <img src="screenshots/crosses.svg">
   <h1>Meesterproef Adamnet</h1>
-</center>
+</div>
 
 
 
