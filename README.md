@@ -3,14 +3,10 @@
 <div align="center">
   <img src="screenshots/crosses.svg">
   <h1>Meesterproef Adamnet</h1>
+  <p width="50%">
+    For the organisation [Adamnet](http://www.adamnet.nl) we created the website [eenstukjenostalgie.amsterdam](http://www.eenstukjenostalgie.amsterdam), where people can create there own **Memories Book**, filled with images from a chosen time period and location.
+  </p>
 </div>
-
-
-
-
-//Short intro about the project
-
-For the organisation [Adamnet](http://www.adamnet.nl) we
 
 ## Table of Contents
 
