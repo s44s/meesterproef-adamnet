@@ -296,5 +296,11 @@
 			}
 			onScroll();
 		</script>
+		<script>
+			var form = document.querySelector('.personal-data form');
+			form.addEventListener('submit', function(e){
+				e.preventDefault();
+			})
+		</script>
 
 <%- include('partials/foot.ejs') %>
