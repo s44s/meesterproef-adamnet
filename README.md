@@ -1,6 +1,11 @@
-[![title](screenshots/title2.svg)](http://www.eenstukjenostalgie.amsterdam)
+[![title](screenshots/title.svg)](http://www.eenstukjenostalgie.amsterdam)
 
-# Meesterproef Adamnet
+<center>
+  <img src="screenshots/crosses.svg">
+  <h1>Meesterproef Adamnet</h1>
+</center>
+
+
 
 
 //Short intro about the project
