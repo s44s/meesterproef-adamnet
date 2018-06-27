@@ -31,4 +31,7 @@ router.get('/save-story/:id', controller.saveStoryPage);
 // GET edit story page:
 router.get('/edit-story/:id', controller.editStoryPage);
 
+// GET photobook page;
+router.get('/photobook', controller.photoBookPage);
+
 module.exports = router;

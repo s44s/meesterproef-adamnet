@@ -246,3 +246,7 @@ exports.editStoryPage = function (req, res, next) {
   currentStory.edit = true;
   res.redirect('/my-story/' + req.params.id);
 }
+
+exports.photoBookPage = function(req, res, next) {
+	res.render('photobook');
+}
