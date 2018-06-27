@@ -49,10 +49,15 @@ p, a, li {
 }
 
 .home section:first-of-type h1 {
-	font-size: 3em;
+	font-size: 4em;
 	margin-top: 20vh;
 	width: 80%;
 	font-weight: bolder;
+}
+
+.home section:first-of-type h1 span {
+	font-size: 140%;
+	color: var(--main-red);
 }
 
 .home section:first-of-type p {
