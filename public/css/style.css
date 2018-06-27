@@ -1090,18 +1090,24 @@ p, a, li {
 
 .my-story nav > a {
 	display: block;
-	width: 1.5rem;
-	height: 1rem;
+  box-sizing: border-box;
+	width: 5rem;
+	height: 5rem;
+  padding: 1.5rem;
 	position: fixed;
-	sition: absolute;
 	z-index: 1000;
-	top: 2rem;
-	left: 1.5rem;
+	top: 0;
+	left: 0;
+}
+.my-story nav > a:focus,
+.my-story nav > a:hover,
+.my-story nav > a:active {
+  background-color: #000;
 }
 
 .my-story nav > a img {
 	width: 100%;
-	fill: white;
+  height: 100%;
 }
 
 .my-story nav .register-years {
