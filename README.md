@@ -89,15 +89,20 @@ Actor diagram:
 <!-- ### Technical features
 --- -->
 
-## Concept
+## Project Information
 
-//Tell something about the concept for this project
+[Adamlink](http://www.adamlink.nl), a project of [Adamnet](http://www.adamnet.nl), have made the Linked Open Data available for us. In this data you can find collections from Amsterdam. The collections are from ‘Beeldbank Stadsarchief’, ‘Amsterdams Museum’ , ‘IISG’ and ‘OBA’.
 
+Adamlink asked us to create an interface where everybody is able to search for images (not only the people with SPARQL knowledge). This project is made for people with a background in Amsterdam. They may have lived their, or maybe their grandmother has lived in the city. But it could also be used by a teacher who wants to learn his students more about a specific part of Amsterdam.
 
+### Concept
+---
 
-## Stakeholders
+With [eenstukjenostalgie.amsterdam](http://www.eenstukjenostalgie.amsterdam) we are helping people to collect images they will give them memories back. By choosing a location and a time period, you will receive images of your neighborhood. If you like an image, you can save it to your memories book.
 
-//Maybe?
+The good thing about our application is that you are not only looking for the most common results. The user will get surprised about the images they will find.
+
+The memories book will not only be about your neighborhood. You have the option to add new chapters, like: political posters, music posters or about your primary school and more.
 
 ## User Scenarios
 
@@ -115,7 +120,7 @@ Erik is 48 and lives in Amsterdam. During his childhood, he lived in the Ranonke
 
 //Tell something about the data that we use (sparql)
 
-
+The data we use is coming from
 
 ## Usage
 
