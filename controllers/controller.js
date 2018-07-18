@@ -213,7 +213,6 @@ exports.getMyStoryPage = function (req, res, next) {
   res.render('my-story', {
     selection: selection,
     id: req.params.id,
-    link: req.headers.host + req.path,
     edit: currentStory.edit
   });
 }
