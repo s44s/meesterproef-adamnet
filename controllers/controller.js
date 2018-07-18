@@ -148,7 +148,7 @@ exports.postMyStoryPage = function (req, res, next) {
 
   // Push all selected images with meta data in selection array:
   selectedImages.forEach(function (image) {
-    merged.filter(function (item) {
+    merged.filter(function (item, i) {
       if (item.img.value == image) {
         selection.push(item);
       }
@@ -183,6 +183,14 @@ exports.postMyStoryPage = function (req, res, next) {
     currentStory.selection[year][chapter].push(item);
   });
 
+  var thisStory = req.session.stories.find(function (story) {
+    return story.id == id;
+  });
+
+  // database.splice(0, database.length);
+
+  database.push(thisStory);
+
   res.redirect('/my-story/' + id);
 }
 
@@ -205,6 +213,7 @@ exports.getMyStoryPage = function (req, res, next) {
   res.render('my-story', {
     selection: selection,
     id: req.params.id,
+    link: req.headers.host + req.path,
     edit: currentStory.edit
   });
 }
