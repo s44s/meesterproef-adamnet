@@ -7,7 +7,7 @@
     "start": "nodemon app.js",
     "dev": "watch 'npm run build'",
     "watch-js": "watchify public/js/*.js -o public/dist/bundle.js -dv",
-    "watch": "npm run watch-js",
+    "watch": "npm run build | npm run watch-js",
     "build": "browserify public/js/*.js -o public/dist/bundle.js"
   },
   "repository": {
@@ -17,9 +17,16 @@
   "author": "suustenvoorde",
   "license": "ISC",
   "dependencies": {
+    "@turf/turf": "^5.1.6",
+    "body-parser": "^1.18.3",
+    "circle-to-polygon": "^1.0.2",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "node-fetch": "^2.1.2"
+    "express-session": "^1.15.6",
+    "node-fetch": "^2.1.2",
+    "shortid": "^2.2.8",
+    "uuid": "^3.2.1",
+    "wellknown": "^0.5.0"
   },
   "devDependencies": {
     "dotenv": "^5.0.1",

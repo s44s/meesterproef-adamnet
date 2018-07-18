@@ -1,0 +1,2914 @@
+
+<!-- <!DOCTYPE html> -->
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">    <title>Adamnet</title>
+		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
+		<!-- <link rel="stylesheet" href="/css/vendor/multirange.css" /> -->
+		<!-- <link href="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.min.css" rel="stylesheet"> -->
+		<!-- <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' /> -->
+	</head>
+
+	<body class="my-story">
+
+		<nav class="register">
+			<a href="/"><img src="/images/home.svg"/></a>
+			<ol class="register-years">
+
+
+					<li>
+						<a href="#1940-jouwbuurt">1940</a>
+						<ul class="register-chapters">
+
+
+								<li class="chapter-name"><a href="#1940-jouwbuurt">Jouw buurt</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1940" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1941-jouwbuurt">1941</a>
+						<ul class="register-chapters">
+
+
+								<li class="chapter-name"><a href="#1941-jouwbuurt">Jouw buurt</a></li>
+
+
+
+
+								<li class="chapter-name"><a href="#1941-jouwstraat">Jouw straat</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1941" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1942-jouwbuurt">1942</a>
+						<ul class="register-chapters">
+
+
+								<li class="chapter-name"><a href="#1942-jouwbuurt">Jouw buurt</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1942" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1943-jouwbuurt">1943</a>
+						<ul class="register-chapters">
+
+
+								<li class="chapter-name"><a href="#1943-jouwbuurt">Jouw buurt</a></li>
+
+
+
+
+								<li class="chapter-name"><a href="#1943-jouwstraat">Jouw straat</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1943" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1944-jouwbuurt">1944</a>
+						<ul class="register-chapters">
+
+
+								<li class="chapter-name"><a href="#1944-jouwbuurt">Jouw buurt</a></li>
+
+
+
+
+								<li class="chapter-name"><a href="#1944-jouwstraat">Jouw straat</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1944" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1945-jouwbuurt">1945</a>
+						<ul class="register-chapters">
+
+
+								<li class="chapter-name"><a href="#1945-jouwbuurt">Jouw buurt</a></li>
+
+
+
+
+								<li class="chapter-name"><a href="#1945-jouwstraat">Jouw straat</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1945" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1947-bloemgracht">1947</a>
+						<ul class="register-chapters">
+
+
+
+
+								<li class="chapter-name"><a href="#1947-jouwstraat">Jouw straat</a></li>
+
+
+								<li class="chapter-name"><a href="#1947-jouwbuurt">Jouw buurt</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1947" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1950-jouwbuurt">1950</a>
+						<ul class="register-chapters">
+
+
+								<li class="chapter-name"><a href="#1950-jouwbuurt">Jouw buurt</a></li>
+
+
+
+
+								<li class="chapter-name"><a href="#1950-jouwstraat">Jouw straat</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1950" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1952-jouwbuurt">1952</a>
+						<ul class="register-chapters">
+
+
+								<li class="chapter-name"><a href="#1952-jouwbuurt">Jouw buurt</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1952" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1953-jouwbuurt">1953</a>
+						<ul class="register-chapters">
+
+
+								<li class="chapter-name"><a href="#1953-jouwbuurt">Jouw buurt</a></li>
+
+
+
+
+								<li class="chapter-name"><a href="#1953-jouwstraat">Jouw straat</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1953" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1954-jouwbuurt">1954</a>
+						<ul class="register-chapters">
+
+
+								<li class="chapter-name"><a href="#1954-jouwbuurt">Jouw buurt</a></li>
+
+
+
+
+								<li class="chapter-name"><a href="#1954-jouwstraat">Jouw straat</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1954" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1956-jouwbuurt">1956</a>
+						<ul class="register-chapters">
+
+
+								<li class="chapter-name"><a href="#1956-jouwbuurt">Jouw buurt</a></li>
+
+
+
+
+								<li class="chapter-name"><a href="#1956-jouwstraat">Jouw straat</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1956" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1957-bloemgracht">1957</a>
+						<ul class="register-chapters">
+
+
+
+
+								<li class="chapter-name"><a href="#1957-jouwstraat">Jouw straat</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1957" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1958-jouwbuurt">1958</a>
+						<ul class="register-chapters">
+
+
+								<li class="chapter-name"><a href="#1958-jouwbuurt">Jouw buurt</a></li>
+
+
+
+
+								<li class="chapter-name"><a href="#1958-jouwstraat">Jouw straat</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1958" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1959-jouwbuurt">1959</a>
+						<ul class="register-chapters">
+
+
+								<li class="chapter-name"><a href="#1959-jouwbuurt">Jouw buurt</a></li>
+
+
+
+
+								<li class="chapter-name"><a href="#1959-jouwstraat">Jouw straat</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1959" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+
+					<li>
+						<a href="#1960-jouwbuurt">1960</a>
+						<ul class="register-chapters">
+
+
+								<li class="chapter-name"><a href="#1960-jouwbuurt">Jouw buurt</a></li>
+
+
+
+
+								<li class="chapter-name"><a href="#1960-jouwstraat">Jouw straat</a></li>
+
+							<li class="add-chapter">
+								<button class="add-chapter-btn" type="button">+  Voeg een hoofdstuk toe</button>
+								<ul id="year-1960" class="add-chapters-options">
+
+									<!--
+									if (birthyear.value !empty) {
+										if (birthyear.value > 4 && < 13) {
+											<li class="chapter-new"><a href="#"></a>Jouw basisschool</li>
+										} else if (birthyear.value > 13 && < 19) {
+											<li class="chapter-new"><a href="#"></a>Jouw middelbare school</li>
+										} else if (birthyear.value > 19 && < 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw universiteit</li>
+										} else if (birthyear.value > 26) {
+											<li class="chapter-new"><a href="#"></a>Jouw werk</li>
+										}
+									}
+									-->
+									<li class="chapter-new"><a href="">+ Politieke posters</a></li>
+									<li class="chapter-new"><a href="">+ Muziek posters</a></li>
+									<li class="chapter-new"><a href="">+ Jouw vereniging</a></li>
+									<li class="chapter-new"><a href="">+ Openbaar vervoer</a></li>
+									<li class="chapter-new"><a href="">+ Verhuizing</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+			</ol>
+		</nav>
+
+		<main class="content">
+			<button id="help">?</button>
+			<div id="tell-me-more" class="modal">
+			  <div class="modal-content">
+			    <span class="close">&times;</span>
+					<h1>Jouw herinneringenboek</h1>
+			    <p>Dit is jouw gemaakte herinneringenboek. Op deze pagina kun je de geselecteerde foto's bekijken per jaar en hoofdstuk. Ook kun je nieuwe hoofdstukken toevoegen per jaar.
+					Daarnaast is onder elke foto de mogelijkheid om de tekst aan te passen.</p>
+			  </div>
+			</div>
+			<!-- <h1>Dit is jouw eigen fotoboek!</h1>
+			<p>Bekijk per hoofdstuk en per jaar de foto's die daar bij horen en voeg zelf teksten toe. Ook kun je nieuwe hoofdstukken toevoegen.</p> -->
+			<section class="personal-data">
+				<form action="/create-story/ryzpXZ-zX" method="post">
+					<input class="title" type="text" name="title" value="De historie van oma Miep" placeholder="Dit is jouw herinneringenboek, geef hem hier een titel.." autocomplete="off">
+					<!-- <div>
+						<label for="name">Dit is het verhaal over:</label>
+						<input id="name" name="name" type="text" placeholder="Jan Jansen.." autocomplete="off">
+					</div>
+					<div>
+						<label for="year">Geboren in:</label>
+						<input id="year" name="year" type="number" placeholder="1969" min="1900" max="2018">
+					</div>
+
+					<button type="submit">Opslaan</button> -->
+				</form>
+			</section>
+
+				<div class="year year-1940">
+
+
+
+					<article id="1940-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1940</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/f912f6f3-ef87-b319-7d72-fba538dbc124.jpg" alt="Egelantiersgracht 61-81 (v.l.n.r.). Op, de voorgrond een kolendekschuit"/>
+		     <p contenteditable="true">Egelantiersgracht 61-81 (v.l.n.r.). Op, de voorgrond een kolendekschuit</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/f912f6f3-ef87-b319-7d72-fba538dbc124.jpg" alt="Egelantiersgracht 61-81 (v.l.n.r.). Op, de voorgrond een kolendekschuit"/>
+		       <p>Egelantiersgracht 61-81 (v.l.n.r.). Op, de voorgrond een kolendekschuit</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/002241cc-04ea-8a5f-8176-a4c00dfc1d12.jpg" alt="Nassaukade 361 op de hoek met de Bosboom Toussaintstraat. Rechts nummer 360"/>
+		     <p contenteditable="true">Nassaukade 361 op de hoek met de Bosboom Toussaintstraat. Rechts nummer 360</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/002241cc-04ea-8a5f-8176-a4c00dfc1d12.jpg" alt="Nassaukade 361 op de hoek met de Bosboom Toussaintstraat. Rechts nummer 360"/>
+		       <p>Nassaukade 361 op de hoek met de Bosboom Toussaintstraat. Rechts nummer 360</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/b816cf7c-7ab8-b7e7-8ba3-0f002c1b9324.jpg" alt="Kleine-Gartmanplantsoen"/>
+		     <p contenteditable="true">Kleine-Gartmanplantsoen</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/b816cf7c-7ab8-b7e7-8ba3-0f002c1b9324.jpg" alt="Kleine-Gartmanplantsoen"/>
+		       <p>Kleine-Gartmanplantsoen</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/3323a055-bbad-2eaa-88c9-f23d25b04983.jpg" alt="Nieuwe Leliestraat 59-81 (v.l.n.r.), gezien in noordwestelijke richting naar de Tweede Leliedwarsstraat"/>
+		     <p contenteditable="true">Nieuwe Leliestraat 59-81 (v.l.n.r.), gezien in noordwestelijke richting naar de Tweede Leliedwarsstraat</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/3323a055-bbad-2eaa-88c9-f23d25b04983.jpg" alt="Nieuwe Leliestraat 59-81 (v.l.n.r.), gezien in noordwestelijke richting naar de Tweede Leliedwarsstraat"/>
+		       <p>Nieuwe Leliestraat 59-81 (v.l.n.r.), gezien in noordwestelijke richting naar de Tweede Leliedwarsstraat</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/f38d0d96-99bb-55ce-df31-ce14184b9e59.jpg" alt="Kachelsmid"/>
+		     <p contenteditable="true">Kachelsmid</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/f38d0d96-99bb-55ce-df31-ce14184b9e59.jpg" alt="Kachelsmid"/>
+		       <p>Kachelsmid</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/f38d0d96-99bb-55ce-df31-ce14184b9e59.jpg" alt="Kachelsmid"/>
+		     <p contenteditable="true">Kachelsmid</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/f38d0d96-99bb-55ce-df31-ce14184b9e59.jpg" alt="Kachelsmid"/>
+		       <p>Kachelsmid</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1941">
+
+
+
+					<article id="1941-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1941</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/a3cd8c82-3348-72b6-0c35-2b4aaf0d418e.jpg" alt="Egelantiersgracht 197A-195"/>
+		     <p contenteditable="true">Egelantiersgracht 197A-195</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/a3cd8c82-3348-72b6-0c35-2b4aaf0d418e.jpg" alt="Egelantiersgracht 197A-195"/>
+		       <p>Egelantiersgracht 197A-195</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/a3cd8c82-3348-72b6-0c35-2b4aaf0d418e.jpg" alt="Egelantiersgracht 197A-195"/>
+		     <p contenteditable="true">Egelantiersgracht 197A-195</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/a3cd8c82-3348-72b6-0c35-2b4aaf0d418e.jpg" alt="Egelantiersgracht 197A-195"/>
+		       <p>Egelantiersgracht 197A-195</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/a3cd8c82-3348-72b6-0c35-2b4aaf0d418e.jpg" alt="Egelantiersgracht 197A-195"/>
+		     <p contenteditable="true">Egelantiersgracht 197A-195</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/a3cd8c82-3348-72b6-0c35-2b4aaf0d418e.jpg" alt="Egelantiersgracht 197A-195"/>
+		       <p>Egelantiersgracht 197A-195</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/ed0fb3e1-5d68-a95e-ac25-13e449cb5779.jpg" alt="Mars van de heerban WA. Amsterdam door de Jordaan"/>
+		     <p contenteditable="true">Mars van de heerban WA. Amsterdam door de Jordaan</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/ed0fb3e1-5d68-a95e-ac25-13e449cb5779.jpg" alt="Mars van de heerban WA. Amsterdam door de Jordaan"/>
+		       <p>Mars van de heerban WA. Amsterdam door de Jordaan</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/9b48f27e-11f2-dadc-af4c-352618a0f5bb.jpg" alt="Nieuwe Leliestraat 6-10 (v.r.n.l.)"/>
+		     <p contenteditable="true">Nieuwe Leliestraat 6-10 (v.r.n.l.)</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/9b48f27e-11f2-dadc-af4c-352618a0f5bb.jpg" alt="Nieuwe Leliestraat 6-10 (v.r.n.l.)"/>
+		       <p>Nieuwe Leliestraat 6-10 (v.r.n.l.)</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+
+					<article id="1941-bloemgracht" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1941</strong> en we zijn in <strong>bloemgracht</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/d33656a3-7b4e-5f41-a9ba-4c704c09893a.jpg" alt="Bloemgracht 122 (ged.)-128 (ged.) (v.r.n.l.)"/>
+		     <p contenteditable="true">Bloemgracht 122 (ged.)-128 (ged.) (v.r.n.l.)</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/d33656a3-7b4e-5f41-a9ba-4c704c09893a.jpg" alt="Bloemgracht 122 (ged.)-128 (ged.) (v.r.n.l.)"/>
+		       <p>Bloemgracht 122 (ged.)-128 (ged.) (v.r.n.l.)</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Bloemgracht";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1942">
+
+
+
+					<article id="1942-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1942</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/e96c43c9-3e9e-ee4b-db9b-24e2e27b85f0.jpg" alt="Lijnbaansgracht 75-76 hoek Tuinstraat 159"/>
+		     <p contenteditable="true">Lijnbaansgracht 75-76 hoek Tuinstraat 159</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/e96c43c9-3e9e-ee4b-db9b-24e2e27b85f0.jpg" alt="Lijnbaansgracht 75-76 hoek Tuinstraat 159"/>
+		       <p>Lijnbaansgracht 75-76 hoek Tuinstraat 159</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/4efc426d-f228-cfdf-a111-4dd46a4a101d.jpg" alt="Lijnbaansgracht 274-275 (van links naar rechts)"/>
+		     <p contenteditable="true">Lijnbaansgracht 274-275 (van links naar rechts)</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/4efc426d-f228-cfdf-a111-4dd46a4a101d.jpg" alt="Lijnbaansgracht 274-275 (van links naar rechts)"/>
+		       <p>Lijnbaansgracht 274-275 (van links naar rechts)</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1943">
+
+
+
+					<article id="1943-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1943</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/bece05d6-8cd6-4fa2-be83-aad1fc4201e8.jpg" alt="Bloemstraat 42 (rechts) richting de Bloemgracht gezien naar de Eerste Bloemdwarsstraat 1-11 in het midden, van links naar rechts, Eerste Bloemdwarsstraat 1-11"/>
+		     <p contenteditable="true">Bloemstraat 42 (rechts) richting de Bloemgracht gezien naar de Eerste Bloemdwarsstraat 1-11 in het midden, van links naar rechts, Eerste Bloemdwarsstraat 1-11</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/bece05d6-8cd6-4fa2-be83-aad1fc4201e8.jpg" alt="Bloemstraat 42 (rechts) richting de Bloemgracht gezien naar de Eerste Bloemdwarsstraat 1-11 in het midden, van links naar rechts, Eerste Bloemdwarsstraat 1-11"/>
+		       <p>Bloemstraat 42 (rechts) richting de Bloemgracht gezien naar de Eerste Bloemdwarsstraat 1-11 in het midden, van links naar rechts, Eerste Bloemdwarsstraat 1-11</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/bece05d6-8cd6-4fa2-be83-aad1fc4201e8.jpg" alt="Bloemstraat 42 (rechts) richting de Bloemgracht gezien naar de Eerste Bloemdwarsstraat 1-11 in het midden, van links naar rechts, Eerste Bloemdwarsstraat 1-11"/>
+		     <p contenteditable="true">Bloemstraat 42 (rechts) richting de Bloemgracht gezien naar de Eerste Bloemdwarsstraat 1-11 in het midden, van links naar rechts, Eerste Bloemdwarsstraat 1-11</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/bece05d6-8cd6-4fa2-be83-aad1fc4201e8.jpg" alt="Bloemstraat 42 (rechts) richting de Bloemgracht gezien naar de Eerste Bloemdwarsstraat 1-11 in het midden, van links naar rechts, Eerste Bloemdwarsstraat 1-11"/>
+		       <p>Bloemstraat 42 (rechts) richting de Bloemgracht gezien naar de Eerste Bloemdwarsstraat 1-11 in het midden, van links naar rechts, Eerste Bloemdwarsstraat 1-11</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/71310961-cf15-d4b1-a41a-5344d5e5f05b.jpg" alt="Bloemgracht 85-97"/>
+		     <p contenteditable="true">Bloemgracht 85-97</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/71310961-cf15-d4b1-a41a-5344d5e5f05b.jpg" alt="Bloemgracht 85-97"/>
+		       <p>Bloemgracht 85-97</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/e04e7543-c851-0acd-a392-22cd952816d9.jpg" alt="Rozengracht 224"/>
+		     <p contenteditable="true">Rozengracht 224</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/e04e7543-c851-0acd-a392-22cd952816d9.jpg" alt="Rozengracht 224"/>
+		       <p>Rozengracht 224</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+
+					<article id="1943-bloemgracht" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1943</strong> en we zijn in <strong>bloemgracht</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/71310961-cf15-d4b1-a41a-5344d5e5f05b.jpg" alt="Bloemgracht 85-97"/>
+		     <p contenteditable="true">Bloemgracht 85-97</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/71310961-cf15-d4b1-a41a-5344d5e5f05b.jpg" alt="Bloemgracht 85-97"/>
+		       <p>Bloemgracht 85-97</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Bloemgracht";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1944">
+
+
+
+					<article id="1944-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1944</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/9d16058b-e9a5-0a19-c0ea-4e788d4722ec.jpg" alt="Lijnbaansgracht 340-341"/>
+		     <p contenteditable="true">Lijnbaansgracht 340-341</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/9d16058b-e9a5-0a19-c0ea-4e788d4722ec.jpg" alt="Lijnbaansgracht 340-341"/>
+		       <p>Lijnbaansgracht 340-341</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/6cc2c69f-2f9b-8c6b-88e6-e9db5f650707.jpg" alt="Spiegelgracht 31 met de hoek Tweede Weteringsdwarsstraat 3-7 met rechts Lijnbaansgracht 287 gezien vanaf Brug 97"/>
+		     <p contenteditable="true">Spiegelgracht 31 met de hoek Tweede Weteringsdwarsstraat 3-7 met rechts Lijnbaansgracht 287 gezien vanaf Brug 97</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/6cc2c69f-2f9b-8c6b-88e6-e9db5f650707.jpg" alt="Spiegelgracht 31 met de hoek Tweede Weteringsdwarsstraat 3-7 met rechts Lijnbaansgracht 287 gezien vanaf Brug 97"/>
+		       <p>Spiegelgracht 31 met de hoek Tweede Weteringsdwarsstraat 3-7 met rechts Lijnbaansgracht 287 gezien vanaf Brug 97</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/a69679fa-1288-2acb-b111-a41bdf17b118.jpg" alt="Nieuwe Leliestraat 19 (ged.)-25 (v.l.n.r.), hoek Eerste Leliedwarsstraat 13-25 (v.l.n.r.), gezien in zuidelijke richting naar de Bloemgracht"/>
+		     <p contenteditable="true">Nieuwe Leliestraat 19 (ged.)-25 (v.l.n.r.), hoek Eerste Leliedwarsstraat 13-25 (v.l.n.r.), gezien in zuidelijke richting naar de Bloemgracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/a69679fa-1288-2acb-b111-a41bdf17b118.jpg" alt="Nieuwe Leliestraat 19 (ged.)-25 (v.l.n.r.), hoek Eerste Leliedwarsstraat 13-25 (v.l.n.r.), gezien in zuidelijke richting naar de Bloemgracht"/>
+		       <p>Nieuwe Leliestraat 19 (ged.)-25 (v.l.n.r.), hoek Eerste Leliedwarsstraat 13-25 (v.l.n.r.), gezien in zuidelijke richting naar de Bloemgracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+
+					<article id="1944-bloemgracht" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1944</strong> en we zijn in <strong>bloemgracht</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/cf7180bf-d5b7-d74c-cd6e-51e3b5ce0e4f.jpg" alt="Bloemgracht 41-45"/>
+		     <p contenteditable="true">Bloemgracht 41-45</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/cf7180bf-d5b7-d74c-cd6e-51e3b5ce0e4f.jpg" alt="Bloemgracht 41-45"/>
+		       <p>Bloemgracht 41-45</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Bloemgracht";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1945">
+
+
+
+					<article id="1945-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1945</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/58b3356c-92f1-ffe1-f855-772a5184c4b1.jpg" alt="Bloemstraat 29-31"/>
+		     <p contenteditable="true">Bloemstraat 29-31</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/58b3356c-92f1-ffe1-f855-772a5184c4b1.jpg" alt="Bloemstraat 29-31"/>
+		       <p>Bloemstraat 29-31</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/58b3356c-92f1-ffe1-f855-772a5184c4b1.jpg" alt="Bloemstraat 29-31"/>
+		     <p contenteditable="true">Bloemstraat 29-31</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/58b3356c-92f1-ffe1-f855-772a5184c4b1.jpg" alt="Bloemstraat 29-31"/>
+		       <p>Bloemstraat 29-31</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/030c75d7-5115-ce98-c6a0-a4f0e52177a2.jpg" alt="Illigaliteit"/>
+		     <p contenteditable="true">Illigaliteit</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/030c75d7-5115-ce98-c6a0-a4f0e52177a2.jpg" alt="Illigaliteit"/>
+		       <p>Illigaliteit</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/26c9f539-1092-a543-2645-9d93e76a585c.jpg" alt="Illigaliteit"/>
+		     <p contenteditable="true">Illigaliteit</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/26c9f539-1092-a543-2645-9d93e76a585c.jpg" alt="Illigaliteit"/>
+		       <p>Illigaliteit</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/35242229-8229-44de-f746-968c32672d32.jpg" alt="'Noodtoestand vuilnis': Groenmarkt gezien richting Marnixstraat, gefotografeerd voor de Stadsreiniging Amsterdam, 22 juni-4 juli"/>
+		     <p contenteditable="true">&#39;Noodtoestand vuilnis&#39;: Groenmarkt gezien richting Marnixstraat, gefotografeerd voor de Stadsreiniging Amsterdam, 22 juni-4 juli</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/35242229-8229-44de-f746-968c32672d32.jpg" alt="'Noodtoestand vuilnis': Groenmarkt gezien richting Marnixstraat, gefotografeerd voor de Stadsreiniging Amsterdam, 22 juni-4 juli"/>
+		       <p>&#39;Noodtoestand vuilnis&#39;: Groenmarkt gezien richting Marnixstraat, gefotografeerd voor de Stadsreiniging Amsterdam, 22 juni-4 juli</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/4180f82a-8a2c-f470-3e5a-6c3d1a61e080.jpg" alt="Bevrijdingsfeesten: Versiering Tweede Leliedwarsstraat"/>
+		     <p contenteditable="true">Bevrijdingsfeesten: Versiering Tweede Leliedwarsstraat</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/4180f82a-8a2c-f470-3e5a-6c3d1a61e080.jpg" alt="Bevrijdingsfeesten: Versiering Tweede Leliedwarsstraat"/>
+		       <p>Bevrijdingsfeesten: Versiering Tweede Leliedwarsstraat</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/44acd010-29a3-1519-f24e-2da03298757e.jpg" alt="Bevrijding: Versiering Akoleienstraat/Rozengracht"/>
+		     <p contenteditable="true">Bevrijding: Versiering Akoleienstraat/Rozengracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/44acd010-29a3-1519-f24e-2da03298757e.jpg" alt="Bevrijding: Versiering Akoleienstraat/Rozengracht"/>
+		       <p>Bevrijding: Versiering Akoleienstraat/Rozengracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/44acd010-29a3-1519-f24e-2da03298757e.jpg" alt="Bevrijding: Versiering Akoleienstraat/Rozengracht"/>
+		     <p contenteditable="true">Bevrijding: Versiering Akoleienstraat/Rozengracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/44acd010-29a3-1519-f24e-2da03298757e.jpg" alt="Bevrijding: Versiering Akoleienstraat/Rozengracht"/>
+		       <p>Bevrijding: Versiering Akoleienstraat/Rozengracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/5cc872d8-8069-21e8-1878-454adab529c8.jpg" alt="Bevrijding: Versiering Akoleienstraat"/>
+		     <p contenteditable="true">Bevrijding: Versiering Akoleienstraat</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/5cc872d8-8069-21e8-1878-454adab529c8.jpg" alt="Bevrijding: Versiering Akoleienstraat"/>
+		       <p>Bevrijding: Versiering Akoleienstraat</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/f879598d-0275-281b-52a5-ea95ac171eba.jpg" alt="Bevrijdingsfeesten: Versiering Tweede Leliedwarsstraat"/>
+		     <p contenteditable="true">Bevrijdingsfeesten: Versiering Tweede Leliedwarsstraat</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/f879598d-0275-281b-52a5-ea95ac171eba.jpg" alt="Bevrijdingsfeesten: Versiering Tweede Leliedwarsstraat"/>
+		       <p>Bevrijdingsfeesten: Versiering Tweede Leliedwarsstraat</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+
+					<article id="1945-bloemgracht" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1945</strong> en we zijn in <strong>bloemgracht</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/005e3f08-82cc-107e-051c-eca4102bb29c.jpg" alt="De Doos"/>
+		     <p contenteditable="true">De Doos</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/005e3f08-82cc-107e-051c-eca4102bb29c.jpg" alt="De Doos"/>
+		       <p>De Doos</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Bloemgracht";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1947">
+
+
+
+					<article id="1947-bloemgracht" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1947</strong> en we zijn in <strong>bloemgracht</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/8aad8ddf-88e1-df36-1c1d-2c8ce3708139.jpg" alt="Bloemgracht ("in verwachting")"/>
+		     <p contenteditable="true">Bloemgracht (&#34;in verwachting&#34;)</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/8aad8ddf-88e1-df36-1c1d-2c8ce3708139.jpg" alt="Bloemgracht ("in verwachting")"/>
+		       <p>Bloemgracht (&#34;in verwachting&#34;)</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Bloemgracht";
+	console.log('merged', window.chapter);
+</script>
+
+
+
+					<article id="1947-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1947</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/88b23dd7-ab37-bd97-b8b5-0551a7bd9cbf.jpg" alt="Egelantiersstraat 246-252"/>
+		     <p contenteditable="true">Egelantiersstraat 246-252</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/88b23dd7-ab37-bd97-b8b5-0551a7bd9cbf.jpg" alt="Egelantiersstraat 246-252"/>
+		       <p>Egelantiersstraat 246-252</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/e368b232-cfa3-bf00-71e5-1c2c23c562e3.jpg" alt="Onthulling monument bij de Spieghel-school op de plek waar op 6 januari 1945 zes Nederlanders door de Duitse soldaten zijn doodgeschoten als represaille voor de aanslag op 5 januari 1945 op het meldingsbureau voor de arbeidsinzet"/>
+		     <p contenteditable="true">Onthulling monument bij de Spieghel-school op de plek waar op 6 januari 1945 zes Nederlanders door de Duitse soldaten zijn doodgeschoten als represaille voor de aanslag op 5 januari 1945 op het meldingsbureau voor de arbeidsinzet</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/e368b232-cfa3-bf00-71e5-1c2c23c562e3.jpg" alt="Onthulling monument bij de Spieghel-school op de plek waar op 6 januari 1945 zes Nederlanders door de Duitse soldaten zijn doodgeschoten als represaille voor de aanslag op 5 januari 1945 op het meldingsbureau voor de arbeidsinzet"/>
+		       <p>Onthulling monument bij de Spieghel-school op de plek waar op 6 januari 1945 zes Nederlanders door de Duitse soldaten zijn doodgeschoten als represaille voor de aanslag op 5 januari 1945 op het meldingsbureau voor de arbeidsinzet</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/6d3d14a7-694f-7ae4-cc73-2b92b388e0f4.jpg" alt="Vertrek leden van de Nederlandse Opera naar Brussel"/>
+		     <p contenteditable="true">Vertrek leden van de Nederlandse Opera naar Brussel</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/6d3d14a7-694f-7ae4-cc73-2b92b388e0f4.jpg" alt="Vertrek leden van de Nederlandse Opera naar Brussel"/>
+		       <p>Vertrek leden van de Nederlandse Opera naar Brussel</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1950">
+
+
+
+					<article id="1950-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1950</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/7642bbff-cd53-83a5-5adb-0bfce696c1fc.jpg" alt="Marnixstraat 258-260"/>
+		     <p contenteditable="true">Marnixstraat 258-260</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/7642bbff-cd53-83a5-5adb-0bfce696c1fc.jpg" alt="Marnixstraat 258-260"/>
+		       <p>Marnixstraat 258-260</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/7642bbff-cd53-83a5-5adb-0bfce696c1fc.jpg" alt="Marnixstraat 258-260"/>
+		     <p contenteditable="true">Marnixstraat 258-260</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/7642bbff-cd53-83a5-5adb-0bfce696c1fc.jpg" alt="Marnixstraat 258-260"/>
+		       <p>Marnixstraat 258-260</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/adda854d-02c2-bdc1-d205-46df8038ab27.jpg" alt="Marnixstraat"/>
+		     <p contenteditable="true">Marnixstraat</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/adda854d-02c2-bdc1-d205-46df8038ab27.jpg" alt="Marnixstraat"/>
+		       <p>Marnixstraat</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/0b1c8cab-4129-765a-f8b4-cee44304b408.jpg" alt="Rooms-katholieke kerk De Zaaier"/>
+		     <p contenteditable="true">Rooms-katholieke kerk De Zaaier</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/0b1c8cab-4129-765a-f8b4-cee44304b408.jpg" alt="Rooms-katholieke kerk De Zaaier"/>
+		       <p>Rooms-katholieke kerk De Zaaier</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/7e07b87d-6d3f-97f0-a498-17df17d8f4c7.jpg" alt="Prinsengracht 279-285"/>
+		     <p contenteditable="true">Prinsengracht 279-285</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/7e07b87d-6d3f-97f0-a498-17df17d8f4c7.jpg" alt="Prinsengracht 279-285"/>
+		       <p>Prinsengracht 279-285</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/317b681d-6f8e-7112-a985-08a3316cd926.jpg" alt="Transport brugonderdeel door het Westerkanaal"/>
+		     <p contenteditable="true">Transport brugonderdeel door het Westerkanaal</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/317b681d-6f8e-7112-a985-08a3316cd926.jpg" alt="Transport brugonderdeel door het Westerkanaal"/>
+		       <p>Transport brugonderdeel door het Westerkanaal</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+
+					<article id="1950-bloemgracht" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1950</strong> en we zijn in <strong>bloemgracht</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/4f88fcc2-476a-17a8-0be2-b876a522a9b6.jpg" alt="Bloemgracht 112-126"/>
+		     <p contenteditable="true">Bloemgracht 112-126</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/4f88fcc2-476a-17a8-0be2-b876a522a9b6.jpg" alt="Bloemgracht 112-126"/>
+		       <p>Bloemgracht 112-126</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/cc558f87-f1eb-db83-d8ea-c57b9816e7a9.jpg" alt="Bloemgracht 83-85, met links Bloemgracht 81 (gedeeltelijk) en rechts nummer 87 (gedeeltelijk)"/>
+		     <p contenteditable="true">Bloemgracht 83-85, met links Bloemgracht 81 (gedeeltelijk) en rechts nummer 87 (gedeeltelijk)</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/cc558f87-f1eb-db83-d8ea-c57b9816e7a9.jpg" alt="Bloemgracht 83-85, met links Bloemgracht 81 (gedeeltelijk) en rechts nummer 87 (gedeeltelijk)"/>
+		       <p>Bloemgracht 83-85, met links Bloemgracht 81 (gedeeltelijk) en rechts nummer 87 (gedeeltelijk)</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Bloemgracht";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1952">
+
+
+
+					<article id="1952-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1952</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/cccaa415-0931-b9c2-6f8f-31ae39fab29f.jpg" alt="Verkeersongeval op de Nassaukade bij het Frederik Hendrikplantsoen: verkeerspolitie, verkeersongevallen, trams, vrachtwagens"/>
+		     <p contenteditable="true">Verkeersongeval op de Nassaukade bij het Frederik Hendrikplantsoen: verkeerspolitie, verkeersongevallen, trams, vrachtwagens</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/cccaa415-0931-b9c2-6f8f-31ae39fab29f.jpg" alt="Verkeersongeval op de Nassaukade bij het Frederik Hendrikplantsoen: verkeerspolitie, verkeersongevallen, trams, vrachtwagens"/>
+		       <p>Verkeersongeval op de Nassaukade bij het Frederik Hendrikplantsoen: verkeerspolitie, verkeersongevallen, trams, vrachtwagens</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/f93fe35a-3715-d660-b77a-587626cd17a9.jpg" alt="Verkeersongeval op de Nassaukade: verkeerspolitie, verkeersongevallen, trams, vrachtwagens"/>
+		     <p contenteditable="true">Verkeersongeval op de Nassaukade: verkeerspolitie, verkeersongevallen, trams, vrachtwagens</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/f93fe35a-3715-d660-b77a-587626cd17a9.jpg" alt="Verkeersongeval op de Nassaukade: verkeerspolitie, verkeersongevallen, trams, vrachtwagens"/>
+		       <p>Verkeersongeval op de Nassaukade: verkeerspolitie, verkeersongevallen, trams, vrachtwagens</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1953">
+
+
+
+					<article id="1953-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1953</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/72c04b6e-c088-624f-6643-cf21b626e4f0.jpg" alt="Lijnbaansgracht gezien vanaf de Rozengracht naar de Bloemgracht"/>
+		     <p contenteditable="true">Lijnbaansgracht gezien vanaf de Rozengracht naar de Bloemgracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/72c04b6e-c088-624f-6643-cf21b626e4f0.jpg" alt="Lijnbaansgracht gezien vanaf de Rozengracht naar de Bloemgracht"/>
+		       <p>Lijnbaansgracht gezien vanaf de Rozengracht naar de Bloemgracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/72c04b6e-c088-624f-6643-cf21b626e4f0.jpg" alt="Lijnbaansgracht gezien vanaf de Rozengracht naar de Bloemgracht"/>
+		     <p contenteditable="true">Lijnbaansgracht gezien vanaf de Rozengracht naar de Bloemgracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/72c04b6e-c088-624f-6643-cf21b626e4f0.jpg" alt="Lijnbaansgracht gezien vanaf de Rozengracht naar de Bloemgracht"/>
+		       <p>Lijnbaansgracht gezien vanaf de Rozengracht naar de Bloemgracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/42aedd4f-9e5a-f914-14ce-d54f80323368.jpg" alt="Koffieautomaat Rozengracht"/>
+		     <p contenteditable="true">Koffieautomaat Rozengracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/42aedd4f-9e5a-f914-14ce-d54f80323368.jpg" alt="Koffieautomaat Rozengracht"/>
+		       <p>Koffieautomaat Rozengracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/595f9214-42ef-9cd8-e134-5bc0f4703bd1.jpg" alt="Marnixstraat 404"/>
+		     <p contenteditable="true">Marnixstraat 404</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/595f9214-42ef-9cd8-e134-5bc0f4703bd1.jpg" alt="Marnixstraat 404"/>
+		       <p>Marnixstraat 404</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/d505d7e1-6293-a241-97a1-9527ec0f1bc2.jpg" alt="Lijnbaansgracht 231-243"/>
+		     <p contenteditable="true">Lijnbaansgracht 231-243</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/d505d7e1-6293-a241-97a1-9527ec0f1bc2.jpg" alt="Lijnbaansgracht 231-243"/>
+		       <p>Lijnbaansgracht 231-243</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+
+					<article id="1953-bloemgracht" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1953</strong> en we zijn in <strong>bloemgracht</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/638f9d77-630c-61de-f7f3-7885ffb0813c.jpg" alt="Bloemgracht 18-22"/>
+		     <p contenteditable="true">Bloemgracht 18-22</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/638f9d77-630c-61de-f7f3-7885ffb0813c.jpg" alt="Bloemgracht 18-22"/>
+		       <p>Bloemgracht 18-22</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Bloemgracht";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1954">
+
+
+
+					<article id="1954-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1954</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/50448642-c8ad-0409-2508-d0a411ea215b.jpg" alt="Nassaukade 49-51"/>
+		     <p contenteditable="true">Nassaukade 49-51</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/50448642-c8ad-0409-2508-d0a411ea215b.jpg" alt="Nassaukade 49-51"/>
+		       <p>Nassaukade 49-51</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+
+					<article id="1954-bloemgracht" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1954</strong> en we zijn in <strong>bloemgracht</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/c3264c43-e070-0713-1acc-fbaca5023250.jpg" alt="Dansende kinderen bij een draaiorgel van G. Perlee"/>
+		     <p contenteditable="true">Dansende kinderen bij een draaiorgel van G. Perlee</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/c3264c43-e070-0713-1acc-fbaca5023250.jpg" alt="Dansende kinderen bij een draaiorgel van G. Perlee"/>
+		       <p>Dansende kinderen bij een draaiorgel van G. Perlee</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Bloemgracht";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1956">
+
+
+
+					<article id="1956-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1956</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/ef64aad3-1bf4-87f3-546d-b4f1a4905f9e.jpg" alt="J. Horn & Zn., beddenmaker"/>
+		     <p contenteditable="true">J. Horn &amp; Zn., beddenmaker</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/ef64aad3-1bf4-87f3-546d-b4f1a4905f9e.jpg" alt="J. Horn & Zn., beddenmaker"/>
+		       <p>J. Horn &amp; Zn., beddenmaker</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/79a62868-664f-d6de-c30b-1b1556e6a547.jpg" alt="Rozengracht 84-86-88 enz. (v.r.n.l.)"/>
+		     <p contenteditable="true">Rozengracht 84-86-88 enz. (v.r.n.l.)</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/79a62868-664f-d6de-c30b-1b1556e6a547.jpg" alt="Rozengracht 84-86-88 enz. (v.r.n.l.)"/>
+		       <p>Rozengracht 84-86-88 enz. (v.r.n.l.)</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/22e460c8-3e21-0693-b11f-5be544e103f9.jpg" alt="Verkeersongeval op de Rozengracht"/>
+		     <p contenteditable="true">Verkeersongeval op de Rozengracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/22e460c8-3e21-0693-b11f-5be544e103f9.jpg" alt="Verkeersongeval op de Rozengracht"/>
+		       <p>Verkeersongeval op de Rozengracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/d4ecab30-1a8c-5997-a48f-9da31b70a66b.jpg" alt="Twee wandelende dames in de Tweede Bloemdwarsstraat; op de achtergrond de kruising met de Bloemgracht"/>
+		     <p contenteditable="true">Twee wandelende dames in de Tweede Bloemdwarsstraat; op de achtergrond de kruising met de Bloemgracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/d4ecab30-1a8c-5997-a48f-9da31b70a66b.jpg" alt="Twee wandelende dames in de Tweede Bloemdwarsstraat; op de achtergrond de kruising met de Bloemgracht"/>
+		       <p>Twee wandelende dames in de Tweede Bloemdwarsstraat; op de achtergrond de kruising met de Bloemgracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/d4ecab30-1a8c-5997-a48f-9da31b70a66b.jpg" alt="Twee wandelende dames in de Tweede Bloemdwarsstraat; op de achtergrond de kruising met de Bloemgracht"/>
+		     <p contenteditable="true">Twee wandelende dames in de Tweede Bloemdwarsstraat; op de achtergrond de kruising met de Bloemgracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/d4ecab30-1a8c-5997-a48f-9da31b70a66b.jpg" alt="Twee wandelende dames in de Tweede Bloemdwarsstraat; op de achtergrond de kruising met de Bloemgracht"/>
+		       <p>Twee wandelende dames in de Tweede Bloemdwarsstraat; op de achtergrond de kruising met de Bloemgracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/0a616e78-f4b4-91ff-096d-ee6a2321cd00.jpg" alt="Marnixstraat 307A-319A-G (v.l.n.r.), gezien in noordoostelijke richting naar vaste brug 160 (Bullebakssluis) over de Bloemgracht"/>
+		     <p contenteditable="true">Marnixstraat 307A-319A-G (v.l.n.r.), gezien in noordoostelijke richting naar vaste brug 160 (Bullebakssluis) over de Bloemgracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/0a616e78-f4b4-91ff-096d-ee6a2321cd00.jpg" alt="Marnixstraat 307A-319A-G (v.l.n.r.), gezien in noordoostelijke richting naar vaste brug 160 (Bullebakssluis) over de Bloemgracht"/>
+		       <p>Marnixstraat 307A-319A-G (v.l.n.r.), gezien in noordoostelijke richting naar vaste brug 160 (Bullebakssluis) over de Bloemgracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+
+					<article id="1956-bloemgracht" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1956</strong> en we zijn in <strong>bloemgracht</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/d4ecab30-1a8c-5997-a48f-9da31b70a66b.jpg" alt="Twee wandelende dames in de Tweede Bloemdwarsstraat; op de achtergrond de kruising met de Bloemgracht"/>
+		     <p contenteditable="true">Twee wandelende dames in de Tweede Bloemdwarsstraat; op de achtergrond de kruising met de Bloemgracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/d4ecab30-1a8c-5997-a48f-9da31b70a66b.jpg" alt="Twee wandelende dames in de Tweede Bloemdwarsstraat; op de achtergrond de kruising met de Bloemgracht"/>
+		       <p>Twee wandelende dames in de Tweede Bloemdwarsstraat; op de achtergrond de kruising met de Bloemgracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Bloemgracht";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1957">
+
+
+
+					<article id="1957-bloemgracht" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1957</strong> en we zijn in <strong>bloemgracht</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/2ef96fc3-d0c1-6859-3066-ed9cdb5045d2.jpg" alt="Bloemgracht 58"/>
+		     <p contenteditable="true">Bloemgracht 58</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/2ef96fc3-d0c1-6859-3066-ed9cdb5045d2.jpg" alt="Bloemgracht 58"/>
+		       <p>Bloemgracht 58</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Bloemgracht";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1958">
+
+
+
+					<article id="1958-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1958</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/9b2f3145-9622-620b-0227-3851e733fd4f.jpg" alt="Eerste Egelantiersdwarsstraat 20-18 enz"/>
+		     <p contenteditable="true">Eerste Egelantiersdwarsstraat 20-18 enz</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/9b2f3145-9622-620b-0227-3851e733fd4f.jpg" alt="Eerste Egelantiersdwarsstraat 20-18 enz"/>
+		       <p>Eerste Egelantiersdwarsstraat 20-18 enz</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/867743bb-5bbf-1fad-dfd4-8f17453ff93b.jpg" alt="Egelantiersstraat 124-2"/>
+		     <p contenteditable="true">Egelantiersstraat 124-2</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/867743bb-5bbf-1fad-dfd4-8f17453ff93b.jpg" alt="Egelantiersstraat 124-2"/>
+		       <p>Egelantiersstraat 124-2</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/fcf0147f-d7cd-2e7e-7b33-3a783527fd52.jpg" alt="Slootstraat"/>
+		     <p contenteditable="true">Slootstraat</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/fcf0147f-d7cd-2e7e-7b33-3a783527fd52.jpg" alt="Slootstraat"/>
+		       <p>Slootstraat</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+
+					<article id="1958-bloemgracht" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1958</strong> en we zijn in <strong>bloemgracht</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/257d4a7d-c9ae-e52d-46fe-0a908c0b3305.jpg" alt="Bloemgracht 2-8"/>
+		     <p contenteditable="true">Bloemgracht 2-8</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/257d4a7d-c9ae-e52d-46fe-0a908c0b3305.jpg" alt="Bloemgracht 2-8"/>
+		       <p>Bloemgracht 2-8</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Bloemgracht";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1959">
+
+
+
+					<article id="1959-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1959</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/41a2eb5e-f6e6-1dfd-f06b-d0232fd055e3.jpg" alt="Marnixstraat 421"/>
+		     <p contenteditable="true">Marnixstraat 421</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/41a2eb5e-f6e6-1dfd-f06b-d0232fd055e3.jpg" alt="Marnixstraat 421"/>
+		       <p>Marnixstraat 421</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/be1bbf7d-839a-c363-f241-173d40194668.jpg" alt="Bloemgracht 193-191 enz. (v.r.n.l.)"/>
+		     <p contenteditable="true">Bloemgracht 193-191 enz. (v.r.n.l.)</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/be1bbf7d-839a-c363-f241-173d40194668.jpg" alt="Bloemgracht 193-191 enz. (v.r.n.l.)"/>
+		       <p>Bloemgracht 193-191 enz. (v.r.n.l.)</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/be1bbf7d-839a-c363-f241-173d40194668.jpg" alt="Bloemgracht 193-191 enz. (v.r.n.l.)"/>
+		     <p contenteditable="true">Bloemgracht 193-191 enz. (v.r.n.l.)</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/be1bbf7d-839a-c363-f241-173d40194668.jpg" alt="Bloemgracht 193-191 enz. (v.r.n.l.)"/>
+		       <p>Bloemgracht 193-191 enz. (v.r.n.l.)</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/ee927977-fbb1-9140-fd5e-46cf434940e2.jpg" alt="Lijnbaansgracht"/>
+		     <p contenteditable="true">Lijnbaansgracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/ee927977-fbb1-9140-fd5e-46cf434940e2.jpg" alt="Lijnbaansgracht"/>
+		       <p>Lijnbaansgracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/0ee17cfa-e541-0355-3110-3804b8902df1.jpg" alt="Lijnbaansgracht 309-309-310 enz"/>
+		     <p contenteditable="true">Lijnbaansgracht 309-309-310 enz</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/0ee17cfa-e541-0355-3110-3804b8902df1.jpg" alt="Lijnbaansgracht 309-309-310 enz"/>
+		       <p>Lijnbaansgracht 309-309-310 enz</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/5469040c-3ba2-bdb6-1a92-37b187df3ad1.jpg" alt="Korte Marnixstraat"/>
+		     <p contenteditable="true">Korte Marnixstraat</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/5469040c-3ba2-bdb6-1a92-37b187df3ad1.jpg" alt="Korte Marnixstraat"/>
+		       <p>Korte Marnixstraat</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/42f362ea-939e-a631-88e2-5e63980a0f3d.jpg" alt="Nieuwe Tuinstraat"/>
+		     <p contenteditable="true">Nieuwe Tuinstraat</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/42f362ea-939e-a631-88e2-5e63980a0f3d.jpg" alt="Nieuwe Tuinstraat"/>
+		       <p>Nieuwe Tuinstraat</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/42f362ea-939e-a631-88e2-5e63980a0f3d.jpg" alt="Nieuwe Tuinstraat"/>
+		     <p contenteditable="true">Nieuwe Tuinstraat</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/42f362ea-939e-a631-88e2-5e63980a0f3d.jpg" alt="Nieuwe Tuinstraat"/>
+		       <p>Nieuwe Tuinstraat</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/0adad76e-dd66-4eae-06d6-5967879d01f2.jpg" alt="Bloemgracht 182-130"/>
+		     <p contenteditable="true">Bloemgracht 182-130</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/0adad76e-dd66-4eae-06d6-5967879d01f2.jpg" alt="Bloemgracht 182-130"/>
+		       <p>Bloemgracht 182-130</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/c76a19e2-72ff-de23-ad51-ac58552dcf72.jpg" alt="Luchtfoto van de Prinsengracht (midden) en omgeving gezien in noordoostelijke richting"/>
+		     <p contenteditable="true">Luchtfoto van de Prinsengracht (midden) en omgeving gezien in noordoostelijke richting</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/c76a19e2-72ff-de23-ad51-ac58552dcf72.jpg" alt="Luchtfoto van de Prinsengracht (midden) en omgeving gezien in noordoostelijke richting"/>
+		       <p>Luchtfoto van de Prinsengracht (midden) en omgeving gezien in noordoostelijke richting</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+
+					<article id="1959-bloemgracht" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1959</strong> en we zijn in <strong>bloemgracht</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/be1bbf7d-839a-c363-f241-173d40194668.jpg" alt="Bloemgracht 193-191 enz. (v.r.n.l.)"/>
+		     <p contenteditable="true">Bloemgracht 193-191 enz. (v.r.n.l.)</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/be1bbf7d-839a-c363-f241-173d40194668.jpg" alt="Bloemgracht 193-191 enz. (v.r.n.l.)"/>
+		       <p>Bloemgracht 193-191 enz. (v.r.n.l.)</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/f63c2506-11c9-7c33-03ea-d8f3f6b1aa5d.jpg" alt="Bloemgracht 70-46"/>
+		     <p contenteditable="true">Bloemgracht 70-46</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/f63c2506-11c9-7c33-03ea-d8f3f6b1aa5d.jpg" alt="Bloemgracht 70-46"/>
+		       <p>Bloemgracht 70-46</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/1b17584e-e3dc-cc17-ed42-6c67f26ff2ce.jpg" alt="Bloemgracht 104-102 enz"/>
+		     <p contenteditable="true">Bloemgracht 104-102 enz</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/1b17584e-e3dc-cc17-ed42-6c67f26ff2ce.jpg" alt="Bloemgracht 104-102 enz"/>
+		       <p>Bloemgracht 104-102 enz</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/0adad76e-dd66-4eae-06d6-5967879d01f2.jpg" alt="Bloemgracht 182-130"/>
+		     <p contenteditable="true">Bloemgracht 182-130</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/0adad76e-dd66-4eae-06d6-5967879d01f2.jpg" alt="Bloemgracht 182-130"/>
+		       <p>Bloemgracht 182-130</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/c76a19e2-72ff-de23-ad51-ac58552dcf72.jpg" alt="Luchtfoto van de Prinsengracht (midden) en omgeving gezien in noordoostelijke richting"/>
+		     <p contenteditable="true">Luchtfoto van de Prinsengracht (midden) en omgeving gezien in noordoostelijke richting</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/c76a19e2-72ff-de23-ad51-ac58552dcf72.jpg" alt="Luchtfoto van de Prinsengracht (midden) en omgeving gezien in noordoostelijke richting"/>
+		       <p>Luchtfoto van de Prinsengracht (midden) en omgeving gezien in noordoostelijke richting</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Bloemgracht";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+				<div class="year year-1960">
+
+
+
+					<article id="1960-jouwbuurt" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1960</strong> en we zijn in <strong>jouw buurt</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/92256efd-8b9b-5744-3feb-17a4323ea2fb.jpg" alt="Marnixstraat 287-305 met rechts de ingang van de Bloemgracht"/>
+		     <p contenteditable="true">Marnixstraat 287-305 met rechts de ingang van de Bloemgracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/92256efd-8b9b-5744-3feb-17a4323ea2fb.jpg" alt="Marnixstraat 287-305 met rechts de ingang van de Bloemgracht"/>
+		       <p>Marnixstraat 287-305 met rechts de ingang van de Bloemgracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/92256efd-8b9b-5744-3feb-17a4323ea2fb.jpg" alt="Marnixstraat 287-305 met rechts de ingang van de Bloemgracht"/>
+		     <p contenteditable="true">Marnixstraat 287-305 met rechts de ingang van de Bloemgracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/92256efd-8b9b-5744-3feb-17a4323ea2fb.jpg" alt="Marnixstraat 287-305 met rechts de ingang van de Bloemgracht"/>
+		       <p>Marnixstraat 287-305 met rechts de ingang van de Bloemgracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/a42773b6-41a7-a030-ea8c-54117fbbaffc.jpg" alt="Nassaukade 120-123"/>
+		     <p contenteditable="true">Nassaukade 120-123</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/a42773b6-41a7-a030-ea8c-54117fbbaffc.jpg" alt="Nassaukade 120-123"/>
+		       <p>Nassaukade 120-123</p>
+		     </div>
+		   </div>
+		 </li>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/a42773b6-41a7-a030-ea8c-54117fbbaffc.jpg" alt="Nassaukade 120-123"/>
+		     <p contenteditable="true">Nassaukade 120-123</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/a42773b6-41a7-a030-ea8c-54117fbbaffc.jpg" alt="Nassaukade 120-123"/>
+		       <p>Nassaukade 120-123</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Jouw buurt";
+	console.log('merged', window.chapter);
+</script>
+
+
+
+					<article id="1960-bloemgracht" class="chapter">
+	<div class="title-sticky">
+		<img class="crosses" src="/images/crosses.svg"/>
+		<h2>Het is <strong>1960</strong> en we zijn in <strong>bloemgracht</strong></h2>
+	</div>
+	<ul>
+
+		 <li class="data-image">
+		   <div>
+		     <img src="http://images.memorix.nl/ams/thumb/640x480/92256efd-8b9b-5744-3feb-17a4323ea2fb.jpg" alt="Marnixstraat 287-305 met rechts de ingang van de Bloemgracht"/>
+		     <p contenteditable="true">Marnixstraat 287-305 met rechts de ingang van de Bloemgracht</p>
+		     <a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
+		   </div>
+		   <div class="detail">
+		     <span class="helper"></span>
+		     <div>
+		       <div class="popupCloseButton">X</div>
+		       <img src="http://images.memorix.nl/ams/thumb/640x480/92256efd-8b9b-5744-3feb-17a4323ea2fb.jpg" alt="Marnixstraat 287-305 met rechts de ingang van de Bloemgracht"/>
+		       <p>Marnixstraat 287-305 met rechts de ingang van de Bloemgracht</p>
+		     </div>
+		   </div>
+		 </li>
+
+
+
+	</ul>
+</article>
+
+<script>
+	window.chapter = "Bloemgracht";
+	console.log('merged', window.chapter);
+</script>
+
+
+			</div>
+
+		</main>
+
+		<script>
+
+		</script>
+		<script>
+			// Get the modal
+			var modal = document.getElementById('tell-me-more');
+
+			// Get the button that opens the modal
+			var btn = document.getElementById("help");
+
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks the button, open the modal
+			btn.onclick = function() {
+			    modal.style.display = "block";
+			}
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+			    modal.style.display = "none";
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			    if (event.target == modal) {
+			        modal.style.display = "none";
+			    }
+			}
+		</script>
+
+		<script>
+			//open detail page image
+			var trigger = document.querySelectorAll('.openDetail');
+			var detailpopup = document.querySelectorAll('.detail');
+			var closeButton = document.querySelectorAll('.popupCloseButton');
+
+			for(var i = 0; i < trigger.length; i++) {
+				trigger[i].addEventListener('click', function(e){
+					e.preventDefault();
+					e.path[3].childNodes[3].classList.add('show');
+				});
+
+				detailpopup[i].addEventListener('click', function(e){
+					e.preventDefault();
+					e.target.parentElement.classList.remove('show')
+				});
+
+				closeButton[i].addEventListener('click', function(e){
+					e.preventDefault();
+					e.target.parentElement.parentElement.classList.remove('show')
+				});
+			}
+		</script>
+		<script>
+			//active menu li item on scroll
+			var yearSections = document.querySelectorAll('main .year');
+			var yearsTitle = document.querySelectorAll('.register-years > li');
+			var links = document.querySelectorAll('.register-years > li > a');
+
+			links.forEach(function (link, i, self) {
+				self[0].nextElementSibling.classList.add('show-chapter');
+
+				link.addEventListener('click', function () {
+					var current = document.querySelector('.register-chapters.show-chapter');
+					current.classList.remove('show-chapter');
+					this.nextElementSibling.classList.add('show-chapter');
+				});
+			});
+
+			//add new chapter
+			var newChapters = document.querySelectorAll('.chapter-new');
+			newChapters.forEach(function(trigger){
+				trigger.addEventListener('click', function(e){
+					e.preventDefault();
+					var nameChapter = this.textContent;
+					var chapter1 = nameChapter.split('+ ');
+					var chapter2 = nameChapter.toLowerCase().split('+ ');
+					var chapter3 = chapter2[1].replace(' ', '-')
+					var parentMenu = this.parentElement.parentElement.parentElement;
+					var itemBefore = this.parentElement.parentElement;
+					console.log(chapter3)
+
+					//get value depends on chapter
+					var value;
+					if(chapter3 == 'politieke-posters') {
+						value = 'wijk';
+					} else if (chapter3 == 'muziek-posters') {
+						value = 'muziek genre';
+					} else if (chapter3 == 'jouw-vereniging') {
+						value = 'vereniging';
+					} else if (chapter3 == 'openbaar-vervoer') {
+						value = 'openbaar vervoer lijn nummer';
+					} else if (chapter3 == 'verhuizing') {
+						value = 'nieuwe straatnaam';
+					}
+
+					//create nav item
+					var li = document.createElement('li');
+					li.classList.add('chapter-name');
+					parentMenu.insertBefore(li, itemBefore)
+
+					var a = document.createElement('a');
+					a.textContent = chapter1[1];
+					a.href = '#' + this.parentElement.id.substr(5,9) + '-' + chapter3;
+					li.appendChild(a);
+
+					//create article
+					var parentArticle = document.querySelector('.' + this.parentElement.id);
+					var article = document.createElement('article');
+					var id = this.parentElement.id.substr(5,9) + '-' + chapter3;
+					article.id = id
+					article.classList.add('chapter');
+					parentArticle.appendChild(article);
+
+					//article text
+					var div = document.createElement('div');
+					div.classList.add('title-sticky');
+					article.appendChild(div);
+
+					var img = document.createElement('img');
+					img.classList.add('crosses');
+					img.src = '/images/crosses.svg';
+					div.appendChild(img);
+
+					var h2 = document.createElement('h2');
+					h2.textContent = "Vul de volgende gegevens in om een chapter toe te voegen";
+					div.appendChild(h2);
+
+					var form = document.createElement('form');
+					form.classList.add('chapter-form-input')
+					article.appendChild(form);
+
+					form.addEventListener('submit', function(e){
+						e.preventDefault();
+					})
+
+					var label = document.createElement('label');
+					label.htmlFor = 'chapter-input';
+					label.textContent = "Vul jouw " + value + " in"
+					form.appendChild(label);
+
+					var input = document.createElement('input');
+					input.setAttribute('type', 'text');
+					input.setAttribute('name', 'chapter-input');
+					form.appendChild(input);
+
+					// var articles = document.querySelectorAll('.chapter')
+					// articles[articles.length-1].scrollIntoView()-100;
+
+
+					onScroll();
+					navWidth();
+
+				});
+			});
+
+			//menu equal li items
+			function navWidth(){
+				var years = document.querySelectorAll('.my-story nav .register-years > li')
+				var countYears = years.length;
+
+				years.forEach(function(year){
+					year.style.height = 'calc((100% - 5rem) / ' + countYears + ')';
+
+						var chapters = year.childNodes[3].children;
+						var countChapters = chapters.length;
+
+						for(var i = 0; i < chapters.length; i++) {
+							var perc = 'calc(100% / ' + countChapters + ')';
+							chapters[i].style.width = perc;
+						}
+				});
+			}
+			navWidth();
+
+
+			function onScroll(){
+				var sections = document.querySelectorAll('article.chapter');
+				var chaptersTitle = document.querySelectorAll('.register-chapters > .chapter-name');
+
+				window.addEventListener('scroll', function(){
+					for (var i = 0; i < yearSections.length; i++) {
+						var showChapter = document.querySelector('.show-chapter');
+						if(showChapter == null){
+							yearsTitle[0].children[1].classList.add('show-chapter');
+						}
+						if(yearSections[i].offsetTop-5 <= window.scrollY && (yearSections[i].offsetHeight + yearSections[i].offsetTop) > window.scrollY+5) {
+							yearsTitle[i].classList.add('active-menu');
+							yearsTitle[i].children[1].classList.add('show-chapter');
+						} else {
+							yearsTitle[i].classList.remove('active-menu');
+							yearsTitle[i].children[1].classList.remove('show-chapter');
+						}
+					}
+
+
+					for (var i = 0; i < sections.length; i++) {
+						if(sections[i].offsetTop-5 <= window.scrollY && (sections[i].offsetHeight + sections[i].offsetTop) > window.scrollY+5) {
+							chaptersTitle[i].classList.add('active-menu');
+						} else {
+							chaptersTitle[i].classList.remove('active-menu');
+						}
+					}
+				});
+			}
+			onScroll();
+		</script>
+		<script>
+			var form = document.querySelector('.personal-data form');
+			form.addEventListener('submit', function(e){
+				e.preventDefault();
+			})
+		</script>
+
+	<!-- <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script> -->
+	<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="crossorigin=""></script>
+	<script src="/dist/bundle.js"></script>
+</body>
+</html>
