@@ -4,7 +4,7 @@
   "description": "application that will tell the story of the Amsterdammer",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "dev": "watch 'npm run build'",
     "watch-js": "watchify public/js/*.js -o public/dist/bundle.js -dv",
     "watch": "npm run build | npm run watch-js",
