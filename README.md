@@ -6,6 +6,7 @@
   <p>
     For the organisation <a href="http://www.adamnet.nl">Adamnet</a> we created the website <a href="http://www.eenstukjenostalgie.amsterdam">eenstukjenostalgie.amsterdam</a>, where people can create there own <strong>Memories Book</strong>, filled with images from a chosen time period and location.
   </p>
+  <img src="screenshots/new-story-page.png">
 </div>
 <br>
 
@@ -18,7 +19,7 @@
 * [User Scenarios](#user-scenarios)
 * [Linked open data](#linked-open-data)
 * [Usage](#usage)
-* [Coming soon...](#coming-soon...)
+* [Coming soon...](#coming-soon)
 * [Wishlist](#wishlist)
 * [Collaborators](#collaborators)
 
@@ -140,7 +141,74 @@ With SPARQL you use `PREFIX` to link to another data source. You select items fr
 ### Our data flow
 ---
 
-<!-- Add Actor diagram -->
+We fetch the pictures depending on the given begin and end timestamps we've gotten and the radius we get from the POST request from the page where we select the location and time period. This is the query we send to the API endpoint:
+
+```
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX hg: <http://rdf.histograph.io/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+SELECT ?title ?img ?start ?end ?street ?streetLabel WHERE {
+  # basic data
+  ?cho dc:title ?title .
+  ?cho foaf:depiction ?img .
+
+  # temporal filter
+  ?cho sem:hasBeginTimeStamp ?orgStart .
+  ?cho sem:hasEndTimeStamp ?orgEnd .
+  BIND (xsd:date(str(?orgStart)) AS ?start)
+  BIND (xsd:date(str(?orgEnd)) AS ?end)
+  FILTER BOUND (?start)
+  FILTER BOUND (?end)
+  FILTER (?start >= xsd:date("${beginTimestamp}") && ?end <= xsd:date("${endTimestamp}") )
+
+  # spatial filter
+  ?cho dct:spatial ?street .
+  ?street a hg:Street ;
+  geo:hasGeometry/geo:asWKT ?streetWkt ;
+  rdfs:label ?streetLabel .
+  BIND (bif:st_geomfromtext("${wkt}") as ?x)
+  BIND (bif:st_geomfromtext(?streetWkt) AS ?y)
+  FILTER(bif:GeometryType(?y)!='POLYGON' && bif:st_intersects(?x, ?y))
+}
+ORDER BY ?start
+```
+
+From there the user is creating it's own Memories book, which means we have to continue with an unique id. We add the selected data to an object for this current book and add this to the user's session storage. In the following pages, until we reach the final book, the data is transferred between each state.
+
+This is what our data object looks like:
+
+```
+book: {
+  "id": Bk7K2MZG7,
+  "key": "null",
+  "title": "Mijn verhaal van Amsterdam",
+  "meta": {},
+  "data": {
+    "1940": {
+      "de buurt": [img, img],
+      "de overige straten": [img, img]
+    },
+    "1941": {
+      "Sint Agnietenstraat": [img],
+      "de buurt": [img, img],
+      "de overige straten": [img, img]
+    }
+  },
+  "selection": {
+    "1940": {
+      "de buurt": [img]
+    }
+  }
+}
+```
+
+The `selection` object are all the images the user selects. They are filtered from the original `data` object.
 
 ## Usage
 
@@ -151,7 +219,7 @@ If you are arriving on the homepage you will find below the intro text memoriebo
 
 On the right side of the page you have the option to create your own book. You can pick a subject (person, building or blanco) and start your book.
 
-<!-- Screenshot of homepage -->
+![Homepage](screenshots/homepage.png)
 
 ### State 2: Selecting location and time period
 ---
@@ -160,22 +228,22 @@ On the second stage you will find a fullscreen map of Amsterdam. You have to sel
 
 When the location and time period are as you would like, you can click on the submit button on the right to get your results.
 
-<!-- Screenshot of new-story page -->
+![New Story Page](screenshots/new-story-page.png)
 
 ### State 3: Selecting pictures
 ---
 
 Yes, you have your first results now! On this page you can find the images that are in the time period you have selected and in the neighborhood that the radius pointed out. When you scroll down the page the year will shown up with a nice transition, so it will be clear which year the images are from. The years are clickable, you can easily navigate through the years.
 
-<!-- Screenshot of one selected year -->
+![Create Story Page](screenshots/create-story-page-001.png)
 
 On a hover you will find out that you can select each of the images. By clicking on the images you will add it to a red bar. At the same time a save button will shown up with the number of images you have added. You delete the image by unselecting the images or by clicking on the image in the red bar.
 
-<!-- Screenshot of selected images in selection bar -->
+![Create Story Page](screenshots/create-story-page-002.png)
 
 You can see every image in detail by clicking on the zoom icon.
 
-<!-- Screenshot of image in detail view -->
+![Create Story Page](screenshots/create-story-page-003.png)
 
 By the way, on every page you have the option to go back to the previous page or homepage.
 
@@ -190,13 +258,11 @@ Each image has a text that is editable. You can change the text or add some new 
 
 You are able to add new chapters. You can find them by clicking on the button on the top right. By choosing on of the them you will create a new menu item in the top bar and create a new article on the page.
 
-<!-- Screenshot of selecting a chapter -->
+![My Story Page](screenshots/my-story-page-001.png)
 
 In the chapter you have to fill in a input field, which will search (coming soon..) for images.
 
-<!-- Screenshot of new chapter input field -->
-
-<!-- Maybe something about saving -->
+![My Story Page](screenshots/my-story-page-002.png)
 
 ## Coming soon...
 
@@ -211,10 +277,7 @@ In the chapter you have to fill in a input field, which will search (coming soon
 ## Wishlist
 
 * **Photosuggestion:** on your memoriesbook page you will find photo’s that are similar to yours. The user will be finding new image because of this new feature.
-* Enhancement design frontpage (see images below)
-
-<!-- Screenshot of design home -->
-
+* Enhancement design frontpage
 * **New chapters (queries):**
   * school/uni/work
   * posters politic
@@ -229,96 +292,153 @@ In the chapter you have to fill in a input field, which will search (coming soon
 
 If you want to know more about our process and testresults, check [this link](https://docs.google.com/document/d/13ffiy7-qafjm6pxHgUFO63iCZuLWXJ1KEM_uCn8LiBM/edit).
 
-### Suus
-Een van mijn leerdoelen van dit project was om GEEN spaghetti code meer te schrijven. Tijdens deze minor heb ik ontzettend veel geleerd, voornamelijk over Javascript. Misschien zelfs zoveel dat ik dit niet altijd goed in mij heb kunnen opnemen. Deze meesterproef wilde ik meer begrijpen wat ik nou precies aan code heb geschreven en wat het precies betekent. Daarnaast heb ik gemerkt dat het concepten wel goed gaat, alleen de uitwerking daarvan vaak te kort doet hieraan. Hierdoor komt het concept niet altijd even goed over zoals ik had gehoopt, terwijl ik dit verbaal wel goed kan uitwerken. Het tweede leerdoel van de meesterproef is daarom ook om het prototype voor zichzelf te laten spreken, het concept moet goed naar voren komen. Om dit goed over te laten komen, moet de flow juist in elkaar zitten en moet er op interactie gebied met wat meer liefde hiernaar worden gekeken.
+### Max
+## Leerdoelen en reflectie
 
-Tijdens de eerste week van de meesterproef had ik besloten om met Max samen te werken. Dit is één van de beste keuzes die ik heb gemaakt. Door mijn eigenwijsheid vind ik samenwerken soms best lastig, maar naar mijn idee ging deze samenwerking heel fijn. Max gaf goed aan wat hij de beste manier vond om iets te oplossen en ik die van mij. Wanneer we het ergens niet over eens waren, dan kwamen we altijd op een middenweg uit.
+Mijn leerdoelen tijdens de Meesterproef waren om meer te leren over backend en over het communiceren tussen backend en frontend, om op een modulaire manier een Progressive Web App op te zetten en om vanuit een user scenario een goede flow neer te zetten.
 
-Mijn eerste leerdoel was geen spaghetti code meer te schrijven. Dat dit gelukt is heb ik grotendeels te danken aan onze samenwerking. Doordat we duidelijke afspraken hadden gemaakt hoe we met GIT om gingen, moesten we elkaar telkens reviewen voor de branch gemerged kon worden. Dit zorgde ervoor dat Max feedback op mijn code gaf en ik op die van hem. Hier heb ik heel veel van geleerd. Het waren vaak kleine tips, maar die zorgde wel voor veel verbetering.
+Ik heb tijdens deze Meesterproef veel geleerd met betrekking tot mijn leerdoelen. Het was niet altijd makkelijk om backend werkt te doen en om goed te begrijpen hoe de server zich weerhoudt tot de client, maar uiteindelijk lukte mij dat en daar heb ik veel van geleerd. Ik snap nu beter hoe de server en de client communiceren en hoe je de server modulair kan opzetten.
 
-Dit is een voorbeeld van z'n feedback moment. Max gaf aan dat de naamgeving hier niet duidelijk genoeg was.
+Ik heb ook geleerd om tijdens het gehele proces altijd goed het user scenario in mijn achterhoofd te houden en dit terug te laten komen bij ontwerpbeslissingen. Het was ook goed dat we veel hebben getest en veel iteraties hebben gemaakt aan de hand van nieuwe test resultaten.
 
-```javascript
-var fetch = require('node-fetch');
-var sparqlqueries = require('./sparql');
+Naast mijn leerdoelen heb ik tijdens het samenwerken met Suus ook weer meer geleerd over het gebruik van GitHub. Ik had al eerder met anderen samengewerkt via GitHub, maar nog niet op zo'n goede manier. We hadden een heel duidelijke structuur aangemaakt. Door het gebruik van issues en het aanmaken van een project bord konden we heel duidelijk maken wie wat op welk moment deed, wat er nog gedaan moest worden en wat al af was. Dit werkte uitstekend.
 
-exports.location = async function (newStoryData) {
-  // Fetch the images for selected location and timestamp:
-  var url = sparqlqueries.url(sparqlqueries.getLocationAndTimestamp(newStoryData));
+Ook van de code reviews die Suus en ik bij elkaar deden bij elke Pull Request heb ik wat geleerd. Het was fijn dat ze scherp was op wat ik maakte, hoe mijn code stijl was en wat voor namen ik gaf aan variabelen en functies. Die feedback was mooi.
 
-return await fetch(url)
-	  .then((resp) => resp.json()) // transform the data into json
+## Vakken
+
+### WAFS
+---
+
+Wat ik geleerd heb tijdens WAFS heb ik goed terug kunnen brengen tijdens de Meesterproef. Ik heb de server modulair opgezet met de `app.js` als hoofdbestand. Daarna heb ik de eerste routes aangemaakt die we nodig hadden in het mapje `routes`. De express functies worden geëxporteerd vanuit een `controller.js` bestand. Deze modulaire opzet heb ik geleerd vanuit WAFS. Om te werken met zo'n app structuur. Ook heb ik vanuit WAFS meegenomen hoe je data vanuit een API kan inladen via fetch. Ik heb dat via de server gedaan met [Node fetch](https://www.npmjs.com/package/node-fetch).
+
+**Via Node fetch ophalen van data:**
+```
+var fetchStreetWkts = async function () {
+  var url = sparqlqueries.url(sparqlqueries.getStreetWkts(newStoryData.wkt));
+
+  return await fetch(url)
+    .then((resp => resp.json()))
     .then(function (data) {
-
-			var dataFilter = data.results.bindings;
-
-			var all = {
-				years: {}
-			};
-
-			dataFilter.forEach(function(item, i, self) {
-		  	var year = item.start.value.split('-')[0];
-				var chapter;
-
-				if (item.street.value == dataFilter[0].street.value) {
-					chapter = dataFilter[0].streetLabel.value;
-				} else {
-					chapter = 'de overige straten';
-				}
-
-		    if (!all.years[year]) {
-		    	all.years[year] = {};
-		    }
-				if (!all.years[year][chapter]) {
-					all.years[year][chapter] = [];
-				}
-
-				all.years[year][chapter].push(item);
-			});
-
-			return all;
-
-    }).catch(function (error) {
+      return data.results.bindings;
+    })
+    .catch(function (error) {
       console.log(error);
     });
-};
-```
-
-Als laatste doel wilde ik de flow duidelijk maken van de applicatie zodat ons concept goed naar voren kwam. De twee testmomenten die we gehad hebben, heeft hierbij heel erg geholpen. Vorige week vrijdag kwamen we tot de conclusie dat onze huidige flow niet logisch genoeg was. We hebben er daarom voor gekozen om dit op het laatste moment nog aan te passen. Dit heeft even voor wat hoofdpijn en stress momenten gezorgd, maar is naar mijn mening een hele belangrijke stap geweest. Overall ben ik erg tevreden met wat we hebben neergezet en ik denk dat het concept goed naar voren komt.
-
-
-*Web App from Scratch:* Een belangrijk punt wat we hebben meegenomen van WAFS is de indeling van de applicatie. We hebben allereerst goed gekeken hoe we de app gingen opbouwen voordat we als een kip zonder kop begonnen met coderen. Zo hebben we een aparte routes map met alle routes daarin gedefineerd en in de controllers map staan de sparql queries, de data filters en de data die we meesturen aan de routes. Hierdoor houden we overzicht. Daarnaast hebben we meerdere data methodes toegepast, onder andere de filter() en map() functie. Een request maken naar de api met een fetch hebben we ook mee kunnen nemen vanuit WAFS en project1.
-
-*CSS to the Rescue:* Dit vak heb ik voornamelijk kunnen toepassen. We hebben  niet al te veel met CSS selectors gewerkt (sorry Vasilis), maar voornamelijk met classes. Uit CSS hebben we nieuwe features gebruikt als Column-layout, Grid en CSS properties. We hebben geprobeerd te letten op focus states, maar hier lag niet onze prioriteit. Een handig trucje wat ik uit CSSTR heb meegenomen is de volgende:
-
-```CSS
-.my-story h2 {
-	height: min-content;
 }
 ```
 
-*Performance Matters: *
-We hebben geprobeerd om dit vak zo goed mogelijk toe te passen, omdat het voor onze site best een issue zou kunnen worden met het aantal data dat er beschikbaar is. Dit hebben we gedaan door bijvoorbeeld in modules te werken en het asynch inladen van een .json file van de straten.
+**Pull requests waarin WAFS terug komt:**
 
-*Browser Tech: * In dit vak heb ik heel veel geleerd over hoe browsers dingen verschillend implenteren. Bij het maken van een CSS keuze (bv: gaan we grid of flex gebruiken), neem ik de browser-ondersteuning ook mee in mijn overweging. Verder heeft Max een fallback geschreven voor wanneer Javascript uitstaat.
+* [Feature/data-routes](https://github.com/s44s/meesterproef-adamnet/pull/20)
+* [Feature/first-data-filter](https://github.com/s44s/meesterproef-adamnet/pull/48)
+* [Feature/data-flow-update](https://github.com/s44s/meesterproef-adamnet/pull/82)
 
-*Web design:* Het belangrijkste wat we van Web Design hebben toegepast is de flow van onze website. We hadden een prachtig concept bedacht, wat veel uitdagingen had op het gebied van design en interactie. Door het meerdere keren te testen met de 'echte' doelgroep hebben we hier meerdere iteraties op kunnen maken die ook zeker voor veel veranderingen hebben gezorgd. In mijn procesboek zijn deze veranderingen duidelijk te vinden. Ook via [deze link](https://docs.google.com/document/d/13ffiy7-qafjm6pxHgUFO63iCZuLWXJ1KEM_uCn8LiBM/edit). is er meer te lezen waarom we bepaalde aanpassingen hebben gedaan. Om ze nog wat beter toe te lichten hier ook een aantal screenshots van de iteraties:
+### CSS to the Rescue
+---
 
-Iteratie 1:
-<img src="screenshots/3.png">
-<img src="screenshots/1.png">
-<img src="screenshots/2.png">
+Vanuit CSS to the Rescue heb ik het gebruik van CSS Grid kunnen toepassen in het herontwerp van de pagina waar je een locatie en tijdperk moet instellen:
 
-Iteratie 2:
-<img src="screenshots/5.png">
+![CSS Grid in action](screenshots/grid.png)
 
-<img src="screenshots/6.png">
+Dit heb ik op de volgende manier gedaan:
 
-<img src="screenshots/4.png">
+```
+.new-story .meta-data {
+  display: grid;
+  grid-template-rows: 5rem 1fr;
+  grid-template-columns: calc(5% + 3.5rem) 1fr;
+  align-items: start;
+}
+```
 
-<img src="screenshots/7.png">
+```
+.new-story .timestamp {
+  grid-row: span 2;
+  grid-column: 1/2;
+}
+```
 
-Iteratie 3: check onze live website voor de nieuwe iteratie [een stukje nostalgie](http://eenstukjenostalgie.amsterdam/)
+**Pull requests waarin CSS to the Rescue terug komt:**
 
+* [Feature/change-new-story-layout](https://github.com/s44s/meesterproef-adamnet/pull/115)
 
-<img src="screenshots/crosses.svg">
+### Performance Matters
+---
+
+Een van de dingen die ik geleerd heb tijdens Performance Matters is hoe je server side modulair kan opbouwen. Dit heb ik dan ook toegepast in onze website. De `routes` zitten in een aparte map en de API calls en express functies zijn ook gescheiden.
+
+Een ander onderdeel van Performance Matters is het daadwerkelijk verbeteren van de performance. Dit heb ik kunnen toevoegen door alle straten van Amsterdam asynchroon in te laden via client side JavaScript:
+
+```
+getAllStreets: async function () {
+  return fetch('/js/streets.json')
+    .then((res) => res.json())
+    .catch(function (error) {
+      console.log(error);
+    })
+},
+```
+
+`streets.json` is een lokaal bestand met de geo data van alle straten in Amsterdam. Het ophalen van deze gegevens via de API duurde aanzienlijk langer en was ook niet asynchroon. De rest het script moest wachten tot de data geladen werd, nu wordt de data geladen terwijl je de map en z'n functies al kan gebruiken.
+
+![New Story Page](screenshots/new-story-page.png)
+
+**Pull requests waarin Performance Matters terug komt:**
+
+* [Feature/data-routes](https://github.com/s44s/meesterproef-adamnet/pull/20)
+* [Feature/fallback-for-selecting-location](https://github.com/s44s/meesterproef-adamnet/pull/72)
+
+### Browser Technologies
+---
+
+Ik heb het vak Browser Technologies niet veel toegepast. Dit kwam doordat wij besloten hadden eerst de belangrijkste functies te bouwen en daarna, wel als enhancement, eventuele fallbacks te maken voor features.
+
+Het enige waarbij ik wel een fallback gemaakt heb, is de zoekbalk. De core functionaliteit op deze pagina is namelijk het selecteren van een tijdperk en een locatie en wanneer er geen JavaScript aanwezig is, moet je alsnog een locatie kunnen selecteren. De map werkt dan niet meer en dus moet je wel terugvallen op de zoekbalk.
+
+Vandaar dat ik hierop een fallback heb geschreven die een server side request doet en alle straten ophaald die voldoen binnen de gezochte waarde. Die fallback ziet er in de code zo uit in de server:
+
+```
+exports.searchLocationPage = function (req, res, next) {
+  var url = sparqlqueries.url(sparqlqueries.getLocationBySearch(req.body.searchLocation));
+
+  fetch(url)
+    .then((resp) => resp.json())
+    .then(function (data) {
+      var rows = data.results.bindings;
+      req.session.searchResults = rows;
+      res.redirect('/new-story');
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+```
+
+En zo in gebruik:
+
+![Searchbar fallback](screenshots/searchbar-fallback.png)
+
+**Pull requests waarin Browser Technologies terug komt:**
+
+* [Feature/fallback-for-selecting-location](https://github.com/s44s/meesterproef-adamnet/pull/72)
+
+### Web Design
+---
+
+Voor Web Design vond ik het belangrijk dat vanuit een user scenario de flow van de website goed zou lopen. Dit was ook een van mijn leerdoelen aan het begin van de Meesterproef.
+We hadden gezamenlijk een mooi concept bedacht voor de user scenario van iemand die met nostalgische gevoelens zijn of haar jeugdherinneringen wil terughalen. (Zie [User Scenario](#user-scenario))
+
+Dit concept had veel uitdagingen op het gebied van design en interactie. Door veel te testen met 'echte mensen' hebben we vele iteraties doorgevoerd. Aan het einde van de vierde week hadden we zelfs een groot deel van ons concept over hoop gehaald. Maar dit leidde wel tot een verbetering van ons concept.
+
+**Eerste iteratie:**
+
+![New story page iteratie 1](screenshots/3.png)
+
+**Tweede iteratie:**
+
+![New story page iteratie 2](screenshots/5.png)
+
+**Laatste iteratie:**
+
+![New story page iteratie 3](screenshots/new-story-page.png)
