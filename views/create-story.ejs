@@ -3,7 +3,7 @@
 	<div class="grid">
 		<section class="map-visualisation">
 			<div id="map"></div>
-			<a class="back" href="/new-story"/>
+			<a class="back" href="/new-story">
 				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
  				viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve">
 					<g>
@@ -20,152 +20,117 @@
 
 		<nav class="table-of-contents">
 			<button class="open">
-				<svg class="navicon" height="32px" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-				<path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+				<svg class="navicon" viewBox="0 0 32 32">
+					<path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
 				</svg>
 			</button>
 			<button class="close">
-				<svg class="navicon" height="32px" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 -5 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-				<path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"/>
+				<svg class="navicon" viewBox="0 0 95.9 95.9">
+					<path d="M62.8,48l32.5-32.5c0.8-0.8,0.8-2,0-2.8l-12-12C83,0.2,82.4,0,81.9,0s-1,0.2-1.4,0.6L48,33.1L15.4,0.6
+					c-0.8-0.8-2.1-0.8-2.8,0l-12,12c-0.8,0.8-0.8,2,0,2.8L33.1,48L0.6,80.5c-0.8,0.8-0.8,2,0,2.8l12,12c0.4,0.4,0.9,0.6,1.4,0.6
+					s1-0.2,1.4-0.6L48,62.8l32.5,32.5c0.4,0.4,0.9,0.6,1.4,0.6s1-0.2,1.4-0.6l12-12c0.8-0.8,0.8-2,0-2.8L62.8,48z"/>
 				</svg>
 			</button>
-			<ol class="menu">
-				<% for(var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
+			<ol class="menu"><%
+				for (var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
 					<li>
 						<a href="#year-<%- Object.keys(dataFirstQuery)[i] %>">
-							<h1 class="year-title"><%- Object.keys(dataFirstQuery)[i] %></h1>
+							<h2 class="year-title"><%= Object.keys(dataFirstQuery)[i] %></h2>
 						</a>
-					</li>
-				<% } %>
+					</li><%
+				} %>
 			</ol>
 		</nav>
 
 		<main class="contents">
 			<h1>Selecteer de foto's die je wilt gebruiken voor jouw herinneringenboek</h1>
-			<form class="data" action="/my-story/<%- id %>" method="post">
+			<form class="data" action="/my-story/<%- id %>" method="post"><%
+				var allChapters = Object.values(selection);
+				var arr = allChapters.map(function (chapter) {
+					return [].concat.apply([], Object.values(chapter));
+				});
 
-				<% var allChapters = Object.values(selection); %>
-				<% var arr = allChapters.map(function (chapter) { %>
-					<% return [].concat.apply([], Object.values(chapter)); %>
-				<% }); %>
+				var merged = [].concat.apply([], arr);
 
-				<% var merged = [].concat.apply([], arr); %>
+				for (var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
+					<section id="year-<%- Object.keys(dataFirstQuery)[i] %>" class="year <%- Object.keys(dataFirstQuery)[i] %>">
+						<img class="crosses" src="/images/crosses.svg">
+						<ul><%
+							var objectYearsSelection = dataFirstQuery[Object.keys(selection)[i]];
 
-			<% for(var i = 0; i < Object.keys(dataFirstQuery).length; i++) { %>
-				<section id="year-<%- Object.keys(dataFirstQuery)[i] %>" class="year <%- Object.keys(dataFirstQuery)[i] %>">
-					<img class="crosses" src="/images/crosses.svg"/>
-					<ul>
-						<% var objectYearsSelection = dataFirstQuery[Object.keys(selection)[i]]; %>
-					<% if (objectYearsSelection !== null && objectYearsSelection !== undefined) { %>
-						<% for(var j = 0; j < Object.keys(objectYearsSelection).length; j++) { %>
-						<% var objectChaptersSelection = objectYearsSelection[Object.keys(objectYearsSelection)[j]] %>
-						<% for(var k = 0; k < Object.keys(objectChaptersSelection).length; k++) { %>
-							<li class="data-image">
-								<label>
-									<div class="content">
-										<input id="checkbox" type="checkbox" name="images" value="<%- Object.values(objectChaptersSelection)[k].img.value %>" checked>
-										<span class="check"></span>
-										<img class="lazy" src="<%- Object.values(objectChaptersSelection)[k].img.value %>" alt="<%- Object.values(objectChaptersSelection)[k].title.value %>"/>
-										<p><%- Object.values(objectChaptersSelection)[k].title.value %></p>
-										<a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
-									</div>
-									<div class="detail">
-										<span class="helper"></span>
-										<div>
-											<div class="popupCloseButton">X</div>
-											<img src="<%- Object.values(objectChaptersSelection)[k].img.value %>" alt="<%- Object.values(objectChaptersSelection)[k].title.value %>"/>
-											<p><%- Object.values(objectChaptersSelection)[k].title.value %></p>
-										</div>
-									</div>
-								</label>
-							</li>
-							<% } %>
-						<% } %>
-					<% } else { %>
+							if (objectYearsSelection !== null && objectYearsSelection !== undefined) {
+								for (var j = 0; j < Object.keys(objectYearsSelection).length; j++) {
+									var objectChaptersSelection = objectYearsSelection[Object.keys(objectYearsSelection)[j]];
 
-						<% var objectYears = dataFirstQuery[Object.keys(dataFirstQuery)[i]]; %>
-						<% for(var j = 0; j < Object.keys(objectYears).length; j++) { %>
-						<% var objectChapters = objectYears[Object.keys(objectYears)[j]] %>
-						<% for(var k = 0; k < Object.keys(objectChapters).length; k++) { %>
-							<li class="data-image">
-								<label>
-									<div class="content">
-										<input id="checkbox" type="checkbox" name="images" value="<%- Object.values(objectChapters)[k].img.value %>">
-										<span class="check"></span>
-										<img class="lazy" src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
-										<p><%- Object.values(objectChapters)[k].title.value %></p>
-										<a class="openDetail" href=""><img src="/images/zoom-in.svg" alt="zoom-in icon"/></a>
-									</div>
-									<div class="detail">
-										<span class="helper"></span>
-										<div>
-											<div class="popupCloseButton">X</div>
-											<img src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>"/>
-											<p><%- Object.values(objectChapters)[k].title.value %></p>
-										</div>
-									</div>
-								</label>
-							</li>
-							<% } %>
-						<% } %>
+									for (var k = 0; k < Object.keys(objectChaptersSelection).length; k++) { %>
+										<li class="data-image">
+											<label>
+												<div class="content">
+													<input id="checkbox" type="checkbox" name="images" value="<%- Object.values(objectChaptersSelection)[k].img.value %>" checked>
+													<span class="check"></span>
+													<img class="lazy" src="<%- Object.values(objectChaptersSelection)[k].img.value %>" alt="<%- Object.values(objectChaptersSelection)[k].title.value %>">
+													<p>
+														<%= Object.values(objectChaptersSelection)[k].title.value %>
+													</p>
+													<a class="openDetail" data-image="<%- Object.values(objectChaptersSelection)[k].img.value %>" data-text="<%- Object.values(objectChaptersSelection)[k].title.value %>" href="">
+														<img src="/images/zoom-in.svg" alt="zoom-in icon">
+													</a>
+												</div>
+											</label>
+										</li><%
+									}
+								}
+							} else {
+								var objectYears = dataFirstQuery[Object.keys(dataFirstQuery)[i]];
 
-					<% } %>
+								for (var j = 0; j < Object.keys(objectYears).length; j++) {
+									var objectChapters = objectYears[Object.keys(objectYears)[j]];
+
+									for (var k = 0; k < Object.keys(objectChapters).length; k++) { %>
+										<li class="data-image">
+											<label>
+												<div class="content">
+													<input id="checkbox" type="checkbox" name="images" value="<%- Object.values(objectChapters)[k].img.value %>">
+													<span class="check"></span>
+													<img class="lazy" src="<%- Object.values(objectChapters)[k].img.value %>" alt="<%- Object.values(objectChapters)[k].title.value %>">
+													<p>
+														<%= Object.values(objectChapters)[k].title.value %>
+													</p>
+													<a class="openDetail" data-image="<%- Object.values(objectChapters)[k].img.value %>" data-text="<%- Object.values(objectChapters)[k].title.value %>" href="">
+														<img src="/images/zoom-in.svg" alt="zoom-in icon">
+													</a>
+												</div>
+											</label>
+										</li><%
+									}
+								}
+							} %>
 						</ul>
-					</section>
-				<% } %>
+					</section><%
+				}
 
-				<% if (merged.length) { %>
-					<section class="selected-images show-selected-images">
-						<% merged.forEach(function (item) { %>
-							<img src="<%- item.img.value %>" alt="<%- item.title.value %>">
-						<% }); %>
+				if (merged.length) { %>
+					<section class="selected-images show-selected-images"><%
+						merged.forEach(function (item) { %>
+							<img src="<%- item.img.value %>" alt="<%- item.title.value %>"><%
+						}); %>
 					</section>
 					<div class="next-page">
 						<button class="submit-chapter show-selected-images" type="submit">Opslaan</button>
 						<span class="count-images show-selected-images"><%= merged.length %></span>
-					</div>
-				<% } else { %>
-					<section class="selected-images"></section>
-				<% } %>
+					</div><%
+				} else { %>
+					<section class="selected-images"></section><%
+				} %>
 
 				<div class="next-page">
-					<button class="submit-chapter" type="submit">Opslaan</button>
+					<button class="submit-chapter action-btn" type="submit">Opslaan</button>
 					<span class="count-images"></span>
 				</div>
 			</form>
 		</main>
 	</div>
 
-	<script>
-		window.data = <%- JSON.stringify(dataFirstQuery || null) %>;
-		window.selection = <%- JSON.stringify(selection || null) %>;
-		console.log('data', window.data);
-		console.log('selection', window.selection);
-	</script>
-
-	<script>
-		//open detail page image
-		var trigger = document.querySelectorAll('.openDetail');
-		var detailpopup = document.querySelectorAll('.detail');
-		var closeButton = document.querySelectorAll('.popupCloseButton');
-
-		for(var i = 0; i < trigger.length; i++) {
-			trigger[i].addEventListener('click', function(e){
-				e.preventDefault();
-				e.path[3].childNodes[3].classList.add('show');
-			});
-
-			detailpopup[i].addEventListener('click', function(e){
-				e.preventDefault();
-				e.target.parentElement.classList.remove('show')
-			});
-
-			closeButton[i].addEventListener('click', function(e){
-				e.preventDefault();
-				e.target.parentElement.parentElement.classList.remove('show')
-			});
-		}
-	</script>
 	<script>
 		//hamburger menu mobile
 		if('querySelector' in document && 'querySelectorAll' in document && 'addEventListener' in window) {
@@ -249,10 +214,14 @@
 					var url = item.value;
 					var text = item.parentElement.childNodes[7].innerHTML;
 
+					var a = document.createElement('a');
 					var img = document.createElement('img');
+
 					img.src = url;
 					img.alt = text;
-					selectedImages.appendChild(img);
+
+					selectedImages.appendChild(a);
+					a.appendChild(img);
 
 					var newImages = document.querySelectorAll('.selected-images img');
 					newImages[newImages.length-1].scrollIntoView();
@@ -260,25 +229,16 @@
 					//add style
 					li.classList.add('hide-li');
 
-					img.addEventListener('click', function(){
-						//add number
-						span.innerHTML--;
+					a.addEventListener('click', function (e) {
+						e.preventDefault();
 
-						//delete item
-						var img = this;
-						var section = this.parentElement;
+						// Add image to popup:
+			      document.querySelector('.detail img').src = url;
+			      document.querySelector('.detail img').alt = text;
+			      document.querySelector('.detail p').textContent = text;
 
-						// label.style.opacity = '0';
-						// setTimeout(function(){
-							section.removeChild(img);
-						// }, 1000);
-
-						//add item
-						var inputHidden = document.querySelector('input[value="' + this.src + '"]');
-						var liHidden = inputHidden.parentElement.parentElement.parentElement;
-
-						li.classList.remove('hide-li');
-						inputHidden.checked = false;
+			      // Show the popup:
+			      document.querySelector('.detail').classList.add('show');
 					});
 
 				} else {
@@ -288,63 +248,25 @@
 					//show li item
 					li.classList.remove('hide-li');
 
-					//delete selected image
-					var images = document.querySelectorAll('.selected-images img');
-					for(var i = 0; i < images.length; i++) {
-						if(item.value == images[i].src) {
-							selectedImages.removeChild(images[i])
-						}
+					if (selectedImages.children.length == 1) {
+						selectedImages.classList.remove('show-selected-images');
+						submitButton.classList.remove('show-selected-images');
+						span.classList.remove('show-selected-images');
 					}
 
+					//delete selected image
+					var images = document.querySelectorAll('.selected-images a');
+					for (var i = 0; i < images.length; i++) {
+						if (item.value == images[i].children[0].src) {
+							selectedImages.removeChild(images[i]);
+						}
+					}
 				}
 			});
 		});
 
 		</script>
-		<!-- <script>
-			var inputSelected;
-			var checkboxes = document.querySelectorAll('input[name="images"]');
 
-			for(var i = 0; i < checkboxes.length; i++) {
-				checkbox[i].addEventListener('change', function(){
-					inputSelected = document.querySelectorAll('.selected-images input[name="images"]');
-					console.log(inputSelected);
-
-					for(var i = 0; i < inputSelected.length; i++) {
-						var arrayNumber = inputSelected.length - i;
-						// console.log(arrayNumber);
-
-						inputSelected[i].addEventListener('change', function(){
-							// console.log('check');
-							// if(item.checked == false) {
-							// 	//add number
-							// 	console.log(item);
-							// 	span.innerHTML--;
-							// }
-						});
-					};
-				})
-			}
-
-
-			checkboxes.forEach(function(item) {
-				item.addEventListener('change', function(){
-					inputSelected = document.querySelectorAll('.selected-images input[name="images"]');
-
-					// inputSelected.forEach(function(item) {
-					// 	item.addEventListener('change', function(){
-					//
-					// 		if(item.checked == false) {
-					// 			//add number
-					// 			console.log(item);
-					// 			span.innerHTML--;
-					// 		}
-					// 	});
-					// });
-				});
-			});
-
-		</script> -->
 		<script>
 		//smoothscroll
 		(function() // Code in a function to create an isolate scope

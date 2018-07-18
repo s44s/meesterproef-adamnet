@@ -43,7 +43,7 @@ var inputCircle;
 			}).addTo(this.map);
 
 			L.control.zoom({
-					position: 'bottomright'
+				position: 'bottomright'
 			}).addTo(this.map);
 
 			// Initialize the circle:
@@ -52,17 +52,11 @@ var inputCircle;
 				.setRadius(250)
 				.addTo(this.map);
 
+			// this.polygon.addTo(this.map).bringToBack();
+
 			// Initialize circle events:
 			this.changeRadius();
 			this.moveCircle();
-
-			// Change the map's draggable function when you drag the radius:
-			this.circle.addEventListener('mousedown', function () {
-				self.map.dragging.disable();
-			});
-			this.circle.addEventListener('mouseup', function () {
-				self.map.dragging.enable();
-			});
 
 			// Create the polygon, with the centerPoint as coords:
 			this.createPolygon(this.centerPoint);
@@ -96,27 +90,63 @@ var inputCircle;
 				var latlng = self.circle.getLatLng();
 				var meters = e.target.value / 2 * 1000;
 				self.createCircle(Object.values(latlng), meters);
-				self.createPolygon(Object.values(latlng), meters);
+				self.createPolygon(self.centerPoint, meters);
 			});
 		},
 		moveCircle: function () {
 			var self = this;
 
 			// Dragging the circle:
-			this.circle.on('mousedown', function () {
-				self.map.on('mousemove', function (e) {
-					self.createCircle(Object.values(e.latlng));
-				});
-			});
+			var draggable = new L.Draggable(this.circle._path);
+			draggable.enable();
+
+			var circleX = this.circle._point.x;
+			var circleY = this.circle._point.y;
 
 			// Calculate the new center:
-			this.circle.on('mouseup', function () {
-				var latlng = this.getLatLng();
-				var radius = this.getRadius();
+			draggable.on('predrag', function (e) {
+				var x = circleX + e.sourceTarget._newPos.x;
+				var y = circleY + e.sourceTarget._newPos.y;
+				var point = {x: x, y: y};
+				var latlng = self.map.layerPointToLatLng(point);
+				var radius = self.circle.getRadius();
 
 				// Create the new polygon:
+				self.centerPoint = Object.values(latlng);
 				self.createPolygon(Object.values(latlng), radius);
-				self.map.removeEventListener('mousemove');
+			});
+
+			var zoomLevel = 14;
+
+			this.map.on('zoom', function (e) {
+				var newZoomLevel = Number(e.sourceTarget._animateToZoom);
+				var idx;
+
+				if (newZoomLevel - zoomLevel < 0) {
+					idx = Math.abs(1 / ((newZoomLevel - zoomLevel) * 2));
+				} else {
+					idx = Math.abs((newZoomLevel - zoomLevel) * 2);
+				}
+
+				console.log('before:', L.DomUtil.getStyle(self.circle._path, 'transform'));
+
+				var transform = L.DomUtil.getStyle(self.circle._path, 'transform');
+				transform = transform.slice(12, transform.indexOf(')'));
+				transform = transform.split('px, ');
+
+				var transformX = Number(transform[0]);
+				var transformY = Number(transform[1]);
+
+				var posX = transformX * idx;
+				var posY = transformY * idx;
+
+				var newPos = {"x": posX, "y": posY};
+
+				L.DomUtil.setTransform(self.circle._path, newPos);
+
+				zoomLevel = newZoomLevel;
+
+				console.log('after:', L.DomUtil.getStyle(self.circle._path, 'transform'));
 			});
 		},
 		createCircle: function (coords, radius = this.circle.getRadius()) {
