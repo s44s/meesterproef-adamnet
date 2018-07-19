@@ -155,6 +155,16 @@ exports.postMyStoryPage = function (req, res, next) {
     });
   });
 
+  var imgs = selection.map(function (item) {
+    return item.img.value;
+  });
+
+  selection = selection.filter(function (item, i) {
+    if (imgs.indexOf(item.img.value) === i) {
+      return item;
+    }
+  });
+
   // Map the selection by year and chapter:
   selection.forEach(function (item) {
     var year = item.start.value.split('-')[0];
