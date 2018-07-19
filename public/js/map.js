@@ -29,6 +29,8 @@ var inputCircle;
 			52.370216,
 			4.895168
 		],
+		startPos: {x: 0, y: 0},
+		currentPos: {x: 0, y: 0},
 		init: async function () {
 			var self = this;
 			var searchbar = document.querySelector('[name="searchLocation"]');
@@ -52,11 +54,9 @@ var inputCircle;
 				.setRadius(250)
 				.addTo(this.map);
 
-			// this.polygon.addTo(this.map).bringToBack();
-
 			// Initialize circle events:
 			this.changeRadius();
-			this.moveCircle();
+			// this.moveCircle();
 
 			// Create the polygon, with the centerPoint as coords:
 			this.createPolygon(this.centerPoint);
@@ -74,6 +74,33 @@ var inputCircle;
 
 			// Add the streets data to geoJSON:
 			this.geoJSON.addData(allStreets);
+
+			// Dragging the circle:
+			var draggable = new L.Draggable(this.circle._path);
+			draggable.enable();
+
+			this.startPos.x = this.circle._point.x;
+			this.startPos.y = this.circle._point.y;
+
+			// Calculate the new center:
+			draggable.on('drag', function (e) {
+				self.currentPos.x = e.sourceTarget._newPos.x;
+				self.currentPos.y = e.sourceTarget._newPos.y;
+				self.moveCircle();
+			});
+
+			this.map.on('zoom', function (e) {
+				var newZoomLevel = Number(e.sourceTarget._animateToZoom);
+				var layerPoint = this.latLngToLayerPoint(self.centerPoint);
+				this.setView(self.centerPoint, newZoomLevel);
+
+				var circleX = layerPoint.x - self.currentPos.x;
+				var circleY = layerPoint.y - self.currentPos.y;
+
+				self.startPos.x = circleX;
+				self.startPos.y = circleY;
+				self.moveCircle();
+			});
 		},
 		getAllStreets: async function () {
 			return fetch('/js/streets.json')
@@ -94,60 +121,17 @@ var inputCircle;
 			});
 		},
 		moveCircle: function () {
-			var self = this;
+			var x = this.startPos.x + this.currentPos.x;
+			var y = this.startPos.y + this.currentPos.y;
+			var point = {x: x, y: y};
+			var latlng = this.map.layerPointToLatLng(point);
+			var radius = this.circle.getRadius();
 
-			// Dragging the circle:
-			var draggable = new L.Draggable(this.circle._path);
-			draggable.enable();
-
-			var circleX = this.circle._point.x;
-			var circleY = this.circle._point.y;
-
-			// Calculate the new center:
-			draggable.on('predrag', function (e) {
-				var x = circleX + e.sourceTarget._newPos.x;
-				var y = circleY + e.sourceTarget._newPos.y;
-				var point = {x: x, y: y};
-				var latlng = self.map.layerPointToLatLng(point);
-				var radius = self.circle.getRadius();
-
-				// Create the new polygon:
-				self.centerPoint = Object.values(latlng);
-				self.createPolygon(Object.values(latlng), radius);
-			});
-
-			var zoomLevel = 14;
-
-			this.map.on('zoom', function (e) {
-				var newZoomLevel = Number(e.sourceTarget._animateToZoom);
-				var idx;
-
-				if (newZoomLevel - zoomLevel < 0) {
-					idx = Math.abs(1 / ((newZoomLevel - zoomLevel) * 2));
-				} else {
-					idx = Math.abs((newZoomLevel - zoomLevel) * 2);
-				}
-
-				console.log('before:', L.DomUtil.getStyle(self.circle._path, 'transform'));
-
-				var transform = L.DomUtil.getStyle(self.circle._path, 'transform');
-				transform = transform.slice(12, transform.indexOf(')'));
-				transform = transform.split('px, ');
-
-				var transformX = Number(transform[0]);
-				var transformY = Number(transform[1]);
-
-				var posX = transformX * idx;
-				var posY = transformY * idx;
-
-				var newPos = {"x": posX, "y": posY};
-
-				L.DomUtil.setTransform(self.circle._path, newPos);
-
-				zoomLevel = newZoomLevel;
-
-				console.log('after:', L.DomUtil.getStyle(self.circle._path, 'transform'));
-			});
+			// Create the new polygon:
+			this.centerPoint = Object.values(latlng);
+			this.createCircle(Object.values(latlng), radius);
+			this.createPolygon(Object.values(latlng), radius);
+			L.DomUtil.setTransform(this.circle._path, {x: 0, y: 0});
 		},
 		createCircle: function (coords, radius = this.circle.getRadius()) {
 			this.circle.setLatLng(coords);
@@ -176,7 +160,14 @@ var inputCircle;
 			if (layer.feature.properties.name === streetName) {
 				var bounds = layer.getBounds();
 				var center = bounds.getCenter();
-				map.map.setView([center.lat, center.lng], 15);
+
+				var layerPoint = map.map.latLngToLayerPoint([center.lat, center.lng]);
+				map.map.setView([center.lat, center.lng], 14);
+
+				map.startPos.x = layerPoint.x - map.currentPos.x;
+				map.startPos.y = layerPoint.y - map.currentPos.y;
+
+				map.moveCircle();
 				map.createCircle([center.lat, center.lng]);
 				map.createPolygon([center.lat, center.lng]);
 			}
