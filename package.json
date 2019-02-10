@@ -19,6 +19,7 @@
   "dependencies": {
     "@turf/turf": "^5.1.6",
     "body-parser": "^1.18.3",
+    "browserify": "^16.2.2",
     "circle-to-polygon": "^1.0.2",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
