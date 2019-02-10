@@ -24,12 +24,12 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "node-fetch": "^2.1.2",
+    "nodemon": "^1.18.10",
     "shortid": "^2.2.8",
     "uuid": "^3.2.1",
     "wellknown": "^0.5.0"
   },
   "devDependencies": {
-    "dotenv": "^5.0.1",
-    "nodemon": "^1.18.10"
+    "dotenv": "^5.0.1"
   }
 }
