@@ -30,6 +30,7 @@
     "wellknown": "^0.5.0"
   },
   "devDependencies": {
-    "dotenv": "^5.0.1"
+    "dotenv": "^5.0.1",
+    "fly": "^3.0.5"
   }
 }
