@@ -1,8 +1,8 @@
 var plan = require('flightplan');
 
 var appName = 'Eenstukjenostalgie';
-var username = 'max';
-var startFile = 'app.js';
+var username = 'deploy';
+var startFile = 'bin/www';
 
 var tmpDir = appName+'-' + new Date().getTime();
 

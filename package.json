@@ -4,7 +4,7 @@
   "description": "application that will tell the story of the Amsterdammer",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node ./bin/www",
     "dev": "watch 'npm run build'",
     "watch-js": "watchify public/js/*.js -o public/dist/bundle.js -dv",
     "watch": "npm run build | npm run watch-js",
@@ -23,6 +23,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "forever": "^0.15.3",
     "node-fetch": "^2.1.2",
     "nodemon": "^1.18.10",
     "shortid": "^2.2.8",
