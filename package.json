@@ -8,6 +8,7 @@
     "dev": "watch 'npm run build'",
     "watch-js": "watchify public/js/*.js -o public/dist/bundle.js -dv",
     "watch": "npm run build | npm run watch-js",
+		"master": "npm run build | npm start",
     "build": "browserify public/js/*.js -o public/dist/bundle.js"
   },
   "repository": {
