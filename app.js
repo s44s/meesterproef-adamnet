@@ -27,6 +27,6 @@ var routes = require('./routes');
 app.use('/', routes);
 
 //run
-app.listen(process.env.PORT, function () {
+app.listen(3000, function () {
   console.log('runs');
 });
